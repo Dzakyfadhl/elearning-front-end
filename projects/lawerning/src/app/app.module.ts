@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 
 import { LoginPageComponent } from '@bootcamp-lawerning-page/login-page/login-page.component';
 import { AppRoutingModule } from './app-routing.module';
-
 @NgModule({
   declarations: [
     AppComponent,
