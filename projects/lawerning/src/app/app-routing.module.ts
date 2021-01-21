@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from '@bootcamp-lawerning-page/login-page/login-page.component';
+import { DashboardTeacherComponent } from './layout/dashboard-teacher/dashboard-teacher.component';
+import { Page404Component } from '@bootcamp-lawerning-page/page404/page404.component';
+
 import { DashboardStudentComponent } from './layout/dashboard-student/dashboard-student.component';
 const routes : Routes = [
   {
@@ -15,7 +18,16 @@ const routes : Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./module/dashboard/dashboard.module').then(m => m.DashboardModule)
+    component: DashboardTeacherComponent,
+    loadChildren: () => import('./module/teacher/teacher.module').then(m=>m.TeacherModule)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./module/dashboard/dashboard.module').then(m=>m.DashboardModule)
+  },
+  {
+    path: '**',
+    component: Page404Component
   },
   {
     path: '',
