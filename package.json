@@ -20,11 +20,8 @@
     "@angular/platform-browser-dynamic": "~11.0.6",
     "@angular/router": "~11.0.6",
     "bootstrap": "^4.6.0",
-<<<<<<< HEAD
-=======
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
->>>>>>> c531f3be50aee205ea889fee012d57351c658966
     "primeicons": "^4.1.0",
     "primeng": "^11.1.0",
     "rxjs": "~6.6.0",

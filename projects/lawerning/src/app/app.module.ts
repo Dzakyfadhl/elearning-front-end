@@ -10,7 +10,7 @@ import { Page404Component } from './page/page404/page404.component';
   declarations: [
     AppComponent,
     LoginPageComponent,
-    Page404Component
+    Page404Component,
   ],
   imports: [
     BrowserModule,
