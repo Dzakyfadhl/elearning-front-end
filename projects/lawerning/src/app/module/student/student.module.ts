@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { StudentRoutingModule } from './student-routing.module';
 import { HomeStudentComponent } from '@bootcamp-lawerning-page/home-student/home-student.component';
-
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,8 @@ import { HomeStudentComponent } from '@bootcamp-lawerning-page/home-student/home
   ],
   imports: [
     CommonModule,
-    StudentRoutingModule
+    StudentRoutingModule,
+    ButtonModule
   ]
 })
 export class StudentModule { }
