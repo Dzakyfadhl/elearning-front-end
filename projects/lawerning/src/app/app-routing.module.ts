@@ -23,14 +23,24 @@ const routes : Routes = [
     loadChildren: () => import('./module/teacher/teacher.module').then(m=>m.TeacherModule)
   },
   {
-    path: 'student',
+    path: '',
     component: DashboardStudentComponent,
-    loadChildren: () => import('./module/student/student.module').then(m => m.StudentModule)
+    loadChildren: () => import('./module/student/course-available/course-available.module').then(m => m.CourseAvailableModule)
+  },
+  {
+    path: '',
+    component: DashboardStudentComponent,
+    loadChildren: () => import('./module/student/course-student/course-student.module').then(m => m.CourseStudentModule)
+
   },
   {
     path: 'admin',
-    component: DashboardAdminComponent,
-    loadChildren: () => import('./module/admin/admin.module').then(m => m.AdminModule)
+    component : DashboardAdminComponent,
+    loadChildren: () => import('./module/admin/admin.module').then(m=>m.AdminModule)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./module/dashboard/dashboard.module').then(m=>m.DashboardModule)
   },
   {
     path: '**',
