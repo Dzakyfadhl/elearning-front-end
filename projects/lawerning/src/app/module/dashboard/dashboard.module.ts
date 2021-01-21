@@ -9,9 +9,9 @@ import { DashboardTeacherComponent } from '../../layout/dashboard-teacher/dashbo
 
 @NgModule({
   declarations: [
-    DashboardStudentComponent,
-    DashboardAdminComponent,
-    DashboardTeacherComponent
+    // DashboardStudentComponent,
+    // DashboardAdminComponent,
+    // DashboardTeacherComponent
   ],
   imports: [
     CommonModule,

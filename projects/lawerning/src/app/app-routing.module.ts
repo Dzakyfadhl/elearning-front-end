@@ -6,6 +6,7 @@ import { DashboardTeacherComponent } from './layout/dashboard-teacher/dashboard-
 import { Page404Component } from '@bootcamp-lawerning-page/page404/page404.component';
 
 import { DashboardStudentComponent } from './layout/dashboard-student/dashboard-student.component';
+import { DashboardAdminComponent } from './layout/dashboard-admin/dashboard-admin.component';
 const routes : Routes = [
   {
     path: 'login-page',
@@ -17,23 +18,25 @@ const routes : Routes = [
     pathMatch: 'full'
   },
   {
-    path: '',
+    path: 'teacher',
     component: DashboardTeacherComponent,
     loadChildren: () => import('./module/teacher/teacher.module').then(m=>m.TeacherModule)
   },
   {
-    path: '',
-    loadChildren: () => import('./module/dashboard/dashboard.module').then(m=>m.DashboardModule)
+    path: 'student',
+    component: DashboardStudentComponent,
+    loadChildren: () => import('./module/student/student.module').then(m => m.StudentModule)
+  },
+  {
+    path: 'admin',
+    component: DashboardAdminComponent,
+    loadChildren: () => import('./module/admin/admin.module').then(m => m.AdminModule)
   },
   {
     path: '**',
     component: Page404Component
-  },
-  {
-    path: '',
-    component: DashboardStudentComponent,
-    loadChildren: () => import('./module/student/student.module').then(m => m.StudentModule)
   }
+  
 ]
 
 @NgModule({

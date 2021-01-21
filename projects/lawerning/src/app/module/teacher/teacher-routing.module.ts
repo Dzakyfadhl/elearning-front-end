@@ -4,8 +4,13 @@ import { HomeTeacherComponent } from '@bootcamp-lawerning-page/home-teacher/home
 
 const routes: Routes = [
   {
-    path: 'home-teacher',
+    path: 'home',
     component: HomeTeacherComponent
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
   }
 ];
 
