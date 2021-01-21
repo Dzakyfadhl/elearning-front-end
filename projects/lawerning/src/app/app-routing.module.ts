@@ -20,8 +20,14 @@ const routes : Routes = [
   {
     path: '',
     component: DashboardStudentComponent,
-    loadChildren: () => import('./module/student/student.module').then(m => m.StudentModule)
+    loadChildren: () => import('./module/student/course-available/course-available.module').then(m => m.CourseAvailableModule)
+  },
+  {
+    path: '',
+    component: DashboardStudentComponent,
+    loadChildren: () => import('./module/student/course-student/course-student.module').then(m => m.CourseStudentModule)
   }
+  
 ]
 
 @NgModule({

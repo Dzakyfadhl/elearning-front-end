@@ -1,0 +1,43 @@
+ 
+.button-p{
+    background-color:#232946 ;
+  }
+  .header-home{
+    position: absolute;
+    height: 50%;
+    background-color: #232946;
+  }
+  .body-home{
+    margin-top: 15%;
+  }
+  
+.header-home h3{
+    color: #f9bc60;
+  }
+  .card-body h5{
+    color: #232946;
+    font-weight: bold;
+  }
+  
+  .card-body h6{
+    color: grey;
+    font-weight: bold;
+  }
+  .badge{
+    background-color: #f9bc60;
+  }
+
+  a {
+      text-decoration: none;
+  }
+
+  @media screen and (max-width: 991px) {
+    .header-home{
+      position: absolute;
+      height: 50%;
+      background-color: #232946;
+    }
+    .body-home{
+      margin-top: 60%;
+    }
+  }

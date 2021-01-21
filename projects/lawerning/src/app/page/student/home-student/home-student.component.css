@@ -1,0 +1,53 @@
+ 
+.button-p{
+    background-color:#232946 ;
+  }
+.header-home{
+  position: absolute;
+  height: 50%;
+  background-color: #232946;
+}
+.body-home{
+  margin-top: 15%;
+}
+.custom-select{
+    background-color:rgb(224, 224, 224) !important;
+    border:1px solid #232946;
+}
+.form-control:focus{
+  background-color: white;
+}
+
+.header-home h3{
+  color: #f9bc60;
+}
+  /* .body-margin{
+    border: 1px solid grey;
+  } */
+  .card-body h5{
+    color: #232946;
+    font-weight: bold;
+  }
+  
+  .card-body h6{
+    color: grey;
+    font-weight: bold;
+  }
+  .badge{
+    background-color: #f9bc60;
+  }
+
+  a {
+      text-decoration: none;
+  }
+  @media screen and (max-width: 991px) {
+    .header-home{
+      position: absolute;
+      height: 50%;
+      background-color: #232946;
+    }
+    .body-home{
+      margin-top: 60%;
+      margin-left: 5%;
+    }
+  }
