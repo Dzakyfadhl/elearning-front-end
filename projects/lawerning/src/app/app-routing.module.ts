@@ -5,6 +5,7 @@ import { LoginPageComponent } from '@bootcamp-lawerning-page/login-page/login-pa
 import { DashboardTeacherComponent } from './layout/teacher/dashboard-teacher/dashboard-teacher.component';
 import { Page404Component } from '@bootcamp-lawerning-page/page404/page404.component';
 
+import { DashboardStudentComponent } from './layout/dashboard-student/dashboard-student.component';
 const routes : Routes = [
   {
     path: 'login-page',
@@ -27,6 +28,11 @@ const routes : Routes = [
   {
     path: '**',
     component: Page404Component
+  },
+  {
+    path: '',
+    component: DashboardStudentComponent,
+    loadChildren: () => import('./module/student/student.module').then(m => m.StudentModule)
   }
 ]
 

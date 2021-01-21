@@ -29,8 +29,12 @@
               "node_modules/primeng/resources/themes/saga-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
+
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -90,9 +94,7 @@
               "projects/lawerning/src/favicon.ico",
               "projects/lawerning/src/assets"
             ],
-            "styles": [
-              "projects/lawerning/src/styles.css"
-            ],
+            "styles": ["projects/lawerning/src/styles.css"],
             "scripts": []
           }
         },
@@ -104,9 +106,7 @@
               "projects/lawerning/tsconfig.spec.json",
               "projects/lawerning/e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {

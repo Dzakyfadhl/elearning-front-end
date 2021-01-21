@@ -1,0 +1,12 @@
+* {
+    font-size: 18px;
+    color: #232946;
+}
+.navbar
+{
+    border-bottom:5px solid #232946;
+}
+/* routerLinkActive :active {
+    
+    border-bottom:3px solid #232946;
+} */
