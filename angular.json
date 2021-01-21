@@ -1,127 +1,128 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "lawerning": {
-      "projectType": "application",
-      "schematics": {},
-      "root": "projects/lawerning",
-      "sourceRoot": "projects/lawerning/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/lawerning",
-            "index": "projects/lawerning/src/index.html",
-            "main": "projects/lawerning/src/main.ts",
-            "polyfills": "projects/lawerning/src/polyfills.ts",
-            "tsConfig": "projects/lawerning/tsconfig.app.json",
-            "aot": true,
-            "assets": [
-              "projects/lawerning/src/favicon.ico",
-              "projects/lawerning/src/assets"
-            ],
-            "styles": [
-              "projects/lawerning/src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/lawerning/src/environments/environment.ts",
-                  "with": "projects/lawerning/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "lawerning": {
+            "projectType": "application",
+            "schematics": {},
+            "root": "projects/lawerning",
+            "sourceRoot": "projects/lawerning/src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/lawerning",
+                        "index": "projects/lawerning/src/index.html",
+                        "main": "projects/lawerning/src/main.ts",
+                        "polyfills": "projects/lawerning/src/polyfills.ts",
+                        "tsConfig": "projects/lawerning/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            "projects/lawerning/src/favicon.ico",
+                            "projects/lawerning/src/assets"
+                        ],
+                        "styles": [
+                            "projects/lawerning/src/styles.css",
+                            "node_modules/primeicons/primeicons.css",
+                            "node_modules/primeng/resources/themes/saga-blue/theme.css",
+                            "node_modules/primeng/resources/primeng.min.css",
+                            "node_modules/bootstrap/dist/css/bootstrap.min.css"
+
+                        ],
+                        "scripts": [
+                            "node_modules/jquery/dist/jquery.min.js",
+                            "node_modules/bootstrap/dist/js/bootstrap.min.js"
+                        ]
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [{
+                                "replace": "projects/lawerning/src/environments/environment.ts",
+                                "with": "projects/lawerning/src/environments/environment.prod.ts"
+                            }],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [{
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
                 },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "lawerning:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "lawerning:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "lawerning:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/lawerning/src/test.ts",
+                        "polyfills": "projects/lawerning/src/polyfills.ts",
+                        "tsConfig": "projects/lawerning/tsconfig.spec.json",
+                        "karmaConfig": "projects/lawerning/karma.conf.js",
+                        "assets": [
+                            "projects/lawerning/src/favicon.ico",
+                            "projects/lawerning/src/assets"
+                        ],
+                        "styles": ["projects/lawerning/src/styles.css"],
+                        "scripts": []
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/lawerning/tsconfig.app.json",
+                            "projects/lawerning/tsconfig.spec.json",
+                            "projects/lawerning/e2e/tsconfig.json"
+                        ],
+                        "exclude": ["**/node_modules/**"]
+                    }
+                },
+                "e2e": {
+                    "builder": "@angular-devkit/build-angular:protractor",
+                    "options": {
+                        "protractorConfig": "projects/lawerning/e2e/protractor.conf.js",
+                        "devServerTarget": "lawerning:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "lawerning:serve:production"
+                        }
+                    }
                 }
-              ]
             }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "lawerning:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "lawerning:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "lawerning:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/lawerning/src/test.ts",
-            "polyfills": "projects/lawerning/src/polyfills.ts",
-            "tsConfig": "projects/lawerning/tsconfig.spec.json",
-            "karmaConfig": "projects/lawerning/karma.conf.js",
-            "assets": [
-              "projects/lawerning/src/favicon.ico",
-              "projects/lawerning/src/assets"
-            ],
-            "styles": [
-              "projects/lawerning/src/styles.css"
-            ],
-            "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/lawerning/tsconfig.app.json",
-              "projects/lawerning/tsconfig.spec.json",
-              "projects/lawerning/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/lawerning/e2e/protractor.conf.js",
-            "devServerTarget": "lawerning:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "lawerning:serve:production"
-            }
-          }
         }
-      }
-    }},
-  "cli": {
-    "analytics": false
-  },
-  "defaultProject": "lawerning"
+    },
+    "cli": {
+        "analytics": false
+    },
+    "defaultProject": "lawerning"
 }

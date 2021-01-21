@@ -1,15 +1,19 @@
-.body-margin{
+ 
+.button-p{
+    background-color:#232946 ;
+  }
+  .body-margin{
     border: 1px solid grey;
-}
-.card-body h5{
+  }
+  .card-body h5{
     color: #232946;
     font-weight: bold;
-}
-
-.card-body h6{
+  }
+  
+  .card-body h6{
     color: grey;
     font-weight: bold;
-}
-.badge{
+  }
+  .badge{
     background-color: #f9bc60;
-}
+  }
