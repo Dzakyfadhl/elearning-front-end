@@ -94,9 +94,7 @@
               "projects/lawerning/src/favicon.ico",
               "projects/lawerning/src/assets"
             ],
-            "styles": [
-              "projects/lawerning/src/styles.css"
-            ],
+            "styles": ["projects/lawerning/src/styles.css"],
             "scripts": []
           }
         },
@@ -108,9 +106,7 @@
               "projects/lawerning/tsconfig.spec.json",
               "projects/lawerning/e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -126,7 +122,8 @@
           }
         }
       }
-    }},
+    }
+  },
   "cli": {
     "analytics": false
   },
