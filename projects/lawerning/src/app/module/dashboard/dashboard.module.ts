@@ -8,7 +8,6 @@ import { DashboardStudentComponent } from '../../layout/dashboard-student/dashbo
 import { FieldsetModule } from 'primeng/fieldset';
 import { DashboardAdminComponent } from '../../layout/dashboard-admin/dashboard-admin.component';
 
-
 @NgModule({
   declarations: [
     DashboardTeacherComponent,

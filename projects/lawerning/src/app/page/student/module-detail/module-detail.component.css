@@ -1,0 +1,53 @@
+.card-body{
+    background-color:#232946 ;
+}
+.card-body h3{
+    color: #f9bc60;
+}
+.card-body h5{
+    color: white;
+}
+.back{
+    color: white;
+}
+.s-card{
+    
+    background-color:#232946 ;
+}
+.input-group-text{
+    background-color: #232946;
+}
+.icon-comment{
+    color: #232946;
+}
+.head-module{
+    background-color: #f9bc60;
+}
+.head-module h5{
+    color:#232946 ;
+}
+.head-exam{
+    background-color: #f9bc60;
+}
+.body-module{
+    background-color: white;
+}
+.body-exam{
+    background-color: white;
+}
+.exam h5{
+    color:#0d153f;
+    font-weight: bold;
+}
+.exam h6{
+    font-weight: bold;
+}
+
+.label{
+    background-color: #f9bc60;
+    color: #232946;
+    height: 25px;
+}
+.time{
+    font-size: 12px;
+}

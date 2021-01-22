@@ -26,7 +26,7 @@ export class ModuleCourseComponent implements OnInit {
       topic: 'Topic-3',
       title: 'Polymorpishm',
       desc: 'Polymorpishm should define a part of Object Oriented Programming',
-      status: 'notstart'
+      status: 'clear'
     },
     {
       topic: 'Topic-4',
@@ -63,6 +63,12 @@ export class ModuleCourseComponent implements OnInit {
       console.log(this.course);
 
     });
+  }
+
+  viewForum(index: number){
+    let data = this.modules[index];
+    let title = data.title;
+    this.route.navigateByUrl(`/view-detail-module/${title}`);
   }
 
 }

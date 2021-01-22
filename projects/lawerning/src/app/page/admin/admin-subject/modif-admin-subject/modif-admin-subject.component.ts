@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModifAdminSubjectComponent implements OnInit {
 
-  constructor() { }
+  teacherSelector:string;
 
+  date:string;
+
+  constructor() { }
+  
   ngOnInit(): void {
+  }
+
+  printDate(){
+    console.log(this.date);
+    
   }
 
 }

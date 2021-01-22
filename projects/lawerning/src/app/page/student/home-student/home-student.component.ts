@@ -29,7 +29,7 @@ export class HomeStudentComponent implements OnInit {
       role: 'teacher',
       category: 'TI',
       status: '1',
-      teacher: 'Dzaky Fadilah, S.Kom.'
+      teacher: 'Mochamad Ray, S.Kom.'
     },
     {
       name: 'Java Framework',

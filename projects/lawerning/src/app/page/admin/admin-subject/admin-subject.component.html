@@ -1,1 +1,36 @@
-<p>admin-subject works!</p>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-light">
+        <li class="breadcrumb-item"><a [routerLink]="['/admin']" routerLinkActive="router-link-active">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Subject
+        </li>
+    </ol>
+</nav>
+
+<div class="d-flex align-items-center justify-content-between px-2 mb-3">
+    <h3>List Subject Categories</h3>
+    <button pButton type="button" icon="pi pi-plus" label="Add Category" class="p-button-raised p-button-sm" [routerLink]="['modif']" routerLinkActive="router-link-active"></button>
+</div>
+<p-table [value]="listSubjects" [paginator]="true" [rows]="10" styleClass="test" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>code</th>
+            <th>Subject Name</th>
+            <th>Description</th>
+
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-subject>
+        <tr>
+            <td>{{subject.code}}</td>
+            <td>{{subject.name}}</td>
+            <td>{{subject.description}}</td>
+
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-table>

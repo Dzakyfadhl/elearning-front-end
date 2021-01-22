@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-teacher',
@@ -46,7 +47,7 @@ export class CourseTeacherComponent implements OnInit {
       studentCount: "12"
     }
   ]
-  constructor() { 
+  constructor(private router: Router) { 
   }
 
   ngOnInit(): void {
@@ -56,8 +57,10 @@ export class CourseTeacherComponent implements OnInit {
     }
   }
 
-
-
-
-
+  viewModule(index: number){
+    let tempCourses: any = this.courses[index]
+    let courseName = tempCourses.titleCourse
+    console.log(courseName);    
+    this.router.navigateByUrl(`/list-module-teacher/${courseName}`);
+  }
 }

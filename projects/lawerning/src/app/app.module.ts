@@ -4,9 +4,11 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from '@bootcamp-lawerning-page/login-page/login-page.component';
 import { AppRoutingModule } from './app-routing.module';
-import { DashboardModule } from './module/dashboard/dashboard.module';
 import { Page404Component } from './page/page404/page404.component';
+import { FormsModule } from '@angular/forms';
 import { DashboardAdminComponent } from './layout/dashboard-admin/dashboard-admin.component';
+import {AvatarModule} from 'primeng/avatar';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,10 @@ import { DashboardAdminComponent } from './layout/dashboard-admin/dashboard-admi
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    AvatarModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

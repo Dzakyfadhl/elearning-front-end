@@ -58,7 +58,6 @@ export class ModuleAvailableComponent implements OnInit {
     this.activeRoute.params.subscribe(value => {
       this.course = value;
       console.log(this.course);
-
     });
   }
 

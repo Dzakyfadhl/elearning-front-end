@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-modif-admin-course',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModifAdminCourseComponent implements OnInit {
 
-  constructor() { }
+  teacherSelector:string;
 
+  date:string;
+
+  constructor() { }
+  
   ngOnInit(): void {
+  }
+
+  printDate(){
+    console.log(this.date);
+    
   }
 
 }
