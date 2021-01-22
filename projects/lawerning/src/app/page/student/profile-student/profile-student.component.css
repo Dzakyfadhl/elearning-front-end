@@ -1,0 +1,49 @@
+ 
+
+  .header-profile{
+    position: absolute;
+    height: 25%;
+    background-color: #232946;
+  }
+  .body-profile{
+    margin-top: 7%;
+    /* padding-left: 30%; */
+  }
+ 
+  .name{
+      color: #232946;
+      font-weight: bold;
+  }
+  .module{
+      color: #232946;
+      font-weight: bold;
+  }
+  .course{
+      color: #232946;
+      font-weight: bold;
+  }
+  .score{
+      color: #232946 ;
+      font-weight: bold;
+  }
+  .complete{
+      background-color: #232946;
+  }
+  .mmcourse{
+      font-weight: bold;
+      color: #232946;
+  }
+  /* .title-complete{
+      color: #f9bc60;
+  } */
+
+  @media screen and (max-width: 991px) {
+    .header-profile{
+      position: absolute;
+      height: 20%;
+      background-color: #232946;
+    }
+    .body-profile{
+      margin-top: 20%;
+    }
+  }

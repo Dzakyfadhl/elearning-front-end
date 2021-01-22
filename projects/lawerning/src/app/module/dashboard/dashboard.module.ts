@@ -7,7 +7,6 @@ import { ButtonModule } from 'primeng/button';
 import { DashboardStudentComponent } from '../../layout/dashboard-student/dashboard-student.component';
 import { FieldsetModule } from 'primeng/fieldset';
 
-
 @NgModule({
   declarations: [
     DashboardTeacherComponent,

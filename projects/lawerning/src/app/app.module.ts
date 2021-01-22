@@ -4,19 +4,20 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from '@bootcamp-lawerning-page/login-page/login-page.component';
 import { AppRoutingModule } from './app-routing.module';
-import { DashboardModule } from './module/dashboard/dashboard.module';
 import { Page404Component } from './page/page404/page404.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    Page404Component,
+    Page404Component
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
