@@ -12,7 +12,7 @@
                     <div *ngIf="isEmpty == true" class="">
                         <img src="assets/images/dataEmpty.png" height="400" alt="">
                     </div>
-                    <div class="col-lg-6 mt-3" *ngFor="let course of courses">
+                    <div class="col-lg-6 mt-3" *ngFor="let course of courses; let i = index">
                         <div class="col-lg-6 ">
                             <div class="card shadow p-2 mb-2 bg-white rounded" style="width: 30rem;">
                                 <img src="assets/images/ilustrator.jpg" class="card-img-top" height="200">
@@ -45,8 +45,10 @@
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ex adipisci,
                                         inventore quos, blanditiis laborum odit possimus, similique enim cupiditate
                                         molestias in qui atque voluptate magni sequi incidunt. Iste, veritatis!</p>
-                                    <button type="button" class="btn btn-primary" routerLink="/module-teacher">View
-                                        Module</button>
+                                    <a (click)="viewModule(i)">
+                                        <button pButton type="button" label="View Module"
+                                        class="btn-custome p-button-warning"></button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
