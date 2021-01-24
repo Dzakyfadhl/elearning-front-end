@@ -17,7 +17,7 @@ export class AdminSubjectComponent implements OnInit {
   
   first = 0;
   
-  rows = 10;
+  rows = 5;
   
   constructor() { }
   ngOnInit(): void {
@@ -27,6 +27,21 @@ export class AdminSubjectComponent implements OnInit {
 
   defineSubjects(){
     this.listSubjects = [
+      {
+        code : "S001",
+        name : "JAVA",
+        description : "Study Java Programming"
+      },
+      {
+        code : "S001",
+        name : "JAVA",
+        description : "Study Java Programming"
+      },
+      {
+        code : "S001",
+        name : "JAVA",
+        description : "Study Java Programming"
+      },
       {
         code : "S001",
         name : "JAVA",

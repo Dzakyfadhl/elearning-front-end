@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-modif-admin-subject',
   templateUrl: './modif-admin-subject.component.html',
@@ -7,18 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModifAdminSubjectComponent implements OnInit {
 
-  teacherSelector:string;
+  code: string;
+  name: string;
+  description: string;
 
-  date:string;
+  validateCode:boolean =true;
+  validateName:boolean =true;
+  validateDesc:boolean =true;
 
   constructor() { }
-  
+
   ngOnInit(): void {
   }
 
-  printDate(){
-    console.log(this.date);
-    
+  validateForm(): boolean {
+    return false;
   }
+
+  save() {
+    if (this.validateForm() == true) {
+      
+    }else{
+
+    }
+
+  }
+
 
 }

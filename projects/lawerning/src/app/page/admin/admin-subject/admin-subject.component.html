@@ -10,7 +10,7 @@
     <h3>List Subject Categories</h3>
     <button pButton type="button" icon="pi pi-plus" label="Add Category" class="p-button-raised p-button-sm" [routerLink]="['modif']" routerLinkActive="router-link-active"></button>
 </div>
-<p-table [value]="listSubjects" [paginator]="true" [rows]="10" styleClass="test" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+<p-table [value]="listSubjects" [paginator]="true" [rows]="5" styleClass="test" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,20]">
     <ng-template pTemplate="header">
         <tr>
             <th>code</th>

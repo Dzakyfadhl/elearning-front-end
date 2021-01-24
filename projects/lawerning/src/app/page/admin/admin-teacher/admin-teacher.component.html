@@ -1,1 +1,38 @@
-<p>admin-teacher works!</p>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-light">
+        <li class="breadcrumb-item"><a [routerLink]="['/admin']" routerLinkActive="router-link-active">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Teacher
+        </li>
+    </ol>
+</nav>
+
+<div class="d-flex align-items-center justify-content-between px-2 mb-3">
+    <h3>List Teachers</h3>
+    <button pButton type="button" icon="pi pi-plus" label="Add Teacher" class="p-button-raised p-button-sm" [routerLink]="['modif']" routerLinkActive="router-link-active"></button>
+</div>
+<p-table [value]="listTeachers" [paginator]="true" [rows]="5" styleClass="test" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,20]" styleClass="p-datatable-sm">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Teacher Code</th>
+            <th>Full Name</th>
+            <th>Phone Number</th>
+            <th>Username</th>
+
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-teacher>
+        <tr>
+            <td>{{teacher.code}}</td>
+            <td>{{teacher.name}}</td>
+            <td>{{teacher.phone}}</td>
+            <td>{{teacher.username}}</td>
+
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-table>

@@ -22,7 +22,7 @@ export class AdminCourseComponent implements OnInit {
 
   first = 0;
 
-  rows = 10;
+  rows = 5;
 
   constructor() { }
 

@@ -9,7 +9,7 @@
         </div>
         <div class="list-group list-group-flush">
             <a [routerLink]="['/admin']" routerLinkActive="router-link-active" class="list-group-item list-group-item-action bg-light"><i class="pi pi-home"></i> Home</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Teacher</a>
+            <a [routerLink]="['/admin/teachers']" routerLinkActive="router-link-active" class="list-group-item list-group-item-action bg-light">Teacher</a>
             <a [routerLink]="['/admin/courses']" routerLinkActive="router-link-active" class="list-group-item list-group-item-action bg-light">Course</a>
             <a [routerLink]="['/admin/subjects']" routerLinkActive="router-link-active" class="list-group-item list-group-item-action bg-light">Subject Categories</a>
         </div>
@@ -27,7 +27,7 @@
 
         </nav>
 
-        <div class="container px-5 mt-5">
+        <div class="container px-5 mt-3">
             <router-outlet>
             </router-outlet>
         </div>
