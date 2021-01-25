@@ -1,62 +1,53 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-lg-12">
-            <div class="container">
-                <div class="row">
+        <div class="header-module col-lg-12">
+            <div class="d-flex flex-column mb-4 text-center mt-4">
 
-                    <div class="col-lg-12 mt-5 ml-2">
-                        <h3>
-                            <a routerLink="/home-student">
-                                <i class="pi pi-arrow-left" style="font-size: 2rem"></i>
-                            </a>
-                            Detail Course
-                        </h3>
-                        <hr>
+                <h2>{{course.course}}</h2>
+                <div class="d-flex justify-content-center my-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" 
+                    class="icon bi bi-journal-bookmark-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z"/>
+                        <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                        <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+                      </svg>
+                </div>
+
+              
+                <div class="d-flex justify-content-center">
+                    <div class="col-lg-10">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias amet accusantium minima
+                            incidunt architecto iste tenetur, officia, ut consequatur fugit repellat cumque quo sed
+                            tempore, eum explicabo quae enim laudantium!</p>
                     </div>
-                    <div class="title col-lg-12 ml-2">
-                        <div class="d-flex justify-content-between">
-                            <h4 class="p-text-bold">
-                                <i class="pi pi-book" style="font-size: 2rem"></i>
-                                {{course.course}}
-                            </h4>
-                            <h5 class="p-text-bold">
-                                <i class="pi pi-user" style="font-size: 1rem"></i>
-                                12/20
-                            </h5>
-                        </div>
-                    </div>
-                  
-                    <div class="pl-5 col-lg-12">
-                        <h5 class="pl-3">Ryan Rivaldo, S.Kom.</h5>
-                    </div>
-                    <div class="col-lg-12 mt-4">
-                     
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h4 class="text-center text-light">Module</h4>
-                            </div>
-                            <!-- <p-scrollPanel [style]="{width: '100%', height: '310px'}"> -->
-                                <div class="divider p-2" *ngFor="let m of modules">
-                                    <p-divider align="left" type="dashed">
-                                        <h4>{{m.topic}}: {{m.title}}</h4>
-                                    </p-divider>
-                                    <p class="pl-5">{{m.desc}} </p>
-                                </div>
-                            <!-- </p-scrollPanel> -->
-                            <!-- <div class="p-5 text-center
-                            "> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                                <button pButton class="button-r p-button-secondary" label="Register Course"></button>
-                            <!-- </div> -->
-                            <!-- <p-fieldset legend="Module" > -->
-                           
-
-
-                            <!-- </p-fieldset> -->
-                        </div>
-                    </div>
-
-
+<div class="body-module container-fluid p-5">
+    <div class="row">
+        <div class="col-lg-12 mt-1">
+            <div class="card shadow p-3 mb-5 rounded">
+                
+                <div class="card-head">
+                    <h3 class="text-center">Module</h3>
+                    <hr>
+                </div>
+                <div class="" *ngFor="let m of modules;let i = index">
+                    <p-panel header="{{m.topic}}: {{m.title}}"  [toggleable]="true" styleClass="custom">
+                        <ng-template pTemplate="icons">
+                                <p-menu #menu id="config_menu" [model]="items" [popup]="false"></p-menu>
+                        </ng-template>
+                        <p>{{m.desc}}</p>
+                    </p-panel>
+                    <hr>
+                </div>
+                <div class="register text-center">
+                    <a>
+                        <button  class="btn btn-secondary">REGISTER NOW!</button>
+                    </a>
                 </div>
             </div>
         </div>

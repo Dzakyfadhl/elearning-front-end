@@ -7,6 +7,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { DividerModule } from 'primeng/divider';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ButtonModule } from 'primeng/button';
+import { PanelModule } from 'primeng/panel';
 @NgModule({
   declarations: [ModuleAvailableComponent],
   imports: [
@@ -15,7 +16,8 @@ import { ButtonModule } from 'primeng/button';
     FieldsetModule,
     DividerModule,
     ScrollPanelModule,
-    ButtonModule
+    ButtonModule,
+    PanelModule
   ]
 })
 export class ModuleAvailableModule { }

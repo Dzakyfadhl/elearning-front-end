@@ -9,6 +9,8 @@ export class ProfileStudentComponent implements OnInit {
   result : any= [
   ];
 
+  isTwoRow: boolean = false;
+
   mymodules = [
     {
       course: 'Java Framework',
@@ -35,10 +37,16 @@ export class ProfileStudentComponent implements OnInit {
       score: '90'
     }
     
-  ]
+  ];
+
+  isDisplay = false;
+  
+  blockedDocument: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+   
     this.mymodules.forEach(value =>{
       let percent = (value.value / value.total) * 100;
    
@@ -47,5 +55,14 @@ export class ProfileStudentComponent implements OnInit {
     console.log(this.result);
     
   }
+  showDialog() {
+    this.isDisplay = true;
+    this.blockedDocument = true;
+  }
+  cancelDialog(){
+    this.blockedDocument=false;
+    this.isDisplay = false;
+  }
+  
 
 }

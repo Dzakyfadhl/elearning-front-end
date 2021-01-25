@@ -18,6 +18,7 @@ import { OrderListModule } from 'primeng/orderlist';
     ButtonModule,
     FormsModule,
     OrderListModule
+    
   ]
 })
 export class CourseAvailableModule { }

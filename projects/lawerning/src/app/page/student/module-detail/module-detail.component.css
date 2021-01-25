@@ -51,7 +51,23 @@
 .time{
     font-size: 12px;
 }
-
+.title{
+    color:#f9bc60 ;
+    margin:5px;
+}
+.date{
+    color: white;
+    margin:5px;
+}
+.view-exam{
+    height: 410px;
+}
+.view-module{
+    height: 410px;
+}
+.view-content-exam{
+    height: 315px;
+}
 @media only screen and (max-width: 900px) {
     .data{
         display: flex;
@@ -72,6 +88,15 @@
       height: auto;
       border: 1px solid;
     
+    }
+    .view-exam{
+        height: 480px;
+    }
+    .view-module{
+        height: 410px;
+    }
+    .view-content-exam{
+        height: 380px;
     }
   
   }

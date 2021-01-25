@@ -1,3 +1,20 @@
+.header-module{
+    background-color: #232946;
+    height: 240px;
+}
+.header-module h2{
+    color: #f9bc60;
+}
+.header-module p{
+    color: white;
+}
+/* .body-module{
+    position: absolute;
+    top: 35%;
+} */
+.icon{
+    color: #f9bc60;
+}
 a{
     color: #232946;
 }
@@ -6,29 +23,55 @@ a{
 }
 
 .title h5{
-    color: #eb9413;
-}
-.divider h4{
     color: #232946;
 }
 
-.p-fieldset-legend-text{
-    color: hotpink;
+.card-head h3{
+    color:#232946;
+    background-color: #f9bc60 ;
+    padding: 10px;
+    font-weight: bold;
+}
+.register button{
+    background-color: #232946;
+}
+.register button:hover{
+    background-color: #333c6d;
 }
 
-
+:host ::ng-deep .custom .p-panel-header{
+    font-size: 25px;
+    font-weight: bold;
+    color:  #232946;
+  }
 .button-r{
     background-color: #232946;
 }
-.modul button{
-    background-color:#232946 ;
+.info{
+    font-weight: bold;
+    margin: 10px;
 }
-.modul a :hover{
-    background-color: #38416e;
+.title{
+    margin: 10px;
+    font-weight: bold;
+    color: #232946;
 }
-.check{
-    color: rgb(0, 71, 0);
+
+.btn-title{
+    margin: 10px;
+    background-color: #232946;
 }
-/* .body-module{
-    background-color:;
-} */
+a :hover{
+    background-color:  #334291;
+}
+.label-done{
+    margin: 10px;
+}
+@media screen and(max-width: 991px){
+    .header-module{
+    background-color: #232946;
+}   
+.header-module h2{
+    color: #f9bc60;
+}
+}

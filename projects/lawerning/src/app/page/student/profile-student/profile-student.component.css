@@ -6,8 +6,20 @@
     background-color: #232946;
   }
   .body-profile{
-    margin-top: 7%;
+    margin-top: 5%;
     /* padding-left: 30%; */
+  }
+  .camera{
+    position: absolute;
+    top: 40%;
+    left: 53%;
+  }
+  .camera a{
+    
+    color: rgb(7, 123, 168);
+  }
+  .camera a:hover{
+    color: #232946;
   }
  
   .name{
@@ -33,17 +45,51 @@
       font-weight: bold;
       color: #232946;
   }
+  a:hover{
+    cursor: pointer;
+  }
+  /* .save{
+    background-color: #232946;
+  } */
+  
   /* .title-complete{
       color: #f9bc60;
   } */
 
   @media screen and (max-width: 991px) {
+    .camera{
+      position: absolute;
+      top: 40%;
+      left: 70%;
+    }
+    .camera a{
+    
+      color: rgb(7, 123, 168);
+    }
+    .camera a:hover{
+      color: #232946;
+    }
     .header-profile{
       position: absolute;
       height: 20%;
       background-color: #232946;
     }
     .body-profile{
-      margin-top: 20%;
+      margin-top: 10%;
     }
+  }
+  @media screen and (max-width: 768px) {
+    .camera{
+      position: absolute;
+      top: 40%;
+      left: 55%;
+    }
+    .camera a{
+    
+      color: rgb(7, 123, 168);
+    }
+    .camera a:hover{
+      color: #232946;
+    }
+   
   }
