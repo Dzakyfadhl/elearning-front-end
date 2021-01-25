@@ -9,6 +9,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { FileUploadModule } from 'primeng/fileupload';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { OrderListModule } from 'primeng/orderlist';
 @NgModule({
   declarations: [ModuleDetailComponent],
   imports: [
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     FieldsetModule,
     FileUploadModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    OrderListModule
   ]
 })
 export class ModuleDetailModule { }

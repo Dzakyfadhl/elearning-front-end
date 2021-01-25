@@ -51,3 +51,27 @@
 .time{
     font-size: 12px;
 }
+
+@media only screen and (max-width: 900px) {
+    .data{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+     
+    }
+    .label{
+        background-color: #f9bc60;
+        color: #232946;
+        height: 25px;
+    }
+    .time{
+        font-size: 8px;
+    }
+    .message{
+      width: 240px;
+      height: auto;
+      border: 1px solid;
+    
+    }
+  
+  }

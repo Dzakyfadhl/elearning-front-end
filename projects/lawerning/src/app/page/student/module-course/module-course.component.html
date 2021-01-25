@@ -5,24 +5,24 @@
                 <div class="row">
                     <div class="d-flex justify-content-between mt-5">
                         <h3>
-                            <a routerLink="/home-student">
+                            <a routerLink="/my-course">
                                 <i class="pi pi-arrow-left" style="font-size: 2rem"></i>
                             </a>
                         </h3>
-                            <div class="title col-lg-12 ml-2">
-                                <div class="d-flex justify-content-between">
-                                    <h4 class="p-text-bold">
-                                        <i class="pi pi-book" style="font-size: 2rem"></i>
-                                        {{course.course}}
-                                    </h4>
-                                  
-                                </div>
+                        <div class="title col-lg-12 ml-2">
+                            <div class="d-flex justify-content-between">
+                                <h4 class="p-text-bold">
+                                    <i class="pi pi-book" style="font-size: 2rem"></i>
+                                    {{course.course}}
+                                </h4>
+
                             </div>
-                        
+                        </div>
+
                         <hr>
                     </div>
                     <div class="pl-5 col-lg-12">
-            
+
                         <h5 class="pl-5 pt-2 pb-2">Ryan Rivaldo, S.Kom.</h5>
                     </div>
                     <div class="col-lg-12" *ngFor="let m of modules; let i = index">
@@ -30,22 +30,29 @@
                             <div class="card-header">
                                 <div class="modul d-flex justify-content-between">
                                     <h4>{{m.topic}}: {{m.title}}</h4>
-                                    <button *ngIf="m.status == 'absent'" class="btn btn-secondary">Attendance</button>
-                                    <button *ngIf="m.status == 'present'" class="btn btn-secondary" (click)="viewForum(i)">View Module</button>
-
-                                    <svg *ngIf="m.status == 'clear'" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" 
-                                    class="check bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                                      </svg>
+                                    <a>
+                                        <button *ngIf="m.status == 'absent'"
+                                            class="btn btn-secondary">Attendance</button>
+                                    </a>
+                                    <a>
+                                        <button *ngIf="m.status == 'present'" class="btn btn-secondary"
+                                            (click)="viewForum(i)">View Module</button>
+                                    </a>
+                                    <svg *ngIf="m.status == 'clear'" xmlns="http://www.w3.org/2000/svg" width="30"
+                                        height="30" fill="currentColor" class="check bi bi-check-circle-fill"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                    </svg>
                                 </div>
-                              
+
                             </div>
                         </div>
                         <!-- <p-card header="{{m.topic}}">
                             <h5>{{m.title}}</h5>
                         </p-card> -->
                     </div>
-                   
+
                 </div>
             </div>
         </div>

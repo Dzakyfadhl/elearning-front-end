@@ -6,6 +6,7 @@ import { HomeStudentComponent } from '@bootcamp-lawerning-page/student/home-stud
 import { ButtonModule } from 'primeng/button';
 import { ModuleAvailableModule } from '../module-available/module-available.module';
 import { FormsModule } from '@angular/forms';
+import { OrderListModule } from 'primeng/orderlist';
 @NgModule({
   declarations: [
     HomeStudentComponent
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     CourseAvailableRoutingModule,
     ModuleAvailableModule,
     ButtonModule,
-    FormsModule
+    FormsModule,
+    OrderListModule
   ]
 })
 export class CourseAvailableModule { }

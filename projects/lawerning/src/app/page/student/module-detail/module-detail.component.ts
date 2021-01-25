@@ -45,7 +45,7 @@ export class ModuleDetailComponent implements OnInit {
       image: './assets/images/male1.jpeg',
       nama: 'Mochamad Apry',
       time: '30/01/2020 - 12:30',
-      message: 'Hi mom, i wanna sending my attachment',
+      message: 'Hi mom, i wanna sending my attachmentxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
       role: 'Student'
     },
     {

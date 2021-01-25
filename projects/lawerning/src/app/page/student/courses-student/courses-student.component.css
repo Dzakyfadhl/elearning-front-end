@@ -30,6 +30,11 @@
   a {
       text-decoration: none;
   }
+  .card-body a :hover{
+    color: #f9bc60;
+    cursor: pointer;
+    text-decoration: #f9bc60;
+  }
 
   @media screen and (max-width: 991px) {
     .header-home{

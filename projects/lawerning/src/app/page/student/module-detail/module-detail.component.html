@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid px-5">
     <div class="row">
         <div class="s-card col-lg-12 shadow mb-2 mt-2 rounded-lg">
             <div class="card">
@@ -77,10 +77,13 @@
 
                                     <hr>
                                     <h5 class="text-bold text-info">Assignment Exam</h5>
+                                    
+                                    <p class="text-info" *ngIf="e.feedback == ''">{{file}}</p>
 
                                     <a href="" *ngIf="e.feedback != ''"><i class="pi pi-file mr-2"></i>{{e.feedback}}<i
                                             class="pi pi-times mr-2"></i>
                                     </a>
+
                                     <div *ngIf="e.feedback == ''" class="input-group mb-3">
                                        
                                         <div class="custom-file">
@@ -89,7 +92,6 @@
                                           <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                         </div>
                                       </div>
-                                     <p class="text-info">{{file}}</p>
 
                                 </div>
                                 <div class="col-lg-12 text-center mt-3">
@@ -106,7 +108,7 @@
             </div>
 
         </div>
-        <div class="col-lg-4">
+        <div class="view-module col-lg-4">
             <div class="card">
                 <div class="head-module card-header">
                     <h5 class="text-center">Module</h5>
@@ -120,23 +122,26 @@
         </div>
         <div class="col-lg-12 mt-5">
             <p-fieldset legend="Discussion" [toggleable]="true">
-
+                    
                 <div *ngFor="let m of messages">
 
-                    <div class="d-flex justify-content-space-evenly mb-4">
-                        <img [src]="m.image" height="50" width="50" class="rounded-circle" alt="">
-                        <h5 class="m-3 text-bold text-info">{{m.nama}}</h5>
-                        <p class="time m-3 text-secondary">{{m.time}}</p>
-                        <span class="label mt-3 badge p-2">{{m.role}}</span>
-
-
+                    <div class="data d-flex justify-content-space-evenly mb-4">
+                      
+                            <img [src]="m.image" height="50" width="50" class="rounded-circle" alt="">
+                            <h5 class="m-3 text-bold text-info">{{m.nama}}</h5>
+                            <p class="time m-3 text-secondary">{{m.time}}</p>
+                            <span class="label mt-3 badge p-2">{{m.role}}</span>
+             
                     </div>
-                    <div class="d-flex justify-content-space-evenly ml-5">
+                        <div class="message ml-5">
 
-                        <h6 class="ml-3">{{m.message}}</h6>
-                    </div>
+                            <h6 class="ml-3">{{m.message}}</h6>
+                        </div>
+                
+                 
                     <hr>
                 </div>
+            
             </p-fieldset>
 
         </div>

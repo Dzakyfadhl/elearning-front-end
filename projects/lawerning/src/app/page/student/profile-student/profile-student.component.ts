@@ -18,19 +18,19 @@ export class ProfileStudentComponent implements OnInit {
     },
     {
       course: 'Object Oriented Programming',
-      value: 5,
-      total: 10,
-      score: '90'
-    },
-    {
-      course: 'PHP Framework',
       value: 10,
       total: 10,
       score: '90'
     },
     {
+      course: 'PHP Framework',
+      value: 11,
+      total: 14,
+      score: '90'
+    },
+    {
       course: 'Flutter',
-      value:  10,
+      value:  18,
       total: 20,
       score: '90'
     }
