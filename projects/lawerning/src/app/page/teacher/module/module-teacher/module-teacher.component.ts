@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ModuleTeacherComponent implements OnInit {
 
   course: any;
+  
   module: {
     titleModule: string,
     startDate: string,
@@ -84,4 +85,10 @@ export class ModuleTeacherComponent implements OnInit {
     })
   }
 
+  viewModule(index : number){
+    let tempModule: any= this.module[index];
+    let module = tempModule.titleModule;
+    console.log(module);
+    this.router.navigateByUrl(`/dtl-module/${module}`);
+  }
 }

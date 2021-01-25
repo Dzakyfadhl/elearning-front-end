@@ -5,6 +5,8 @@ import { TeacherRoutingModule } from './teacher-routing.module';
 import { HomeTeacherComponent } from '@bootcamp-lawerning-page/teacher/home-teacher/home-teacher.component';
 import { CourseTeacherModule } from './course-teacher/course-teacher.module';
 import { ModuleTeacherModule } from './module-teacher/module-teacher.module';
+import { DtlModuleModule } from './dtl-module/dtl-module.module';
+import { ProfileTeacherModule } from './profile-teacher/profile-teacher.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { ModuleTeacherModule } from './module-teacher/module-teacher.module';
     CommonModule,
     TeacherRoutingModule,
     CourseTeacherModule,
-    ModuleTeacherModule
+    ModuleTeacherModule,
+    DtlModuleModule,
+    ProfileTeacherModule
   ]
 })
 export class TeacherModule { }

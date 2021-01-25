@@ -1,0 +1,115 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="header-module col-lg-12">
+            <div class="d-flex justify-content-evenly mt-4">
+                <div class="d-flex justify-content-between">
+                    <a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                            class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                        </svg>
+                    </a>
+                    <h6>{{moduleSelected.moduleName}}</h6>
+                </div>
+            </div>
+            <div class="d-flex justify-content-evenly mt-2">
+                <div class="d-flex justify-content-between">
+                    <h5>Teacher: Rian Rivaldo, S.Kom</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="body-module container-fluid p-4 mb-3">
+    <div class="row">
+        <div class="col-lg-12 mt-4">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <p-tabView styleClass="tabview-custom">
+                    <p-tabPanel>
+                        <ng-template pTemplate="header">
+                            <i class="pi pi-calendar"></i>
+                            <div class="ml-2">
+                                <span>Description</span>
+                            </div>
+                        </ng-template>
+                        <div class="content-description">
+                            <h5>Description</h5>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus sint dolorem odit
+                                quisquam nulla perspiciatis, ex obcaecati iure iusto eligendi architecto minima quae,
+                                aspernatur, aperiam voluptas quis tenetur voluptates unde! Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Neque veritatis quas, quidem aliquam possimus, eaque quo,
+                                vel praesentium iste dolorem asperiores cum reiciendis optio. Voluptatem autem quidem
+                                veniam eligendi dolorum. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Deserunt est quia eos error minima similique odio aut amet, porro eligendi veniam
+                                dignissimos reprehenderit possimus dolorum! Nulla repudiandae error laudantium ratione?
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime debitis numquam
+                                tenetur, placeat cupiditate magnam nobis laborum a adipisci consectetur perferendis
+                                tempore nihil culpa expedita assumenda vel ducimus praesentium et. Lorem ipsum dolor,
+                                sit amet consectetur adipisicing elit. Molestias, porro cupiditate voluptatum pariatur
+                                sint voluptas odio nobis, commodi asperiores eaque cum debitis odit accusamus, molestiae
+                                unde. Enim dicta distinctio obcaecati! Lorem, ipsum dolor sit amet consectetur
+                                adipisicing elit. Iusto ipsam quam voluptatibus aspernatur quidem facilis, cupiditate
+                                totam quae voluptate at, quis porro. Esse optio in temporibus! Tempore non optio cum?
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae placeat vero ullam
+                                nemo nesciunt? Debitis asperiores saepe nesciunt, adipisci aut repellendus nisi aliquam
+                                modi vel maxime harum ad provident quam.</p>
+                            <h5>Schedule</h5>
+                            <h6 class="card-text p-1">
+                                <div class="content-body d-flex justify-content-evenly">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-calendar-event-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z" />
+                                        </svg>
+
+                                    </span>
+                                    <h6>Friday, 21-02-2021</h6>
+                                </div>
+                            </h6>
+                            <h6 class="card-text p-1">
+                                <div class="content-body d-flex justify-content-evenly">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                                        </svg>
+                                    </span>
+                                    <h6>09:30-12:30</h6>
+                                </div>
+                            </h6>
+                            <h5>Module</h5>
+                        </div>
+                    </p-tabPanel>
+                    <p-tabPanel>
+                        <ng-template pTemplate="header">
+                            <i class="pi pi-calendar"></i>
+                            <div class="ml-2">
+                                <span>Exam</span>
+                            </div>
+                        </ng-template>
+                    </p-tabPanel>
+                    <p-tabPanel>
+                        <ng-template pTemplate="header">
+                            <i class="pi pi-calendar"></i>
+                            <div class="ml-2">
+                                <span>Attendance</span>
+                            </div>
+                        </ng-template>
+                    </p-tabPanel>
+                    <p-tabPanel>
+                        <ng-template pTemplate="header">
+                            <i class="pi pi-calendar"></i>
+                            <div class="ml-2">
+                                <span>Discussion</span>
+                            </div>
+                        </ng-template>
+                    </p-tabPanel>
+                </p-tabView>
+            </div>
+        </div>
+    </div>
+</div>

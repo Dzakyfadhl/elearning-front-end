@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeTeacherComponent } from '@bootcamp-lawerning-page/teacher/home-teacher/home-teacher.component';
+import { DtlModuleComponent } from '@bootcamp-lawerning-page/teacher/dtl-module/dtl-module.component';
 
 const routes: Routes = [
   {
-    path: 'home-teacher',
-    component: HomeTeacherComponent
+    path: 'dtl-module/:moduleName',
+    component: DtlModuleComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TeacherRoutingModule { }
+export class DtlModuleRoutingModule { }

@@ -20,6 +20,8 @@ export class LoginPageComponent implements OnInit {
       this.router.navigateByUrl('/home-teacher');
     }else if(this.username == "student" && this.password == "student"){
       this.router.navigateByUrl('/home-student');
+    }else if(this.username == "admin" && this.password == "admin"){
+      this.router.navigateByUrl('/home');
     }
   }
 }

@@ -41,6 +41,26 @@
     vertical-align: middle;
     line-height: 1;
 }
+.content-body h6{
+    margin-top: 2px;
+    margin-left: 10px;
+}
+.card-text{
+    color:#858699;
+}
+a {
+    text-decoration: none;
+}
+.header-content a:hover{
+    color: #515da3;
+    cursor: pointer;
+    text-decoration: #515da3;
+  }
+  .header-content h3{
+      font-size: 25px;
+      font-weight: bold;
+  }
+
 @media screen and (max-width: 576px) {
     .student-item {
         flex-wrap: wrap;

@@ -72,8 +72,7 @@
     .data{
         display: flex;
         flex-wrap: wrap;
-        justify-content: start;
-     
+        /* justify-content: start; */
     }
     .label{
         background-color: #f9bc60;

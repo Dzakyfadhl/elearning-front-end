@@ -18,7 +18,7 @@ const routes : Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'teacher',
+    path: '',
     component: DashboardTeacherComponent,
     loadChildren: () => import('./module/teacher/teacher.module').then(m=>m.TeacherModule)
   },
