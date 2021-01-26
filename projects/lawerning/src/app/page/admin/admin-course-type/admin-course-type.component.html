@@ -1,36 +1,33 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-light">
         <li class="breadcrumb-item"><a [routerLink]="['/admin']" routerLinkActive="router-link-active">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Teacher
+        <li class="breadcrumb-item active" aria-current="page">CourseType
         </li>
     </ol>
 </nav>
 
 <div class="d-flex align-items-center justify-content-between px-2 mb-3">
-    <h3>List Teachers</h3>
-    <button pButton type="button" icon="pi pi-plus" label="Add Teacher" class="p-button-raised p-button-sm" [routerLink]="['modif']" routerLinkActive="router-link-active"></button>
+    <h3>List Course Types</h3>
+    <button pButton type="button" icon="pi pi-plus" label="Add Course Type" class="p-button-raised p-button-sm" [routerLink]="['modif']" routerLinkActive="router-link-active"></button>
 </div>
-<p-table [value]="listTeachers" [paginator]="true" [rows]="5" styleClass="test" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,20]" styleClass="p-datatable-sm test">
+<p-table [value]="listCourseTypes" [paginator]="true" [rows]="5" styleClass="test" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,20]">
     <ng-template pTemplate="header">
         <tr>
-            <th>Teacher Code</th>
-            <th>Full Name</th>
-            <th>Phone Number</th>
-            <th>Username</th>
+            <th>Course Type Code</th>
+            <th>Course Type Name</th>
             <th>Action</th>
 
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-teacher>
+    <ng-template pTemplate="body" let-ct>
         <tr>
-            <td>{{teacher.code}}</td>
-            <td>{{teacher.name}}</td>
-            <td>{{teacher.phone}}</td>
-            <td>{{teacher.username}}</td>
+            <td>{{ct.code}}</td>
+            <td>{{ct.name}}</td>
             <td>
                 <button pButton pRipple icon="pi pi-pencil" type="button" label="Edit" class="p-button-outlined p-button-warning p-button-sm"></button>
                 <button pButton pRipple icon="pi pi-trash" type="button" label="Delete" class="p-button-outlined p-button-danger p-button-sm"></button>
             </td>
+
         </tr>
     </ng-template>
     <ng-template pTemplate="paginatorleft">

@@ -5,13 +5,14 @@
             <div class="rounded-circle mx-auto pt-4" style="width: 100px; height: 100px;">
                 <p-avatar icon="pi pi-user" styleClass="p-mr-2" size="xlarge" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
             </div>
-            <h6 class="mt-2">Welcome, Admin</h6>
         </div>
         <div class="list-group list-group-flush">
             <a [routerLink]="['/admin']" routerLinkActive="router-link-active" class="list-group-item list-group-item-action bg-light"><i class="pi pi-home"></i> Home</a>
             <a [routerLink]="['/admin/teachers']" routerLinkActive="router-link-active" class="list-group-item list-group-item-action bg-light">Teacher</a>
+            <a [routerLink]="['/admin/student']" routerLinkActive="router-link-active" class="list-group-item list-group-item-action bg-light">Student</a>
             <a [routerLink]="['/admin/courses']" routerLinkActive="router-link-active" class="list-group-item list-group-item-action bg-light">Course</a>
-            <a [routerLink]="['/admin/subjects']" routerLinkActive="router-link-active" class="list-group-item list-group-item-action bg-light">Subject Categories</a>
+            <a [routerLink]="['/admin/course-type']" routerLinkActive="router-link-active" class="list-group-item list-group-item-action bg-light">Course Type</a>
+            <a [routerLink]="['/admin/subjects']" routerLinkActive="router-link-active" class="list-group-item list-group-item-action bg-light">Subject Category</a>
         </div>
     </div>
 

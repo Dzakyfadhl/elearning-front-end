@@ -12,12 +12,13 @@
 <p-table [value]="listCourses" [paginator]="true" [rows]="5" styleClass="test" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,20]">
     <ng-template pTemplate="header">
         <tr>
-            <th>code</th>
-            <th>type</th>
-            <th>start</th>
-            <th>end</th>
-            <th>capacity</th>
-            <th>status</th>
+            <th>Code</th>
+            <th>Type</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Capacity</th>
+            <th>Status</th>
+            <th>Action</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-course>
@@ -28,6 +29,10 @@
             <td>{{course.end}}</td>
             <td>{{course.capacity}}</td>
             <td><span [class]="'product-badge status-' + course.status.toLowerCase()">{{course.status}}</span></td>
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" type="button" label="Edit" class="p-button-outlined p-button-warning p-button-sm"></button>
+                <button pButton pRipple icon="pi pi-trash" type="button" label="Delete" class="p-button-outlined p-button-danger p-button-sm"></button>
+            </td>
         </tr>
     </ng-template>
     <ng-template pTemplate="paginatorleft">

@@ -6,6 +6,8 @@ import { HomeAdminComponent } from '@bootcamp-lawerning-page/admin/home-admin/ho
 import { AdminCourseModule } from './admin-course/admin-course.module';
 import { AdminSubjectModule } from './admin-subject/admin-subject.module';
 import { AdminTeacherModule } from './admin-teacher/admin-teacher.module';
+import { AdminCourseTypeModule } from './admin-course-type/admin-course-type.module';
+import { AdminStudentModule } from './admin-student/admin-student.module';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { AdminTeacherModule } from './admin-teacher/admin-teacher.module';
     AdminRoutingModule,
     AdminCourseModule,
     AdminSubjectModule,
-    AdminTeacherModule
+    AdminTeacherModule,
+    AdminCourseTypeModule,
+    AdminStudentModule
   ]
 })
 export class AdminModule { }
