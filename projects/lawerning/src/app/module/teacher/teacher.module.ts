@@ -7,7 +7,7 @@ import { CourseTeacherModule } from './course-teacher/course-teacher.module';
 import { ModuleTeacherModule } from './module-teacher/module-teacher.module';
 import { DtlModuleModule } from './dtl-module/dtl-module.module';
 import { ProfileTeacherModule } from './profile-teacher/profile-teacher.module';
-
+import { CalendarModule } from 'primeng/calendar';
 @NgModule({
   declarations: [
     HomeTeacherComponent,
@@ -18,7 +18,8 @@ import { ProfileTeacherModule } from './profile-teacher/profile-teacher.module';
     CourseTeacherModule,
     ModuleTeacherModule,
     DtlModuleModule,
-    ProfileTeacherModule
+    ProfileTeacherModule,
+    CalendarModule
   ]
 })
 export class TeacherModule { }

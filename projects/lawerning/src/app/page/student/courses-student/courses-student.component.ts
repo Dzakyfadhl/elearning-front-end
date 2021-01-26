@@ -28,6 +28,12 @@ export class CoursesStudentComponent implements OnInit {
       role: 'teacher',
       status: '2',
       teacher: 'Farel Yuda, S.Kom.'
+    },
+    {
+      name: 'Java Framework',
+      role: 'teacher',
+      status: '2',
+      teacher: 'Farel Yuda, S.Kom.'
     }
   ]
   constructor(private route: Router) { }

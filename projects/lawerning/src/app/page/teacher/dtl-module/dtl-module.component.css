@@ -34,3 +34,140 @@
     margin-top: 2px;
     margin-left: 15px;
 }
+
+.card-body{
+    background-color:#232946 ;
+}
+.card-body h3{
+    color: #f9bc60;
+}
+.card-body h5{
+    color: white;
+}
+.back{
+    color: white;
+}
+.s-card{
+    
+    background-color:#232946 ;
+}
+.input-group-text{
+    background-color: #232946;
+}
+.icon-comment{
+    color: #232946;
+}
+.head-module{
+    background-color: #f9bc60;
+}
+.head-module h5{
+    color:#232946 ;
+}
+.head-exam{
+    background-color: #f9bc60;
+}
+.body-module{
+    background-color: white;
+}
+.body-exam{
+    background-color: white;
+}
+.exam h5{
+    color:#0d153f;
+    font-weight: bold;
+}
+.exam h6{
+    font-weight: bold;
+}
+
+.label-student{
+    background-color: #f9bc60;
+    color: #232946;
+    height: 25px;
+}
+.label-teacher{
+    background-color:  #232946;
+    color: white;
+    height: 25px;
+}
+.time{
+    font-size: 12px;
+}
+.title{
+    color:#f9bc60 ;
+    margin:5px;
+}
+.date{
+    color: white;
+    margin:5px;
+}
+.view-exam{
+    height: 410px;
+}
+.view-module{
+    height: 410px;
+}
+.view-content-exam{
+    height: 315px;
+}
+.discussion{
+    color: #232946;
+    font-weight: bold;
+}
+.message{
+    margin-left: 50px;
+}
+.form{
+    height: auto;
+}
+
+.send{
+    color: #232946;
+    padding: 10px;
+}
+.send :hover{
+    background-color: #f9bc60 ;
+    cursor: pointer;
+}
+@media only screen and (max-width: 900px) {
+    .data{
+        display: flex;
+        flex-wrap: wrap;
+        /* justify-content: start; */
+    }
+    .label{
+        background-color: #f9bc60;
+        color: #232946;
+        height: 25px;
+    }
+    .time{
+        font-size: 8px;
+    }
+    .message{
+      width: 260px;
+      height: auto;
+      margin-left: 0px;
+      margin-top: 2px;
+    
+    }
+    .role-teacher{
+        margin-top: -12px;
+    }
+    .role-student{
+        margin-top: -12px;
+    }
+    /* .message h6{
+        width: 50px;
+    } */
+    .view-exam{
+        height: 480px;
+    }
+    .view-module{
+        height: 410px;
+    }
+    .view-content-exam{
+        height: 380px;
+    }
+    
+  
+  }

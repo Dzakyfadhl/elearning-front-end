@@ -45,7 +45,7 @@ export class ModuleDetailComponent implements OnInit {
       image: './assets/images/male1.jpeg',
       nama: 'Mochamad Apry',
       time: '30/01/2020 - 12:30',
-      message: 'Hi mom, i wanna sending my attachment',
+      message: 'Hi mom, i wanna sending my attachment lehehehehe hehaehea aeaenjea',
       role: 'Student'
     },
     {
@@ -87,8 +87,7 @@ export class ModuleDetailComponent implements OnInit {
         let data: FormData = new FormData();
         data.append('file', file);
         this.formData = data;
-        this.file =file.name;
-    
+        this.file = file.name;
     }
   }
 

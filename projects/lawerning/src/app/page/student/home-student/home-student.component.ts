@@ -71,7 +71,7 @@ export class HomeStudentComponent implements OnInit {
     let tempCourse: any= this.courses[index];
     let course = tempCourse.name;
     console.log(course);
-    this.route.navigateByUrl(`/module-available/${course}`);
+    this.route.navigate(['/module-available/',course]);
   }
 
 }

@@ -43,9 +43,14 @@
     font-weight: bold;
 }
 
-.label{
+.label-student{
     background-color: #f9bc60;
     color: #232946;
+    height: 25px;
+}
+.label-teacher{
+    background-color:  #232946;
+    color: white;
     height: 25px;
 }
 .time{
@@ -68,6 +73,28 @@
 .view-content-exam{
     height: 315px;
 }
+.discussion{
+    color: #232946;
+    font-weight: bold;
+}
+.message{
+    margin-left: 50px;
+}
+.form{
+    height: auto;
+}
+.row
+{
+    padding: 10px;
+}
+.send{
+    color: #232946;
+    padding: 10px;
+}
+.send :hover{
+    background-color: #f9bc60 ;
+    cursor: pointer;
+}
 @media only screen and (max-width: 900px) {
     .data{
         display: flex;
@@ -83,11 +110,26 @@
         font-size: 8px;
     }
     .message{
-      width: 240px;
+      width: 260px;
       height: auto;
-      border: 1px solid;
+      margin-left: 0px;
+      /* margin-top: px; */
     
     }
+    .role-teacher{
+        margin-top: -12px;
+    }
+    .role-student{
+        margin-top: -12px;
+    }
+    .row
+    {
+        margin-bottom: 30px;
+        padding: 0px;
+    }
+    /* .message h6{
+        width: 50px;
+    } */
     .view-exam{
         height: 480px;
     }
@@ -97,5 +139,6 @@
     .view-content-exam{
         height: 380px;
     }
+    
   
   }

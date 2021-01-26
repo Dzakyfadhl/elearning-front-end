@@ -8,7 +8,7 @@
     background-color: #232946;
   }
   .body-home{
-    margin-top: 15%;
+    margin-top: 15rem;
   }
   
 .header-home h3{
@@ -35,14 +35,42 @@
     cursor: pointer;
     text-decoration: #f9bc60;
   }
-
-  @media screen and (max-width: 991px) {
+  @media (min-width: 411px) { 
     .header-home{
       position: absolute;
       height: 50%;
       background-color: #232946;
     }
     .body-home{
-      margin-top: 60%;
+      margin-top: 17rem;
     }
   }
+
+@media (min-width: 768px) { 
+  .header-home{
+    position: absolute;
+    height: 50%;
+    background-color: #232946;
+  }
+  .body-home{
+    margin-top: 15rem;
+  }
+ }
+
+@media (min-width: 992px) {
+  .body-home{
+    margin-top: 15rem;
+  }
+ }
+
+ 
+/* @media (min-width: 1024px) {
+  .header-home{
+    position: absolute;
+    height: 30%;
+    background-color: #232946;
+  }
+  .body-home{
+    margin-top: 15rem;
+  }
+ } */

@@ -22,20 +22,24 @@
                     </div>
                     <div class="d-flex justify-content-space-evenly ml-5">
 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="date bi bi-calendar" viewBox="0 0 16 16">
-                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                          </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="date bi bi-calendar" viewBox="0 0 16 16">
+                            <path
+                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                        </svg>
                         <h5 class="ml-1 mt-1 mr-3">
 
                             25 Jan 2021
                         </h5>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="date bi bi-clock" viewBox="0 0 16 16">
-                            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
-                          </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="date bi bi-clock" viewBox="0 0 16 16">
+                            <path
+                                d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                        </svg>
                         <h5 class="ml-1 mt-1">
 
-                           10:00 - 12:00
+                            10:00 - 12:00
                         </h5>
                     </div>
 
@@ -78,7 +82,7 @@
                                     <hr>
                                     <h5 class="text-bold text-info">Assignment Exam</h5>
 
-                                    <p class="text-info" *ngIf="e.feedback == ''">{{file}}</p>
+                                    <!-- <p class="text-info" *ngIf="e.feedback == ''">{{file}}</p> -->
 
                                     <a href="" *ngIf="e.feedback != ''"><i class="pi pi-file mr-2"></i>{{e.feedback}}<i
                                             class="pi pi-times mr-2"></i>
@@ -90,6 +94,9 @@
                                             <input type="file" class="custom-file-input" (change)="fileChange($event)"
                                                 accept=".pdf,.doc,.docx">
                                             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                            <label *ngIf="file != undefined" class="custom-file-label"
+                                                for="inputGroupFile01">{{file}}</label>
+
                                         </div>
                                     </div>
 
@@ -120,33 +127,41 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-12 mt-5">
-            <p-fieldset legend="Discussion" [toggleable]="true">
+        <div class="col-lg-12 col-md-12 mt-4">
+            <h3 class="discussion">Discussion</h3>
+            <hr>
+            <div *ngFor="let m of messages">
+                <div class="row">
 
-                <div *ngFor="let m of messages" class="d-flex flex-column">
-
-                    <div class="data d-flex justify-content-space-evenly mb-4">
-
+                    <div class="image">
                         <img [src]="m.image" height="50" width="50" class="rounded-circle" alt="">
+
+                    </div>
+                    <div class="fullname">
                         <h5 class="m-3 text-bold text-info">{{m.nama}}</h5>
+
+                    </div>
+                    <div class="datetime">
                         <p class="time m-3 text-secondary">{{m.time}}</p>
-                        <span class="label mt-3 badge p-2">{{m.role}}</span>
 
                     </div>
-                    <div class="message col-sm-12 ml-5">
-
-                        <h6 class="ml-3">{{m.message}}</h6>
+                    <div *ngIf="m.role == 'Student'" class="role-student">
+                        <span class="label-student mt-3 badge p-2">{{m.role}}</span>
                     </div>
-    
-    
-                    <hr>
+                    <div *ngIf="m.role == 'Teacher'" class="role-teacher">
+                        <span class="label-teacher mt-3 badge p-2">{{m.role}}</span>
+                    </div>
+                    <div class="message col-sm-6 col-lg-12 col-md-12">
+                        <h6 class="m">{{m.message}}</h6>
+
+                    </div>
+                    <!-- <hr class="my-4"> -->
                 </div>
-              
 
-            </p-fieldset>
+            </div>
 
         </div>
-        <div class="col-lg-12 mt-2">
+        <div class="col-lg-12">
             <div class="d-flex justify-content-space-evenly">
 
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -156,9 +171,12 @@
                 </svg>
 
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="write a comment...."
-                        aria-describedby="basic-addon2">
-                    <div class="input-group-append">
+                    <!-- <input type="text" class="form-control" placeholder="write a comment...."
+                        aria-describedby="basic-addon2"> -->
+
+                    <textarea class="form-control" aria-label="With textarea" placeholder="Write a comment..."></textarea>
+                    
+                    <!-- <div class="input-group-append">
                         <span class="input-group-text" id="basic-addon2">
                             <a href="">
 
@@ -169,9 +187,16 @@
                                 </svg>
                             </a>
                         </span>
-                    </div>
+                    </div> -->
                 </div>
+                <a class="send">
 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-cursor-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z" />
+                    </svg>
+                </a>
             </div>
         </div>
 

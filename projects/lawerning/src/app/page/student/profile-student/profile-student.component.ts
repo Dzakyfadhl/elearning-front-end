@@ -40,7 +40,6 @@ export class ProfileStudentComponent implements OnInit {
   ];
 
   isDisplay = false;
-  
   blockedDocument: boolean = false;
 
   constructor() { }
@@ -55,6 +54,7 @@ export class ProfileStudentComponent implements OnInit {
     console.log(this.result);
     
   }
+  
   showDialog() {
     this.isDisplay = true;
     this.blockedDocument = true;

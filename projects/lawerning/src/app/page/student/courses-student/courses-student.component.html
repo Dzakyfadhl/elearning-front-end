@@ -21,11 +21,10 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 mt-3 mb-3" *ngFor="let c of courses;let i = index">
-
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 mt-3 mb-3" *ngFor="let c of courses;let i = index">
                    
-                        <div class="card shadow p-1 mb-1 bg-white rounded">
+                        <div class="card shadow p-1 mb-1 bg-white rounded" style="height: 24rem;">
                             <img src="assets/images/ilustrator.jpg" class="card-img-top" height="180" alt="...">
                             <div class="card-body">
                                 <a (click)="viewModule(i)">
