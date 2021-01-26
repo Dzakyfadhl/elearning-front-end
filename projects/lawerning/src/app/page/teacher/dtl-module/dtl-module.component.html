@@ -82,6 +82,18 @@
                                 </div>
                             </h6>
                             <h5>Module</h5>
+                            <p-dialog header="Add File Module" [(visible)]="display" [style]="{width:'40vw'}">
+                                <!--  -->
+                            </p-dialog>
+                            <div class="d-flex justify-content-end mt-3">
+                                <a (click)="showDialog()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
+                                        class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                     </p-tabPanel>
                     <p-tabPanel>
@@ -91,6 +103,32 @@
                                 <span>Exam</span>
                             </div>
                         </ng-template>
+                        <div class="container">
+                            <div class="row">
+                                <div class="button-add-exam col-lg-12 d-flex justify-content-end">
+                                    <button pButton (click)="showDialog()" type="button" label="Add Exam"></button>
+                                </div>
+                                <div class="col-lg-12 mt-2 shadow-sm p-3 mb-2 bg-white rounded"
+                                    *ngFor="let m of exam; let i=index">
+                                    <h6 class="card-text p-1">
+                                        <div class="content-body d-flex justify-content-evenly">
+                                            <h3>{{m.title}} - </h3>
+                                            <h4> {{m.type}}</h4>
+                                        </div>
+                                    </h6>
+                                    <h6>Deadline {{m.deadline}}</h6>
+                                    <p>{{m.description}}</p>
+                                    <a href="">
+                                        <h6>{{m.file}}</h6>
+                                    </a>
+                                    <div class="d-flex justify-content-end">
+                                        <!-- <a routerLink="/submission-teacher"> -->
+                                        <button (click)="viewModule(i)" pButton type="button" label="Submission"></button>
+                                        <!-- </a> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </p-tabPanel>
                     <p-tabPanel>
                         <ng-template pTemplate="header">
@@ -99,6 +137,30 @@
                                 <span>Attendance</span>
                             </div>
                         </ng-template>
+                        <div class="content-attendance">
+                            <h5>Student Attendance</h5>
+                            <p-table [value]="student">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Name</th>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-student>
+                                    <tr>
+                                        <td>{{student.code}}</td>
+                                        <td>{{student.name}}</td>
+                                        <td>{{student.attendanceDate}} {{student.attendanceTime}}</td>
+                                        <td>
+                                            <p-button label="Confirm" icon="pi pi-check" styleClass="p-button-success">
+                                            </p-button>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
                     </p-tabPanel>
                     <p-tabPanel>
                         <ng-template pTemplate="header">
@@ -172,3 +234,51 @@
         </div>
     </div>
 </div>
+
+<!-- <p-blockUI [blocked]="blockedDocument"></p-blockUI> -->
+
+<!-- <p-dialog header="Add Exam" [(visible)]="display" [style]="{'width': '50vw'}">
+    <div class="p-d-flex flex-column">
+        <div class="text-secondary">
+            <h6>Exam Title</h6>
+        </div>
+        <div class="p-inputgroup mb-3">
+            <input type="text" pInputText placeholder="input your exam title">
+        </div>
+        <h6>Exam Description</h6>
+        <div class="p-inputgroup mb-3">
+            <textarea rows="5" cols="30" pInputTextarea></textarea>
+        </div>
+        <div class="p-inputgroup mb-3">
+            <input type="text" pInputText placeholder="input your exam title">
+        </div>
+        <div class="p-inputgroup mb-3">
+            <input type="text" pInputText placeholder="input your exam title">
+        </div>
+
+        <label for="time">Start</label>
+            <p-calendar showTime="true" hourFormat="24" inputId="time"></p-calendar>
+
+    </div>
+
+</p-dialog> -->
+<!-- <p-dialog header="Add Exam" [(visible)]="display" [style]="{width: '50vw'}">
+    <div class="p-fluid p-formgrid p-grid">
+        <h6>Exam Title</h6>
+        <div class="p-field p-col-12 mt-2 mb-3">
+            <input type="text" pInputText placeholder="input your exam title">
+        </div>
+        <h6>Exam Description</h6>
+        <div class="p-field p-col-12 p-mt-2 mb-3">
+            <textarea rows="5" cols="30" pInputTextarea></textarea>
+        </div>
+        <h6>Exam Description</h6>
+        <div class="p-field p-col-12 p-mt-2 mb-3">
+            <p-calendar showTime="true" hourFormat="24" inputId="time" [style]="{'position': 'fixed', 'overflow': 'visible', 'z-index': '999'}"></p-calendar>
+        </div>
+    </div>
+    
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="displayBasic2=false" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog> -->

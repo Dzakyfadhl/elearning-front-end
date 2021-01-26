@@ -8,7 +8,34 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DtlModuleComponent implements OnInit {
   moduleSelected: any;
-  constructor(private activeRoute: ActivatedRoute, private router: Router) { }
+  display: boolean = false;
+  
+  student: {
+    code: string,
+    name: string,
+    attendanceDate: string,
+    attendanceTime: string
+  }[];
+
+  exam: {
+    title: string,
+    type: string,
+    deadline: string,
+    description: string,
+    file: string
+  }[];
+
+  examTypeSelected: string;
+
+  examType:{
+    name: string
+  }[]
+
+  date7: Date;
+  blockedDocument: boolean = false;
+
+  constructor(private activeRoute: ActivatedRoute, private router: Router) { 
+  }
 
   
   messages = [
@@ -36,11 +63,83 @@ export class DtlModuleComponent implements OnInit {
     
   ]
   ngOnInit(): void {
-    
+    this.examType = [
+      {
+        name: "Quiz"
+      },
+      {
+        name: "Exam"
+      }
+    ]
+    this.exam = [
+      {
+        title: "Exam 1 OOP",
+        type: "Exam",
+        deadline: "29/01/2021 21:00",
+        description: `this is exam 1 oop for student Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus sint dolorem odit
+        quisquam nulla perspiciatis!`,
+        file: "exam1-oop.pdf"
+      },
+      {
+        title: "Takehome OOP",
+        type: "Takehome",
+        deadline: "02/02/2021 23:59",
+        description: `this is takehome oop for student Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus sint dolorem odit
+        quisquam nulla perspiciatis!`,
+        file: "takehome-oop.pdf"
+      },
+      {
+        title: "Exam 2 OOP",
+        type: "Exam",
+        deadline: "05/02/2021 23:59",
+        description: `this is exam 2 oop for student Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus sint dolorem odit
+        quisquam nulla perspiciatis!`,
+        file: "exam2-oop.pdf"
+      }
+    ]
+    this.student = [
+      {
+        code: "ST01",
+        name: "Moch Apri",
+        attendanceDate: "22 Jan 2021",
+        attendanceTime: "09:10"
+      },
+      {
+        code: "ST02",
+        name: "Galih Dika",
+        attendanceDate: "22 Jan 2021",
+        attendanceTime: "09:01"
+      },
+      {
+        code: "ST03",
+        name: "Dzaky Fadilah",
+        attendanceDate: "22 Jan 2021",
+        attendanceTime: "09:15"
+      },
+      {
+        code: "ST04",
+        name: "Dina Kastury",
+        attendanceDate: "22 Jan 2021",
+        attendanceTime: "09:10"
+      }
+    ]
     this.activeRoute.params.subscribe(value => {
       this.moduleSelected = value;
       console.log(this.moduleSelected);
     })
   }
+  showDialog() {
+    this.display = true;
+  }
+  cancelDialog(){
+    this.blockedDocument=false;
+    this.display = false;
+  }
 
+  viewModule(index : number){
+    let tempExam: any= this.exam[index];
+    let exam = tempExam.title;
+    console.log(exam);
+    this.router.navigateByUrl(`/submission-teacher/${exam}`);
+  }
 }

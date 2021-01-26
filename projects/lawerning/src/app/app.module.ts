@@ -10,6 +10,7 @@ import { DashboardAdminComponent } from './layout/dashboard-admin/dashboard-admi
 import {AvatarModule} from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { ProfileTeacherComponent } from './page/teacher/profile-teacher/profile-teacher.component';
+import { SubmissionTeacherComponent } from './page/teacher/submission-teacher/submission-teacher.component';
 
 @NgModule({
   declarations: [

@@ -26,7 +26,7 @@
     margin-top: 5%;
 }
 .content-description h5{
-    font-size: 28px;
+    font-size: 22px;
     color: #232946;
     font-weight: bold;    
 }
@@ -34,6 +34,7 @@
     margin-top: 2px;
     margin-left: 15px;
 }
+<<<<<<< Updated upstream
 
 .card-body{
     background-color:#232946 ;
@@ -171,3 +172,24 @@
     
   
   }
+=======
+.content-body h3{
+    font-size: 25px;
+    font-weight: bold;
+}
+.content-body h4{
+    margin-left: 6px;
+    margin-top: 3px;
+    font-size: 22px;
+}
+
+.content-attendance h5{
+    font-size: 22px;
+    color: #232946;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.button-add-exam{
+    margin-left: 15px;
+}
+>>>>>>> Stashed changes
