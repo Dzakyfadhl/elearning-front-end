@@ -7,6 +7,7 @@ import { ModuleCourseModule } from '../module-course/module-course.module';
 import { ModuleDetailModule } from '../module-detail/module-detail.module';
 import { ProfileStudentComponent } from '@bootcamp-lawerning-page/student/profile-student/profile-student.component';
 import { ProfileStudentModule } from '../profile-student/profile-student.module';
+import { ScoreDetailModule } from '../score-detail/score-detail.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ProfileStudentModule } from '../profile-student/profile-student.module'
     CourseStudentRoutingModule,
     ModuleCourseModule,
     ModuleDetailModule,
-    ProfileStudentModule
+    ProfileStudentModule,
+    ScoreDetailModule
   ]
 })
 export class CourseStudentModule { }

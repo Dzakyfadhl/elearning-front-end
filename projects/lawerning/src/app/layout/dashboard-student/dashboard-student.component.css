@@ -9,3 +9,9 @@
 .notif{
     color: #232946;
 }
+@media (max-width: 411px){
+    .dropdown-menu-right{
+        left: 10%;
+        width: 10rem;
+    }
+}

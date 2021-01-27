@@ -8,6 +8,8 @@ import { DividerModule } from 'primeng/divider';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
+import { TooltipModule } from 'primeng/tooltip';
+import { SkeletonModule } from 'primeng/skeleton';
 @NgModule({
   declarations: [ModuleAvailableComponent],
   imports: [
@@ -17,7 +19,9 @@ import { PanelModule } from 'primeng/panel';
     DividerModule,
     ScrollPanelModule,
     ButtonModule,
-    PanelModule
+    PanelModule,
+    TooltipModule,
+    SkeletonModule
   ]
 })
 export class ModuleAvailableModule { }

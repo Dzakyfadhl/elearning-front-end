@@ -1,0 +1,22 @@
+h3{
+    color:  white;
+    font-weight: bold;
+}
+.download{
+    color:  white;
+}
+
+.head-card{
+    
+    background-color: #232946 ;
+}
+
+@media(min-width: 411px){
+        
+.head-card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: #232946 ;
+    }
+}

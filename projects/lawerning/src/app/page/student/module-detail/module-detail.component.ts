@@ -40,6 +40,7 @@ export class ModuleDetailComponent implements OnInit {
 
   ];
 
+  totalPost: number = 0;
   messages = [
     {
       image: './assets/images/male1.jpeg',
@@ -61,6 +62,13 @@ export class ModuleDetailComponent implements OnInit {
       time: '30/01/2020 - 12:30',
       message: 'Hmm, thank u mom.',
       role: 'Student'
+    },
+    {
+      image: './assets/images/male1.jpeg',
+      nama: 'Mochamad Apry',
+      time: '30/01/2020 - 12:30',
+      message: 'Hmm, thank u mom.',
+      role: 'Student'
     }
     
   ]
@@ -68,6 +76,10 @@ export class ModuleDetailComponent implements OnInit {
   constructor(private activeRoute: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit(): void {
+    if(this.messages.length > 0){
+      this.totalPost = this.messages.length;
+    }
+
     this.http.get(`${this.baseUrl}/9ff7eae6-244a-418e-bcce-3f4002835174`)
     this.activeRoute.params.subscribe(value =>{
       this.title = value.title

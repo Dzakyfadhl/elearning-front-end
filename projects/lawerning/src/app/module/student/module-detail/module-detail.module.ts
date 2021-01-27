@@ -10,6 +10,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { OrderListModule } from 'primeng/orderlist';
+import { ChipModule } from 'primeng/chip';
 @NgModule({
   declarations: [ModuleDetailComponent],
   imports: [
@@ -21,7 +22,8 @@ import { OrderListModule } from 'primeng/orderlist';
     FileUploadModule,
     FormsModule,
     HttpClientModule,
-    OrderListModule
+    OrderListModule,
+    ChipModule
   ]
 })
 export class ModuleDetailModule { }

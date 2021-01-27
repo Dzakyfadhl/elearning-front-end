@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { ModuleAvailableModule } from '../module-available/module-available.module';
 import { FormsModule } from '@angular/forms';
 import { OrderListModule } from 'primeng/orderlist';
+import { SkeletonModule } from 'primeng/skeleton';
 @NgModule({
   declarations: [
     HomeStudentComponent
@@ -17,7 +18,8 @@ import { OrderListModule } from 'primeng/orderlist';
     ModuleAvailableModule,
     ButtonModule,
     FormsModule,
-    OrderListModule
+    OrderListModule,
+    SkeletonModule
     
   ]
 })
