@@ -11,7 +11,8 @@
     color: whitesmoke;
 }  
 .body-module{
-    margin-top: 12%;
+    margin-top: 12rem;
+    width: 90%;
 }
 
 .student-item {
@@ -73,4 +74,48 @@ a {
         margin: 0 0 1rem 0;
         width: 100px;
    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+    .body-module{
+        margin-top: 19rem;
+    }
+    .header-module{
+        height: 55%;
+        background-color: #232946;
+      }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    .body-module{
+        margin-top: 16rem;
+    }
+    .header-module{
+        height: 50%;
+        background-color: #232946;
+      }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    .body-module{
+        margin-top: 16rem;
+    }
+    .header-module{
+        height: 50%;
+        background-color: #232946;
+      }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+    .body-module{
+        margin-top: 12rem;
+    }
+    .header-module{
+        height: 50%;
+        background-color: #232946;
+      }
 }

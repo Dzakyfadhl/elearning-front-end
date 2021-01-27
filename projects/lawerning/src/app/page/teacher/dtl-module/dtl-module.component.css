@@ -5,7 +5,7 @@
   }
 
 .header-module a{
-    margin-left: 5px;
+    margin-left: 10px;
     color: #f9bc60;
 }
 
@@ -17,13 +17,14 @@
 .header-module h5{
     color: #a7a9be;
     font-size: 18px;
-    margin-left: 55px;
+    margin-left: 60px;
 }  
 .header-module p{
     color: whitesmoke;
 } 
 .body-module{
-    margin-top: 5%;
+    margin-top: 5rem;
+    width: 93%;
 }
 .content-description h5{
     font-size: 22px;
@@ -34,7 +35,6 @@
     margin-top: 2px;
     margin-left: 15px;
 }
-<<<<<<< Updated upstream
 
 .card-body{
     background-color:#232946 ;
@@ -130,11 +130,43 @@
     background-color: #f9bc60 ;
     cursor: pointer;
 }
+.content-body h3{
+    font-size: 25px;
+    font-weight: bold;
+}
+.content-body h4{
+    margin-left: 6px;
+    margin-top: 3px;
+    font-size: 22px;
+}
+
+.content-attendance h5{
+    font-size: 22px;
+    color: #232946;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.button-add-exam{
+    margin-left: 15px;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 300px) { 
+    .body-module{
+        margin-top: 7rem;
+    }
+}
+
+@media (min-width: 400px) { 
+    .body-module{
+        margin-top: 5rem;
+    }
+}
+
 @media only screen and (max-width: 900px) {
     .data{
         display: flex;
         flex-wrap: wrap;
-        /* justify-content: start; */
     }
     .label{
         background-color: #f9bc60;
@@ -170,26 +202,5 @@
         height: 380px;
     }
     
-  
   }
-=======
-.content-body h3{
-    font-size: 25px;
-    font-weight: bold;
-}
-.content-body h4{
-    margin-left: 6px;
-    margin-top: 3px;
-    font-size: 22px;
-}
 
-.content-attendance h5{
-    font-size: 22px;
-    color: #232946;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-.button-add-exam{
-    margin-left: 15px;
-}
->>>>>>> Stashed changes

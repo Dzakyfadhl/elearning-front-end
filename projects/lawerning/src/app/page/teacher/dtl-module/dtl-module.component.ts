@@ -8,8 +8,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DtlModuleComponent implements OnInit {
   moduleSelected: any;
-  display: boolean = false;
-  
+  displayExam: boolean = false;
+  displayModule: boolean = false;
+
   student: {
     code: string,
     name: string,
@@ -128,12 +129,15 @@ export class DtlModuleComponent implements OnInit {
       console.log(this.moduleSelected);
     })
   }
-  showDialog() {
-    this.display = true;
+  showDialogExam() {
+    this.displayExam = true;
+  }
+  showDialogModule() {
+    this.displayModule = true;
   }
   cancelDialog(){
     this.blockedDocument=false;
-    this.display = false;
+    this.displayExam = false;
   }
 
   viewModule(index : number){

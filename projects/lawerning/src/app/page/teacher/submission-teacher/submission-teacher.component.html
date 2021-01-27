@@ -42,25 +42,25 @@
                 <div class="mb-3 mt-3">
                     <h6>your student haven't viewed this assignment</h6>
                 </div>
-                <p-table [value]="examStudent">
+                <p-table [value]="examStudent" [scrollable]="true" scrollHeight="100%">
                     <ng-template pTemplate="header">
                         <tr>
-                            <th>Code</th>
-                            <th>Name</th>
-                            <th>Date</th>
-                            <th>File</th>
-                            <th>Grade</th>
-                            <th>Action</th>
+                            <th width="80px">Code</th>
+                            <th width="80px">Name</th>
+                            <th width="80px">Date</th>
+                            <th width="80px">File</th>
+                            <th width="80px">Grade</th>
+                            <th width="80px">Action</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-examStudent>
                         <tr>
-                            <td>{{examStudent.code}}</td>
-                            <td>{{examStudent.name}}</td>
-                            <td>{{examStudent.date}}</td>
-                            <td>{{examStudent.file}}</td>
-                            <td>{{examStudent.grade}}</td>
-                            <td>
+                            <td width="80px">{{examStudent.code}}</td>
+                            <td width="80px">{{examStudent.name}}</td>
+                            <td width="80px">{{examStudent.date}}</td>
+                            <td width="80px">{{examStudent.file}}</td>
+                            <td width="80px">{{examStudent.grade}}</td>
+                            <td width="80px">
                                 <p-button (click)="showDialog()" label="Edit Score" styleClass="p-button-success">
                                 </p-button>
                             </td>
