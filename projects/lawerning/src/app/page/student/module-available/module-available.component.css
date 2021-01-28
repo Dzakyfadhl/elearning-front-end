@@ -1,12 +1,25 @@
 .header-module{
     background-color: #232946;
-    height: 240px;
+    height: auto;
 }
 .header-module h2{
     color: #f9bc60;
 }
 .header-module p{
     color: white;
+}
+.footer-module{
+    /* background-color: #232946; */
+    height: auto;
+}
+.footer-module h1{
+    color: #232946;
+    font-weight: bold;
+}
+.card h5{
+    
+    color: #232946;
+    font-weight: bold;
 }
 /* .body-module{
     position: absolute;

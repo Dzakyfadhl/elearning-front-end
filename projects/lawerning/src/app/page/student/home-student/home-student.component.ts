@@ -12,59 +12,97 @@ export class HomeStudentComponent implements OnInit {
   course : any = {};
 
   courseFiltering = [];
-  selectedCourse: any;
-
-  oneColumn: boolean = false;
+  selectedCourse: any = 'all';
   
   courses = [
     {
+      image : 'assets/images/male1.jpeg',
       name: 'Object Oriented Programming',
       role: 'teacher',
-      category: 'TI',
+      category: 'Programming',
       status: '1',
       teacher: 'Ryan Rivaldo, S.Kom.'
     },
     {
+      image : 'assets/images/male1.jpeg',
       name: 'Database MySQL',
       role: 'teacher',
-      category: 'TI',
+      category: 'Programming',
       status: '1',
       teacher: 'Mochamad Ray, S.Kom.'
     },
     {
+      image : 'assets/images/female.jpg',
       name: 'Java Framework',
       role: 'teacher',
-      category: 'TI',
+      category: 'Programming',
       status: '2',
       teacher: 'Farel Yuda, S.Kom.'
     },
     {
+      image : 'assets/images/male1.jpeg',
       name: 'Creative Industry',
       role: 'teacher',
-      category: 'MN',
+      category: 'Business',
       status: '2',
       teacher: 'Galih Galihum, S.E.'
     }
-  ]
+    ,
+    {
+      image : 'assets/images/male1.jpeg',
+      name: 'Marketing MIX',
+      role: 'teacher',
+      category: 'Business',
+      status: '2',
+      teacher: 'Galih Galihum, S.E.'
+    },
+    {
+      image : 'assets/images/male1.jpeg',
+      name: 'Manajemen Business',
+      role: 'teacher',
+      category: 'Business',
+      status: '2',
+      teacher: 'Galih Galihum, S.E.'
+    }
+  ];
+
+  category = [];
+  
+  data: any;
+  keyString: string;
+
   constructor(private route: Router) { }
 
   ngOnInit(): void {
+    
+    this.courseFiltering = this.courses;
+    // concat list category
+    this.courses.forEach(val =>{
+      this.category.push(val.category);
+    });
+    // merging category
+    this.data = this.category.filter((item, i, array) => array.indexOf(item) === i);
+    console.log(this.data);
+
     if(this.selectedCourse == undefined){
       this.courseFiltering = this.courses;
     }
+  
   }
-
   onChange(newValue){
-      console.log(newValue);
-      this.selectedCourse = newValue;
-      if(this.selectedCourse == 'Select All'){
+    this.selectedCourse = newValue;
+    console.log(this.selectedCourse);
+      if(this.selectedCourse == 'all'){
         this.courseFiltering = this.courses;
       }else{
         this.courseFiltering = this.courses.filter(value => value.category == this.selectedCourse);
-        if(this.courseFiltering.length == 1){
-          this.oneColumn = true;
-        }
       }
+  }
+
+  searchKey(){
+    this.courseFiltering = this.courses.filter(value =>{
+      return value.category.toLocaleLowerCase().match(this.keyString.toLocaleLowerCase());
+    })
   }
 
   viewModule(index : number){

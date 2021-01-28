@@ -35,6 +35,7 @@
     cursor: pointer;
     text-decoration: #f9bc60;
   }
+ 
   @media (min-width: 411px) { 
     .header-home{
       position: absolute;

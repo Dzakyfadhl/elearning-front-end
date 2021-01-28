@@ -12,17 +12,40 @@
 
             <p class="text-center text-light">Don't want to lose updates with others.
                 Come on, follow the development of technology.</p>
-            <div class="d-flex justify-content-center">
-                <div class="input-group mb-3 w-50">
-                    <select class="custom-select" (change)="onChange($event.target.value)">
-                        <option>Select All</option>
-                        <option *ngFor="let c of courses">{{c.category}}</option>
-                    </select>
+            <div class="row justify-content-center">
+                <div class="d-flex mb-3">
+                    <span class="p-input-icon-left" styleClass="width-input">
+                        <i class="pi pi-search"></i>
+
+                        <input type="text" pInputText placeholder="Search category..." class="search-input"
+                            (input)="searchKey()" [(ngModel)]="keyString" />
+
+                    </span>
 
                 </div>
-            </div>
 
-            <hr class="text-light">
+            </div>
+            <div class="row justify-content-center">
+                <div class="p-2">
+                    <a *ngIf="selectedCourse != 'all'" (click)="onChange('all')">
+                        <button class="invalid-all btn btn-secondary">All</button>
+                    </a>
+                    <a *ngIf="selectedCourse == 'all'" (click)="onChange('all')">
+                        <button class="valid-all btn btn-info">All</button>
+                    </a>
+                </div>
+                <!-- </div> -->
+                <div class="p-2" *ngFor="let c of data">
+
+                    <a *ngIf="selectedCourse != c" (click)="onChange(c)">
+                        <button class="invalid-selected btn btn-secondary">{{c}}</button>
+                    </a>
+                    <a *ngIf="selectedCourse == c" (click)="onChange(c)">
+                        <button class="valid-selected btn btn-info">{{c}}</button>
+                    </a>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
@@ -65,26 +88,23 @@
                             <img src="assets/images/ilustrator.jpg" class="card-img-top" height="180" alt="...">
                             <div class="card-body">
                                 <a (click)="viewModule(i)">
-                                    <h5 class="card-title">
+                                    <h5 class="card-title text-truncate" style="max-width: 19rem;">
                                         {{c.name}}
                                     </h5>
-
                                 </a>
-                                <h6 class="card-text mb-3">
-                                    <span class="badge badge-primary mr-1">{{c.role}}</span>
-                                    {{c.teacher}}
-                                </h6>
+                                <h6 class="text-secondary">{{c.category}}</h6>
+                                <hr>
 
-                                <div class="d-flex justify-content-between">
+                                <div class="d-flex flex-row">
+                                    <img [src]="c.image" height="50" class="rounded-circle" width="50" alt="">
+                                    <div class="d-flex flex-column p-2">
 
-                                    <h6 *ngIf="c.status == 1" class="card-text text-success">Already Registered</h6>
-                                    <h6 *ngIf="c.status == 2" class="card-text text-secondary">Not Register</h6>
+                                        <h6 class="text-info">
+                                            {{c.teacher}}
+                                        </h6>
 
-                                    <h6 class="text-info">
-
-                                        <i class="pi pi-user" style="font-size: 1rem"></i>
-                                        12/20
-                                    </h6>
+                                        <span class="badge badge-primary">{{c.role}}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

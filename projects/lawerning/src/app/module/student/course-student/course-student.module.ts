@@ -8,6 +8,7 @@ import { ModuleDetailModule } from '../module-detail/module-detail.module';
 import { ProfileStudentComponent } from '@bootcamp-lawerning-page/student/profile-student/profile-student.component';
 import { ProfileStudentModule } from '../profile-student/profile-student.module';
 import { ScoreDetailModule } from '../score-detail/score-detail.module';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ScoreDetailModule } from '../score-detail/score-detail.module';
     ModuleCourseModule,
     ModuleDetailModule,
     ProfileStudentModule,
-    ScoreDetailModule
+    ScoreDetailModule,
+    ProgressBarModule
   ]
 })
 export class CourseStudentModule { }

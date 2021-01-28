@@ -8,6 +8,9 @@ import { ModuleAvailableModule } from '../module-available/module-available.modu
 import { FormsModule } from '@angular/forms';
 import { OrderListModule } from 'primeng/orderlist';
 import { SkeletonModule } from 'primeng/skeleton';
+
+import { CarouselModule } from 'primeng/carousel';
+import { InputTextModule } from 'primeng/inputtext';
 @NgModule({
   declarations: [
     HomeStudentComponent
@@ -19,7 +22,9 @@ import { SkeletonModule } from 'primeng/skeleton';
     ButtonModule,
     FormsModule,
     OrderListModule,
-    SkeletonModule
+    SkeletonModule,
+    CarouselModule,
+    InputTextModule
     
   ]
 })

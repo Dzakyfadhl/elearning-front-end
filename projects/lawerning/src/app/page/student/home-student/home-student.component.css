@@ -34,9 +34,35 @@
     font-weight: bold;
   }
   .badge{
-    background-color: #f9bc60;
+    background-color: #232946;
+    width: 5rem;
   }
-
+  .search-input{
+    background-color: #3a4372;
+    border: none;
+    color: white;
+    width: 30rem;
+    
+  }
+  .invalid-all{
+    background-color:  #3a4372;
+    border: none;
+  }
+  .invalid-selected{
+    border: none;
+    background-color:  #3a4372;
+  }
+  .valid-all{
+    border: none;
+    color:  #3a4372;
+    background-color: #a6d5fa;
+  }
+  .valid-selected{
+    color:  #3a4372;
+    border: none;
+    background-color: #a6d5fa;
+  }
+  
   a {
       text-decoration: none;
   }
@@ -60,11 +86,18 @@
   @media (min-width: 411px) { 
     .header-home{
       position: absolute;
-      height: 50%;
+      height: 80%;
       background-color: #232946;
     }
     .body-home{
-      margin-top: 17rem;
+      margin-top: 22rem;
+    }
+    .search-input{
+      background-color: #3a4372;
+      border: none;
+      color: white;
+      width: 20rem;
+      
     }
   }
 
@@ -75,13 +108,20 @@
     background-color: #232946;
   }
   .body-home{
-    margin-top: 15rem;
+    margin-top: 19rem;
+  }
+  .search-input{
+    background-color: #3a4372;
+    border: none;
+    color: white;
+    width: 30rem;
+    
   }
  }
 
 @media (min-width: 992px) {
   .body-home{
-    margin-top: 15rem;
+    margin-top: 20rem;
   }
  }
 
