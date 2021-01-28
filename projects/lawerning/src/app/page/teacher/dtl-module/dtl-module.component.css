@@ -1,206 +1,236 @@
-.header-module{
+.header-module {
     position: absolute;
     height: 45%;
     background-color: #232946;
-  }
+}
 
-.header-module a{
+.header-module a {
     margin-left: 10px;
     color: #f9bc60;
 }
 
-.header-module h6{
+.header-module h6 {
     color: #f9bc60;
     font-size: 30px;
     margin-left: 15px;
-}  
-.header-module h5{
+}
+
+.header-module h5 {
     color: #a7a9be;
     font-size: 18px;
     margin-left: 60px;
-}  
-.header-module p{
+}
+
+.header-module p {
     color: whitesmoke;
-} 
-.body-module{
+}
+
+.body-module {
     margin-top: 5rem;
     width: 93%;
 }
-.content-description h5{
+
+.content-description h5 {
     font-size: 22px;
     color: #232946;
-    font-weight: bold;    
+    font-weight: bold;
 }
-.content-body h6{
+
+.content-body h6 {
     margin-top: 2px;
     margin-left: 15px;
 }
 
-.card-body{
-    background-color:#232946 ;
-}
-.card-body h3{
-    color: #f9bc60;
-}
-.card-body h5{
-    color: white;
-}
-.back{
-    color: white;
-}
-.s-card{
-    
-    background-color:#232946 ;
-}
-.input-group-text{
+.card-body {
     background-color: #232946;
 }
-.icon-comment{
+
+.card-body h3 {
+    color: #f9bc60;
+}
+
+.card-body h5 {
+    color: white;
+}
+
+.back {
+    color: white;
+}
+
+.s-card {
+    background-color: #232946;
+}
+
+.input-group-text {
+    background-color: #232946;
+}
+
+.icon-comment {
     color: #232946;
 }
-.head-module{
+
+.head-module {
     background-color: #f9bc60;
 }
-.head-module h5{
-    color:#232946 ;
+
+.head-module h5 {
+    color: #232946;
 }
-.head-exam{
+
+.head-exam {
     background-color: #f9bc60;
 }
-.body-module{
+
+.body-module {
     background-color: white;
 }
-.body-exam{
+
+.body-exam {
     background-color: white;
 }
-.exam h5{
-    color:#0d153f;
-    font-weight: bold;
-}
-.exam h6{
+
+.exam h5 {
+    color: #0d153f;
     font-weight: bold;
 }
 
-.label-student{
+.exam h6 {
+    font-weight: bold;
+}
+
+.label-student {
     background-color: #f9bc60;
     color: #232946;
     height: 25px;
 }
-.label-teacher{
-    background-color:  #232946;
+
+.label-teacher {
+    background-color: #232946;
     color: white;
     height: 25px;
 }
-.time{
+
+.time {
     font-size: 12px;
 }
-.title{
-    color:#f9bc60 ;
-    margin:5px;
+
+.title {
+    color: #f9bc60;
+    margin: 5px;
 }
-.date{
+
+.date {
     color: white;
-    margin:5px;
+    margin: 5px;
 }
-.view-exam{
+
+.view-exam {
     height: 410px;
 }
-.view-module{
+
+.view-module {
     height: 410px;
 }
-.view-content-exam{
+
+.view-content-exam {
     height: 315px;
 }
-.discussion{
+
+.discussion {
     color: #232946;
     font-weight: bold;
 }
-.message{
+
+.message {
     margin-left: 50px;
 }
-.form{
+
+.form {
     height: auto;
 }
 
-.send{
+.send {
     color: #232946;
     padding: 10px;
 }
-.send :hover{
-    background-color: #f9bc60 ;
+
+.send :hover {
+    background-color: #f9bc60;
     cursor: pointer;
 }
-.content-body h3{
+
+.content-body h3 {
     font-size: 25px;
     font-weight: bold;
 }
-.content-body h4{
+
+.content-body h4 {
     margin-left: 6px;
     margin-top: 3px;
     font-size: 22px;
 }
 
-.content-attendance h5{
+.content-attendance h5 {
     font-size: 22px;
     color: #232946;
     font-weight: bold;
     margin-bottom: 20px;
 }
-.button-add-exam{
+
+.button-add-exam {
     margin-left: 15px;
 }
 
+
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 300px) { 
-    .body-module{
+
+@media (min-width: 300px) {
+    .body-module {
         margin-top: 7rem;
     }
 }
 
-@media (min-width: 400px) { 
-    .body-module{
+@media (min-width: 400px) {
+    .body-module {
         margin-top: 5rem;
     }
 }
 
 @media only screen and (max-width: 900px) {
-    .data{
+    .data {
         display: flex;
         flex-wrap: wrap;
     }
-    .label{
+    .label {
         background-color: #f9bc60;
         color: #232946;
         height: 25px;
     }
-    .time{
+    .time {
         font-size: 8px;
     }
-    .message{
-      width: 260px;
-      height: auto;
-      margin-left: 0px;
-      margin-top: 2px;
-    
+    .message {
+        width: 260px;
+        height: auto;
+        margin-left: 0px;
+        margin-top: 2px;
     }
-    .role-teacher{
+    .role-teacher {
         margin-top: -12px;
     }
-    .role-student{
+    .role-student {
         margin-top: -12px;
     }
     /* .message h6{
         width: 50px;
     } */
-    .view-exam{
+    .view-exam {
         height: 480px;
     }
-    .view-module{
+    .view-module {
         height: 410px;
     }
-    .view-content-exam{
+    .view-content-exam {
         height: 380px;
     }
-    
-  }
-
+}

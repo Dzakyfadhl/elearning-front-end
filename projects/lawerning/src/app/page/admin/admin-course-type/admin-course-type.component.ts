@@ -14,6 +14,14 @@ export class AdminCourseTypeComponent implements OnInit {
 
   listCourseTypes:CourseType[];
 
+  codeVal:string;
+  nameVal:string;
+
+  courseType:CourseType ;
+
+  displayModal: boolean;
+  displayConfirmation: boolean;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -39,6 +47,22 @@ export class AdminCourseTypeComponent implements OnInit {
         name: "ANGULAR REGULER"
       },
     ]
+  }
+
+  showModalEdit(i:number) {
+    this.codeVal = this.listCourseTypes[i].code;
+    this.nameVal = this.listCourseTypes[i].name;
+
+
+    this.displayModal = true;
+}
+
+  showModalCreate() {
+    this.displayModal = true;
+}
+
+  confirmDelete(){
+    this.displayConfirmation = true;
   }
 
 }
