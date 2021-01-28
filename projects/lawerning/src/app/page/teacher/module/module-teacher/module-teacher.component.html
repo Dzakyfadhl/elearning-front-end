@@ -3,17 +3,21 @@
         <div class="header-module col-lg-12">
             <div class="d-flex flex-column mb-4 text-center mt-4">
                 <h2>{{course.courseName}}</h2>
+                <h5>Dibangun oleh Rian Rivaldo, S.Kom</h5>
                 <div class="d-flex justify-content-center">
-                    <div class="col-lg-10">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias amet accusantium minima
-                            incidunt architecto iste tenetur, officia, ut consequatur fugit repellat cumque quo sed
-                            tempore, eum explicabo quae enim laudantium! Alias amet accusantium minima
-                            incidunt architecto iste tenetur, officia, ut consequatur fugit repellat cumque quo sed
-                            tempore, eum explicabo quae enim laudantium!Alias amet accusantium minima
-                            incidunt architecto iste tenetur, officia, ut consequatur fugit repellat cumque quo sed
-                            tempore, eum explicabo quae enim laudantium!Alias amet accusantium minima
-                            incidunt architecto iste tenetur, officia, ut consequatur fugit repellat cumque quo sed
-                            tempore, eum explicabo quae enim laudantium! </p>
+                    <div class="d-flex flex-row">
+                        <div class="d-flex flex-column mr-5">
+                            <div class="icon-student ml-1">
+                                <img src="../../../../../assets/images/students1.svg">
+                            </div>
+                            <h6>30 Student</h6>
+                        </div>
+                        <div class="d-flex flex-column ml-5">
+                            <div class="icon-course">
+                                <img src="../../../../../assets/images/course1.svg">
+                            </div>
+                            <h6>10 Course</h6>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -23,83 +27,110 @@
 
 <div class="body-module container-fluid">
     <div class="row">
-        <div class="col-lg-12 mt-3">
-            <div class="card shadow p-3 mb-5 bg-white rounded">
-                <p-tabView styleClass="tabview-custom">
-                    <p-tabPanel>
-                        <ng-template pTemplate="header">
-                            <i class="pi pi-calendar"></i>
-                            <div class="ml-2">
-                                <span>Module</span>
-                            </div>
-                        </ng-template>
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-12 mt-2 shadow-sm p-3 mb-2 bg-white rounded"
-                                    *ngFor="let m of module; let i=index">
-                                    <div class="header-content p-1">
-                                        <a (click)="viewModule(i)">
-                                            <h3>{{m.titleModule}}</h3>
-                                        </a>
-                                    </div>
-                                    <div class="d-flex justify-content-evenly">
-                                        <h6 class="card-text p-1">
-                                            <div class="content-body d-flex justify-content-between">
-                                                <span>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-calendar-event-fill"
-                                                        viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z" />
-                                                    </svg>
-                                                </span>
-                                                <h6> {{m.startDate}}</h6>
-                                            </div>
-                                        </h6>
-                                        <h6 class="card-text p-1">
-                                            <div class="content-body d-flex justify-content-between">
-                                                <span>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-clock-fill"
-                                                        viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                                    </svg>
-                                                </span>
-                                                <h6>{{m.startTime}}-{{m.endTime}}</h6>
-                                            </div>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </p-tabPanel>
-                    <p-tabPanel header="Header II">
-                        <ng-template pTemplate="header">
-                            <i class="pi pi-user"></i>
-                            <div class="ml-2">
-                                <span>Student</span>
-                            </div>
-                        </ng-template>
-                        <!-- saasas -->
-                        <p-orderList [value]="student" [listStyle]="{'height':'auto'}" filterBy="studentName"
-                            filterPlaceholder="Filter by studentName">
-                            <ng-template let-student pTemplate="item">
-                                <div class="student-item">
-                                    <div class="student-list-detail">
-                                        <h4 class="p-mb-2">{{student.studentName}}</h4>
-                                        <i class="pi pi-envelope student-category-icon"></i>
-                                        <span class="student-category">{{student.email}}</span>
-                                    </div>
-                                    <div class="student-list-action">
-                                        <h6 class="p-mb-2">${{student.studentName}}</h6>
-                                        <h6>{{student.studentName}}</h6>
-                                    </div>
+        <div class="col-lg-12">
+            <div class="content-description">
+                <h5>Description</h5>
+                <p>Apakah Anda ingin menjadi desainer logo profesional yang dapat mendesain logo? Ini adalah kesempatan
+                    eksklusif Anda untuk belajar dari profesional desain logo.
+                    Dalam kelas ini, saya memberikan keseluruhan proses desain logo profesional dari awal hingga akhir
+                    yang mencakup semuanya mulai dari sketsa, font, penempatan karakter, pengembangan simbol, aplikasi
+                    warna, dan banyak lagi.
+                    Saya juga menyediakan semua materi yang saya gunakan untuk menjalankan bisnis desain logo sehingga
+                    Anda dapat menggunakannya untuk melakukan bisnis desain logo, mulai dari form brief logo untuk klien
+                    hingga template email.
+                    Tidak hanya itu, di kelas ini juga akan mempelajari studi kasus langsung ketika mendapatkan klien
+                    dari mulai brief sampai tahap final. Juga akan dipandu bagaimana mempersiapkan presentasi logo untuk
+                    klien. Pada akhir kelas, kami sudah menyiapakan bagaimana memulai menjadi seorang freelance logo
+                    design dengan platform fiverr.
+                    Jika kamu tertarik untuk belajar logo desiger dan freelance lebih dalam silakan bergabung di kelas
+                    ini dan kami akan mengarahkan dengan secara terstruktur dan rapih. Silakan bergabung dan kami tunggu
+                    di kelas.Tidak hanya itu, di kelas ini juga akan mempelajari studi kasus langsung ketika mendapatkan
+                    klien
+                    dari mulai brief sampai tahap final. Juga akan dipandu bagaimana mempersiapkan presentasi logo untuk
+                    klien. Pada akhir kelas, kami sudah menyiapakan bagaimana memulai menjadi seorang freelance logo
+                    design dengan platform fiverr.
+                    Jika kamu tertarik untuk belajar logo desiger dan freelance lebih dalam silakan bergabung di kelas
+                    ini dan kami akan mengarahkan dengan secara terstruktur dan rapih. Silakan bergabung dan kami tunggu
+                    di kelas.</p>
+                <h5>Schedule</h5>
+                <h6 class="card-text p-1">
+                    <div class="icon-schedule d-flex justify-content-evenly">
+                        <span>
+                            <img src="assets/images/calender1.svg">
+                        </span>
+                        <h6>Friday, 21-02-2021</h6>
+                    </div>
+                </h6>
+            </div>
+            <div class="content-module">
+                <h5>Module Content</h5>
+                <div class="card shadow p-3 mb-5 mt-3 bg-white rounded">
+                    <p-tabView styleClass="tabview-custom">
+                        <p-tabPanel>
+                            <ng-template pTemplate="header">
+                                <i class="pi pi-calendar"></i>
+                                <div class="ml-2">
+                                    <span>Module</span>
                                 </div>
                             </ng-template>
-                        </p-orderList>
-                    </p-tabPanel>
-                </p-tabView>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-12 mt-2 shadow-sm p-3 mb-2 bg-white rounded"
+                                        *ngFor="let m of module; let i=index">
+                                        <div class="header-content p-1">
+                                            <a (click)="viewModule(i)">
+                                                <h3>{{m.titleModule}}</h3>
+                                            </a>
+                                        </div>
+                                        <div class="d-flex justify-content-evenly">
+                                            <h6 class="card-text p-1">
+                                                <div class="icon-calender d-flex justify-content-between">
+                                                    <span>
+                                                        <img src="assets/images/calender1.svg">
+                                                    </span>
+                                                    <h6> {{m.startDate}}</h6>
+                                                </div>
+                                            </h6>
+                                            <h6 class="card-text p-1">
+                                                <div class="icon-time d-flex justify-content-between">
+                                                    <span>
+                                                        <img src="assets/images/time1.svg">
+                                                    </span>
+                                                    <h6>{{m.startTime}}-{{m.endTime}}</h6>
+                                                </div>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-tabPanel>
+                        <p-tabPanel header="Header II">
+                            <ng-template pTemplate="header">
+                                <i class="pi pi-user"></i>
+                                <div class="ml-2">
+                                    <span>Student</span>
+                                </div>
+                            </ng-template>
+                            <!-- saasas -->
+                            <p-orderList [value]="student" [listStyle]="{'height':'auto'}" filterBy="studentName"
+                                filterPlaceholder="Filter by studentName">
+                                <ng-template let-student pTemplate="item">
+                                    <div class="student-item">
+                                        <div class="student-list-detail">
+                                            <h4 class="p-mb-2">{{student.studentName}}</h4>
+                                            <i class="pi pi-envelope student-category-icon"></i>
+                                            <span class="student-category">{{student.email}}</span>
+                                        </div>
+                                        <div class="student-list-action">
+                                            <h6 class="p-mb-2">${{student.studentName}}</h6>
+                                            <h6>{{student.studentName}}</h6>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </p-orderList>
+                        </p-tabPanel>
+                    </p-tabView>
+                </div>
             </div>
         </div>
     </div>

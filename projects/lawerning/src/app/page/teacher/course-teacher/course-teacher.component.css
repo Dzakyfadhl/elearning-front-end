@@ -2,3 +2,21 @@
     background-color: #f9bc60;
     color: #232946;
 }
+.icon-student img{
+    width: 25px;
+    height: 25px;
+}
+.icon-student h6{
+    margin-left: 6px;
+    margin-top: 3px;
+}
+
+.icon-schedule img{
+    width: 25px;
+    height: 22px;
+}
+
+.icon-schedule h6{
+    margin-top: 3px;
+    margin-left: 8px;
+}

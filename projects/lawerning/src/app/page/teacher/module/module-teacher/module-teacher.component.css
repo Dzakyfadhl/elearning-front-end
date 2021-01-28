@@ -1,17 +1,65 @@
+
 .header-module{
     position: absolute;
-    height: 50%;
+    height: auto;
     background-color: #232946;
   }
+.header-module .icon-student img{
+width: 55px;
+height: 50px;
+}
 
+.header-module .icon-course img{
+    width: 42px;
+    height: 50px;
+    }
+.icon-time img{
+    width: 20px;
+    height: 20px;
+}
+.icon-time h6{
+    margin-left: 10px;
+    font-size: 18px;
+    color: #B0AEAE;
+}
+.icon-schedule img{
+    width: 25px;
+    height: 28px;    
+}
+
+.icon-schedule h6{
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+.icon-calender img{
+    width: 20px;
+    height: 24px;
+}
+
+.icon-calender h6{
+    margin-top: 1px;
+    font-size: 18px;
+    margin-left: 10px;
+    color: #B0AEAE;
+}
 .header-module h2{
-    color: #f9bc60;
-}  
-.header-module p{
     color: whitesmoke;
+    font-size: 45px;
 }  
+.header-module h5{
+    color:#6064ac;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.header-module h6{
+    margin-top: 2px;
+    color: #F4CAAE;
+    font-size: 20px;
+}
+
 .body-module{
-    margin-top: 12rem;
+    margin-top: 16rem;
     width: 90%;
 }
 
@@ -58,9 +106,28 @@ a {
     text-decoration: #515da3;
   }
   .header-content h3{
-      font-size: 25px;
+      font-size: 32px;
       font-weight: bold;
   }
+
+  .content-description h5{
+    font-size: 30px;
+    color: #232946;
+    font-weight: bold;    
+}
+.content-description p{
+    font-size: 18px;
+}
+.content-description h6{
+    font-size: 18px;
+}
+
+.content-module h5{
+    font-size: 30px;
+    color: #232946;
+    font-weight: bold; 
+    margin-top: 15px;
+}
 
 @media screen and (max-width: 576px) {
     .student-item {
@@ -79,10 +146,9 @@ a {
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
     .body-module{
-        margin-top: 19rem;
+        margin-top: 17rem;
     }
     .header-module{
-        height: 55%;
         background-color: #232946;
       }
 }
@@ -90,10 +156,9 @@ a {
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
     .body-module{
-        margin-top: 16rem;
+        margin-top: 17rem;
     }
     .header-module{
-        height: 50%;
         background-color: #232946;
       }
 }
@@ -101,10 +166,9 @@ a {
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
     .body-module{
-        margin-top: 16rem;
+        margin-top: 17rem;
     }
     .header-module{
-        height: 50%;
         background-color: #232946;
       }
 }
@@ -112,10 +176,9 @@ a {
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) { 
     .body-module{
-        margin-top: 12rem;
+        margin-top: 17rem;
     }
     .header-module{
-        height: 50%;
         background-color: #232946;
       }
 }
