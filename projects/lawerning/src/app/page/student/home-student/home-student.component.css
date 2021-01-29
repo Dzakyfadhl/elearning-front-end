@@ -17,9 +17,13 @@
 .form-control:focus{
   background-color: white;
 }
+.avail{
+  color: #f4caae;
+}
 
-.header-home h3{
-  color: #f9bc60;
+.header-home h1{
+  color: #f4caae;
+  font-weight: bold;
 }
   /* .body-margin{
     border: 1px solid grey;
@@ -37,13 +41,7 @@
     background-color: #232946;
     width: 5rem;
   }
-  .search-input{
-    background-color: #3a4372;
-    border: none;
-    color: white;
-    width: 30rem;
-    
-  }
+  
   .invalid-all{
     background-color:  #3a4372;
     border: none;
@@ -55,23 +53,46 @@
   .valid-all{
     border: none;
     color:  #3a4372;
-    background-color: #a6d5fa;
+    background-color: #f4caae;
   }
   .valid-selected{
     color:  #3a4372;
     border: none;
-    background-color: #a6d5fa;
+    background-color:  #f4caae;
+  }
+  .card:hover{
+    cursor: pointer;
+    /* width: 23rem;
+    height: 26rem; */
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.301), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .card{
+    height: 25rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   
   a {
       text-decoration: none;
   }
   .card-body a :hover{
-    color: #f9bc60;
+    color: #f4caae;
     cursor: pointer;
-    text-decoration: #f9bc60;
+    text-decoration: #f4caae;
   }
 
+  :host ::ng-deep .p-inputtext{
+    background-color: #3a4372;
+    border: white;
+    color: white;
+    width: 20rem;
+  }
+  :host ::ng-deep .p-inputtext:focus{
+    background-color: white;
+    border: white;
+    color: black;
+    border: white;
+    width: 20rem;
+  }
   /* @media screen and (max-width: 411px) {
     .header-home{
       position: absolute;
@@ -92,13 +113,7 @@
     .body-home{
       margin-top: 22rem;
     }
-    .search-input{
-      background-color: #3a4372;
-      border: none;
-      color: white;
-      width: 20rem;
-      
-    }
+   
   }
 
 @media (min-width: 768px) { 

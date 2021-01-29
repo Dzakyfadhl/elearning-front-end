@@ -6,6 +6,7 @@ import { ModuleCourseComponent } from '@bootcamp-lawerning-page/student/module-c
 import { BadgeModule } from 'primeng/badge';
 import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
+import { ProgressBarModule } from 'primeng/progressbar';
 @NgModule({
   declarations: [ModuleCourseComponent],
   imports: [
@@ -13,7 +14,8 @@ import { CardModule } from 'primeng/card';
     ModuleCourseRoutingModule,
     BadgeModule,
     DividerModule,
-    CardModule
+    CardModule,
+    ProgressBarModule
   ]
 })
 export class ModuleCourseModule { }

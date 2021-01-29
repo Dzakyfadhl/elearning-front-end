@@ -54,11 +54,11 @@
     <hr>
     <div class="row">
         <div class="col-lg-8 mb-2">
-            <div class="view-exam card">
+            <div class="view-exam">
                 <div *ngIf="isEmpty == true" class="d-flex justify-content-center m-5">
                     <img src="assets/images/dataEmpty.png" height="250" alt="">
                 </div>
-                <p-tabView styleClass="tabview-custom" *ngIf="isEmpty == false">
+                <p-tabView *ngIf="isEmpty == false">
                     <p-tabPanel *ngFor="let e of exams;let i = index;">
                         <ng-template pTemplate="header">
                             <i class="pi pi-book mr-2"></i>
@@ -123,7 +123,12 @@
                 <div class="body-module card-body">
                     <h6>Download</h6>
                     <hr>
-                    <a href=""> <i class="pi pi-file mr-2"></i>materi-java.pdf</a>
+                    <div class="d-flex flex-column">
+
+                        <a href=""> <h4><i class="pi pi-file mr-2"></i>materi-java.pdf</h4></a>
+                        <a href=""> <h4><i class="pi pi-file mr-2"></i>materi-java.pdf</h4></a>
+                        <a href=""> <h4><i class="pi pi-file mr-2"></i>materi-java.pdf</h4></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -176,7 +181,7 @@
                 <div class="input-group mb-3">
 
                     <textarea class="form-control" aria-label="With textarea"
-                        placeholder="Write a comment..."></textarea>
+                        placeholder="Write a comment..." style="height: 40px;"></textarea>
 
                 </div>
                 <a class="send">

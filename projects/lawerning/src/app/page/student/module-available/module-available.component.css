@@ -2,8 +2,9 @@
     background-color: #232946;
     height: auto;
 }
-.header-module h2{
-    color: #f9bc60;
+.header-module h1{
+    color: #f4caae;
+    font-weight: bold;
 }
 .header-module p{
     color: white;
@@ -21,12 +22,15 @@
     color: #232946;
     font-weight: bold;
 }
+.value{
+    background-color: #3a4372;
+}
 /* .body-module{
     position: absolute;
     top: 35%;
 } */
 .icon{
-    color: #f9bc60;
+    color: #f4caae;
 }
 a{
     color: #232946;

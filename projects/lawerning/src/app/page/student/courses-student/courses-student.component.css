@@ -11,8 +11,13 @@
     margin-top: 15rem;
   }
   
-.header-home h3{
-    color: #f9bc60;
+.header-home h1{
+  color: #f4caae;
+  font-weight: bold;
+  }
+  .course-icon{
+    
+  color: #f4caae;
   }
   .card-body h5{
     color: #232946;
@@ -26,15 +31,26 @@
   .badge{
     background-color: #f9bc60;
   }
+  .card:hover{
+    cursor: pointer;
+    /* width: 23rem;
+    height: 26rem; */
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.301), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .card{
+    height: 25rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
 
   a {
       text-decoration: none;
   }
-  .card-body a :hover{
+  /* .card-body a :hover{
     color: #f9bc60;
     cursor: pointer;
     text-decoration: #f9bc60;
-  }
+  } */
  
   @media (min-width: 411px) { 
     .header-home{

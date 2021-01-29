@@ -2,7 +2,7 @@
     background-color:#232946 ;
 }
 .card-body h3{
-    color: #f9bc60;
+    color: #f4caae;
 }
 .card-body h5{
     color: white;
@@ -21,13 +21,13 @@
     color: #232946;
 }
 .head-module{
-    background-color: #f9bc60;
+    background-color: #f4caae;
 }
 .head-module h5{
     color:#232946 ;
 }
 .head-exam{
-    background-color: #f9bc60;
+    background-color: #f4caae;
 }
 .body-module{
     background-color: white;
@@ -44,7 +44,7 @@
 }
 
 .label-student{
-    background-color: #f9bc60;
+    background-color: #f4caae;
     color: #232946;
     height: 25px;
 }
@@ -57,7 +57,7 @@
     font-size: 12px;
 }
 .title{
-    color:#f9bc60 ;
+    color:#f4caae ;
     margin:5px;
 }
 .date{
@@ -71,7 +71,7 @@
     height: 410px;
 }
 .view-content-exam{
-    height: 315px;
+    height: 338px;
 }
 .discussion{
     color: #232946;
@@ -89,12 +89,36 @@
 }
 .send{
     color: #232946;
-    padding: 10px;
+    padding: 5px;
 }
 .send :hover{
-    background-color: #f9bc60 ;
+    color: #3a4372;
     cursor: pointer;
 }
+:host ::ng-deep .p-tabview .p-tabview-nav{
+    border: none;
+}
+:host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link{
+    background-color: #232946;
+    border: none;
+    border-radius: 10px;
+    color: #f4caae;
+}
+:host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link{
+    border: none;
+    color: grey;
+}
+/* :host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link:hover{
+    background-color: #263580;
+    border: none;
+    color: #f4caae;
+} */
+
+/* :host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link{
+    background-color: red;
+} */
+
+
 @media only screen and (max-width: 900px) {
     .data{
         display: flex;

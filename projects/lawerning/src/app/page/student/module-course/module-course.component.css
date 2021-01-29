@@ -2,8 +2,9 @@
     background-color: #232946;
     height: 240px;
 }
-.header-module h2{
-    color: #f9bc60;
+.header-module h1{
+    
+    color: #f4caae;
 }
 .header-module p{
     color: white;
@@ -13,7 +14,8 @@
     top: 35%;
 } */
 .icon{
-    color: #f9bc60;
+    
+    color: #f4caae;
 }
 a{
     color: #232946;
@@ -26,10 +28,8 @@ a{
     color: #232946;
 }
 
-.card-head h3{
+ h3{
     color:#232946;
-    background-color: #f9bc60 ;
-    padding: 10px;
     font-weight: bold;
 }
 .register button{
@@ -58,15 +58,29 @@ a{
 }
 
 .btn-title{
+    width: 7rem;
     margin: 10px;
-    background-color: #232946;
+    color: #232946;
+    background-color: #f4caae;
 }
 a :hover{
-    background-color:  #334291;
+    color: white;
+    background-color:  #e99965;
 }
 .label-done{
     margin: 10px;
 }
+
+:host ::ng-deep .p-progressbar .p-progressbar-value{
+   background-color: #232946;
+  }
+  :host ::ng-deep .p-progressbar {
+    background-color: #62688a;
+   }
+  :host ::ng-deep .p-progressbar .p-progressbar-label{
+      color: white;
+  }
+
 @media screen and(max-width: 991px){
     .header-module{
     background-color: #232946;
