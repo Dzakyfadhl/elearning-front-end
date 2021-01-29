@@ -45,6 +45,20 @@ export class CourseTeacherComponent implements OnInit {
       endDate: "28 Jan 2021",
       capacity: "20",
       studentCount: "12"
+    },
+    {
+      titleCourse: "Algorithm & Logical",
+      startDate: "20 Jan 2021",
+      endDate: "28 Jan 2021",
+      capacity: "20",
+      studentCount: "12"
+    },
+    {
+      titleCourse: "Object Oriented Programming",
+      startDate: "20 Jan 2021",
+      endDate: "28 Jan 2021",
+      capacity: "20",
+      studentCount: "12"
     }
   ]
   constructor(private router: Router) { 
