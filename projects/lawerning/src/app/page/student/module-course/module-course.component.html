@@ -31,7 +31,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h5 class="text-info">Progress: {{countTemp}} of {{total}} Modules</h5>
-            <p-progressBar [value]="value" class="progress-body" ></p-progressBar>
+            <p-progressBar [value]="value" class="progress-body"></p-progressBar>
 
         </div>
     </div>
@@ -40,40 +40,59 @@
     <div class="row">
         <div class="col-lg-12 mt-1">
             <!-- <div class="card shadow p-3 mb-5 rounded"> -->
-                <!-- <div class="card-head"> -->
-                    <h3>Module</h3>
-                    <hr>
-                <!-- </div> -->
-                <div class="card my-3 p-3" *ngFor="let m of modules;let i = index">
+            <!-- <div class="card-head"> -->
+            <h3>Module</h3>
+            <hr>
+            <!-- </div> -->
 
-                    <div class="d-flex justify-content-between">
-                        <h4 class="title">{{m.topic}}: {{m.title}}</h4>
-                        <a (click)="viewForum(i)" *ngIf="m.status == 'present'">
-                            <button class="btn-title btn btn-secondary">
-                                View
-                            </button>
-                        </a>
-                        <a *ngIf="m.status == 'absent'">
-                            <button class="btn-title btn btn-secondary">
-                                Attendance
-                            </button>
-                        </a>
-                        <a *ngIf="m.status == 'clear'">
-                            <h4><span class="label-done badge badge-success rounded-circle"><i
-                                        class="pi pi-check"></i></span></h4>
-                        </a>
+            <div class="card shadow-sm my-3" *ngFor="let m of modules;let i = index">
+                <div class="d-flex flex-row">
+                <!-- <div class="row"> -->
+                    <div class="left-content rounded">
+
+                        <div class="d-flex flex-column pt-2">
+                            <h4 class="text-center text-light">1</h4>
+                            <h3 class="text-center text-light">Jan</h3>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-start">
-                        <h6 class="info text-info">
-                            <i class="pi pi-calendar"></i>
-                            25 Jan 2021
-                        </h6>
-                        <h6 class="info text-info">
-                            <i class="pi pi-clock"></i>
-                            10:00 - 12:00
-                        </h6>
+                    <div class="right-content">
+                        <div class="d-flex flex-column">
+                            
+                            <div class="d-flex justify-content-start">
+                                <!-- <h6 class="info text-info">
+                                    <i class="pi pi-calendar"></i>
+                                    25 Jan 2021
+                                </h6> -->
+                                
+                                <h4 class="title">{{m.topic}}: {{m.title}}</h4>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h6 class="info text-info">
+                                    <i class="pi pi-clock"></i>
+                                    10:00 - 12:00
+                                </h6>
+                                <a (click)="viewForum(i)" *ngIf="m.status == 'present'">
+                                    <button class="btn-title btn btn-secondary">
+                                        View
+                                    </button>
+                                </a>
+                                <a *ngIf="m.status == 'absent'">
+                                    <button class="btn-title btn btn-secondary">
+                                        Attendance
+                                    </button>
+                                </a>
+                                <a *ngIf="m.status == 'clear'">
+                                    <h4><span class="label-done badge badge-success rounded-circle"><i
+                                                class="pi pi-check"></i></span></h4>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- </div> -->
+            </div>
+
             <!-- </div> -->
         </div>
     </div>

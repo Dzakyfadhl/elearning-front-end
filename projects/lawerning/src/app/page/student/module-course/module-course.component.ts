@@ -19,9 +19,9 @@ export class ModuleCourseComponent implements OnInit {
       title: 'Class & Object',
       desc: 'Class and object should define a part of Object Oriented Programming',
       status: 'absent',
-      date: '2021/01/29',
+      date: '2021/01/30',
       start: '08:00',
-      end: '10:11:10'
+      end: '14:40:10'
     },
     {
       topic: 'Topic-2',
@@ -30,7 +30,7 @@ export class ModuleCourseComponent implements OnInit {
       status: 'present',
       date: '2021/01/29',
       start: '08:00',
-      end: '10:11:10'
+      end: '10:40:10'
     },
     {
       topic: 'Topic-3',
@@ -39,7 +39,7 @@ export class ModuleCourseComponent implements OnInit {
       status: 'clear',
       date: '2021/01/29',
       start: '08:00',
-      end: '10:11:10'
+      end: '10:40:10'
     },
     {
       topic: 'Topic-4',
@@ -47,7 +47,7 @@ export class ModuleCourseComponent implements OnInit {
       desc: 'Base DAO should define a part of Object Oriented Programming',
       date: '2021/02/28',
       start: '08:00',
-      end: '10:11:10'
+      end: '10:40:10'
     },
     {
       topic: 'Topic-5',
@@ -55,7 +55,7 @@ export class ModuleCourseComponent implements OnInit {
       desc: 'Base Service should define a part of Object Oriented Programming',
       date: '2021/02/28',
       start: '08:00',
-      end: '10:11:10'
+      end: '10:40:10'
     },
     {
       topic: 'Topic-6',
@@ -63,7 +63,7 @@ export class ModuleCourseComponent implements OnInit {
       desc: 'Security System should define a part of Object Oriented Programming',
       date: '2021/02/28',
       start: '08:00',
-      end: '10:11:10'
+      end: '10:40:10'
     },
     {
       topic: 'Topic-7',
@@ -71,7 +71,7 @@ export class ModuleCourseComponent implements OnInit {
       desc: 'JDBC should define a part of Object Oriented Programming',
       date: '2021/02/28',
       start: '08:00',
-      end: '10:11:10'
+      end: '10:40:10'
     },
     {
       topic: 'Topic-8',
@@ -79,7 +79,7 @@ export class ModuleCourseComponent implements OnInit {
       desc: 'Operator should define a part of Object Oriented Programming',
       date: '2021/01/29',
       start: '08:00',
-      end: '12:11:10'
+      end: '12:40:10'
     }
   ]
 
@@ -124,23 +124,42 @@ export class ModuleCourseComponent implements OnInit {
       console.log("Current: ", currentDay, currentMonth, currentHour, ":", currentMinute);
       console.log("Module: ", moduleDay, moduleMonth, moduleHour, ":", moduleMinute);
 
-      if (currentMonth >= moduleMonth) {
-        if (currentDay >= moduleDay) {
-          if (currentHour >= moduleHour) {
-            if (currentMinute > moduleMinute) {
-              this.countTemp += 1;
-              console.log("Module Complete..");
-            }
-          }
-        } else {
-
-          this.countTemp = this.countTemp;
-          console.log("Module Process");
-        }
-      } else {
-        this.countTemp = this.countTemp;
-        console.log("Module process");
+      if(currentMonth >= moduleMonth && currentDay > moduleDay){
+        console.log("Completed");
+        this.countTemp +=1;
+        // if(currentHour >= moduleHour && currentMinute > moduleMinute){
+        //   console.log("Completed");
+        //   this.countTemp +=1;
+        // }else{
+        //   console.log("Process");
+          
+        // }
+      }else{
+        console.log("process");
       }
+      // if (currentMonth >= moduleMonth) {
+      //   if (currentDay >= moduleDay) {
+      //     if (currentHour >= moduleHour) {
+      //       if (currentMinute > moduleMinute) {
+      //         this.countTemp += 1;
+      //         console.log("Module Complete..");
+      //       }else{
+      //         console.log("Module process");
+              
+      //       }
+      //     }else{
+      //       console.log("Module Process");
+            
+      //     }
+      //   } else {
+
+      //     this.countTemp = this.countTemp;
+      //     console.log("Module Process");
+      //   }
+      // } else {
+      //   this.countTemp = this.countTemp;
+      //   console.log("Module process");
+      // }
     });
 
   }

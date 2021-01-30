@@ -29,6 +29,10 @@
     position: absolute;
     top: 35%;
 } */
+.label{
+    background-color:  #232946;
+    border-radius: 10%;
+}
 .icon{
     color: #f4caae;
 }

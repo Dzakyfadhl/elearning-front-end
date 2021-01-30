@@ -29,7 +29,8 @@
     font-weight: bold;
   }
   .badge{
-    background-color: #f9bc60;
+    background-color: #f4caae;
+    color: #232946;
   }
   .card:hover{
     cursor: pointer;
@@ -41,11 +42,15 @@
     height: 25rem;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
+  .card img:hover{
+    opacity: 0.5;
+  }
   
 
   a {
       text-decoration: none;
   }
+  
   /* .card-body a :hover{
     color: #f9bc60;
     cursor: pointer;
@@ -61,6 +66,9 @@
     .body-home{
       margin-top: 17rem;
     }
+    .card-img-top{
+      height: 185px;
+    }
   }
 
 @media (min-width: 768px) { 
@@ -72,11 +80,19 @@
   .body-home{
     margin-top: 15rem;
   }
+  .card-img-top{
+    height: 175px;
+  }
  }
 
 @media (min-width: 992px) {
   .body-home{
     margin-top: 15rem;
+  }
+ }
+ @media(min-width: 1024px){
+  .card-img-top{
+    height: 185px;
   }
  }
 

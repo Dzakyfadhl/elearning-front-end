@@ -60,18 +60,18 @@ a{
 .btn-title{
     width: 7rem;
     margin: 10px;
-    color: #232946;
-    background-color: #f4caae;
+    color: white;
+    background-color: #62688a;
+    border: none;
 }
 a :hover{
     color: white;
-    background-color:  #e99965;
+    background-color:  #232946;
 }
 .label-done{
     margin: 10px;
 }
-
-:host ::ng-deep .p-progressbar .p-progressbar-value{
+  :host ::ng-deep .p-progressbar .p-progressbar-value{
    background-color: #232946;
   }
   :host ::ng-deep .p-progressbar {
@@ -80,7 +80,48 @@ a :hover{
   :host ::ng-deep .p-progressbar .p-progressbar-label{
       color: white;
   }
+@media (min-width: 411px){
+    .title{
+        font-size: 15px;
+    }
+    /* .btn-title{
+        width: 7rem;
+        height: 2rem;
+    } */
+.left-content{
+    width: 6rem;
+    background-color: #232946;
+}
+.right-content{
+    width: 20rem;
+}
 
+}
+@media(min-width: 768px){
+    .title{
+        font-size: 24px;
+    }
+    .left-content{
+        width: 6rem;
+        background-color: #232946;
+    }
+    .right-content{
+        width: 100%;
+    }
+}
+@media(min-width: 1024px){
+    .title{
+        font-size: 24px;
+    }
+    .left-content{
+        width: 6rem;
+        /* color: white; */
+        background-color: #232946;
+    }
+    .right-content{
+        width: 100%;
+    }
+}
 @media screen and(max-width: 991px){
     .header-module{
     background-color: #232946;

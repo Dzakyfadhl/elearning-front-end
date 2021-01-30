@@ -17,8 +17,8 @@
                     <span class="p-input-icon-left" styleClass="width-input">
                         <i class="pi pi-search"></i>
 
-                        <input type="text" pInputText placeholder="Search category..."
-                            (input)="searchKey()" [(ngModel)]="keyString" />
+                        <input type="text" pInputText placeholder="Search category..." (input)="searchKey()"
+                            [(ngModel)]="keyString" />
 
                     </span>
 
@@ -34,12 +34,12 @@
                         <button class="valid-all btn btn-info">All</button>
                     </a>
                 </div>
-                <!-- </div> -->
                 <div class="p-2" *ngFor="let c of data">
 
                     <a *ngIf="selectedCourse != c" (click)="onChange(c)">
                         <button class="invalid-selected btn btn-secondary">{{c}}</button>
                     </a>
+
                     <a *ngIf="selectedCourse == c" (click)="onChange(c)">
                         <button class="valid-selected btn btn-info">{{c}}</button>
                     </a>
@@ -82,16 +82,19 @@
                     </div> -->
 
                     <!-- SKLETON -->
+                    
                     <div class="col-lg-4 col-md-6 col-sm-12 mt-3 mb-3" *ngFor="let c of courseFiltering;let i = index">
-                        
+
                         <!-- <a > -->
-                        <div class="card p-1 mb-1 bg-white rounded" (click)="viewModule(i)">
-                            <img src="assets/images/ilustrator.jpg" class="card-img-top" height="180" alt="...">
+                        <div class="card mb-1 bg-white rounded" (click)="viewModule(i)">
+                            <div class="img">
+                                <img src="assets/images/banner.svg" class="card-img-top" alt="...">
+                            </div>
                             <div class="card-body">
-                                    <h5 class="card-title text-truncate" style="max-width: 19rem;">
-                                        {{c.name}}
-                                    </h5>
-                               
+                                <h5 class="card-title text-truncate" style="max-width: 19rem;">
+                                    {{c.name}}
+                                </h5>
+
                                 <h6 class="text-secondary">{{c.category}}</h6>
                                 <hr>
 
@@ -108,7 +111,7 @@
                                 </div>
                             </div>
                         </div>
-                    <!-- </a> -->
+                        <!-- </a> -->
                     </div>
 
                 </div>

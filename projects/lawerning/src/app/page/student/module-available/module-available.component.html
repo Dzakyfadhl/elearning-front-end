@@ -81,10 +81,26 @@
             </div>
             <hr>
 
-            <div class="card p-3 my-2 bg-light" *ngFor="let m of modules;let i = index">
-                <div class="d-flex flex-row">
-                    <h4 class="text-secondary">{{m.topic}}: </h4>
-                    <h4 class="text-info">{{m.title}}</h4>
+            <div class="card my-2 bg-light" *ngFor="let m of modules;let i = index">
+                <div class="d-flex justify-content-between">
+
+                    <div class="d-flex flex-row">
+                        <span style="width: 10px;" class="label"></span>
+
+                        <div class="d-flex flex-row p-3">
+
+                            <h4 class="text-secondary">{{m.topic}}: </h4>
+                            <h4 class="text-info">{{m.title}}</h4>
+
+                        </div>
+                    </div>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-lock-fill m-3" viewBox="0 0 16 16">
+                        <path
+                            d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+                    </svg>
+
                 </div>
             </div>
 
@@ -100,19 +116,19 @@
                 <h1>Teacher Course</h1>
                 <p class="text-secondary">Chosen as a trusted and reliable teacher.</p>
                 <!-- <div class="card p-1" style="max-width: 10rem;"> -->
-                    <div class="d-inline-flex justify-content-center pb-5">
-                        <div class="card p-4">
+                <div class="d-inline-flex justify-content-center pb-5">
+                    <div class="card p-4">
 
-                                <!-- <div class="d-flex flex-column"> -->
-                                    <div class="d-flex justify-content-center">
-                                        <img src="assets/images/male1.jpeg" height="100" width="100" class="rounded-circle" alt="">
+                        <!-- <div class="d-flex flex-column"> -->
+                        <div class="d-flex justify-content-center">
+                            <img src="assets/images/male1.jpeg" height="100" width="100" class="rounded-circle" alt="">
 
-                                    </div>
-                                    <h5 class="pt-4">Ryan Rivaldo, S.Kom.</h5>
-                                <!-- </div> -->
-                            
                         </div>
+                        <h5 class="pt-4">Ryan Rivaldo, S.Kom.</h5>
+                        <!-- </div> -->
+
                     </div>
+                </div>
                 <!-- </div> -->
             </div>
         </div>

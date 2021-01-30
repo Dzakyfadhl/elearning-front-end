@@ -8,8 +8,7 @@ import { ModuleAvailableModule } from '../module-available/module-available.modu
 import { FormsModule } from '@angular/forms';
 import { OrderListModule } from 'primeng/orderlist';
 import { SkeletonModule } from 'primeng/skeleton';
-
-import { CarouselModule } from 'primeng/carousel';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { InputTextModule } from 'primeng/inputtext';
 @NgModule({
   declarations: [
@@ -23,8 +22,8 @@ import { InputTextModule } from 'primeng/inputtext';
     FormsModule,
     OrderListModule,
     SkeletonModule,
-    CarouselModule,
-    InputTextModule
+    InputTextModule,
+    ScrollPanelModule
     
   ]
 })

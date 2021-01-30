@@ -71,7 +71,8 @@ export class ModuleDetailComponent implements OnInit {
       role: 'Student'
     }
     
-  ]
+  ];
+  
   isEmpty : boolean = false;
   constructor(private activeRoute: ActivatedRoute, private http: HttpClient) { }
 
@@ -91,6 +92,7 @@ export class ModuleDetailComponent implements OnInit {
     }
 
   }
+
   fileChange(event) {
     let fileList: FileList = event.target.files;
     if(fileList.length > 0) {

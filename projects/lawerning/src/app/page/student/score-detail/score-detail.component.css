@@ -10,7 +10,14 @@ h3{
     
     background-color: #232946 ;
 }
-
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page:hover{
+    border-radius: 50%;
+}
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight{
+    border-radius: 50%;
+    background-color: #232946;
+    color: white;
+}
 @media(min-width: 411px){
         
 .head-card{

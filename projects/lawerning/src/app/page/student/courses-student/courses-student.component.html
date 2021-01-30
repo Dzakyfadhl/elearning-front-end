@@ -23,14 +23,14 @@
                    
                     <div class="col-lg-4 col-md-6 mt-3 mb-3" *ngFor="let c of courses;let i = index">
                         
-                        <div class="card p-1 mb-1 bg-white rounded"  (click)="viewModule(i)">
-                            <img src="assets/images/ilustrator.jpg" class="card-img-top" height="180" alt="...">
+                        <div class="card mb-1 bg-white rounded"  (click)="viewModule(i)">
+                            <img src="assets/images/banner.svg" class="card-img-top" alt="...">
                             <div class="card-body">
                                     <h5 class="card-title">{{c.name}}</h5>
 
                                 <hr>
                                 
-                                <h6 class="card-text mb-3">
+                                <h6 class="card-text text-info mb-3">
                                      {{c.teacher}}<span class="badge badge-primary ml-2">{{c.role}}</span>
                                 </h6>
                                 <h6 class="card-text mb-3">
