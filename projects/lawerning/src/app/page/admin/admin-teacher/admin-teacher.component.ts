@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-interface Teacher {
-  code:string;
-  name:string;
-  phone:string;
-  username:string;
-}
+import { TeacherForAdminDTO } from '../../../model/teacher-dto/teacher-admin-dto';
+import { AuthService } from '../../../service/auth.service';
+import { TeacherService } from '../../../service/teacher.service';
 
 @Component({
   selector: 'app-admin-teacher',
@@ -13,40 +9,26 @@ interface Teacher {
   styleUrls: ['./admin-teacher.component.css']
 })
 export class AdminTeacherComponent implements OnInit {
-  listTeachers:Teacher[];
+  listTeachers:TeacherForAdminDTO[];
   
   first = 0;
   
   rows = 5;
   
-  constructor() { }
+  constructor(private authService:AuthService, private teacherService:TeacherService) { }
+
   ngOnInit(): void {
     this.defineTeachers();
-
   }
 
   defineTeachers(){
-    this.listTeachers = [
-      {
-        code : "TCH001",
-        name : "Ryan Rivaldo",
-        phone : "081211001122",
-        username : "ryanriv"
-      },
-      {
-        code : "TCH002",
-        name : "Moch Apry",
-        phone : "081211001133",
-        username : "aprydevon"
-      },
-      {
-        code : "TCH003",
-        name : "Farel Johar",
-        phone : "081211001144",
-        username : "fareljoh"
-      }
+    this.teacherService.getAllTeachersForAdmin().subscribe(val=>{
+      this.listTeachers = val.result;
+      console.log(this.listTeachers);
+    },
+    err=>{
 
-    ]
+    });
   }
 
   next() {
