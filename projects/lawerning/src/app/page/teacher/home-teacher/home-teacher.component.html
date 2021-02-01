@@ -1,64 +1,64 @@
 <div class="container">
-    <div class="row m-1" >
-        <div class="header col-lg-12 shadow p-2 mb-2 rounded">
-
-        </div>
-        <div class="content-body d-flex justify-content-between">
-
-            <div class="content-students shadow p-2 mb-2 rounded text-center">
-                <img src="assets/images/students.svg">
-                <h4>20 Students</h4>
-            </div>
-            <div class="content-courses  shadow p-2 mb-2 rounded text-center">
-                <img src="assets/images/course.svg">
-                <h4>8 Courses</h4>
-            </div>
-        </div>
+  <div class="row m-1">
+    <div class="header col-lg-12 shadow p-2 mb-2 rounded"></div>
+    <div class="content-body d-flex justify-content-between">
+      <div class="content-students shadow p-2 mb-2 rounded text-center">
+        <img src="assets/images/students.svg" />
+        <h4>20 Students</h4>
+      </div>
+      <div class="content-courses shadow p-2 mb-2 rounded text-center">
+        <img src="assets/images/course.svg" />
+        <h4>8 Courses</h4>
+      </div>
     </div>
-    <div class="row mt-3">
-        <div class="col-lg-12">
-            <div class="d-flex justify-content-between">
-                <div class="courses1">
-                    <h5>My Courses</h5>
-                </div>
-                <div class="courses2">
-                    <h5>see my courses</h5>
-                </div>
-            </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-lg-12">
+      <div class="d-flex justify-content-between">
+        <div class="courses1">
+          <h5>My Courses</h5>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-12 mt-2 mb-3" *ngFor="let c of courses;let i = index">
-            <div class="card mb-1 bg-white rounded">
-                <div class="img">
-                    <img src="assets/images/banner.svg" class="card-img-top" alt="...">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">
-                        {{c.title}}
-                    </h5>
-                    <div class="d-flex justify-content-start">
-                            <div class="icon-time d-flex flex-row mr-2">
-                                <span>
-                                    <img src="assets/images/time1.svg">
-                                </span>
-                                <h6>10 module</h6>
-                            </div>
-                            <div class="icon-calender d-flex flex-row">
-                                <span>
-                                    <img src="assets/images/calender1.svg">
-                                </span>
-                                <h6>{{c.startDate}} - {{c.endDate}}</h6>
-                            </div>
-                    </div>
-                    <div class="description">
-                        <h6>{{c.description}}</h6>
-                    </div>
-                    <div class="student-course d-flex justify-content-start">
-                        <h6>10 enrolled students</h6>
-                    </div>
-                </div>
-            </div>
+        <div class="courses2">
+          <h5>see my courses</h5>
         </div>
+      </div>
     </div>
+  </div>
+  <div class="row">
+    <div
+      class="col-lg-4 col-md-6 col-sm-12 mt-2 mb-3"
+      *ngFor="let c of courses; let i = index"
+    >
+      <div class="card mb-1 bg-white rounded">
+        <div class="img">
+          <img src="assets/images/banner.svg" class="card-img-top" alt="..." />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ c.title }}
+          </h5>
+          <div class="d-flex justify-content-start">
+            <div class="icon-time d-flex flex-row mr-2">
+              <span>
+                <img src="assets/images/time1.svg" />
+              </span>
+              <h6>10 module</h6>
+            </div>
+            <div class="icon-calender d-flex flex-row">
+              <span>
+                <img src="assets/images/calender1.svg" />
+              </span>
+              <h6>{{ c.startDate }} - {{ c.endDate }}</h6>
+            </div>
+          </div>
+          <div class="description">
+            <h6>{{ c.description }}</h6>
+          </div>
+          <div class="student-course d-flex justify-content-start">
+            <h6>10 enrolled students</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

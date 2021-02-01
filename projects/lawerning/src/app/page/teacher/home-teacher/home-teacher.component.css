@@ -1,75 +1,74 @@
-.header{
-    background-color: #232946;
-    height: 10rem;
-    margin-top: 10px;
+.header {
+  background-color: #232946;
+  height: 10rem;
+  margin-top: 10px;
 }
-.content-body
-{
-    width: 100%;
+.content-body {
+  width: 100%;
 }
-.content-students{
-    margin-top: 10px;
-    width: 49%;
+.content-students {
+  margin-top: 10px;
+  width: 49%;
 }
-.content-students img{
-    width: 100px;
-    height: 100px;
-    text-align: center;
+.content-students img {
+  width: 100px;
+  height: 100px;
+  text-align: center;
 }
-.content-students h4{
-    font-size: 40px;
-    font-weight: bold;
-    color: #232946;
-}
-
-.content-courses{
-    width: 49%;
-    margin-top: 10px;
-}
-.content-courses img{
-    width: 80px;
-    height: 100px;
-    text-align: center;
-}
-.content-courses h4{
-    font-size: 40px;
-    font-weight: bold;
-    color: #232946;
+.content-students h4 {
+  font-size: 40px;
+  font-weight: bold;
+  color: #232946;
 }
 
-.content-mycourse{
-    margin-top: 10px;
+.content-courses {
+  width: 49%;
+  margin-top: 10px;
 }
-.card-title{
-    font-size: 20px;
-    font-weight: bold;
+.content-courses img {
+  width: 80px;
+  height: 100px;
+  text-align: center;
 }
-.icon-time img{
-    width: 16px;
-    height: 16px;
-}
-.icon-time h6{
-    margin:5px;
-    font-size: 14px;
-    color: #B0AEAE;
+.content-courses h4 {
+  font-size: 40px;
+  font-weight: bold;
+  color: #232946;
 }
 
-.icon-calender img{
-    width: 16px;
-    height: 20px;
+.content-mycourse {
+  margin-top: 10px;
+}
+.card-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+.icon-time img {
+  width: 16px;
+  height: 16px;
+}
+.icon-time h6 {
+  margin: 5px;
+  font-size: 14px;
+  color: #b0aeae;
 }
 
-.icon-calender h6{
-    font-size: 14px;
-    margin:5px;
-    color: #B0AEAE;
+.icon-calender img {
+  width: 16px;
+  height: 20px;
 }
 
-.description h6{
-    margin-top: 10px;
-    margin-bottom: 50px;
-    color: #B0AEAE;
+.icon-calender h6 {
+  font-size: 14px;
+  margin: 5px;
+  color: #b0aeae;
 }
-.student-course{
-    color: #B0AEAE;
+
+.description h6 {
+  margin-top: 10px;
+  margin-bottom: 50px;
+  color: #b0aeae;
+}
+.student-course {
+  color: #b0aeae;
 }
