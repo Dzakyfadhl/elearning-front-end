@@ -7,15 +7,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { Page404Component } from './page/page404/page404.component';
 import { FormsModule } from '@angular/forms';
 import { DashboardAdminComponent } from './layout/dashboard-admin/dashboard-admin.component';
-import {AvatarModule} from 'primeng/avatar';
+import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     Page404Component,
-    DashboardAdminComponent
+    DashboardAdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,9 +24,10 @@ import { ButtonModule } from 'primeng/button';
     AppRoutingModule,
     FormsModule,
     AvatarModule,
-    ButtonModule
+    ButtonModule,
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

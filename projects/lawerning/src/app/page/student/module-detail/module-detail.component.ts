@@ -6,14 +6,14 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-module-detail',
   templateUrl: './module-detail.component.html',
-  styleUrls: ['./module-detail.component.css']
+  styleUrls: ['./module-detail.component.css'],
 })
 export class ModuleDetailComponent implements OnInit {
   title: string;
   baseUrl = 'http://192.168.13.87:8080/file';
 
   formData: FormData;
-  header : HttpHeaders;
+  header: HttpHeaders;
   file: string;
   exams = [
     {
@@ -21,23 +21,22 @@ export class ModuleDetailComponent implements OnInit {
       type: 'Quiz',
       deadline: '29/01/2021 - 21:00',
       exam: 'quiz-jdbc.pdf',
-      feedback: 'quiz-jdbc-mochapry.pdf'
+      feedback: 'quiz-jdbc-mochapry.pdf',
     },
     {
       title: 'Design Table',
       type: 'Quiz',
       deadline: '29/01/2021 - 20:00',
       exam: 'quiz-table.pdf',
-      feedback: 'quiz-table-mochapry.pdf'
+      feedback: 'quiz-table-mochapry.pdf',
     },
     {
       title: 'Define Class Interface',
       type: 'Exam',
       deadline: '29/01/2021 - 21:00',
       exam: 'exam-class-interface.pdf',
-      feedback: ''
-    }
-
+      feedback: '',
+    },
   ];
 
   totalPost: number = 0;
@@ -46,70 +45,67 @@ export class ModuleDetailComponent implements OnInit {
       image: './assets/images/male1.jpeg',
       nama: 'Mochamad Apry',
       time: '30/01/2020 - 12:30',
-      message: 'Hi mom, i wanna sending my attachment lehehehehe hehaehea aeaenjea',
-      role: 'Student'
+      message:
+        'Hi mom, i wanna sending my attachment lehehehehe hehaehea aeaenjea',
+      role: 'Student',
     },
     {
       image: './assets/images/female.jpg',
       nama: 'Dinda Anisyah',
       time: '30/01/2020 - 12:32',
       message: 'Oh yeah, thats right bro.. ',
-      role: 'Teacher'
+      role: 'Teacher',
     },
     {
       image: './assets/images/male1.jpeg',
       nama: 'Mochamad Apry',
       time: '30/01/2020 - 12:30',
       message: 'Hmm, thank u mom.',
-      role: 'Student'
+      role: 'Student',
     },
     {
       image: './assets/images/male1.jpeg',
       nama: 'Mochamad Apry',
       time: '30/01/2020 - 12:30',
       message: 'Hmm, thank u mom.',
-      role: 'Student'
-    }
-    
+      role: 'Student',
+    },
   ];
-  
-  isEmpty : boolean = false;
-  constructor(private activeRoute: ActivatedRoute, private http: HttpClient) { }
+
+  isEmpty: boolean = false;
+  constructor(private activeRoute: ActivatedRoute, private http: HttpClient) {}
 
   ngOnInit(): void {
-    if(this.messages.length > 0){
+    if (this.messages.length > 0) {
       this.totalPost = this.messages.length;
     }
 
-    this.http.get(`${this.baseUrl}/9ff7eae6-244a-418e-bcce-3f4002835174`)
-    this.activeRoute.params.subscribe(value =>{
-      this.title = value.title
+    this.http.get(`${this.baseUrl}/9ff7eae6-244a-418e-bcce-3f4002835174`);
+    this.activeRoute.params.subscribe((value) => {
+      this.title = value.title;
       console.log(this.title);
     });
 
-    if(this.exams.length == 0 || this.exams == undefined){
+    if (this.exams.length == 0 || this.exams == undefined) {
       this.isEmpty = true;
     }
-
   }
 
   fileChange(event) {
     let fileList: FileList = event.target.files;
-    if(fileList.length > 0) {
-         let file: File = fileList[0];
-         console.log(file);
-        let data: FormData = new FormData();
-        data.append('file', file);
-        this.formData = data;
-        this.file = file.name;
+    if (fileList.length > 0) {
+      let file: File = fileList[0];
+      console.log(file);
+      let data: FormData = new FormData();
+      data.append('file', file);
+      this.formData = data;
+      this.file = file.name;
     }
   }
 
-  upload(){
-    this.http.post(`${this.baseUrl}`, this.formData).subscribe(value=>{
+  upload() {
+    this.http.post(`${this.baseUrl}`, this.formData).subscribe((value) => {
       console.log(value);
     });
-   
   }
-
 }
