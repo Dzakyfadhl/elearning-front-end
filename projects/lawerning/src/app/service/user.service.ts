@@ -9,7 +9,7 @@ import { ResponseModel } from '../model/response-model';
   providedIn: 'root',
 })
 export class UserService {
-  baseUrl = `https://902c715090b3.ngrok.io/authentication`;
+  baseUrl = `http://192.168.13.87:8080/authentication`;
 
   constructor(private http: HttpClient) {}
 
