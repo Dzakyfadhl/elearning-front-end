@@ -1,11 +1,9 @@
 import { FileModel } from './file-model';
 
-export class DetailModuleExamResponse {
-  id: string;
-  code: string;
+export class TeacherExamRequest {
+  moduleId: string;
   description: string;
-  type: string;
   startTime: string;
   endTime: string;
-  files: FileModel[];
+  files: FileModel;
 }
