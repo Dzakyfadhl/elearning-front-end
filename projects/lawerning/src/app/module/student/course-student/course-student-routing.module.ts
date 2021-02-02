@@ -4,13 +4,13 @@ import { CoursesStudentComponent } from '@bootcamp-lawerning-page/student/course
 
 const routes: Routes = [
   {
-    path: 'student/my-course',
-    component: CoursesStudentComponent
-  }
+    path: 'student/:id/course',
+    component: CoursesStudentComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CourseStudentRoutingModule { }
+export class CourseStudentRoutingModule {}

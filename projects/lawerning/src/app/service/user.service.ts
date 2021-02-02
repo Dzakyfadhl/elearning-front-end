@@ -9,7 +9,7 @@ import { ResponseModel } from '../model/response-model';
   providedIn: 'root',
 })
 export class UserService {
-  baseUrl = `http://192.168.13.87:8080/authentication`;
+  baseUrl = `http://192.168.15.224:8080/authentication`;
 
   constructor(private http: HttpClient) {}
 

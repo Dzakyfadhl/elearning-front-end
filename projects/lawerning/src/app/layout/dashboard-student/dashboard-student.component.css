@@ -1,17 +1,19 @@
 * {
-    font-size: 15px;
-    color: #232946;
+  font-size: 15px;
+  color: #232946;
 }
-.navbar
-{
-    border-bottom:5px solid #232946;
+.navbar {
+  border-bottom: 5px solid #232946;
 }
-.notif{
-    color: #232946;
+a {
+  cursor: pointer;
 }
-@media (max-width: 411px){
-    .dropdown-menu-right{
-        left: 10%;
-        width: 10rem;
-    }
+.notif {
+  color: #232946;
+}
+@media (max-width: 411px) {
+  .dropdown-menu-right {
+    left: 10%;
+    width: 10rem;
+  }
 }

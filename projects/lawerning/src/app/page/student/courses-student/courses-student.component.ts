@@ -1,88 +1,62 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CourseStudentResponse } from '../../../model/course-student-response';
+import { AuthService } from '../../../service/auth.service';
+import { CourseService } from '../../../service/course.service';
 
 @Component({
   selector: 'app-courses-student',
   templateUrl: './courses-student.component.html',
-  styleUrls: ['./courses-student.component.css']
+  styleUrls: ['./courses-student.component.css'],
 })
 export class CoursesStudentComponent implements OnInit {
+  course: any = {};
+  result: any = [];
 
-  course : any = {};
-  result: any =[];
-  courses:any = [
-    {
-      name: 'Object Oriented Programming',
-      category:'Programming',
-      role: 'teacher',
-      status: '1',
-      teacher: 'Ryan Rivaldo, S.Kom.',
-      value: 12,
-      total: 20
-    },
-    {
-      category:'Programming',
-      name: 'Database MySQL',
-      role: 'teacher',
-      status: '1',
-      teacher: 'Dzaky Fadilah, S.Kom.',
-      value: 2,
-      total: 20
-    },
-    {
-      category:'Programming',
-      name: 'Java Framework',
-      role: 'teacher',
-      status: '2',
-      teacher: 'Farel Yuda, S.Kom.',
-      value: 10,
-      total: 20
-    },
-    {
-      category:'Business',
-      name: 'Java Framework',
-      role: 'teacher',
-      status: '2',
-      teacher: 'Farel Yuda, S.Kom.',
-      value: 12,
-      total: 20
-    }
-    ,
-    {
-      category:'Programming',
-      name: 'Java Framework',
-      role: 'teacher',
-      status: '2',
-      teacher: 'Farel Yuda, S.Kom.',
-      value: 15,
-      total: 20
-    },
-    {
-      category:'Business',
-      name: 'Java Framework',
-      role: 'teacher',
-      status: '2',
-      teacher: 'Farel Yuda, S.Kom.',
-      value: 20,
-      total: 20
-    }
-  ]
-  constructor(private route: Router) { }
+  isCompleted: boolean;
+
+  courses: CourseStudentResponse[];
+
+  constructor(
+    private route: Router,
+    private auth: AuthService,
+    private courseService: CourseService
+  ) {}
 
   ngOnInit(): void {
-    
-    this.courses.forEach(value =>{
-      let percent = (value.value / value.total) * 100;
-   
-      this.result.push(Math.ceil(percent));
-    });
-    console.log(this.result);
-  }
-  viewModule(index : number){
-    let tempCourse: any= this.courses[index];
-    let course = tempCourse.name;
-    console.log(course);
-    this.route.navigateByUrl(`/module-course/${course}`);
-  }
+    let date = new Date('2021-03-07');
 
+    let month = date.getUTCMonth() + 1;
+    let day = date.getUTCDate();
+
+    console.log(month, day);
+
+    this.courseService
+      .getStudentCourse(this.auth.getLoginResponse().userRoleId)
+      .subscribe((value) => {
+        this.courses = value.result;
+        this.courses.forEach((data) => {
+          let dateObj = new Date(data.periodEnd);
+          let periodMonth = dateObj.getUTCMonth() + 1;
+          let periodDay = dateObj.getUTCDate();
+          console.log(periodMonth, periodDay);
+          if (month >= periodMonth && day > periodDay) {
+            this.isCompleted = true;
+            data.isCompleted = this.isCompleted;
+            console.log('completed');
+          } else {
+            this.isCompleted = false;
+            data.isCompleted = this.isCompleted;
+            console.log('process');
+          }
+        });
+        console.log(this.courses);
+      });
+  }
+  viewModule(index: number) {
+    let tempCourse: CourseStudentResponse = this.courses[index];
+    let courseId = tempCourse.id;
+    // this.route.navigateByUrl('module/course');
+    this.route.navigate(['/student/module/course', courseId]);
+  }
 }

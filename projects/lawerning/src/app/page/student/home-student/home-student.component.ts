@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CourseAvailableResponse } from '../../../model/course-available-response';
+import { CourseStudentResponse } from '../../../model/course-student-response';
+import { AuthService } from '../../../service/auth.service';
 import { CourseService } from '../../../service/course.service';
 
 @Component({
@@ -9,31 +11,36 @@ import { CourseService } from '../../../service/course.service';
   styleUrls: ['./home-student.component.css'],
 })
 export class HomeStudentComponent implements OnInit {
-  txtCourse: string;
-
-  course: any = {};
-
-  courseFiltering = [];
-  selectedCourse: any = 'all';
+  // course: any = {};
 
   courses: CourseAvailableResponse[];
+  courseFiltering = [];
+  selectedCourse: any = 'all';
 
   category = [];
 
   data: any;
-  keyString: string;
-
   photoId: any;
+  keyString: string;
+  txtCourse: string;
 
-  constructor(private route: Router, private courseService: CourseService) {}
+  isRegistered: boolean = false;
+  studentCourse: CourseStudentResponse[];
+  constructor(
+    private route: Router,
+    private courseService: CourseService,
+    private auth: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.courseService.getAvailableCourse().subscribe((value) => {
       this.courses = value.result;
-      this.courses.forEach((data) => {
-        console.log(data.categoryName);
-
-        this.photoId = `http://192.168.13.87:8080/file/${data.teacher.photoId}`;
+      this.courses.forEach((val) => {
+        if (!val.teacher.photoId) {
+          val.teacher.photoId = `assets/images/default.png`;
+        } else {
+          val.teacher.photoId = `http://192.168.15.224:8080/file/${val.teacher.photoId}`;
+        }
       });
 
       if (this.courses.length > 0) {
@@ -77,8 +84,6 @@ export class HomeStudentComponent implements OnInit {
   viewModule(index: number) {
     let tempCourse: CourseAvailableResponse = this.courses[index];
     let courseId = tempCourse.id;
-    // let data = tempCourse;
-    // console.log(data);
-    this.route.navigate(['/module-available/', courseId]);
+    this.route.navigate(['/module/course', courseId]);
   }
 }

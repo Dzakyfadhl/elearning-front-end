@@ -1,99 +1,112 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="header-module col-lg-12">
-            <div class="d-flex flex-column mb-4 text-center mt-4">
-
-                <h1>{{course.course}}</h1>
-                <div class="d-flex justify-content-center my-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                        class="icon bi bi-journal-bookmark-fill" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z" />
-                        <path
-                            d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
-                        <path
-                            d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
-                    </svg>
-                </div>
-
-                <div class="d-flex justify-content-center">
-
-                    <div class="col-lg-12">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias amet accusantium minima
-                            incidunt architecto iste tenetur.</p>
-                    </div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="header-module col-lg-12">
+      <div class="d-flex flex-column mb-4 text-center mt-4">
+        <h1>{{ modules.name }}</h1>
+        <div class="d-flex justify-content-center my-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="50"
+            height="50"
+            fill="currentColor"
+            class="icon bi bi-journal-bookmark-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z"
+            />
+            <path
+              d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"
+            />
+            <path
+              d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"
+            />
+          </svg>
         </div>
+
+        <div class="d-flex justify-content-center">
+          <div class="col-lg-12">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
+              amet accusantium minima incidunt architecto iste tenetur.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <div class="container my-4">
-    <div class="row">
-        <div class="col-lg-12">
-            <h5 class="text-info">Progress: {{countTemp}} of {{total}} Modules</h5>
-            <p-progressBar [value]="value" class="progress-body"></p-progressBar>
-
-        </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <h5 class="text-info">
+        Progress: {{ countTemp }} of {{ total }} Modules
+      </h5>
+      <p-progressBar [value]="value" class="progress-body"></p-progressBar>
     </div>
+  </div>
 </div>
 <div class="body-module container mt-5">
-    <div class="row">
-        <div class="col-lg-12 mt-1">
-            <!-- <div class="card shadow p-3 mb-5 rounded"> -->
-            <!-- <div class="card-head"> -->
-            <h3>Module</h3>
-            <hr>
-            <!-- </div> -->
+  <div class="row">
+    <div class="col-lg-12 mt-1">
+      <!-- <div class="card shadow p-3 mb-5 rounded"> -->
+      <!-- <div class="card-head"> -->
+      <h3>Module</h3>
+      <hr />
+      <!-- </div> -->
 
-            <div class="card shadow-sm my-3" *ngFor="let m of modules;let i = index">
-                <div class="d-flex flex-row">
-                <!-- <div class="row"> -->
-                    <div class="left-content rounded">
-
-                        <div class="d-flex flex-column pt-2">
-                            <h4 class="text-center text-light">1</h4>
-                            <h3 class="text-center text-light">Jan</h3>
-                        </div>
-                    </div>
-                    <div class="right-content">
-                        <div class="d-flex flex-column">
-                            
-                            <div class="d-flex justify-content-start">
-                                <!-- <h6 class="info text-info">
-                                    <i class="pi pi-calendar"></i>
-                                    25 Jan 2021
-                                </h6> -->
-                                
-                                <h4 class="title">{{m.topic}}: {{m.title}}</h4>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <h6 class="info text-info">
-                                    <i class="pi pi-clock"></i>
-                                    10:00 - 12:00
-                                </h6>
-                                <a (click)="viewForum(i)" *ngIf="m.status == 'present'">
-                                    <button class="btn-title btn btn-secondary">
-                                        View
-                                    </button>
-                                </a>
-                                <a *ngIf="m.status == 'absent'">
-                                    <button class="btn-title btn btn-secondary">
-                                        Attendance
-                                    </button>
-                                </a>
-                                <a *ngIf="m.status == 'clear'">
-                                    <h4><span class="label-done badge badge-success rounded-circle"><i
-                                                class="pi pi-check"></i></span></h4>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- </div> -->
+      <div
+        class="card shadow-sm my-3"
+        *ngFor="let m of modules.modules; let i = index"
+      >
+        <div class="d-flex flex-row">
+          <!-- <div class="row"> -->
+          <div class="left-content rounded">
+            <div class="d-flex flex-column pt-2">
+              <h4 class="text-center text-light">
+                {{ m.schedule.date | date: "dd" }}
+              </h4>
+              <h3 class="text-center text-light">
+                {{ m.schedule.date | date: "MMM" }}
+              </h3>
             </div>
-
-            <!-- </div> -->
+          </div>
+          <div class="right-content">
+            <div class="d-flex flex-column">
+              <div class="d-flex justify-content-start">
+                <h4 class="title">{{ m.tittle }}: {{ m.subjectName }}</h4>
+              </div>
+              <div class="d-flex justify-content-between">
+                <h6 class="info text-info">
+                  <i class="pi pi-clock"></i>
+                  {{ m.schedule.startTime }} -
+                  {{ m.schedule.endTime }}
+                </h6>
+                <a (click)="viewForum(i)" *ngIf="m.status == 'present'">
+                  <button class="btn-title btn btn-secondary">View</button>
+                </a>
+                <a>
+                  <button class="btn-title btn btn-secondary">
+                    Attendance
+                  </button>
+                </a>
+                <a *ngIf="m.status == 'clear'">
+                  <h4>
+                    <span class="label-done badge badge-success rounded-circle"
+                      ><i class="pi pi-check"></i
+                    ></span>
+                  </h4>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- </div> -->
+      </div>
+
+      <!-- </div> -->
     </div>
+  </div>
 </div>

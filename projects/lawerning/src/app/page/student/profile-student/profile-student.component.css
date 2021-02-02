@@ -1,98 +1,110 @@
- 
+.header-profile {
+  position: absolute;
+  height: 25%;
+  background-color: #232946;
+}
+.body-profile {
+  margin-top: 7%;
+  /* padding-left: 30%; */
+}
+.camera {
+  position: absolute;
+  top: 40%;
+  left: 55%;
+}
+.camera a {
+  color: rgb(7, 123, 168);
+}
+.camera a:hover {
+  color: #232946;
+}
 
-  .header-profile{
-    position: absolute;
-    height: 25%;
-    background-color: #232946;
-  }
-  .body-profile{
-    margin-top: 5%;
-    /* padding-left: 30%; */
-  }
-  .camera{
-    position: absolute;
-    top: 40%;
-    left: 53%;
-  }
-  .camera a{
-    
-    color: rgb(7, 123, 168);
-  }
-  .camera a:hover{
-    color: #232946;
-  }
- 
-  .name{
-      color: #232946;
-      font-weight: bold;
-  }
-  .module{
-      color: #232946;
-      font-weight: bold;
-  }
-  .course{
-      color: #232946;
-      font-weight: bold;
-  }
-  .score{
-      color: #232946 ;
-      font-weight: bold;
-  }
-  .complete{
-      background-color: #232946;
-  }
-  .mmcourse{
-      font-weight: bold;
-      color: #232946;
-  }
-  a:hover{
-    cursor: pointer;
-  }
-  /* .save{
+.name {
+  color: #232946;
+  font-weight: bold;
+}
+.module {
+  color: #232946;
+  font-weight: bold;
+}
+.course {
+  color: #232946;
+  font-weight: bold;
+}
+.score {
+  color: #232946;
+  font-weight: bold;
+}
+.complete {
+  background-color: #232946;
+}
+.mmcourse {
+  font-weight: bold;
+  color: #232946;
+}
+a:hover {
+  cursor: pointer;
+}
+/* .save{
     background-color: #232946;
   } */
-  
-  /* .title-complete{
+
+/* .title-complete{
       color: #f9bc60;
   } */
+@media screen and (min-width: 411px) {
+  .body-profile {
+    margin-top: 20%;
+    /* padding-left: 30%; */
+  }
+  .camera {
+    position: absolute;
+    top: 45%;
+    left: 63%;
+  }
+  .camera a {
+    color: rgb(7, 123, 168);
+  }
+  .camera a:hover {
+    color: #232946;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .body-profile {
+    margin-top: 4%;
+    /* padding-left: 30%; */
+  }
+  .camera {
+    position: absolute;
+    top: 40%;
+    left: 60%;
+  }
+  .camera a {
+    color: rgb(7, 123, 168);
+  }
+  .camera a:hover {
+    color: #232946;
+  }
+  .header-profile {
+    position: absolute;
+    height: 20%;
+    background-color: #232946;
+  }
 
-  @media screen and (max-width: 991px) {
-    .camera{
-      position: absolute;
-      top: 40%;
-      left: 70%;
-    }
-    .camera a{
-    
-      color: rgb(7, 123, 168);
-    }
-    .camera a:hover{
-      color: #232946;
-    }
-    .header-profile{
-      position: absolute;
-      height: 20%;
-      background-color: #232946;
-    }
-    .body-profile{
-      margin-top: 10%;
-    }
-    .name{
-      font-size: 22px;
+  .name {
+    font-size: 22px;
   }
+}
+@media screen and (min-width: 768px) {
+  .camera {
+    position: absolute;
+    top: 45%;
+    left: 58%;
   }
-  @media screen and (max-width: 768px) {
-    .camera{
-      position: absolute;
-      top: 40%;
-      left: 55%;
-    }
-    .camera a{
-    
-      color: rgb(7, 123, 168);
-    }
-    .camera a:hover{
-      color: #232946;
-    }
-   
+  .camera a {
+    color: rgb(7, 123, 168);
   }
+  .camera a:hover {
+    color: #232946;
+  }
+}
