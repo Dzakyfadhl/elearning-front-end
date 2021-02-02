@@ -10,16 +10,14 @@ import { UserService } from '../../service/user.service';
   styleUrls: ['./login-page.component.css'],
 })
 export class LoginPageComponent implements OnInit {
-  // username: string = "";
-  // password: string = "";
-  data = new LoginRequest();
-
   constructor(
     private router: Router,
     private userService: UserService,
     private authService: AuthService
   ) {}
 
+  data = new LoginRequest();
+  
   ngOnInit(): void {}
 
   login() {
@@ -36,7 +34,7 @@ export class LoginPageComponent implements OnInit {
         } else if (result.role.code == 'RL-004') {
           this.router.navigateByUrl('/home-student');
         } else if (result.role.code == 'RL-002') {
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/admin');
         }
       },
       (error) => {

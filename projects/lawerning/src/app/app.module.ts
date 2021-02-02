@@ -9,7 +9,9 @@ import { FormsModule } from '@angular/forms';
 import { DashboardAdminComponent } from './layout/dashboard-admin/dashboard-admin.component';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ConfirmationService } from 'primeng/api';
+import { BaseHttpInterceptor } from './shared/base-http-interceptor';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,10 @@ import { HttpClientModule } from '@angular/common/http';
     ButtonModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    ConfirmationService,
+    { provide: HTTP_INTERCEPTORS, useClass: BaseHttpInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

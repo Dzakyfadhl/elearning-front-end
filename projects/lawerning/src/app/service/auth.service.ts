@@ -18,4 +18,8 @@ export class AuthService {
   signOut() {
     localStorage.clear();
   }
+
+  getToken(): string {
+    return this.getLoginResponse().token;
+  }
 }
