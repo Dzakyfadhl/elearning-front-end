@@ -35,7 +35,7 @@
         </div>
         <div class="card-body">
           <h5 class="card-title">
-            {{ c.title }}
+            {{ c.code }}
           </h5>
           <div class="d-flex justify-content-start">
             <div class="icon-time d-flex flex-row mr-2">
@@ -48,14 +48,14 @@
               <span>
                 <img src="assets/images/calender1.svg" />
               </span>
-              <h6>{{ c.startDate }} - {{ c.endDate }}</h6>
+              <h6>{{ c.periodStart }} - {{ c.periodEnd }}</h6>
             </div>
           </div>
           <div class="description">
             <h6>{{ c.description }}</h6>
           </div>
           <div class="student-course d-flex justify-content-start">
-            <h6>10 enrolled students</h6>
+            <h6>{{ c.totalStudent }} enrolled students</h6>
           </div>
         </div>
       </div>
