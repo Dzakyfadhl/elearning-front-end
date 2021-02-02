@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TeacherForAdminDTO } from '../../../model/teacher-dto/teacher-admin-dto';
+import { TeacherRequestDTO } from '../../../model/teacher-dto/teacher-request';
 import { AuthService } from '../../../service/auth.service';
 import { TeacherService } from '../../../service/teacher.service';
 
@@ -9,38 +10,63 @@ import { TeacherService } from '../../../service/teacher.service';
   styleUrls: ['./admin-teacher.component.css']
 })
 export class AdminTeacherComponent implements OnInit {
-  listTeachers:TeacherForAdminDTO[];
-  
+  listTeachers: TeacherForAdminDTO[];
+
+  displayModal: boolean;
+  displayConfirmation: boolean;
+
+  teacherInput = new TeacherRequestDTO();
+
   first = 0;
-  
+
   rows = 5;
-  
-  constructor(private authService:AuthService, private teacherService:TeacherService) { }
+
+  constructor(private authService: AuthService, private teacherService: TeacherService) { }
 
   ngOnInit(): void {
     this.defineTeachers();
   }
 
-  defineTeachers(){
-    this.teacherService.getAllTeachersForAdmin().subscribe(val=>{
+  defineTeachers() {
+    this.teacherService.getAllTeachersForAdmin().subscribe(val => {
       this.listTeachers = val.result;
       console.log(this.listTeachers);
     },
-    err=>{
+      err => {
 
-    });
+      });
   }
 
-  next() {
-    this.first = this.first + this.rows;
+  // showModalEdit(i: number) {
+  //   this.codeVal = this.listCourseTypes[i].code;
+  //   this.nameVal = this.listCourseTypes[i].name;
+
+
+  //   this.displayModal = true;
+  // }
+
+  showModalCreate() {
+    this.displayModal = true;
   }
 
-  prev() {
-    this.first = this.first - this.rows;
+  confirmDelete() {
+    this.displayConfirmation = true;
   }
 
-  reset() {
-    this.first = 0;
-  }
+
+
+next() {
+  this.first = this.first + this.rows;
+}
+
+prev() {
+  this.first = this.first - this.rows;
+}
+
+reset() {
+  this.first = 0;
+}
+
+
 
 }

@@ -12,6 +12,6 @@ export class TeacherForAdminDTO {
     firstName:string;
     lastName:string;
     
-
+    constructor(){}
 
 }

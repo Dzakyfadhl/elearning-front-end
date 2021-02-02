@@ -15,5 +15,6 @@ roleVersion:number;
 createdBy:string;
 titleDegree:string;
 
+constructor(){}
 
 }

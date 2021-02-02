@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 interface CourseType {
-  code:string;
-  name:string;
+  code: string;
+  name: string;
 }
 
 @Component({
@@ -12,12 +12,12 @@ interface CourseType {
 })
 export class AdminCourseTypeComponent implements OnInit {
 
-  listCourseTypes:CourseType[];
+  listCourseTypes: CourseType[];
 
-  codeVal:string;
-  nameVal:string;
+  codeVal: string;
+  nameVal: string;
 
-  courseType:CourseType ;
+  courseType: CourseType;
 
   displayModal: boolean;
   displayConfirmation: boolean;
@@ -28,7 +28,7 @@ export class AdminCourseTypeComponent implements OnInit {
     this.defineCourseType();
   }
 
-  defineCourseType(){
+  defineCourseType() {
     this.listCourseTypes = [
       {
         code: "CT001",
@@ -49,19 +49,19 @@ export class AdminCourseTypeComponent implements OnInit {
     ]
   }
 
-  showModalEdit(i:number) {
+  showModalEdit(i: number) {
     this.codeVal = this.listCourseTypes[i].code;
     this.nameVal = this.listCourseTypes[i].name;
 
 
     this.displayModal = true;
-}
+  }
 
   showModalCreate() {
     this.displayModal = true;
-}
+  }
 
-  confirmDelete(){
+  confirmDelete() {
     this.displayConfirmation = true;
   }
 
