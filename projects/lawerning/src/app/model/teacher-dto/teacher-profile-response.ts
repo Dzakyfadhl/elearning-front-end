@@ -11,6 +11,5 @@ export class TeacherProfileResponse {
   createdAt:string;
   gender:Gender;
   photoId:string;
-  teacher: TeacherModel;
   experiences: ExperienceModel[];
 }
