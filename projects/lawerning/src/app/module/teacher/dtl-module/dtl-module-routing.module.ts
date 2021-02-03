@@ -4,13 +4,13 @@ import { DtlModuleComponent } from '@bootcamp-lawerning-page/teacher/dtl-module/
 
 const routes: Routes = [
   {
-    path: 'dtl-module/:moduleName',
-    component: DtlModuleComponent
-  }
+    path: 'dtl-module/:moduleId',
+    component: DtlModuleComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DtlModuleRoutingModule { }
+export class DtlModuleRoutingModule {}

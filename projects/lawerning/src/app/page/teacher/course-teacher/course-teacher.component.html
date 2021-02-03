@@ -1,12 +1,12 @@
 <div class="container">
-    <div class="row">
-        <div class="col-lg-12 col-sm-12 mt-3">
-            <h3>List My Course</h3>
-            <hr>
-        </div>
+  <div class="row">
+    <div class="col-lg-12 col-sm-12 mt-3">
+      <h3>List My Course</h3>
+      <hr />
     </div>
+  </div>
 </div>
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col-lg-12">
             <div class="container">
@@ -45,9 +45,9 @@
                                         12 Jan 2020 - 12 Feb 2020
                                     </h6>
                                 </div>
-                                <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ex adipisci,
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ex adipisci,
                                         inventore quos, blanditiis laborum odit possimus, similique enim cupiditate
-                                        molestias in qui atque voluptate magni sequi incidunt. Iste, veritatis!</p> -->
+                                        molestias in qui atque voluptate magni sequi incidunt. Iste, veritatis!</p>
                                 <div class="d-flex justify-content-end">
                                     <a (click)="viewModule(i)">
                                         <button pButton type="button" label="view module"></button>
@@ -60,4 +60,50 @@
             </div>
         </div>
     </div>
+</div> -->
+
+<div class="container">
+  <!-- <div class="row m-1">
+    <div class="header col-lg-12 shadow p-2 mb-2 rounded"></div>
+  </div> -->
+  <div class="row">
+    <div
+      class="col-lg-4 col-md-6 col-sm-12 mt-2 mb-3"
+      *ngFor="let c of courses; let i = index"
+    >
+      <div class="card mb-1 bg-white rounded">
+        <div class="img">
+          <img src="assets/images/banner.svg" class="card-img-top" alt="..." />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ c.code }}
+          </h5>
+          <div class="d-flex justify-content-start">
+            <div class="icon-time d-flex flex-row mr-2">
+              <span>
+                <img src="assets/images/time1.svg" />
+              </span>
+              <h6>10 module</h6>
+            </div>
+            <div class="icon-calender d-flex flex-row">
+              <span>
+                <img src="assets/images/calender1.svg" />
+              </span>
+              <h6>{{ c.periodStart }} - {{ c.periodEnd }}</h6>
+            </div>
+          </div>
+          <div class="description">
+            <h6>{{ c.description }}</h6>
+          </div>
+          <div class="student-course d-flex justify-content-start">
+            <h6>{{ c.totalStudent }} enrolled students</h6>
+          </div>
+          <a (click)="viewModule(i)">
+            <button pButton type="button" label="view module"></button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

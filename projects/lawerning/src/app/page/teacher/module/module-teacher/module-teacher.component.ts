@@ -1,5 +1,11 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DetailCourseResponse } from 'projects/lawerning/src/app/model/detail-course-response';
+import { DetailModuleResponse } from 'projects/lawerning/src/app/model/detail-module-response';
+import { StudentByCourseIdResponse } from 'projects/lawerning/src/app/model/student-by-courseid-response';
+import { DetailCourseTeacherService } from 'projects/lawerning/src/app/service/detail-course-teacher.service';
+import { StudentService } from 'projects/lawerning/src/app/service/student.service';
 
 @Component({
   selector: 'app-module-teacher',
@@ -8,86 +14,42 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ModuleTeacherComponent implements OnInit {
   course: any;
+  dtlCourse: DetailCourseResponse;
+  student: StudentByCourseIdResponse;
+  totalModule: number;
+  // dtlModule: DetailModuleResponse[];
 
-  module: {
-    titleModule: string;
-    startDate: string;
-    startTime: string;
-    endTime: string;
-  }[];
-
-  student: {
-    code: string;
-    studentName: string;
-    email: string;
-    phoneNumber: string;
-  }[];
-
-  constructor(private activeRoute: ActivatedRoute, private router: Router) {}
+  constructor(
+    private activeRoute: ActivatedRoute,
+    private router: Router,
+    private dtlCourseTeacherService: DetailCourseTeacherService,
+    private studentService: StudentService
+  ) {}
 
   ngOnInit(): void {
-    this.student = [
-      {
-        code: 'ST01',
-        studentName: 'Moch Apri',
-        email: 'muhammadapry14@gmail.com',
-        phoneNumber: '0897-7837-1331',
-      },
-      {
-        code: 'ST02',
-        studentName: 'Dzaky',
-        email: 'muhammadapry14@gmail.com',
-        phoneNumber: '0897-7837-1331',
-      },
-      {
-        code: 'ST03',
-        studentName: 'William',
-        email: 'william14@gmail.com',
-        phoneNumber: '0897-7837-1331',
-      },
-      {
-        code: 'ST04',
-        studentName: 'Anggi Alberto',
-        email: 'anggialberto14@gmail.com',
-        phoneNumber: '0897-7837-1331',
-      },
-    ];
-    this.module = [
-      {
-        titleModule: 'Topics-1: Class & Object',
-        startDate: '25 Jan 2021',
-        startTime: '09:30',
-        endTime: '12:30',
-      },
-      {
-        titleModule: 'Topics-2: Inheritance',
-        startDate: '26 Jan 2021',
-        startTime: '10:30',
-        endTime: '12:30',
-      },
-      {
-        titleModule: 'Topics-3: Polimorphism',
-        startDate: '27 Jan 2021',
-        startTime: '09:30',
-        endTime: '12:30',
-      },
-      {
-        titleModule: 'Topics-4: Interface',
-        startDate: '28 Jan 2021',
-        startTime: '09:30',
-        endTime: '12:30',
-      },
-    ];
     this.activeRoute.params.subscribe((value) => {
-      this.course = value;
-      console.log(this.course);
+      this.studentService
+        .getStudentByCourseId(value.courseId)
+        .subscribe((val) => {
+          this.student = val.result;
+        });
+    });
+
+    this.activeRoute.params.subscribe((value) => {
+      console.log(value.courseId);
+      this.dtlCourseTeacherService
+        .getDetailCourseTeacher(value.courseId)
+        .subscribe((val) => {
+          this.dtlCourse = val.result;
+          this.totalModule = this.dtlCourse.modules.length;
+        });
     });
   }
 
   viewModule(index: number) {
-    let tempModule: any = this.module[index];
-    let module = tempModule.titleModule;
-    console.log(module);
-    this.router.navigateByUrl(`/dtl-module/${module}`);
+    let tempModule: any = this.dtlCourse.modules[index];
+    let moduleId = tempModule.id;
+    console.log(moduleId);
+    this.router.navigate([`/dtl-module/${moduleId}`]);
   }
 }

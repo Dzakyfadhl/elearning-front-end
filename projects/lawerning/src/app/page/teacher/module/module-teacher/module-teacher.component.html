@@ -2,7 +2,7 @@
   <div class="row">
     <div class="header-module col-lg-12">
       <div class="d-flex flex-column mb-4 text-center mt-4">
-        <h2>{{ course.courseName }}</h2>
+        <h2>{{ dtlCourse.name }}</h2>
         <h5>Dibangun oleh Rian Rivaldo, S.Kom</h5>
         <div class="d-flex justify-content-center">
           <div class="d-flex flex-row">
@@ -10,13 +10,13 @@
               <div class="icon-student ml-1">
                 <img src="../../../../../assets/images/students1.svg" />
               </div>
-              <h6>30 Student</h6>
+              <h6>{{ dtlCourse.totalStudent }} Student</h6>
             </div>
             <div class="d-flex flex-column ml-5">
               <div class="icon-course">
                 <img src="../../../../../assets/images/course1.svg" />
               </div>
-              <h6>10 Course</h6>
+              <h6>{{ totalModule }} Module</h6>
             </div>
           </div>
         </div>
@@ -31,31 +31,7 @@
       <div class="content-description">
         <h5>Description</h5>
         <p>
-          Apakah Anda ingin menjadi desainer logo profesional yang dapat
-          mendesain logo? Ini adalah kesempatan eksklusif Anda untuk belajar
-          dari profesional desain logo. Dalam kelas ini, saya memberikan
-          keseluruhan proses desain logo profesional dari awal hingga akhir yang
-          mencakup semuanya mulai dari sketsa, font, penempatan karakter,
-          pengembangan simbol, aplikasi warna, dan banyak lagi. Saya juga
-          menyediakan semua materi yang saya gunakan untuk menjalankan bisnis
-          desain logo sehingga Anda dapat menggunakannya untuk melakukan bisnis
-          desain logo, mulai dari form brief logo untuk klien hingga template
-          email. Tidak hanya itu, di kelas ini juga akan mempelajari studi kasus
-          langsung ketika mendapatkan klien dari mulai brief sampai tahap final.
-          Juga akan dipandu bagaimana mempersiapkan presentasi logo untuk klien.
-          Pada akhir kelas, kami sudah menyiapakan bagaimana memulai menjadi
-          seorang freelance logo design dengan platform fiverr. Jika kamu
-          tertarik untuk belajar logo desiger dan freelance lebih dalam silakan
-          bergabung di kelas ini dan kami akan mengarahkan dengan secara
-          terstruktur dan rapih. Silakan bergabung dan kami tunggu di
-          kelas.Tidak hanya itu, di kelas ini juga akan mempelajari studi kasus
-          langsung ketika mendapatkan klien dari mulai brief sampai tahap final.
-          Juga akan dipandu bagaimana mempersiapkan presentasi logo untuk klien.
-          Pada akhir kelas, kami sudah menyiapakan bagaimana memulai menjadi
-          seorang freelance logo design dengan platform fiverr. Jika kamu
-          tertarik untuk belajar logo desiger dan freelance lebih dalam silakan
-          bergabung di kelas ini dan kami akan mengarahkan dengan secara
-          terstruktur dan rapih. Silakan bergabung dan kami tunggu di kelas.
+          {{ dtlCourse.description }}
         </p>
         <h5>Schedule</h5>
         <h6 class="card-text p-1">
@@ -63,7 +39,10 @@
             <span>
               <img src="assets/images/calender1.svg" />
             </span>
-            <h6>Friday, 21-02-2021</h6>
+            <h6>
+              {{ dtlCourse.periodStart | date: "dd MMM yyyy" }} -
+              {{ dtlCourse.periodEnd | date: "dd MMM yyyy" }}
+            </h6>
           </div>
         </h6>
       </div>
@@ -82,11 +61,11 @@
                 <div class="row">
                   <div
                     class="col-lg-12 mt-2 shadow-sm p-3 mb-2 bg-white rounded"
-                    *ngFor="let m of module; let i = index"
+                    *ngFor="let m of dtlCourse.modules; let i = index"
                   >
                     <div class="header-content p-1">
                       <a (click)="viewModule(i)">
-                        <h3>{{ m.titleModule }}</h3>
+                        <h3>{{ m.tittle }}</h3>
                       </a>
                     </div>
                     <div class="d-flex justify-content-evenly">
@@ -97,7 +76,7 @@
                           <span>
                             <img src="assets/images/calender1.svg" />
                           </span>
-                          <h6>{{ m.startDate }}</h6>
+                          <h6>{{ m.schedule.date }}</h6>
                         </div>
                       </h6>
                       <h6 class="card-text p-1">
@@ -105,7 +84,9 @@
                           <span>
                             <img src="assets/images/time1.svg" />
                           </span>
-                          <h6>{{ m.startTime }}-{{ m.endTime }}</h6>
+                          <h6>
+                            {{ m.schedule.startTime }}-{{ m.schedule.endTime }}
+                          </h6>
                         </div>
                       </h6>
                     </div>
@@ -124,19 +105,21 @@
               <p-orderList
                 [value]="student"
                 [listStyle]="{ height: 'auto' }"
-                filterBy="studentName"
-                filterPlaceholder="Filter by studentName"
+                filterBy="student.firstName"
+                filterPlaceholder="Filter by student name"
               >
                 <ng-template let-student pTemplate="item">
                   <div class="student-item">
                     <div class="student-list-detail">
-                      <h4 class="p-mb-2">{{ student.studentName }}</h4>
+                      <h4 class="p-mb-2">
+                        {{ student.firstName }} {{ student.lastName }}
+                      </h4>
                       <i class="pi pi-envelope student-category-icon"></i>
                       <span class="student-category">{{ student.email }}</span>
                     </div>
                     <div class="student-list-action">
-                      <h6 class="p-mb-2">${{ student.studentName }}</h6>
-                      <h6>{{ student.studentName }}</h6>
+                      <h6 class="p-mb-2">${{ student.phone }}</h6>
+                      <h6>{{ student.gender }}</h6>
                     </div>
                   </div>
                 </ng-template>

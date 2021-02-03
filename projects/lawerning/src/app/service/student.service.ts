@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResponseModel } from '../model/response-model';
 import { StudentProfileResponse } from '../model/student-profile-response';
+import { StudentByCourseIdResponse } from '../model/student-by-courseid-response';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -16,6 +17,19 @@ export class StudentService {
   getProfile(): Observable<ResponseModel<StudentProfileResponse>> {
     return this.http.get<ResponseModel<StudentProfileResponse>>(
       `${this.baseUrl}/student/${this.auth.getLoginResponse().userRoleId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${this.auth.getLoginResponse().token}`,
+        },
+      }
+    );
+  }
+
+  getStudentByCourseId(
+    id: string
+  ): Observable<ResponseModel<StudentByCourseIdResponse>> {
+    return this.http.get<ResponseModel<StudentByCourseIdResponse>>(
+      `${this.baseUrl}/course/${id}/students`,
       {
         headers: {
           Authorization: `Bearer ${this.auth.getLoginResponse().token}`,

@@ -4,7 +4,8 @@ export class CourseTeacherResponse {
   name: string;
   description: string;
   capacity: string;
-  student: number;
+  totalStudent: number;
+  totalModule: number;
   periodStart: string;
   periodEnd: string;
 }

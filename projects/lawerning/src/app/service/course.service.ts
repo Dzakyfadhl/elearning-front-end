@@ -41,8 +41,8 @@ export class CourseService {
 
   getCourseTeacher(): Observable<ResponseModel<CourseTeacherResponse[]>> {
     return this.http.get<ResponseModel<CourseTeacherResponse[]>>(
-      `${this.baseUrl}/teacher/dashboard/${
-        this.authService.getLoginResponse().userId
+      `${this.baseUrl}teacher/dashboard/${
+        this.authService.getLoginResponse().userRoleId
       }`,
       {
         headers: {

@@ -24,7 +24,6 @@ export class LoginPageComponent implements OnInit {
     this.userService.loginUser(this.data).subscribe(
       (value) => {
         let result = value.result;
-
         this.authService.setLoginResponse(result);
 
         console.log(this.authService.getLoginResponse().token);

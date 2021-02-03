@@ -35,20 +35,23 @@
         </div>
         <div class="card-body">
           <h5 class="card-title">
-            {{ c.code }}
+            {{ c.name }}
           </h5>
           <div class="d-flex justify-content-start">
             <div class="icon-time d-flex flex-row mr-2">
               <span>
                 <img src="assets/images/time1.svg" />
               </span>
-              <h6>10 module</h6>
+              <h6>{{ c.totalModule }} module</h6>
             </div>
             <div class="icon-calender d-flex flex-row">
               <span>
                 <img src="assets/images/calender1.svg" />
               </span>
-              <h6>{{ c.periodStart }} - {{ c.periodEnd }}</h6>
+              <h6>
+                {{ c.periodStart | date: "dd MMM yyyy" }} -
+                {{ c.periodEnd | date: "dd MMM yyyy" }}
+              </h6>
             </div>
           </div>
           <div class="description">
@@ -57,6 +60,9 @@
           <div class="student-course d-flex justify-content-start">
             <h6>{{ c.totalStudent }} enrolled students</h6>
           </div>
+          <a (click)="viewModule(i)">
+            <button pButton type="button" label="view module"></button>
+          </a>
         </div>
       </div>
     </div>

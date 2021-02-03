@@ -3,6 +3,7 @@ import { Gender } from '../gender';
 import { TeacherModel } from '../teacher-model';
 
 export class TeacherProfileResponse {
+<<<<<<< Updated upstream
 
   id:string;
   firstName:string;
@@ -11,5 +12,14 @@ export class TeacherProfileResponse {
   createdAt:string;
   gender:Gender;
   photoId:string;
+=======
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  createdAt: string;
+  gender: Gender;
+  photoId: string;
+>>>>>>> Stashed changes
   experiences: ExperienceModel[];
 }

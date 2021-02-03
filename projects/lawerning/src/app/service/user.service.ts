@@ -14,11 +14,8 @@ export class UserService {
 
   loginUser(data: LoginRequest): Observable<ResponseModel<LoginResponse>> {
     return this.http.post<ResponseModel<LoginResponse>>(
-      
       `${Constants.BASE_URL}/authentication`,
-      
       data
-    
     );
   }
 }

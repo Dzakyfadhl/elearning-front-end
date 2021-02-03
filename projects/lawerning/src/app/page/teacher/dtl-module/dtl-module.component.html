@@ -1,74 +1,62 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="header-module col-lg-12">
-            <div class="d-flex justify-content-evenly mt-4">
-                <div class="d-flex justify-content-between">
-                    <a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
-                            class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
-                        </svg>
-                    </a>
-                    <h6>{{moduleSelected.moduleName}}</h6>
-                </div>
-            </div>
-            <div class="d-flex justify-content-evenly mt-2">
-                <div class="d-flex justify-content-between">
-                    <h5>Teacher: Rian Rivaldo, S.Kom</h5>
-                </div>
-            </div>
+  <div class="row">
+    <div class="header-module col-lg-12">
+      <div class="d-flex justify-content-evenly mt-4">
+        <div class="d-flex justify-content-between">
+          <a>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="35"
+              height="35"
+              fill="currentColor"
+              class="bi bi-arrow-left-circle-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"
+              />
+            </svg>
+          </a>
+          <h6>{{ dtlModule.title }}</h6>
         </div>
+      </div>
+      <div class="d-flex justify-content-evenly mt-2">
+        <div class="d-flex justify-content-between">
+          <h5>Teacher: Rian Rivaldo, S.Kom</h5>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="body-module container-fluid p-4 mb-3">
-    <div class="row">
-        <div class="col-lg-12 mt-4">
-            <div class="content-description">
-                <h5>Description</h5>
-                <p>Apakah Anda ingin menjadi desainer logo profesional yang dapat mendesain logo? Ini adalah kesempatan
-                    eksklusif Anda untuk belajar dari profesional desain logo.
-                    Dalam kelas ini, saya memberikan keseluruhan proses desain logo profesional dari awal hingga akhir
-                    yang mencakup semuanya mulai dari sketsa, font, penempatan karakter, pengembangan simbol, aplikasi
-                    warna, dan banyak lagi.
-                    Saya juga menyediakan semua materi yang saya gunakan untuk menjalankan bisnis desain logo sehingga
-                    Anda dapat menggunakannya untuk melakukan bisnis desain logo, mulai dari form brief logo untuk klien
-                    hingga template email.
-                    Tidak hanya itu, di kelas ini juga akan mempelajari studi kasus langsung ketika mendapatkan klien
-                    dari mulai brief sampai tahap final. Juga akan dipandu bagaimana mempersiapkan presentasi logo untuk
-                    klien. Pada akhir kelas, kami sudah menyiapakan bagaimana memulai menjadi seorang freelance logo
-                    design dengan platform fiverr.
-                    Jika kamu tertarik untuk belajar logo desiger dan freelance lebih dalam silakan bergabung di kelas
-                    ini dan kami akan mengarahkan dengan secara terstruktur dan rapih. Silakan bergabung dan kami tunggu
-                    di kelas.Tidak hanya itu, di kelas ini juga akan mempelajari studi kasus langsung ketika mendapatkan
-                    klien
-                    dari mulai brief sampai tahap final. Juga akan dipandu bagaimana mempersiapkan presentasi logo untuk
-                    klien. Pada akhir kelas, kami sudah menyiapakan bagaimana memulai menjadi seorang freelance logo
-                    design dengan platform fiverr.
-                    Jika kamu tertarik untuk belajar logo desiger dan freelance lebih dalam silakan bergabung di kelas
-                    ini dan kami akan mengarahkan dengan secara terstruktur dan rapih. Silakan bergabung dan kami tunggu
-                    di kelas.</p>
-                <h5>Schedule</h5>
-                <h6 class="card-text p-1">
-                    <div class="icon-schedule d-flex justify-content-evenly">
-                        <span>
-                            <img src="assets/images/calender1.svg">
-                        </span>
-                        <h6>Friday, 21-02-2021</h6>
-                    </div>
-                </h6>
-            </div>
-            <div class="content-module">
-                <p-tabView styleClass="tabview-custom">
-                    <p-tabPanel>
-                        <ng-template pTemplate="header">
-                            <i class="pi pi-calendar"></i>
-                            <div class="ml-2">
-                                <span>Exam</span>
-                            </div>
-                        </ng-template>
-                        <!-- <div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12 mt-4">
+      <div class="content-description">
+        <h5>Description</h5>
+        <p>
+          {{ dtlModule.description }}
+        </p>
+        <h5>Schedule</h5>
+        <h6 class="card-text p-1">
+          <div class="icon-schedule d-flex justify-content-evenly">
+            <span>
+              <img src="assets/images/calender1.svg" />
+            </span>
+            <h6>{{ dtlModule.schedule.date | date: "dd MMM yyyy" }}</h6>
+          </div>
+        </h6>
+      </div>
+      <div class="content-module">
+        <p-tabView styleClass="tabview-custom">
+          <p-tabPanel>
+            <ng-template pTemplate="header">
+              <i class="pi pi-calendar"></i>
+              <div class="ml-2">
+                <span>Exam</span>
+              </div>
+            </ng-template>
+            <!-- <div class="container-fluid">
                             <div class="row">
                                 <div class="button-add-exam col-lg-12 d-flex justify-content-end">
                                     <button pButton (click)="showDialogExam()" type="button" label="Add Exam"></button>
@@ -93,129 +81,158 @@
                                 </div>
                             </div>
                         </div> -->
-                        <div class="col-lg-12 mt-2 shadow-sm p-3 mb-2 bg-white rounded"
-                                    *ngFor="let m of exam; let i=index">
-                                    <h6 class="card-text p-1">
-                                        <div class="content-body d-flex justify-content-evenly">
-                                            <h3>{{m.title}} - </h3>
-                                            <h4> {{m.type}}</h4>
-                                        </div>
-                                    </h6>
-                                    <h6>Deadline {{m.deadline}}</h6>
-                                    <p>{{m.description}}</p>
-                                    <a href="">
-                                        <h6>{{m.file}}</h6>
-                                    </a>
-                                    <div class="d-flex justify-content-end">
-                                        <button (click)="viewModule(i)" pButton type="button"
-                                            label="Submission"></button>
-                                    </div>
-                                </div>
-                    </p-tabPanel>
-                    <p-tabPanel>
-                        <ng-template pTemplate="header">
-                            <i class="pi pi-calendar"></i>
-                            <div class="ml-2">
-                                <span>Attendance</span>
-                            </div>
-                        </ng-template>
-                        <div class="content-attendance">
-                            <h5>Student Attendance</h5>
-                            <p-table [value]="student" [scrollable]="true" scrollHeight="100%">
-                                <ng-template pTemplate="header">
-                                    <tr>
-                                        <th width="80px">Code</th>
-                                        <th width="80px">Name</th>
-                                        <th width="80px">Date</th>
-                                        <th width="80px">Action</th>
-                                    </tr>
-                                </ng-template>
-                                <ng-template pTemplate="body" let-student>
-                                    <tr>
-                                        <td width="80px">{{student.code}}</td>
-                                        <td width="80px">{{student.name}}</td>
-                                        <td width="80px">{{student.attendanceDate}} {{student.attendanceTime}}</td>
-                                        <td width="80px">
-                                            <p-button label="Confirm" icon="pi pi-check" styleClass="p-button-success">
-                                            </p-button>
-                                        </td>
-                                    </tr>
-                                </ng-template>
-                            </p-table>
-                        </div>
-                    </p-tabPanel>
-                    <p-tabPanel>
-                        <ng-template pTemplate="header">
-                            <i class="pi pi-calendar"></i>
-                            <div class="ml-2">
-                                <span>Discussion</span>
-                            </div>
-
-                        </ng-template>
-                        <div class="col-lg-12 col-md-12">
-
-                            <div *ngFor="let m of messages">
-                                <div class="row">
-
-                                    <div class="image">
-                                        <img [src]="m.image" height="50" width="50" class="rounded-circle" alt="">
-
-                                    </div>
-                                    <div class="fullname">
-                                        <h5 class="m-3 text-bold text-info">{{m.nama}}</h5>
-
-                                    </div>
-                                    <div class="datetime">
-                                        <p class="time m-3 text-secondary">{{m.time}}</p>
-
-                                    </div>
-                                    <div *ngIf="m.role == 'Student'" class="role-student">
-                                        <span class="label-student mt-3 badge p-2">{{m.role}}</span>
-                                    </div>
-                                    <div *ngIf="m.role == 'Teacher'" class="role-teacher">
-                                        <span class="label-teacher mt-3 badge p-2">{{m.role}}</span>
-                                    </div>
-                                    <div class="message col-sm-6 col-lg-12 col-md-12">
-                                        <h6 class="m">{{m.message}}</h6>
-
-                                    </div>
-                                    <hr class="my-4">
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <div class="col-lg-12 mt-2">
-                            <div class="d-flex justify-content-space-evenly">
-
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                    class="icon-comment bi bi-chat-left-text-fill mt-2 mr-2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z" />
-                                </svg>
-
-                                <div class="input-group mb-3">
-
-                                    <textarea class="form-control" aria-label="With textarea"
-                                        placeholder="Write a comment..."></textarea>
-
-                                </div>
-                                <a class="send">
-
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                        class="bi bi-cursor-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z" />
-                                    </svg>
-                                </a>
-
-                            </div>
-                        </div>
-                    </p-tabPanel>
-                </p-tabView>
+            <div
+              class="col-lg-12 mt-2 shadow-sm p-3 mb-2 bg-white rounded"
+              *ngFor="let m of exam; let i = index"
+            >
+              <h6 class="card-text p-1">
+                <div class="content-body d-flex justify-content-evenly">
+                  <h3>{{ m.title }} -</h3>
+                  <h4>{{ m.type }}</h4>
+                </div>
+              </h6>
+              <h6>Deadline {{ m.deadline }}</h6>
+              <p>{{ m.description }}</p>
+              <a href="">
+                <h6>{{ m.file }}</h6>
+              </a>
+              <div class="d-flex justify-content-end">
+                <button
+                  (click)="viewModule(i)"
+                  pButton
+                  type="button"
+                  label="Submission"
+                ></button>
+              </div>
             </div>
-            <!-- <div class="card shadow p-3 mb-5 bg-white rounded"> -->
-                <!-- <p-tabView styleClass="tabview-custom">
+          </p-tabPanel>
+          <p-tabPanel>
+            <ng-template pTemplate="header">
+              <i class="pi pi-calendar"></i>
+              <div class="ml-2">
+                <span>Attendance</span>
+              </div>
+            </ng-template>
+            <div class="content-attendance">
+              <h5>Student Attendance</h5>
+              <p-table
+                [value]="student"
+                [scrollable]="true"
+                scrollHeight="100%"
+              >
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th width="80px">Code</th>
+                    <th width="80px">Name</th>
+                    <th width="80px">Date</th>
+                    <th width="80px">Action</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-student>
+                  <tr>
+                    <td width="80px">{{ student.code }}</td>
+                    <td width="80px">{{ student.name }}</td>
+                    <td width="80px">
+                      {{ student.attendanceDate }} {{ student.attendanceTime }}
+                    </td>
+                    <td width="80px">
+                      <p-button
+                        label="Confirm"
+                        icon="pi pi-check"
+                        styleClass="p-button-success"
+                      >
+                      </p-button>
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </p-tabPanel>
+          <p-tabPanel>
+            <ng-template pTemplate="header">
+              <i class="pi pi-calendar"></i>
+              <div class="ml-2">
+                <span>Discussion</span>
+              </div>
+            </ng-template>
+            <div class="col-lg-12 col-md-12">
+              <div *ngFor="let m of messages">
+                <div class="row">
+                  <div class="image">
+                    <img
+                      [src]="m.image"
+                      height="50"
+                      width="50"
+                      class="rounded-circle"
+                      alt=""
+                    />
+                  </div>
+                  <div class="fullname">
+                    <h5 class="m-3 text-bold text-info">{{ m.nama }}</h5>
+                  </div>
+                  <div class="datetime">
+                    <p class="time m-3 text-secondary">{{ m.time }}</p>
+                  </div>
+                  <div *ngIf="m.role == 'Student'" class="role-student">
+                    <span class="label-student mt-3 badge p-2">{{
+                      m.role
+                    }}</span>
+                  </div>
+                  <div *ngIf="m.role == 'Teacher'" class="role-teacher">
+                    <span class="label-teacher mt-3 badge p-2">{{
+                      m.role
+                    }}</span>
+                  </div>
+                  <div class="message col-sm-6 col-lg-12 col-md-12">
+                    <h6 class="m">{{ m.message }}</h6>
+                  </div>
+                  <hr class="my-4" />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12 mt-2">
+              <div class="d-flex justify-content-space-evenly">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  fill="currentColor"
+                  class="icon-comment bi bi-chat-left-text-fill mt-2 mr-2"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"
+                  />
+                </svg>
+
+                <div class="input-group mb-3">
+                  <textarea
+                    class="form-control"
+                    aria-label="With textarea"
+                    placeholder="Write a comment..."
+                  ></textarea>
+                </div>
+                <a class="send">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="25"
+                    height="25"
+                    fill="currentColor"
+                    class="bi bi-cursor-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </p-tabPanel>
+        </p-tabView>
+      </div>
+      <!-- <div class="card shadow p-3 mb-5 bg-white rounded"> -->
+      <!-- <p-tabView styleClass="tabview-custom">
                     <p-tabPanel>
                         <ng-template pTemplate="header">
                             <i class="pi pi-calendar"></i>
@@ -416,40 +433,62 @@
                         </div>
                     </p-tabPanel>
                 </p-tabView> -->
-            <!-- </div> -->
-        </div>
+      <!-- </div> -->
     </div>
+  </div>
 </div>
 
 <!-- <p-blockUI [blocked]="blockedDocument"></p-blockUI> -->
 
-<p-dialog header="Add Exam" [(visible)]="displayExam" [style]="{'width': '50vw'}">
-    <div class="p-fluid p-formgrid p-grid">
-        <div class="p-field p-col mt-2 mb-2">
-            <h6>Title</h6>
-            <input type="text" pInputText placeholder="input your exam title">
-        </div>
-        <div class="p-field p-col mt-2 mb-2">
-            <h6>Type</h6>
-            <p-dropdown [options]="examType" [(ngModel)]="examTypeSelected" optionLabel="name"></p-dropdown>
-        </div>
-        <div class="p-field p-col-12 mt-2 mb-2">
-            <h6>Description</h6>
-            <textarea rows="5" cols="30" pInputTextarea></textarea>
-        </div>
-        <div class="p-field p-col mt-2 mb-2">
-            <h6>Start Exam</h6>
-            <p-calendar showTime="true" [showIcon]="true" hourFormat="24" inputId="time"
-                [style]="{'position': 'fixed', 'overflow': 'visible', 'z-index': '999'}"></p-calendar>
-        </div>
-        <div class="p-field p-col mt-2 mb-5">
-            <h6>Deadline Exam</h6>
-            <p-calendar showTime="true" [showIcon]="true" hourFormat="24" inputId="time"
-                [style]="{'position': 'fixed', 'overflow': 'visible', 'z-index': '999'}"></p-calendar>
-        </div>
+<p-dialog
+  header="Add Exam"
+  [(visible)]="displayExam"
+  [style]="{ width: '50vw' }"
+>
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col mt-2 mb-2">
+      <h6>Title</h6>
+      <input type="text" pInputText placeholder="input your exam title" />
     </div>
+    <div class="p-field p-col mt-2 mb-2">
+      <h6>Type</h6>
+      <p-dropdown
+        [options]="examType"
+        [(ngModel)]="examTypeSelected"
+        optionLabel="name"
+      ></p-dropdown>
+    </div>
+    <div class="p-field p-col-12 mt-2 mb-2">
+      <h6>Description</h6>
+      <textarea rows="5" cols="30" pInputTextarea></textarea>
+    </div>
+    <div class="p-field p-col mt-2 mb-2">
+      <h6>Start Exam</h6>
+      <p-calendar
+        showTime="true"
+        [showIcon]="true"
+        hourFormat="24"
+        inputId="time"
+        [style]="{ position: 'fixed', overflow: 'visible', 'z-index': '999' }"
+      ></p-calendar>
+    </div>
+    <div class="p-field p-col mt-2 mb-5">
+      <h6>Deadline Exam</h6>
+      <p-calendar
+        showTime="true"
+        [showIcon]="true"
+        hourFormat="24"
+        inputId="time"
+        [style]="{ position: 'fixed', overflow: 'visible', 'z-index': '999' }"
+      ></p-calendar>
+    </div>
+  </div>
 </p-dialog>
 
-<p-dialog header="Add File Module" [(visible)]="displayModule" [style]="{width:'40vw'}">
-    <!--  -->
+<p-dialog
+  header="Add File Module"
+  [(visible)]="displayModule"
+  [style]="{ width: '40vw' }"
+>
+  <!--  -->
 </p-dialog>
