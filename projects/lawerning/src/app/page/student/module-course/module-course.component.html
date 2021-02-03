@@ -50,18 +50,13 @@
 <div class="body-module container mt-5">
   <div class="row">
     <div class="col-lg-12 mt-1">
-      <!-- <div class="card shadow p-3 mb-5 rounded"> -->
-      <!-- <div class="card-head"> -->
       <h3>Module</h3>
       <hr />
-      <!-- </div> -->
-
       <div
         class="card shadow-sm my-3"
         *ngFor="let m of modules.modules; let i = index"
       >
         <div class="d-flex flex-row">
-          <!-- <div class="row"> -->
           <div class="left-content rounded">
             <div class="d-flex flex-column pt-2">
               <h4 class="text-center text-light">
@@ -80,10 +75,10 @@
               <div class="d-flex justify-content-between">
                 <h6 class="info text-info">
                   <i class="pi pi-clock"></i>
-                  {{ m.schedule.startTime }} -
-                  {{ m.schedule.endTime }}
+                  {{ m.schedule.startTime.slice(0, 5) }} -
+                  {{ m.schedule.endTime.slice(0, 5) }}
                 </h6>
-                <a (click)="viewForum(i)" *ngIf="m.status == 'present'">
+                <a (click)="viewForum(i)">
                   <button class="btn-title btn btn-secondary">View</button>
                 </a>
                 <a>
@@ -102,8 +97,6 @@
             </div>
           </div>
         </div>
-
-        <!-- </div> -->
       </div>
 
       <!-- </div> -->

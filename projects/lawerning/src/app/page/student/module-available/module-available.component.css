@@ -1,78 +1,80 @@
-.header-module{
-    background-color: #232946;
-    height: auto;
+.header-module {
+  background-color: #232946;
+  height: auto;
 }
-.header-module h1{
-    color: #f4caae;
-    font-weight: bold;
+.header-module h1 {
+  color: #f4caae;
+  font-weight: bold;
 }
-.header-module p{
-    color: white;
+.header-module p {
+  color: white;
 }
-.footer-module{
-    /* background-color: #232946; */
-    height: auto;
+.footer-module {
+  /* background-color: #232946; */
+  height: auto;
 }
-.footer-module h1{
-    color: #232946;
-    font-weight: bold;
+.footer-module h1 {
+  color: #232946;
+  font-weight: bold;
 }
-.card h5{
-    
-    color: #232946;
-    font-weight: bold;
+.card h5 {
+  color: #232946;
+  font-weight: bold;
 }
-.value{
-    background-color: #3a4372;
+.value {
+  background-color: #3a4372;
 }
 /* .body-module{
     position: absolute;
     top: 35%;
 } */
-.label{
-    background-color:  #232946;
-    border-radius: 10%;
+.label {
+  background-color: #232946;
+  border-radius: 10%;
 }
-.icon{
-    color: #f4caae;
+.icon {
+  color: #f4caae;
 }
-a{
-    color: #232946;
+a {
+  color: #232946;
 }
-.title h4{
-    color: #232946;
-}
-
-.title h5{
-    color: #232946;
+.title h4 {
+  color: #232946;
 }
 
-.card-head h3{
-    color:#232946;
-    background-color: #f9bc60 ;
-    padding: 10px;
-    font-weight: bold;
+.title h5 {
+  color: #232946;
 }
-.register button{
+
+.card-head h3 {
+  color: #232946;
+  background-color: #f9bc60;
+  padding: 10px;
+  font-weight: bold;
+}
+.register button {
+  background-color: #232946;
+}
+.register button:hover {
+  background-color: #333c6d;
+}
+
+:host ::ng-deep .custom .p-panel-header {
+  font-size: 25px;
+  font-weight: bold;
+  color: #232946;
+}
+.badge {
+  height: 2%;
+}
+.button-r {
+  background-color: #232946;
+}
+@media screen and(max-width: 991px) {
+  .header-module {
     background-color: #232946;
-}
-.register button:hover{
-    background-color: #333c6d;
-}
-
-:host ::ng-deep .custom .p-panel-header{
-    font-size: 25px;
-    font-weight: bold;
-    color:  #232946;
   }
-.button-r{
-    background-color: #232946;
-}
-@media screen and(max-width: 991px){
-    .header-module{
-    background-color: #232946;
-}   
-.header-module h2{
+  .header-module h2 {
     color: #f9bc60;
-}
+  }
 }

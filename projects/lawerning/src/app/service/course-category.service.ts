@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import Constants from '../constants/constant';
 import { CourseCategoryCreateRequestDTO } from '../model/course-category-dto/course-category-create-request';
 import { CourseCategoryResponseDTO } from '../model/course-category-dto/course-category-reponse';
 import { CourseCategoryUpdateRequestDTO } from '../model/course-category-dto/course-category-update-request';
@@ -9,14 +10,14 @@ import { ResponseModel } from '../model/response-model';
 import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CourseCategoryService {
-
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getSubjectCategory(): Observable<ResponseModel<CourseCategoryResponseDTO[]>> {
-    return this.http.get<ResponseModel<CourseCategoryResponseDTO[]>>(`http://192.168.13.87:8080/course/category`,
+    return this.http.get<ResponseModel<CourseCategoryResponseDTO[]>>(
+      `${Constants.BASE_URL}/course/category`,
       {
         headers: {
           Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
@@ -25,8 +26,12 @@ export class CourseCategoryService {
     );
   }
 
-  insertCourseCategory(data:CourseCategoryCreateRequestDTO): Observable<CourseCategoryCreateRequestDTO> {
-    return this.http.post<CourseCategoryCreateRequestDTO>(`http://192.168.13.87:8080/course/category`, data,
+  insertCourseCategory(
+    data: CourseCategoryCreateRequestDTO
+  ): Observable<CourseCategoryCreateRequestDTO> {
+    return this.http.post<CourseCategoryCreateRequestDTO>(
+      `${Constants.BASE_URL}/course/category`,
+      data,
       {
         headers: {
           Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
@@ -35,8 +40,12 @@ export class CourseCategoryService {
     );
   }
 
-  updateCourseCategory(data:CourseCategoryUpdateRequestDTO): Observable<CourseCategoryUpdateRequestDTO> {
-    return this.http.put<CourseCategoryUpdateRequestDTO>(`http://192.168.13.87:8080/course/category`, data,
+  updateCourseCategory(
+    data: CourseCategoryUpdateRequestDTO
+  ): Observable<CourseCategoryUpdateRequestDTO> {
+    return this.http.put<CourseCategoryUpdateRequestDTO>(
+      `${Constants.BASE_URL}/course/category`,
+      data,
       {
         headers: {
           Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
@@ -45,8 +54,12 @@ export class CourseCategoryService {
     );
   }
 
-  deleteCourseCategoryById(data:DeleteCourseCategoryRequestDTO): Observable<DeleteCourseCategoryRequestDTO> {
-    return this.http.patch<DeleteCourseCategoryRequestDTO>(`http://192.168.13.87:8080/course/category`, data,
+  deleteCourseCategoryById(
+    data: DeleteCourseCategoryRequestDTO
+  ): Observable<DeleteCourseCategoryRequestDTO> {
+    return this.http.patch<DeleteCourseCategoryRequestDTO>(
+      `${Constants.BASE_URL}/course/category`,
+      data,
       {
         headers: {
           Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
@@ -54,8 +67,4 @@ export class CourseCategoryService {
       }
     );
   }
-
-
-
-
 }

@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { OrderListModule } from 'primeng/orderlist';
 import { ChipModule } from 'primeng/chip';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 @NgModule({
   declarations: [ModuleDetailComponent],
   imports: [
@@ -23,7 +24,8 @@ import { ChipModule } from 'primeng/chip';
     FormsModule,
     HttpClientModule,
     OrderListModule,
-    ChipModule
-  ]
+    ChipModule,
+    ScrollPanelModule,
+  ],
 })
-export class ModuleDetailModule { }
+export class ModuleDetailModule {}

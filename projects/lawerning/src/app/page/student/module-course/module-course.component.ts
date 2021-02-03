@@ -16,77 +16,6 @@ export class ModuleCourseComponent implements OnInit {
 
   dateTimes = [];
   modules = new DetailCourseResponse();
-  // modules = [
-  //   {
-  //     topic: 'Topic-1',
-  //     title: 'Class & Object',
-  //     desc:
-  //       'Class and object should define a part of Object Oriented Programming',
-  //     status: 'absent',
-  //     date: '2021/01/30',
-  //     start: '08:00',
-  //     end: '14:40:10',
-  //   },
-  //   {
-  //     topic: 'Topic-2',
-  //     title: 'Inheritance',
-  //     desc: 'Inheritance should define a part of Object Oriented Programming',
-  //     status: 'present',
-  //     date: '2021/01/29',
-  //     start: '08:00',
-  //     end: '10:40:10',
-  //   },
-  //   {
-  //     topic: 'Topic-3',
-  //     title: 'Polymorpishm',
-  //     desc: 'Polymorpishm should define a part of Object Oriented Programming',
-  //     status: 'clear',
-  //     date: '2021/01/29',
-  //     start: '08:00',
-  //     end: '10:40:10',
-  //   },
-  //   {
-  //     topic: 'Topic-4',
-  //     title: 'Base DAO',
-  //     desc: 'Base DAO should define a part of Object Oriented Programming',
-  //     date: '2021/02/28',
-  //     start: '08:00',
-  //     end: '10:40:10',
-  //   },
-  //   {
-  //     topic: 'Topic-5',
-  //     title: 'Base Service',
-  //     desc: 'Base Service should define a part of Object Oriented Programming',
-  //     date: '2021/02/28',
-  //     start: '08:00',
-  //     end: '10:40:10',
-  //   },
-  //   {
-  //     topic: 'Topic-6',
-  //     title: 'Security System',
-  //     desc:
-  //       'Security System should define a part of Object Oriented Programming',
-  //     date: '2021/02/28',
-  //     start: '08:00',
-  //     end: '10:40:10',
-  //   },
-  //   {
-  //     topic: 'Topic-7',
-  //     title: 'JDBC',
-  //     desc: 'JDBC should define a part of Object Oriented Programming',
-  //     date: '2021/02/28',
-  //     start: '08:00',
-  //     end: '10:40:10',
-  //   },
-  //   {
-  //     topic: 'Topic-8',
-  //     title: 'Operator',
-  //     desc: 'Operator should define a part of Object Oriented Programming',
-  //     date: '2021/01/29',
-  //     start: '08:00',
-  //     end: '12:40:10',
-  //   },
-  // ];
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -168,8 +97,10 @@ export class ModuleCourseComponent implements OnInit {
   }
 
   viewForum(index: number) {
-    let data = this.modules[index];
-    let title = data.title;
-    this.route.navigateByUrl(`/view-detail-module/${title}`);
+    let data = this.modules.modules[index];
+    let id = data.id;
+    console.log(id);
+
+    this.route.navigate([`/module/`, id]);
   }
 }

@@ -12,6 +12,7 @@ export class ModuleAvailableComponent implements OnInit {
   course: any;
   totalModule: number;
   modules = new DetailCourseResponse();
+  duration: number;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -26,6 +27,17 @@ export class ModuleAvailableComponent implements OnInit {
         .subscribe((data) => {
           this.modules = data.result;
           this.totalModule = this.modules.modules.length;
+
+          let start = new Date(data.result.periodStart);
+          let end = new Date(data.result.periodEnd);
+          let diff = end.valueOf() - start.valueOf();
+
+          let oneDay = 1000 * 60 * 60 * 24;
+          let day = Math.floor(diff / oneDay);
+          console.log('Day of year: ' + day);
+          this.duration = Math.ceil(day / 7);
+          console.log(this.duration, 'week');
+
           console.log(data.result);
         });
     });

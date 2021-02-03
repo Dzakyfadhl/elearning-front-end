@@ -1,199 +1,262 @@
 <div class="container-fluid px-5">
-    <div class="row">
-        <div class="s-card col-lg-12 shadow mb-2 mt-2 rounded-lg">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex justify-content-space-evenly">
-                        <a routerLink="/home-student" class="mr-3 mb-3">
-                            <i class="back pi pi-arrow-left" style="font-size: 2rem"></i>
-                        </a>
-                        <div class="d-flex justify-content-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                class="title bi bi-book" viewBox="0 0 16 16">
-                                <path
-                                    d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
-                            </svg>
-                            <h3 class="ml-2">
-
-                                Topic-2: {{title}}
-                            </h3>
-                        </div>
-
-                    </div>
-                    <div class="d-flex justify-content-space-evenly ml-5">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                            class="date bi bi-calendar" viewBox="0 0 16 16">
-                            <path
-                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                        </svg>
-                        <h5 class="ml-1 mt-1 mr-3">
-
-                            25 Jan 2021
-                        </h5>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                            class="date bi bi-clock" viewBox="0 0 16 16">
-                            <path
-                                d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                        </svg>
-                        <h5 class="ml-1 mt-1">
-
-                            10:00 - 12:00
-                        </h5>
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-        <!-- forum -->
-        <hr>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-lg-8 mb-2">
-            <div class="view-exam">
-                <div *ngIf="isEmpty == true" class="d-flex justify-content-center m-5">
-                    <img src="assets/images/dataEmpty.png" height="250" alt="">
-                </div>
-                <p-tabView *ngIf="isEmpty == false">
-                    <p-tabPanel *ngFor="let e of exams;let i = index;">
-                        <ng-template pTemplate="header">
-                            <i class="pi pi-book mr-2"></i>
-                            <span *ngIf="e.type== 'Quiz'">{{e.type}}-{{i+1}}</span>
-                            <span *ngIf="e.type== 'Exam'">{{e.type}}</span>
-                        </ng-template>
-                        <div class="view-content-exam card">
-                            <div class="row p-3">
-                                <div class="exam col-lg-6">
-                                    <h6 class="text-info">{{e.title}}</h6>
-                                    <p class="text-secondary">Deadline: {{e.deadline}}</p>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <p *ngIf="e.type== 'Quiz'">Download {{e.type}}-{{i+1}}: </p>
-                                    <p *ngIf="e.type== 'Exam'">Download {{e.type}}: </p>
-                                    <a href=""><i class="pi pi-file mr-2"></i>{{e.exam}}</a>
-                                </div>
-                                <div class="col-lg-12 text-center">
-
-                                    <hr>
-                                    <h5 class="text-bold text-info">Assignment Exam</h5>
-
-                                    <!-- <p class="text-info" *ngIf="e.feedback == ''">{{file}}</p> -->
-
-                                    <a href="" *ngIf="e.feedback != ''"><i class="pi pi-file mr-2"></i>{{e.feedback}}<i
-                                            class="pi pi-times mr-2"></i>
-                                    </a>
-
-                                    <div *ngIf="e.feedback == ''" class="input-group mb-3">
-
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" (change)="fileChange($event)"
-                                                accept=".pdf,.doc,.docx">
-                                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                            <label *ngIf="file != undefined" class="custom-file-label"
-                                                for="inputGroupFile01">{{file}}</label>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-lg-12 text-center mt-3">
-
-                                    <button pButton class="p-button-secondary" label="Upload" icon="pi pi-upload"
-                                        (click)="upload()"></button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </p-tabPanel>
-
-                </p-tabView>
-            </div>
-
-        </div>
-        <div class="col-lg-4">
-            <div class="view-module card">
-                <div class="head-module card-header">
-                    <h5 class="text-center">Module</h5>
-                </div>
-                <div class="body-module card-body">
-                    <h6>Download</h6>
-                    <hr>
-                    <div class="d-flex flex-column">
-
-                        <a href=""> <h4><i class="pi pi-file mr-2"></i>materi-java.pdf</h4></a>
-                        <a href=""> <h4><i class="pi pi-file mr-2"></i>materi-java.pdf</h4></a>
-                        <a href=""> <h4><i class="pi pi-file mr-2"></i>materi-java.pdf</h4></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-12 col-md-12 mt-4">
+  <div class="row">
+    <div class="s-card col-lg-12 shadow mb-2 mt-2 rounded-lg">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-space-evenly">
+            <a (click)="prevPage()" class="mr-3 mb-3">
+              <i class="back pi pi-arrow-left" style="font-size: 2rem"></i>
+            </a>
             <div class="d-flex justify-content-start">
-                <h3 class="discussion">Discussion</h3>
-                <p-chip icon="pi pi-user" label="{{totalPost}} post" styleClass="p-mr-2 p-ml-3 p-mt-1 p-px-3"></p-chip>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                class="title bi bi-book"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"
+                />
+              </svg>
+              <h3 class="ml-2">{{ detail.title }}</h3>
             </div>
-            <hr>
-            <div *ngFor="let m of messages">
-                <div class="row">
-
-                    <div class="image">
-                        <img [src]="m.image" height="50" width="50" class="rounded-circle" alt="">
-
-                    </div>
-                    <div class="fullname">
-                        <h5 class="m-3 text-bold text-info">{{m.nama}}</h5>
-
-                    </div>
-                    <div class="datetime">
-                        <p class="time m-3 text-secondary">{{m.time}}</p>
-
-                    </div>
-                    <div *ngIf="m.role == 'Student'" class="role-student">
-                        <span class="label-student mt-3 badge p-2">{{m.role}}</span>
-                    </div>
-                    <div *ngIf="m.role == 'Teacher'" class="role-teacher">
-                        <span class="label-teacher mt-3 badge p-2">{{m.role}}</span>
-                    </div>
-                    <div class="message col-sm-6 col-lg-12 col-md-12">
-                        <h6 class="m">{{m.message}}</h6>
-
-                    </div>
-                    <!-- <hr class="my-4"> -->
-                </div>
-
-            </div>
-
+          </div>
+          <div class="d-flex justify-content-space-evenly ml-5">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="currentColor"
+              class="date bi bi-calendar"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+              />
+            </svg>
+            <h5 class="ml-1 mt-1 mr-3">
+              {{ detail.schedule.date | date: "dd MMM yyyy" }}
+            </h5>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="currentColor"
+              class="date bi bi-clock"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"
+              />
+              <path
+                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"
+              />
+            </svg>
+            <h5 class="ml-1 mt-1">
+              {{ detail.schedule.startTime.slice(0, 5) }} -
+              {{ detail.schedule.endTime.slice(0, 5) }}
+            </h5>
+          </div>
         </div>
-        <div class="col-lg-12">
-            <div class="d-flex justify-content-space-evenly">
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                    class="icon-comment bi bi-chat-left-text-fill mt-2 mr-2" viewBox="0 0 16 16">
-                    <path
-                        d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z" />
-                </svg>
-
-                <div class="input-group mb-3">
-
-                    <textarea class="form-control" aria-label="With textarea"
-                        placeholder="Write a comment..." style="height: 40px;"></textarea>
-
-                </div>
-                <a class="send">
-
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                        class="bi bi-cursor-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z" />
-                    </svg>
-                </a>
-            </div>
-        </div>
-
+      </div>
     </div>
+    <!-- forum -->
+    <hr />
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-lg-8 mb-2">
+      <div class="view-exam">
+        <div *ngIf="isEmpty == true" class="d-flex justify-content-center m-5">
+          <img src="assets/images/dataEmpty.png" height="250" alt="" />
+        </div>
+        <p-tabView *ngIf="isEmpty == false">
+          <p-tabPanel *ngFor="let e of exams; let i = index">
+            <ng-template pTemplate="header">
+              <i class="pi pi-book mr-2"></i>
+              <span *ngIf="e.type == 'QUIZ'">{{ e.type }}-{{ i + 1 }}</span>
+              <span *ngIf="e.type == 'EXAM'">{{ e.type }}</span>
+            </ng-template>
+            <div class="view-content-exam card">
+              <div class="row p-3">
+                <div class="exam col-lg-6">
+                  <h6 class="text-info">{{ e.title }}</h6>
+                  <p class="text-secondary">
+                    Deadline: {{ e.endTime | date: "dd MMM yyyy" }}
+                  </p>
+                </div>
+
+                <div class="col-lg-6">
+                  <p *ngIf="e.type == 'QUIZ'">
+                    Download {{ e.type }}-{{ i + 1 }}:
+                  </p>
+                  <p *ngIf="e.type == 'EXAM'">Download {{ e.type }}:</p>
+                  <a href="http://192.168.15.224:8080/file/{{ e.fileId }}"
+                    ><i class="pi pi-file mr-2"></i>{{ e.fileName }}</a
+                  >
+                </div>
+                <div class="col-lg-12">
+                  <hr />
+
+                  <p>{{ e.description }}</p>
+                </div>
+                <div class="col-lg-12 text-center">
+                  <h5 class="text-bold text-info">Assignment Exam</h5>
+
+                  <!-- <p class="text-info" *ngIf="e.feedback == ''">{{file}}</p> -->
+
+                  <a href="" *ngIf="e.feedback != ''"
+                    ><i class="pi pi-file mr-2"></i>jawaban<i
+                      class="pi pi-times mr-2"
+                    ></i>
+                  </a>
+
+                  <div *ngIf="e.feedback == ''" class="input-group mb-3">
+                    <div class="custom-file">
+                      <input
+                        type="file"
+                        class="custom-file-input"
+                        (change)="fileChange($event)"
+                        accept=".pdf,.doc,.docx"
+                      />
+                      <label class="custom-file-label" for="inputGroupFile01"
+                        >Choose file</label
+                      >
+                      <label
+                        *ngIf="file != undefined"
+                        class="custom-file-label"
+                        for="inputGroupFile01"
+                        >{{ file }}</label
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 text-center mt-3">
+                  <button
+                    pButton
+                    class="p-button-secondary"
+                    label="Upload"
+                    icon="pi pi-upload"
+                    (click)="upload()"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </p-tabPanel>
+        </p-tabView>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="view-module card">
+        <div class="head-module card-header">
+          <h5 class="text-center">Module</h5>
+        </div>
+        <div class="body-module card-body">
+          <h6>Download</h6>
+          <hr />
+          <div class="d-flex flex-column">
+            <a href="">
+              <h6><i class="pi pi-file mr-2"></i>materi-java.pdf</h6></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12 col-md-12 mt-4">
+      <div class="d-flex justify-content-start">
+        <h3 class="discussion">Discussion</h3>
+        <p-chip
+          icon="pi pi-user"
+          label="{{ totalPost }} post"
+          styleClass="p-mr-2 p-ml-3 p-mt-1 p-px-3"
+        ></p-chip>
+      </div>
+      <hr />
+      <div class="forum" *ngFor="let m of messages">
+        <div class="row">
+          <div class="image">
+            <img
+              [src]="photo"
+              height="50"
+              width="50"
+              class="rounded-circle"
+              alt=""
+            />
+          </div>
+          <div class="fullname">
+            <h5 class="m-3 text-bold text-info">
+              {{ m.firstName }} {{ m.lastName }}
+            </h5>
+          </div>
+          <div class="datetime">
+            <p *ngIf="m.day > m.dayPost" class="time m-3 text-secondary">
+              {{ m.createdAt | date: "dd/MM/yyyy H:m" }}
+            </p>
+            <p
+              *ngIf="m.day == m.dayPost && m.durationHour > 0"
+              class="time m-3 text-secondary"
+            >
+              {{ m.durationHour }} hour {{ m.durationMinute }} minute ago
+            </p>
+
+            <p *ngIf="m.durationHour == 0" class="time m-3 text-secondary">
+              {{ m.durationMinute }} minute ago
+            </p>
+          </div>
+          <div *ngIf="m.roleCode == 'RL-004'" class="role-student">
+            <span class="label-student mt-3 badge p-2">Student</span>
+          </div>
+          <div *ngIf="m.roleCode == 'RL-003'" class="role-teacher">
+            <span class="label-teacher mt-3 badge p-2">Teacher</span>
+          </div>
+          <div class="message col-sm-6 col-lg-12 col-md-12">
+            <h6 class="m">{{ m.content }}</h6>
+          </div>
+          <!-- <hr class="my-4"> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="d-flex justify-content-space-evenly">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="25"
+          fill="currentColor"
+          class="icon-comment bi bi-chat-left-text-fill mt-2 mr-2"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"
+          />
+        </svg>
+
+        <div class="textarea input-group mb-3">
+          <textarea
+            class="form-control"
+            aria-label="With textarea"
+            placeholder="Write a comment..."
+            style="height: 40px"
+            [(ngModel)]="content"
+          ></textarea>
+        </div>
+        <a class="send" (click)="sendingContent()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="25"
+            fill="currentColor"
+            class="bi bi-cursor-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
