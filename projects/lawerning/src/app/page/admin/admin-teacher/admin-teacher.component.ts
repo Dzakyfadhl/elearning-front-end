@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
-import { TeacherForAdminDTO } from '../../../model/teacher-dto/teacher-admin-dto';
+import { TeacherForAdminDTO as TeacherForAdminResponse } from '../../../model/teacher-dto/teacher-admin-response';
+import { CreateTeacherRequest } from '../../../model/teacher-dto/create-teacher-request';
 import { AuthService } from '../../../service/auth.service';
 import { TeacherService } from '../../../service/teacher.service';
+import { UpdateTeacherRequest } from '../../../model/teacher-dto/update-teacher-request';
+import { ToastService } from '../../../service/toast.service';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { ResponseModel } from '../../../model/response-model';
+import { Gender } from '../../../model/gender';
 
 @Component({
   selector: 'app-admin-teacher',
@@ -10,20 +16,24 @@ import { TeacherService } from '../../../service/teacher.service';
   styleUrls: ['./admin-teacher.component.css'],
 })
 export class AdminTeacherComponent implements OnInit {
-  modalDialog: boolean;
+  isCreateModalVisible: boolean;
+  isEditModalVisible: boolean;
 
-  teachers: TeacherForAdminDTO[];
-  teacher: TeacherForAdminDTO;
+  teachers: TeacherForAdminResponse[];
+  createRequest: CreateTeacherRequest;
+  updateRequest: UpdateTeacherRequest;
 
-  selectedTeachers: TeacherForAdminDTO[];
+  selectedTeachers: TeacherForAdminResponse[];
 
   submitted: boolean;
 
-  statuses: any[];
+  genders: string[] = Object.keys(Gender);
+
   constructor(
     private authService: AuthService,
     private teacherService: TeacherService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -34,18 +44,17 @@ export class AdminTeacherComponent implements OnInit {
     this.teacherService.getAllTeachersForAdmin().subscribe(
       (val) => {
         this.teachers = val.result;
-        console.log(this.teachers);
       },
       (err) => {
         console.error(err.error);
       }
     );
   }
-  
+
   openNew() {
-    this.teacher = new TeacherForAdminDTO();
+    this.createRequest = new CreateTeacherRequest();
     this.submitted = false;
-    this.modalDialog = true;
+    this.isCreateModalVisible = true;
   }
 
   deleteSelectedTeachers() {
@@ -63,30 +72,94 @@ export class AdminTeacherComponent implements OnInit {
     });
   }
 
-  editTeacher(teacher: TeacherForAdminDTO) {
-    this.teacher = { ...teacher };
-    this.modalDialog = true;
+  editTeacher(teacher: TeacherForAdminResponse) {
+    this.isEditModalVisible = true;
+    this.updateRequest = {
+      id: teacher.id,
+      firstName: teacher.firstName,
+      lastName: teacher.lastName,
+      email: null,
+      gender: teacher.gender,
+      titleDegree: null,
+      updatedBy: this.authService.getUserId(),
+    };
   }
 
-  deleteTeacher(teacher: TeacherForAdminDTO) {
+  updateTeacher() {
+    this.teacherService.updateTeacherProfile(this.updateRequest).subscribe(
+      (response) => {
+        if (response.code === 200) {
+          this.toastService.emitSuccessMessage(
+            'Updated',
+            'Teacher has been updated successfully.'
+          );
+        }
+      },
+      (error: HttpErrorResponse) => {
+        this.toastService.emitHttpErrorMessage(
+          error,
+          'Failed to update teacher'
+        );
+      }
+    );
+  }
+
+  deleteTeacher(teacher: TeacherForAdminResponse) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ' + teacher.firstName + '?',
-      header: 'Confirm',
+      message: `Are you sure you want to delete ${teacher.firstName} ${teacher.lastName} ?`,
+      header: 'Delete Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-          this.teachers = this.teachers.filter(val => val.id !== teacher.id);
-          this.teacher = new TeacherForAdminDTO();
-          alert('Teacher Deleted');
-      }
-  });
+        this.teacherService
+          .deleteTeacher({
+            id: teacher.id,
+            updatedBy: this.authService.getUserId(),
+          })
+          .subscribe(
+            (response) => {
+              if (response.code === 200 && response.result) {
+                this.toastService.emitSuccessMessage(
+                  'Deleted',
+                  response.result
+                );
+                this.teachers = this.teachers.filter(
+                  (value) => value.id !== teacher.id
+                );
+              }
+            },
+            (error: HttpErrorResponse) => {
+              this.toastService.emitHttpErrorMessage(
+                error,
+                'Failed to delete teacher'
+              );
+            }
+          );
+      },
+    });
   }
 
-  saveTeacher() {
+  createTeacher() {
     this.submitted = true;
+    this.createRequest.createdBy = this.authService.getUserId();
+    this.teacherService.createTeacher(this.createRequest).subscribe(
+      (response) => {
+        if (response.code === 201 && response.result) {
+          this.toastService.emitSuccessMessage('Submitted', response.result);
+          this.hideModal();
+        }
+      },
+      (error: HttpErrorResponse) => {
+        this.toastService.emitHttpErrorMessage(
+          error,
+          'Failed to add new teacher'
+        );
+      }
+    );
   }
 
-  hideDialog() {
-    this.modalDialog = false;
+  hideModal() {
+    this.isCreateModalVisible = false;
+    this.isEditModalVisible = false;
     this.submitted = false;
   }
 }

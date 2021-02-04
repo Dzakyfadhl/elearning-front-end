@@ -12,6 +12,7 @@ import { ButtonModule } from 'primeng/button';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ConfirmationService } from 'primeng/api';
 import { BaseHttpInterceptor } from './shared/base-http-interceptor';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { BaseHttpInterceptor } from './shared/base-http-interceptor';
     AvatarModule,
     ButtonModule,
     HttpClientModule,
+    ToastModule,
   ],
   providers: [
     ConfirmationService,

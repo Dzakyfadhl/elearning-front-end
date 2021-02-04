@@ -1,4 +1,4 @@
-export class DeleteTeacherDTO {
-    id:string;
-    updatedBy:string;
+export class DeleteTeacherRequest {
+  id: string;
+  updatedBy: string;
 }

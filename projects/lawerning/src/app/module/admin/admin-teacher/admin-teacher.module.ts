@@ -11,6 +11,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [AdminTeacherComponent, ModifAdminTeacherComponent],
@@ -24,6 +25,7 @@ import { InputTextModule } from 'primeng/inputtext';
     ToolbarModule,
     ConfirmDialogModule,
     InputTextModule,
+    DropdownModule,
   ],
 })
 export class AdminTeacherModule {}

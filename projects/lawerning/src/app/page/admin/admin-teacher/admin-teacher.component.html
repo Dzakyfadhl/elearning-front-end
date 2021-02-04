@@ -9,50 +9,23 @@
 
 <div class="container-fluid">
   <p-toolbar styleClass="p-mb-4">
-    <ng-template pTemplate="left">
-      <button
-        pButton
-        pRipple
-        label="New"
-        icon="pi pi-plus"
-        class="p-button-success p-mr-2"
-        (click)="openNew()"
-      ></button>
-      <button
-        pButton
-        pRipple
-        [label]="Delete"
-        icon="pi pi-trash"
-        class="p-button-danger"
-        (click)="deleteSelectedTeachers()"
-        [disabled]="!selectedTeachers || !selectedTeachers.length"
-      ></button>
-    </ng-template>
+    <div>
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+      <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedTeachers()"
+        [disabled]="!selectedTeachers || !selectedTeachers.length"></button>
+    </div>
   </p-toolbar>
 
-  <p-table
-    #dt
-    [value]="teachers"
-    [rows]="10"
-    [paginator]="true"
-    [globalFilterFields]="['firstname', 'username', 'phone', 'gender', 'code']"
-    [(selection)]="selectedTeachers"
-    [rowHover]="true"
-    dataKey="id"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [showCurrentPageReport]="true"
-  >
+  <p-table #dt [value]="teachers" [rows]="10" [paginator]="true"
+    [globalFilterFields]="['firstName', 'lastName', 'username', 'phone', 'gender', 'code']"
+    [(selection)]="selectedTeachers" [rowHover]="true" dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
     <ng-template pTemplate="caption">
-      <div class="p-d-flex p-ai-center p-jc-between">
+      <div class="d-flex align-items-center justify-content-between">
         <h5 class="p-m-0">Manage Teachers</h5>
         <span class="p-input-icon-left">
           <i class="pi pi-search"></i>
-          <input
-            pInputText
-            type="text"
-            (input)="dt.filterGlobal($event.target.value, 'contains')"
-            placeholder="Search..."
-          />
+          <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
         </span>
       </div>
     </ng-template>
@@ -61,8 +34,8 @@
         <th style="width: 3rem">
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
-        <th pSortableColumn="fullName">
-          Full Name <p-sortIcon field="firstName"></p-sortIcon>
+        <th pSortableColumn="firstName">
+          Full Name <p-sortIcon field="fullName"></p-sortIcon>
         </th>
         <th pSortableColumn="username">
           Username <p-sortIcon field="username"></p-sortIcon>
@@ -84,26 +57,16 @@
         <td>
           <p-tableCheckbox [value]="teacher"></p-tableCheckbox>
         </td>
-        <td>{{ teacher.firstName + teacher.lastName }}</td>
+        <td>{{ teacher.firstName }} {{teacher.lastName}}</td>
         <td>{{ teacher.username }}</td>
         <td>{{ teacher.phone }}</td>
         <td>{{ teacher.gender }}</td>
         <td>{{ teacher.code }}</td>
         <td>
-          <button
-            pButton
-            pRipple
-            icon="pi pi-pencil"
-            class="p-button-rounded p-button-success p-mr-2"
-            (click)="editTeacher(teacher)"
-          ></button>
-          <button
-            pButton
-            pRipple
-            icon="pi pi-trash"
-            class="p-button-rounded p-button-warning"
-            (click)="deleteTeacher(teacher)"
-          ></button>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+            (click)="editTeacher(teacher)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+            (click)="deleteTeacher(teacher)"></button>
         </td>
       </tr>
     </ng-template>
@@ -115,32 +78,104 @@
   </p-table>
 </div>
 
-<p-dialog
-  [(visible)]="modalDialog"
-  [style]="{ width: '450px' }"
-  header="Teacher Details"
-  [modal]="true"
-  styleClass="p-fluid"
->
-  <ng-template pTemplate="content"> </ng-template>
+<p-dialog [(visible)]="isCreateModalVisible" [style]="{ width: '650px' }" header="Create Teacher" [modal]="true"
+  styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="row mt-3">
+      <div class="p-field col">
+        <label for="firstName">First Name</label>
+        <input type="text" pInputText id="firstname" [(ngModel)]="createRequest.firstName" required autofocus />
+        <small class="p-error" *ngIf="submitted && !createRequest.firstName">First Name is required.</small>
+      </div>
+      <div class="p-field col">
+        <label for="lastName">Last Name</label>
+        <input type="text" pInputText id="lastName" [(ngModel)]="createRequest.lastName" required autofocus />
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="p-field col">
+        <label for="code">Code</label>
+        <input type="text" pInputText id="code" [(ngModel)]="createRequest.code" required autofocus />
+        <small class="p-error" *ngIf="submitted && !createRequest.code">Code is required.</small>
+      </div>
+      <div class="p-field col">
+        <label for="gender">Gender</label>
+        <input type="text" pInputText id="gender" [(ngModel)]="createRequest.gender" required autofocus />
+        <small class="p-error" *ngIf="submitted && !createRequest.gender">Gender is required.</small>
+      </div>
+    </div>
+    <div class="p-field mt-3">
+      <label for="username">Username</label>
+      <input type="text" pInputText id="username" [(ngModel)]="createRequest.username" required autofocus />
+      <small class="p-error" *ngIf="submitted && !createRequest.username">Username is required.</small>
+    </div>
+    <div class="p-field mt-3">
+      <label for="password">Password</label>
+      <input type="password" pInputText id="password" [(ngModel)]="createRequest.password" required autofocus />
+      <small class="p-error" *ngIf="submitted && !createRequest.password">Password is required.</small>
+    </div>
+    <div class="row mt-3">
+      <div class="p-field col">
+        <label for="email">Email</label>
+        <input type="email" pInputText id="email" [(ngModel)]="createRequest.email" required autofocus />
+        <small class="p-error" *ngIf="submitted && !createRequest.email">Email is required.</small>
+      </div>
+      <div class="p-field col">
+        <label for="phone">Phone</label>
+        <input type="text" pInputText id="phone" [(ngModel)]="createRequest.phone" required autofocus />
+        <small class="p-error" *ngIf="submitted && !createRequest.phone">Phone is required.</small>
+      </div>
+    </div>
+    <div class="p-field mt-3">
+      <label for="titleDegree">Title Degree</label>
+      <input type="titleDegree" pInputText id="titleDegree" [(ngModel)]="createRequest.titleDegree" required
+        autofocus />
+    </div>
+  </ng-template>
 
   <ng-template pTemplate="footer">
-    <button
-      pButton
-      pRipple
-      label="Cancel"
-      icon="pi pi-times"
-      class="p-button-text"
-      (click)="hideDialog()"
-    ></button>
-    <button
-      pButton
-      pRipple
-      label="Save"
-      icon="pi pi-check"
-      class="p-button-text"
-      (click)="saveTeacher()"
-    ></button>
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideModal()"></button>
+    <button pButton pRipple label="Submit" icon="pi pi-check" class="p-button-text" (click)="createTeacher()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="isEditModalVisible" [style]="{ width: '650px' }" header="Edit Teacher" [modal]="true"
+  styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="row mt-3">
+      <div class="p-field col">
+        <label for="firstName">First Name</label>
+        <input type="text" pInputText id="firstname" [(ngModel)]="updateRequest.firstName" required autofocus />
+        <small class="p-error" *ngIf="submitted && !updateRequest.firstName">First Name is required.</small>
+      </div>
+      <div class="p-field col">
+        <label for="lastName">Last Name</label>
+        <input type="text" pInputText id="lastName" [(ngModel)]="updateRequest.lastName" required autofocus />
+      </div>
+    </div>
+    <div class="p-field mt-3">
+      <label for="gender">Gender</label>
+      <p-dropdown [(ngModel)]="updateRequest.gender" inputId="genders" [options]="genders" placeholder="Select Gender">
+        <ng-template let-option pTemplate="item">
+          <span>{{option}}</span>
+        </ng-template>
+      </p-dropdown>
+    </div>
+    <div class="p-field mt-3">
+      <label for="email">Email</label>
+      <input type="email" pInputText id="email" [(ngModel)]="updateRequest.email" required autofocus />
+      <small class="p-error" *ngIf="submitted && !updateRequest.email">Email is required.</small>
+    </div>
+    <div class="p-field mt-3">
+      <label for="titleDegree">Title Degree</label>
+      <input type="titleDegree" pInputText id="titleDegree" [(ngModel)]="updateRequest.titleDegree" required
+        autofocus />
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideModal()"></button>
+    <button pButton pRipple label="Submit" icon="pi pi-check" class="p-button-text" (click)="updateTeacher()"></button>
   </ng-template>
 </p-dialog>
 

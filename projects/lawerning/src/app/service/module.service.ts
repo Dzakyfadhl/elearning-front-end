@@ -10,18 +10,13 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class ModuleService {
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient) {}
 
   getModuleAvailable(
     id: string
   ): Observable<ResponseModel<DetailCourseResponse>> {
     return this.http.get<ResponseModel<DetailCourseResponse>>(
-      `${Constants.BASE_URL}/course/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      `${Constants.BASE_URL}/course/${id}`
     );
   }
 }

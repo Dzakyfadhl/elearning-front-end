@@ -22,4 +22,8 @@ export class AuthService {
   getToken(): string {
     return this.getLoginResponse().token;
   }
+
+  getUserId(): string {
+    return this.getLoginResponse().userId;
+  }
 }
