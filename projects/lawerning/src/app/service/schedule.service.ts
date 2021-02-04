@@ -16,12 +16,7 @@ export class ScheduleService {
     id: string
   ): Observable<ResponseModel<ScheduleResponseDTO[]>> {
     return this.http.get<ResponseModel<ScheduleResponseDTO[]>>(
-      `${Constants.BASE_URL}/schedules/teacher/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      `${Constants.BASE_URL}/schedules/teacher/${id}`
     );
   }
 }

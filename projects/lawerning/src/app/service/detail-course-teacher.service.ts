@@ -16,12 +16,7 @@ export class DetailCourseTeacherService {
     id: string
   ): Observable<ResponseModel<DetailCourseResponse>> {
     return this.http.get<ResponseModel<DetailCourseResponse>>(
-      `${Constants.BASE_URL}/module/course/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      `${Constants.BASE_URL}/course/${id}`
     );
   }
 }

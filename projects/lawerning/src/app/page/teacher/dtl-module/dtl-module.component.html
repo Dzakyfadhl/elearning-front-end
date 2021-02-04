@@ -53,56 +53,52 @@
             <ng-template pTemplate="header">
               <i class="pi pi-calendar"></i>
               <div class="ml-2">
+                <span>Lesson </span>
+              </div>
+            </ng-template>
+            <div
+              class="col-lg-12 mt-2 p-3 mb-2"
+              *ngFor="let l of lesson; let i = index"
+            >
+              <a href="http://192.168.15.224:8080/file/{{ l.id }}">
+                <h5>{{ l.fileName }}</h5>
+              </a>
+            </div>
+          </p-tabPanel>
+          <p-tabPanel>
+            <ng-template pTemplate="header">
+              <i class="pi pi-calendar"></i>
+              <div class="ml-2">
                 <span>Exam</span>
               </div>
             </ng-template>
-            <!-- <div class="container-fluid">
-                            <div class="row">
-                                <div class="button-add-exam col-lg-12 d-flex justify-content-end">
-                                    <button pButton (click)="showDialogExam()" type="button" label="Add Exam"></button>
-                                </div>
-                                <div class="col-lg-12 mt-2 shadow-sm p-3 mb-2 bg-white rounded"
-                                    *ngFor="let m of exam; let i=index">
-                                    <h6 class="card-text p-1">
-                                        <div class="content-body d-flex justify-content-evenly">
-                                            <h3>{{m.title}} - </h3>
-                                            <h4> {{m.type}}</h4>
-                                        </div>
-                                    </h6>
-                                    <h6>Deadline {{m.deadline}}</h6>
-                                    <p>{{m.description}}</p>
-                                    <a href="">
-                                        <h6>{{m.file}}</h6>
-                                    </a>
-                                    <div class="d-flex justify-content-end">
-                                        <button (click)="viewModule(i)" pButton type="button"
-                                            label="Submission"></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-            <div
-              class="col-lg-12 mt-2 shadow-sm p-3 mb-2 bg-white rounded"
-              *ngFor="let m of exam; let i = index"
-            >
-              <h6 class="card-text p-1">
-                <div class="content-body d-flex justify-content-evenly">
-                  <h3>{{ m.title }} -</h3>
-                  <h4>{{ m.type }}</h4>
+            <div *ngIf="exam == null">
+              <img src="assets/images/" />
+            </div>
+            <div *ngIf="exam != null">
+              <div
+                class="col-lg-12 mt-2 shadow-sm p-3 mb-2 bg-white rounded"
+                *ngFor="let m of exam; let i = index"
+              >
+                <h6 class="card-text p-1">
+                  <div class="content-body d-flex justify-content-evenly">
+                    <h3>{{ m.title }} -</h3>
+                    <h6>{{ m.type }}</h6>
+                  </div>
+                </h6>
+                <h6>Deadline: {{ m.endTime | date: "dd MMM yyyy HH:MM" }}</h6>
+                <p>{{ m.description }}</p>
+                <a href="http://192.168.15.224:8080/file/{{ m.fileId }}">
+                  <h6>{{ m.fileName }}</h6>
+                </a>
+                <div class="d-flex justify-content-end">
+                  <button
+                    (click)="viewModule(i)"
+                    pButton
+                    type="button"
+                    label="Submission"
+                  ></button>
                 </div>
-              </h6>
-              <h6>Deadline {{ m.deadline }}</h6>
-              <p>{{ m.description }}</p>
-              <a href="">
-                <h6>{{ m.file }}</h6>
-              </a>
-              <div class="d-flex justify-content-end">
-                <button
-                  (click)="viewModule(i)"
-                  pButton
-                  type="button"
-                  label="Submission"
-                ></button>
               </div>
             </div>
           </p-tabPanel>
@@ -116,32 +112,89 @@
             <div class="content-attendance">
               <h5>Student Attendance</h5>
               <p-table
-                [value]="student"
+                [value]="studentAttendance"
                 [scrollable]="true"
                 scrollHeight="100%"
               >
                 <ng-template pTemplate="header">
                   <tr>
-                    <th width="80px">Code</th>
+                    <th width="80px">No</th>
                     <th width="80px">Name</th>
                     <th width="80px">Date</th>
-                    <th width="80px">Action</th>
+                    <th width="80px">Status</th>
                   </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-student>
+                <ng-template
+                  pTemplate="body"
+                  let-studentAttendance
+                  let-rowIndex="rowIndex"
+                >
                   <tr>
-                    <td width="80px">{{ student.code }}</td>
-                    <td width="80px">{{ student.name }}</td>
                     <td width="80px">
-                      {{ student.attendanceDate }} {{ student.attendanceTime }}
+                      {{ rowIndex + 1 }}
                     </td>
                     <td width="80px">
-                      <p-button
-                        label="Confirm"
-                        icon="pi pi-check"
-                        styleClass="p-button-success"
+                      {{ studentAttendance.firstName }}
+                      {{ studentAttendance.lastName }}
+                    </td>
+                    <td
+                      width="80px"
+                      *ngIf="
+                        studentAttendance.attendanceId != null &&
+                        studentAttendance.attendanceIsVerified == true
+                      "
+                    >
+                      {{ studentAttendance.attendanceTime }}
+                    </td>
+                    <td
+                      width="80px"
+                      *ngIf="
+                        studentAttendance.attendanceId != null &&
+                        studentAttendance.attendanceIsVerified == false
+                      "
+                    >
+                      {{ studentAttendance.attendanceTime }}
+                    </td>
+
+                    <td
+                      width="80px"
+                      *ngIf="
+                        studentAttendance.attendanceId == null &&
+                        studentAttendance.attendanceIsVerified == false
+                      "
+                    >
+                      -
+                    </td>
+
+                    <td width="80px">
+                      <span
+                        *ngIf="
+                          studentAttendance.attendanceId != null &&
+                          studentAttendance.attendanceIsVerified == true
+                        "
+                        class="status-badge status-present"
+                        >PRESENT</span
                       >
-                      </p-button>
+                      <span
+                        *ngIf="
+                          studentAttendance.attendanceId == null &&
+                          studentAttendance.attendanceIsVerified == false
+                        "
+                        class="status-badge status-absent"
+                        >ABSENT</span
+                      >
+                      <a (click)="confirmAttendance(rowIndex)">
+                        <p-button
+                          *ngIf="
+                            studentAttendance.attendanceId != null &&
+                            studentAttendance.attendanceIsVerified == false
+                          "
+                          label="Confirm"
+                          icon="pi pi-check"
+                          styleClass="p-button-success"
+                        >
+                        </p-button>
+                      </a>
                     </td>
                   </tr>
                 </ng-template>
@@ -156,11 +209,11 @@
               </div>
             </ng-template>
             <div class="col-lg-12 col-md-12">
-              <div *ngFor="let m of messages">
+              <div *ngFor="let m of discussion">
                 <div class="row">
                   <div class="image">
                     <img
-                      [src]="m.image"
+                      [src]="m.photoId"
                       height="50"
                       width="50"
                       class="rounded-circle"
@@ -168,23 +221,23 @@
                     />
                   </div>
                   <div class="fullname">
-                    <h5 class="m-3 text-bold text-info">{{ m.nama }}</h5>
+                    <h5 class="m-3 text-bold text-info">
+                      {{ m.firstName }} {{ m.lastName }}
+                    </h5>
                   </div>
                   <div class="datetime">
-                    <p class="time m-3 text-secondary">{{ m.time }}</p>
+                    <p class="time m-3 text-secondary">
+                      {{ m.createdAt | date: "dd MMM yyyy HH:MM" }}
+                    </p>
                   </div>
-                  <div *ngIf="m.role == 'Student'" class="role-student">
-                    <span class="label-student mt-3 badge p-2">{{
-                      m.role
-                    }}</span>
+                  <div *ngIf="m.roleCode == 'RL-004'" class="role-student">
+                    <span class="label-student mt-3 badge p-2">Student</span>
                   </div>
-                  <div *ngIf="m.role == 'Teacher'" class="role-teacher">
-                    <span class="label-teacher mt-3 badge p-2">{{
-                      m.role
-                    }}</span>
+                  <div *ngIf="m.roleCode == 'RL-003'" class="role-teacher">
+                    <span class="label-teacher mt-3 badge p-2">Teacher</span>
                   </div>
                   <div class="message col-sm-6 col-lg-12 col-md-12">
-                    <h6 class="m">{{ m.message }}</h6>
+                    <h6 class="m">{{ m.content }}</h6>
                   </div>
                   <hr class="my-4" />
                 </div>
@@ -452,11 +505,7 @@
     </div>
     <div class="p-field p-col mt-2 mb-2">
       <h6>Type</h6>
-      <p-dropdown
-        [options]="examType"
-        [(ngModel)]="examTypeSelected"
-        optionLabel="name"
-      ></p-dropdown>
+      <p-dropdown optionLabel="name"></p-dropdown>
     </div>
     <div class="p-field p-col-12 mt-2 mb-2">
       <h6>Description</h6>

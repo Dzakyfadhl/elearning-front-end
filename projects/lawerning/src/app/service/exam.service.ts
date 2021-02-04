@@ -19,12 +19,7 @@ export class ExamService {
     id: string
   ): Observable<ResponseModel<ScoreAverageResponseDTO[]>> {
     return this.http.get<ResponseModel<ScoreAverageResponseDTO[]>>(
-      `${Constants.BASE_URL}/exam/average-scores/student/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      `${Constants.BASE_URL}/exam/average-scores/student/${id}`
     );
   }
 
@@ -40,12 +35,7 @@ export class ExamService {
     id: string
   ): Observable<ResponseModel<SubmissionsByExamResponseDTO[]>> {
     return this.http.get<ResponseModel<SubmissionsByExamResponseDTO[]>>(
-      `${Constants.BASE_URL}/exam/${id}/submission`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      `${Constants.BASE_URL}/exam/${id}/submission`
     );
   }
 

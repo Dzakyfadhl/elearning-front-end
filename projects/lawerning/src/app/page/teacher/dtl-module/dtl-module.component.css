@@ -1,285 +1,301 @@
 .header-module {
-    position: absolute;
-    height: 15%;
-    background-color: #232946;  
+  position: absolute;
+  height: 15%;
+  background-color: #232946;
 }
 
 .header-module a {
-    margin-left: 10px;
-    color: #F4CAAE;
+  margin-left: 10px;
+  color: #f4caae;
 }
 
 .header-module h6 {
-    color: #F4CAAE;
-    font-size: 30px;
-    margin-left: 15px;
+  color: #f4caae;
+  font-size: 30px;
+  margin-left: 15px;
 }
 
 .header-module h5 {
-    color: #a7a9be;
-    font-size: 18px;
-    margin-left: 60px;
+  color: #a7a9be;
+  font-size: 18px;
+  margin-left: 60px;
 }
 
 .header-module p {
-    color: whitesmoke;
+  color: whitesmoke;
 }
 
 .body-module {
-    margin-top: 5rem;
-    width: 93%;
+  margin-top: 5rem;
+  width: 93%;
 }
 
 .content-description h5 {
-    font-size: 22px;
-    color: #232946;
-    font-weight: bold;
+  font-size: 22px;
+  color: #232946;
+  font-weight: bold;
 }
 
 .content-body h6 {
-    margin-top: 2px;
-    margin-left: 15px;
+  margin-top: 6px;
+  margin-left: 15px;
 }
 
 .card-body {
-    background-color: #232946;
+  background-color: #232946;
 }
 
 .card-body h3 {
-    color: #f9bc60;
+  color: #f9bc60;
 }
 
 .card-body h5 {
-    color: white;
+  color: white;
 }
 
 .back {
-    color: white;
+  color: white;
 }
 
 .s-card {
-    background-color: #232946;
+  background-color: #232946;
 }
 
 .input-group-text {
-    background-color: #232946;
+  background-color: #232946;
 }
 
 .icon-comment {
-    color: #232946;
+  color: #232946;
 }
 
 .head-module {
-    background-color: #f9bc60;
+  background-color: #f9bc60;
 }
 
 .head-module h5 {
-    color: #232946;
+  color: #232946;
 }
 
 .head-exam {
-    background-color: #f9bc60;
+  background-color: #f9bc60;
 }
 
 .body-module {
-    background-color: white;
+  background-color: white;
 }
 
 .body-exam {
-    background-color: white;
+  background-color: white;
 }
 
 .exam h5 {
-    color: #0d153f;
-    font-weight: bold;
+  color: #0d153f;
+  font-weight: bold;
 }
 
 .exam h6 {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .label-student {
-    background-color: #f9bc60;
-    color: #232946;
-    height: 25px;
+  background-color: #f9bc60;
+  color: #232946;
+  height: 25px;
 }
 
 .label-teacher {
-    background-color: #232946;
-    color: white;
-    height: 25px;
+  background-color: #232946;
+  color: white;
+  height: 25px;
 }
 
 .time {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .title {
-    color: #f9bc60;
-    margin: 5px;
+  color: #f9bc60;
+  margin: 5px;
 }
 
 .date {
-    color: white;
-    margin: 5px;
+  color: white;
+  margin: 5px;
 }
 
 .view-exam {
-    height: 410px;
+  height: 410px;
 }
 
 .view-module {
-    height: 410px;
+  height: 410px;
 }
 
 .view-content-exam {
-    height: 315px;
+  height: 315px;
 }
 
 .discussion {
-    color: #232946;
-    font-weight: bold;
+  color: #232946;
+  font-weight: bold;
 }
 
 .message {
-    margin-left: 50px;
+  margin-left: 50px;
 }
 
 .form {
-    height: auto;
+  height: auto;
 }
 
 .send {
-    color: #232946;
-    padding: 10px;
+  color: #232946;
+  padding: 10px;
 }
 
 .send :hover {
-    background-color: #f9bc60;
-    cursor: pointer;
+  background-color: #f9bc60;
+  cursor: pointer;
 }
 
 .content-body h3 {
-    font-size: 25px;
-    font-weight: bold;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .content-body h4 {
-    margin-left: 6px;
-    margin-top: 3px;
-    font-size: 22px;
+  margin-left: 6px;
+  margin-top: 3px;
+  font-size: 22px;
 }
 
 .content-attendance h5 {
-    font-size: 22px;
-    color: #232946;
-    font-weight: bold;
-    margin-bottom: 20px;
+  font-size: 22px;
+  color: #232946;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .button-add-exam {
-    margin-left: 15px;
+  margin-left: 15px;
+}
+.status-badge.status-present {
+  background: #c8e6c9;
+  color: #256029;
+}
+.status-badge.status-absent {
+  background: #ffcdd2;
+  color: #c63737;
 }
 
+.status-badge {
+  border-radius: 2px;
+  padding: 0.25em 0.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+}
 
 /* Small devices (landscape phones, 576px and up) */
 
 @media (min-width: 300px) {
-    .body-module {
-        margin-top: 7rem;
-    }
+  .body-module {
+    margin-top: 7rem;
+  }
 }
 
 @media (min-width: 400px) {
-    .body-module {
-        margin-top: 5rem;
-    }
+  .body-module {
+    margin-top: 5rem;
+  }
 }
 
 @media only screen and (max-width: 900px) {
-    .data {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .label {
-        background-color: #f9bc60;
-        color: #232946;
-        height: 25px;
-    }
-    .time {
-        font-size: 8px;
-    }
-    .message {
-        width: 260px;
-        height: auto;
-        margin-left: 0px;
-        margin-top: 2px;
-    }
-    .role-teacher {
-        margin-top: -12px;
-    }
-    .role-student {
-        margin-top: -12px;
-    }
-    /* .message h6{
+  .data {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .label {
+    background-color: #f9bc60;
+    color: #232946;
+    height: 25px;
+  }
+  .time {
+    font-size: 8px;
+  }
+  .message {
+    width: 260px;
+    height: auto;
+    margin-left: 0px;
+    margin-top: 2px;
+  }
+  .role-teacher {
+    margin-top: -12px;
+  }
+  .role-student {
+    margin-top: -12px;
+  }
+  /* .message h6{
         width: 50px;
     } */
-    .view-exam {
-        height: 480px;
-    }
-    .view-module {
-        height: 410px;
-    }
-    .view-content-exam {
-        height: 380px;
-    }
+  .view-exam {
+    height: 480px;
+  }
+  .view-module {
+    height: 410px;
+  }
+  .view-content-exam {
+    height: 380px;
+  }
 }
 
-:host ::ng-deep .p-tabview .p-tabview-panels{
-    background-color: transparent;
-  }
+:host ::ng-deep .p-tabview .p-tabview-panels {
+  background-color: transparent;
+}
 
 :host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-    border-color: #F4CAAE;
-    background-color: #232946;
-    color:  #F4CAAE;
-    height: 50px;   
+  border-color: #f4caae;
+  background-color: #232946;
+  color: #f4caae;
+  height: 50px;
 }
-:host ::ng-deep .p-button{
-    background-color: #2b50b4;
-    border: none;
+:host ::ng-deep .p-button {
+  background-color: #2b50b4;
+  border: none;
 }
-:host ::ng-deep .p-button:hover{
-    background-color: #244295;
+:host ::ng-deep .p-button:hover {
+  background-color: #244295;
 }
-:host ::ng-deep .p-tabview .p-tabview-nav{
-    border: none;
-}
-
-:host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link{
-    border: none;
-    border-radius: 6px;
-    color: #a9b7c4;
-}
-.icon-schedule img{
-    width: 25px;
-    height: 28px;    
+:host ::ng-deep .p-tabview .p-tabview-nav {
+  border: none;
 }
 
-.icon-schedule h6{
-    margin-top: 5px;
-    margin-left: 15px;
-    font-size: 18px;
+:host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  border: none;
+  border-radius: 6px;
+  color: #a9b7c4;
 }
-.card-text{
-    color:#858699;
-    margin-bottom: 20px;
+.icon-schedule img {
+  width: 25px;
+  height: 28px;
 }
-.content-description h5{
-    font-size: 30px;
-    color: #232946;
-    font-weight: bold;    
+
+.icon-schedule h6 {
+  margin-top: 5px;
+  margin-left: 15px;
+  font-size: 18px;
 }
-.content-description p{
-    font-size: 18px;
+.card-text {
+  color: #858699;
+  margin-bottom: 20px;
+}
+.content-description h5 {
+  font-size: 30px;
+  color: #232946;
+  font-weight: bold;
+}
+.content-description p {
+  font-size: 18px;
 }

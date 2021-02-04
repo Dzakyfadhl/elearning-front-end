@@ -19,12 +19,7 @@ export class SubjectCategoryService {
     ResponseModel<SubjectCategoryResponseDTO[]>
   > {
     return this.http.get<ResponseModel<SubjectCategoryResponseDTO[]>>(
-      `${Constants.BASE_URL}/subjectcategory`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      `${Constants.BASE_URL}/subjectcategory`
     );
   }
 
@@ -32,12 +27,7 @@ export class SubjectCategoryService {
     id: string
   ): Observable<ResponseModel<SubjectCategoryResponseDTO[]>> {
     return this.http.get<ResponseModel<SubjectCategoryResponseDTO[]>>(
-      `${Constants.BASE_URL}/subjectcategory/id/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      `${Constants.BASE_URL}/subjectcategory/id/${id}`
     );
   }
 
@@ -46,12 +36,7 @@ export class SubjectCategoryService {
   ): Observable<ResponseModel<SubjectCategoryCreateRequestDTO[]>> {
     return this.http.post<ResponseModel<SubjectCategoryCreateRequestDTO[]>>(
       `${Constants.BASE_URL}/subjectcategory`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      data
     );
   }
 
@@ -60,12 +45,7 @@ export class SubjectCategoryService {
   ): Observable<SubjectCategoryUpdateRequestDTO> {
     return this.http.put<SubjectCategoryUpdateRequestDTO>(
       `${Constants.BASE_URL}/subjectcategory`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      data
     );
   }
 
@@ -74,12 +54,7 @@ export class SubjectCategoryService {
   ): Observable<DeleteSubjectRequestDTO> {
     return this.http.patch<DeleteSubjectRequestDTO>(
       `${Constants.BASE_URL}/subjectcategory`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      data
     );
   }
 }

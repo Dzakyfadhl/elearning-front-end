@@ -1,4 +1,5 @@
 import { ThrowStmt } from '@angular/compiler';
+import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DetailCourseResponse } from 'projects/lawerning/src/app/model/detail-course-response';
@@ -17,6 +18,8 @@ export class ModuleTeacherComponent implements OnInit {
   dtlCourse: DetailCourseResponse;
   student: StudentByCourseIdResponse;
   totalModule: number;
+
+  courseId: string;
   // dtlModule: DetailModuleResponse[];
 
   constructor(
@@ -28,6 +31,7 @@ export class ModuleTeacherComponent implements OnInit {
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe((value) => {
+      this.courseId = value.courseId;
       this.studentService
         .getStudentByCourseId(value.courseId)
         .subscribe((val) => {
@@ -47,9 +51,15 @@ export class ModuleTeacherComponent implements OnInit {
   }
 
   viewModule(index: number) {
+    let dataObj = {
+      idCourse: '',
+      idModule: '',
+    };
     let tempModule: any = this.dtlCourse.modules[index];
     let moduleId = tempModule.id;
     console.log(moduleId);
-    this.router.navigate([`/dtl-module/${moduleId}`]);
+    dataObj.idCourse = this.courseId;
+    dataObj.idModule = moduleId;
+    this.router.navigate([`/dtl-module`], { queryParams: dataObj });
   }
 }

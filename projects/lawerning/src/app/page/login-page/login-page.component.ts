@@ -17,7 +17,7 @@ export class LoginPageComponent implements OnInit {
   ) {}
 
   data = new LoginRequest();
-  
+
   ngOnInit(): void {}
 
   login() {
@@ -26,7 +26,7 @@ export class LoginPageComponent implements OnInit {
         let result = value.result;
         this.authService.setLoginResponse(result);
 
-        console.log(this.authService.getLoginResponse().token);
+        console.log(this.authService.getLoginResponse());
 
         if (result.role.code == 'RL-003') {
           this.router.navigateByUrl('/home-teacher');

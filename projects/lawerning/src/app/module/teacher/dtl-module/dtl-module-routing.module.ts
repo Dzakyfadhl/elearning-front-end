@@ -4,7 +4,7 @@ import { DtlModuleComponent } from '@bootcamp-lawerning-page/teacher/dtl-module/
 
 const routes: Routes = [
   {
-    path: 'dtl-module/:moduleId',
+    path: 'dtl-module',
     component: DtlModuleComponent,
   },
 ];

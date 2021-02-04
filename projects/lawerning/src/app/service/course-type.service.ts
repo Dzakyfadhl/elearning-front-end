@@ -17,12 +17,7 @@ export class CourseTypeService {
 
   getListCourseType(): Observable<ResponseModel<CourseTypeResponse[]>> {
     return this.http.get<ResponseModel<CourseTypeResponse[]>>(
-      `${Constants.BASE_URL}/course/category`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      `${Constants.BASE_URL}/course/category`
     );
   }
 
@@ -31,12 +26,7 @@ export class CourseTypeService {
   ): Observable<CourseTypeCreateRequest> {
     return this.http.post<CourseTypeCreateRequest>(
       `${Constants.BASE_URL}/course/category`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      data
     );
   }
 
@@ -45,23 +35,11 @@ export class CourseTypeService {
   ): Observable<CourseTypeUpdateRequestDTO> {
     return this.http.put<CourseTypeUpdateRequestDTO>(
       `${Constants.BASE_URL}/course/category`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      data
     );
   }
 
   deleteCourseTypeById(id: string): Observable<any> {
-    return this.http.delete<any>(
-      `${Constants.BASE_URL}/course/category/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
-    );
+    return this.http.delete<any>(`${Constants.BASE_URL}/course/category/${id}`);
   }
 }

@@ -5,12 +5,12 @@ import { HomeTeacherComponent } from '@bootcamp-lawerning-page/teacher/home-teac
 const routes: Routes = [
   {
     path: 'home-teacher',
-    component: HomeTeacherComponent
-  }
+    component: HomeTeacherComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class TeacherRoutingModule { }
+export class TeacherRoutingModule {}

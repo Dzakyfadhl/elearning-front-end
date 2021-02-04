@@ -5,13 +5,13 @@ import { SubmissionTeacherModule } from './submission-teacher.module';
 
 const routes: Routes = [
   {
-    path: 'submission-teacher/:examName',
-    component: SubmissionTeacherComponent
-  }
+    path: 'submission-teacher/:examId',
+    component: SubmissionTeacherComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class SubmissionTeacherRoutingModule { }
+export class SubmissionTeacherRoutingModule {}

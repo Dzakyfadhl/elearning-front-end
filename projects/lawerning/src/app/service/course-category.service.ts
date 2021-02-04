@@ -17,12 +17,7 @@ export class CourseCategoryService {
 
   getSubjectCategory(): Observable<ResponseModel<CourseCategoryResponseDTO[]>> {
     return this.http.get<ResponseModel<CourseCategoryResponseDTO[]>>(
-      `${Constants.BASE_URL}/course/category`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      `${Constants.BASE_URL}/course/category`
     );
   }
 
@@ -31,12 +26,7 @@ export class CourseCategoryService {
   ): Observable<CourseCategoryCreateRequestDTO> {
     return this.http.post<CourseCategoryCreateRequestDTO>(
       `${Constants.BASE_URL}/course/category`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      data
     );
   }
 
@@ -45,12 +35,7 @@ export class CourseCategoryService {
   ): Observable<CourseCategoryUpdateRequestDTO> {
     return this.http.put<CourseCategoryUpdateRequestDTO>(
       `${Constants.BASE_URL}/course/category`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      data
     );
   }
 
@@ -59,12 +44,7 @@ export class CourseCategoryService {
   ): Observable<DeleteCourseCategoryRequestDTO> {
     return this.http.patch<DeleteCourseCategoryRequestDTO>(
       `${Constants.BASE_URL}/course/category`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      data
     );
   }
 }

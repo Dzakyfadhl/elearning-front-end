@@ -1,47 +1,92 @@
 <div class="d-flex" id="wrapper">
-    <div class="bg-light border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading text-center rounded-circle">
-            <div class="rounded-circle mx-auto pt-4" style="width: 100px; height: 100px;">
-                <p-avatar icon="pi pi-user" styleClass="p-mr-2" size="xlarge"
-                    [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
-            </div>
-        </div>
-        <div class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action" [routerLink]="['/admin/home']" routerLinkActive="active">
-                <i class="pi pi-home"></i> Home
-            </a>
-            <a class="list-group-item list-group-item-action" [routerLink]="['/admin/teachers']" routerLinkActive="active">
-                <i class="pi pi-users"></i> Teacher
-            </a>
-            <a class="list-group-item list-group-item-action" [routerLink]="['/admin/student']" routerLinkActive="active">
-                <i class="pi pi-users"></i> Student
-            </a>
-            <a class="list-group-item list-group-item-action" [routerLink]="['/admin/courses']" routerLinkActive="active">
-                <i class="pi pi-ticket"></i> Course
-            </a>
-            <a class="list-group-item list-group-item-action" [routerLink]="['/admin/course-type']" routerLinkActive="active">
-                <i class="pi pi-tags"></i> Course Type
-            </a>
-            <a class="list-group-item list-group-item-action" [routerLink]="['/admin/subjects']" routerLinkActive="active">
-                <i class="pi pi-table"></i> Subject Category
-            </a>
-        </div>
+  <div class="bg-light border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading text-center rounded-circle">
+      <div
+        class="rounded-circle mx-auto pt-4"
+        style="width: 100px; height: 100px"
+      >
+        <p-avatar
+          icon="pi pi-user"
+          styleClass="p-mr-2"
+          size="xlarge"
+          [style]="{ 'background-color': '#2196F3', color: '#ffffff' }"
+          shape="circle"
+        ></p-avatar>
+      </div>
     </div>
+    <div class="list-group list-group-flush">
+      <a
+        class="list-group-item list-group-item-action"
+        [routerLink]="['/admin/home']"
+        routerLinkActive="active"
+      >
+        <i class="pi pi-home"></i> Home
+      </a>
+      <a
+        class="list-group-item list-group-item-action"
+        [routerLink]="['/admin/teachers']"
+        routerLinkActive="active"
+      >
+        <i class="pi pi-users"></i> Teacher
+      </a>
+      <a
+        class="list-group-item list-group-item-action"
+        [routerLink]="['/admin/student']"
+        routerLinkActive="active"
+      >
+        <i class="pi pi-users"></i> Student
+      </a>
+      <a
+        class="list-group-item list-group-item-action"
+        [routerLink]="['/admin/courses']"
+        routerLinkActive="active"
+      >
+        <i class="pi pi-ticket"></i> Course
+      </a>
+      <a
+        class="list-group-item list-group-item-action"
+        [routerLink]="['/admin/course-type']"
+        routerLinkActive="active"
+      >
+        <i class="pi pi-tags"></i> Course Type
+      </a>
+      <a
+        class="list-group-item list-group-item-action"
+        [routerLink]="['/admin/subjects']"
+        routerLinkActive="active"
+      >
+        <i class="pi pi-table"></i> Subject Category
+      </a>
+    </div>
+  </div>
 
-    <div id="page-content-wrapper" class="">
-        <nav class="navbar navbar-expand-lg navbar-light border-bottom p-2 px-2 px-sm-5">
-            <button class="navbar-toggler" type="button" data-toggle="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand ml-lg-2 ml-auto" href="#">
-                <img src="assets/images/logo4.png" width="48px" height="48px" alt="Lawerning">
-                <span class="d-none d-lg-inline pl-lg-2">Lawerning</span>
-            </a>
-            <button pButton type="button" label="Sign out" class="p-button p-button-rounded p-button-outlined ml-auto"
-                icon="pi pi-sign-out" (click)="logout()"></button>
-        </nav>
-        <div class="container-fluid">
-            <router-outlet></router-outlet>
-        </div>
+  <div id="page-content-wrapper" class="">
+    <nav
+      class="navbar navbar-expand-lg navbar-light border-bottom p-2 px-2 px-sm-5"
+    >
+      <button class="navbar-toggler" type="button" data-toggle="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand ml-lg-2 ml-auto" href="#">
+        <img
+          src="assets/images/logo4.png"
+          width="48px"
+          height="48px"
+          alt="Lawerning"
+        />
+        <span class="d-none d-lg-inline pl-lg-2">Lawerning</span>
+      </a>
+      <button
+        pButton
+        type="button"
+        label="Sign out"
+        class="p-button p-button-rounded p-button-outlined ml-auto"
+        icon="pi pi-sign-out"
+        (click)="logout()"
+      ></button>
+    </nav>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
     </div>
+  </div>
 </div>
