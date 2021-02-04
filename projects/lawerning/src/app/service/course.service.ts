@@ -18,12 +18,7 @@ export class CourseService {
 
   getAvailableCourse(): Observable<ResponseModel<CourseAvailableResponse[]>> {
     return this.http.get<ResponseModel<CourseAvailableResponse[]>>(
-      `${Constants.BASE_URL}/course/available`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      `${Constants.BASE_URL}/course/available`
     );
   }
   // http://192.168.15.224:8080/student/ddbf2c2a-f0ad-46bc-ad64-088860fe1d9a/course
@@ -31,12 +26,7 @@ export class CourseService {
     id: string
   ): Observable<ResponseModel<CourseStudentResponse[]>> {
     return this.http.get<ResponseModel<CourseStudentResponse[]>>(
-      `${Constants.BASE_URL}/student/${id}/course`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      `${Constants.BASE_URL}/student/${id}/course`
     );
   }
 

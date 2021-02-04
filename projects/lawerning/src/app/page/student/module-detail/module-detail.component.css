@@ -10,6 +10,10 @@
 .back {
   color: white;
 }
+.arrow-back :hover {
+  cursor: pointer;
+  color: #f4caae;
+}
 .s-card {
   background-color: #232946;
 }
@@ -24,6 +28,7 @@
 }
 .head-module h5 {
   color: #232946;
+  font-weight: bold;
 }
 .head-exam {
   background-color: #f4caae;

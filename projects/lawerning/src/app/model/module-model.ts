@@ -6,5 +6,8 @@ export class ModuleModel {
   title: string;
   description: string;
   subjectName: string;
+  attendanceId: string;
+  verifyStatus: boolean;
+  isAttendance: boolean;
   schedule: ScheduleModel;
 }

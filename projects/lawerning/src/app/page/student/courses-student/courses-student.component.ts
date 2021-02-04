@@ -12,7 +12,7 @@ import { CourseService } from '../../../service/course.service';
 export class CoursesStudentComponent implements OnInit {
   course: any = {};
   result: any = [];
-
+  studentId: string;
   isCompleted: boolean;
 
   courses: CourseStudentResponse[];
@@ -56,7 +56,9 @@ export class CoursesStudentComponent implements OnInit {
   viewModule(index: number) {
     let tempCourse: CourseStudentResponse = this.courses[index];
     let courseId = tempCourse.id;
+    this.studentId = this.auth.getLoginResponse().userRoleId;
     // this.route.navigateByUrl('module/course');
-    this.route.navigate(['/student/module/course', courseId]);
+    this.route.navigate([`/course/${courseId}/student/${this.studentId}`]);
+    // this.route.navigate(['/course/', courseId, '/student/', this.studentId]);
   }
 }

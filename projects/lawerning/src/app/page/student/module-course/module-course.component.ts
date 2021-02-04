@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AttendanceRequest } from '../../../model/attendance-request';
 import { DetailCourseResponse } from '../../../model/detail-course-response';
+import { AttendanceService } from '../../../service/attendance.service';
+import { AuthService } from '../../../service/auth.service';
 import { ModuleService } from '../../../service/module.service';
 
 @Component({
@@ -13,56 +16,97 @@ export class ModuleCourseComponent implements OnInit {
   countTemp: number = 0;
   total: number = 0;
   value: number = 0;
-
+  isAttendance: boolean = false;
   dateTimes = [];
+  dataAttendance = [];
+
   modules = new DetailCourseResponse();
+
+  dateObj = new Date();
+  courseId: string;
 
   constructor(
     private activeRoute: ActivatedRoute,
     private route: Router,
-    private moduleService: ModuleService
+    private auth: AuthService,
+    private moduleService: ModuleService,
+    private attendanceService: AttendanceService
   ) {}
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe((val) => {
-      console.log(val.courseId);
-
-      this.moduleService.getModuleAvailable(val.courseId).subscribe((value) => {
-        this.modules = value.result;
-        console.log(this.modules);
-        console.log(this.modules.modules.length);
-
-        this.total = this.modules.modules.length;
-
-        this.checkValidate();
-        console.log(this.countTemp, ' of ', this.total);
-        let val = (this.countTemp / this.total) * 100;
-        this.value = Math.ceil(val);
-        console.log(this.value);
-      });
+      this.courseId = val.courseId;
+      this.showModule();
     });
 
     this.activeRoute.params.subscribe((value) => {
       this.course = value;
-      console.log(this.course);
     });
   }
 
+  showModule() {
+    this.moduleService
+      .getModuleStudent(this.courseId, this.auth.getLoginResponse().userRoleId)
+      .subscribe((value) => {
+        this.modules = value.result;
+
+        this.modules.modules.forEach((data) => {
+          let dateStartMerge = `${data.schedule.date} ${data.schedule.startTime}`;
+          let dateEndMerge = `${data.schedule.date} ${data.schedule.endTime}`;
+
+          let dateStart = new Date(dateStartMerge);
+          let dateEnd = new Date(dateEndMerge);
+
+          let dateModule = `${dateStart.getDate()}${dateStart.getMonth() + 1}`;
+
+          let dateCurrent = `${this.dateObj.getDate()}${
+            this.dateObj.getMonth() + 1
+          }`;
+
+          let hourStartModule = dateStart.getHours();
+          let minuteStartModule = dateStart.getMinutes();
+
+          let hourEndModule = dateEnd.getHours();
+          let minuteEndModule = dateEnd.getMinutes();
+
+          let hourCurrent = this.dateObj.getHours();
+          let minuteCurrent = this.dateObj.getMinutes();
+
+          if (dateModule == dateCurrent && hourStartModule <= hourCurrent) {
+            data.isAttendance = true;
+          } else if (
+            dateModule == dateCurrent &&
+            hourStartModule <= hourCurrent &&
+            minuteStartModule < minuteCurrent &&
+            hourEndModule >= hourCurrent
+          ) {
+            data.isAttendance = false;
+          } else if (dateModule != dateCurrent) {
+            data.isAttendance = false;
+          }
+        });
+
+        this.total = this.modules.modules.length;
+
+        this.checkValidate();
+
+        let val = (this.countTemp / this.total) * 100;
+        this.value = Math.ceil(val);
+      });
+  }
   checkValidate() {
-    let dateObj = new Date();
-    let currentMonth = dateObj.getUTCMonth() + 1;
-    let currentDay = dateObj.getUTCDate();
-    let currentHour = dateObj.getHours();
-    let currentMinute = dateObj.getMinutes();
+    let currentMonth = this.dateObj.getUTCMonth() + 1;
+    let currentDay = this.dateObj.getUTCDate();
+    let currentHour = this.dateObj.getHours();
+    let currentMinute = this.dateObj.getMinutes();
 
     this.modules.modules.forEach((value) => {
       let datetime = value.schedule.date + ' ' + value.schedule.endTime;
       this.dateTimes.push(datetime);
-      // console.log(this.dateTimes);
+      this.dataAttendance.push(value.attendanceId);
     });
 
-    this.dateTimes.forEach((value) => {
-      console.log('DATE TIME: ' + value);
+    this.dateTimes.forEach((value, index) => {
       let newDate = new Date(value);
 
       let moduleMonth = newDate.getUTCMonth() + 1;
@@ -87,11 +131,16 @@ export class ModuleCourseComponent implements OnInit {
         moduleMinute
       );
 
-      if (currentMonth >= moduleMonth && currentDay > moduleDay) {
+      if (
+        this.dataAttendance[index] != null &&
+        currentMonth >= moduleMonth &&
+        currentDay > moduleDay &&
+        currentHour >= moduleHour
+      ) {
         console.log('Completed');
         this.countTemp += 1;
       } else {
-        console.log('process');
+        console.log('Process');
       }
     });
   }
@@ -102,5 +151,17 @@ export class ModuleCourseComponent implements OnInit {
     console.log(id);
 
     this.route.navigate([`/module/`, id]);
+  }
+
+  attendanceRequest(moduleId: string) {
+    let dataAttendance = new AttendanceRequest();
+    dataAttendance.idModule = moduleId;
+    dataAttendance.idStudent = this.auth.getLoginResponse().userRoleId;
+    this.attendanceService
+      .attendanceStudent(dataAttendance)
+      .subscribe((val) => {
+        console.log(val);
+        this.showModule();
+      });
   }
 }

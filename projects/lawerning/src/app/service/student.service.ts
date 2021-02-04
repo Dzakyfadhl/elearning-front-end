@@ -15,14 +15,7 @@ export class StudentService {
 
   getProfile(): Observable<ResponseModel<StudentProfileResponse>> {
     return this.http.get<ResponseModel<StudentProfileResponse>>(
-      `${Constants.BASE_URL}/student/${
-        this.auth.getLoginResponse().userRoleId
-      }`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.auth.getLoginResponse().token}`,
-        },
-      }
+      `${Constants.BASE_URL}/student/${this.auth.getLoginResponse().userRoleId}`
     );
   }
 
@@ -30,12 +23,7 @@ export class StudentService {
     id: string
   ): Observable<ResponseModel<StudentByCourseIdResponse>> {
     return this.http.get<ResponseModel<StudentByCourseIdResponse>>(
-      `${Constants.BASE_URL}/course/${id}/students`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.auth.getLoginResponse().token}`,
-        },
-      }
+      `${Constants.BASE_URL}/course/${id}/students`
     );
   }
 }

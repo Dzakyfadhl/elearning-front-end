@@ -11,6 +11,8 @@ import { DetailModuleService } from '../../../service/detail-module.service';
 import { ExamService } from '../../../service/exam.service';
 import { ForumService } from '../../../service/forum.service';
 import { Location } from '@angular/common';
+import { LessonService } from '../../../service/lesson.service';
+import { LessonResponse } from '../../../model/lesson-response';
 
 @Component({
   selector: 'app-module-detail',
@@ -19,7 +21,7 @@ import { Location } from '@angular/common';
 })
 export class ModuleDetailComponent implements OnInit {
   title: string;
-  baseUrl = 'http://192.168.13.87:8080/file';
+  baseUrl = 'http://192.168.15.224:8080/file';
 
   content: string;
   moduleId: string;
@@ -31,6 +33,8 @@ export class ModuleDetailComponent implements OnInit {
 
   day: number = 0;
   dayPost: number = 0;
+
+  lessons: LessonResponse[];
 
   detail = new DetailModuleResponse();
   exams: ExamsModuleResponseDTO[];
@@ -48,7 +52,8 @@ export class ModuleDetailComponent implements OnInit {
     private forumService: ForumService,
     private auth: AuthService,
     private route: Router,
-    private location: Location
+    private location: Location,
+    private lessonService: LessonService
   ) {}
 
   ngOnInit(): void {
@@ -60,9 +65,13 @@ export class ModuleDetailComponent implements OnInit {
         this.isEmpty = false;
       }
       this.moduleId = value.id;
+      this.lessonService.getLessonModule(value.id).subscribe((dataLesson) => {
+        this.lessons = dataLesson.result;
+      });
 
       this.examService.getDetailModuleExam(value.id).subscribe((dataExam) => {
         this.exams = dataExam.result;
+
         if (this.exams === undefined) {
           this.isEmpty = true;
         } else {
@@ -108,7 +117,7 @@ export class ModuleDetailComponent implements OnInit {
           if (!val.photoId) {
             this.photo = 'assets/images/default.png';
           } else {
-            this.photo = `http://192.168.15.224:8080/file/${val.photoId}`;
+            this.photo = `${this.baseUrl}/${val.photoId}`;
           }
         });
         if (this.messages.length > 0) {
@@ -127,15 +136,10 @@ export class ModuleDetailComponent implements OnInit {
     data.versionModule = 0;
     this.forumService.saveForum(data).subscribe((val) => {
       this.showDiscussion();
-
       this.content = '';
-      // this.route.navigate(['/module/', this.moduleId]);
     });
   }
 
-  // previousPage(){
-  //   this.route.navigate('/student/module/course/',)
-  // }
   fileChange(event) {
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
@@ -144,13 +148,16 @@ export class ModuleDetailComponent implements OnInit {
       let data: FormData = new FormData();
       data.append('file', file);
       this.formData = data;
+
       this.file = file.name;
     }
   }
 
-  upload() {
-    this.http.post(`${this.baseUrl}`, this.formData).subscribe((value) => {
-      console.log(value);
-    });
+  upload(index: number) {
+    let data: ExamsModuleResponseDTO = this.exams[index];
+
+    this.examService
+      .uploadExamStudent(data.id, this.formData)
+      .subscribe((value) => console.log(value));
   }
 }

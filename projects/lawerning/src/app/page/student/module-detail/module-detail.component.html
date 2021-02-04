@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-space-evenly">
-            <a (click)="prevPage()" class="mr-3 mb-3">
+            <a (click)="prevPage()" class="arrow-back mr-3 mb-3">
               <i class="back pi pi-arrow-left" style="font-size: 2rem"></i>
             </a>
             <div class="d-flex justify-content-start">
@@ -70,7 +70,7 @@
     <div class="col-lg-8 mb-2">
       <div class="view-exam">
         <div *ngIf="isEmpty == true" class="d-flex justify-content-center m-5">
-          <img src="assets/images/dataEmpty.png" height="250" alt="" />
+          <img src="assets/images/dataEmpty.png" height="350" alt="" />
         </div>
         <p-tabView *ngIf="isEmpty == false">
           <p-tabPanel *ngFor="let e of exams; let i = index">
@@ -107,13 +107,13 @@
 
                   <!-- <p class="text-info" *ngIf="e.feedback == ''">{{file}}</p> -->
 
-                  <a href="" *ngIf="e.feedback != ''"
+                  <!-- <a href="" *ngIf="e.feedback != ''"
                     ><i class="pi pi-file mr-2"></i>jawaban<i
                       class="pi pi-times mr-2"
                     ></i>
-                  </a>
+                  </a> -->
 
-                  <div *ngIf="e.feedback == ''" class="input-group mb-3">
+                  <div class="input-group mb-3">
                     <div class="custom-file">
                       <input
                         type="file"
@@ -139,7 +139,7 @@
                     class="p-button-secondary"
                     label="Upload"
                     icon="pi pi-upload"
-                    (click)="upload()"
+                    (click)="upload(i)"
                   ></button>
                 </div>
               </div>
@@ -151,14 +151,36 @@
     <div class="col-lg-4">
       <div class="view-module card">
         <div class="head-module card-header">
-          <h5 class="text-center">Module</h5>
+          <div class="d-flex justify-content-start">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="currentColor"
+              class="bi bi-journal-bookmark-fill m-1"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z"
+              />
+              <path
+                d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"
+              />
+              <path
+                d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"
+              />
+            </svg>
+
+            <h5 class="m-1">Lesson</h5>
+          </div>
         </div>
         <div class="body-module card-body">
           <h6>Download</h6>
           <hr />
-          <div class="d-flex flex-column">
-            <a href="">
-              <h6><i class="pi pi-file mr-2"></i>materi-java.pdf</h6></a
+          <div *ngFor="let l of lessons" class="d-flex flex-column">
+            <a href="http://192.168.15.224:8080/file/{{ l.id }}">
+              <h6><i class="pi pi-file mr-2"></i>{{ l.fileName }}</h6></a
             >
           </div>
         </div>
@@ -201,7 +223,10 @@
               {{ m.durationHour }} hour {{ m.durationMinute }} minute ago
             </p>
 
-            <p *ngIf="m.durationHour == 0" class="time m-3 text-secondary">
+            <p
+              *ngIf="m.day == m.dayPost && m.durationHour == 0"
+              class="time m-3 text-secondary"
+            >
               {{ m.durationMinute }} minute ago
             </p>
           </div>

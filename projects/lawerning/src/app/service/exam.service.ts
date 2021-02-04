@@ -32,12 +32,7 @@ export class ExamService {
     id: string
   ): Observable<ResponseModel<ExamsModuleResponseDTO[]>> {
     return this.http.get<ResponseModel<ExamsModuleResponseDTO[]>>(
-      `${Constants.BASE_URL}/exam/module/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      `${Constants.BASE_URL}/exam/module/${id}`
     );
   }
 
@@ -57,12 +52,16 @@ export class ExamService {
   updateScore(data: UpdateScoreRequestDTO): Observable<any> {
     return this.http.patch<UpdateScoreRequestDTO>(
       `${Constants.BASE_URL}/exam/submission`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      data
+    );
+  }
+
+  uploadExamStudent(examId: string, formData: FormData): Observable<any> {
+    return this.http.post<any>(
+      `${Constants.BASE_URL}/exam/student?examId=${examId}&studentId=${
+        this.authService.getLoginResponse().userRoleId
+      }`,
+      formData
     );
   }
 }

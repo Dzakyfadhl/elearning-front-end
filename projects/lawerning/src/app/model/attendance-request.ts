@@ -1,4 +1,4 @@
 export class AttendanceRequest {
-  moduleId: string;
-  studentId: string;
+  idModule: string;
+  idStudent: string;
 }

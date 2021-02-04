@@ -17,35 +17,17 @@ export class ForumService {
     id: string
   ): Observable<ResponseModel<ForumModuleResponseDTO[]>> {
     return this.http.get<ResponseModel<ForumModuleResponseDTO[]>>(
-      `${Constants.BASE_URL}/forum/module/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      `${Constants.BASE_URL}/forum/module/${id}`
     );
   }
 
   saveForum(data: ForumRequestDTO): Observable<ForumRequestDTO> {
-    return this.http.post<ForumRequestDTO>(
-      `${Constants.BASE_URL}/forum`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
-    );
+    return this.http.post<ForumRequestDTO>(`${Constants.BASE_URL}/forum`, data);
   }
 
   deleteDiscussion(id: string, userId: string): Observable<any> {
     return this.http.delete<any>(
-      `${Constants.BASE_URL}/forum?id=${id}&userId=${userId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
-        },
-      }
+      `${Constants.BASE_URL}/forum?id=${id}&userId=${userId}`
     );
   }
 }

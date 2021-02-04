@@ -1,132 +1,154 @@
-.header-module{
-    background-color: #232946;
-    height: 240px;
+.status-badge.status-present {
+  background: #c8e6c9;
+  color: #256029;
 }
-.header-module h1{
-    
-    color: #f4caae;
+.status-badge.status-absent {
+  background: #ffcdd2;
+  color: #c63737;
 }
-.header-module p{
-    color: white;
+.status-badge {
+  border-radius: 2px;
+  padding: 0.25em 0.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  height: 20px;
+  font-size: 10px;
+  letter-spacing: 0.3px;
 }
-/* .body-module{
-    position: absolute;
-    top: 35%;
-} */
-.icon{
-    
-    color: #f4caae;
+.header-module {
+  background-color: #232946;
+  height: auto;
 }
-a{
-    color: #232946;
+.header-module h1 {
+  color: #f4caae;
 }
-.title h4{
-    color: #232946;
+.header-module p {
+  color: white;
 }
-
-.title h5{
-    color: #232946;
+.icon {
+  color: #f4caae;
 }
-
- h3{
-    color:#232946;
-    font-weight: bold;
+a {
+  color: #232946;
 }
-.register button{
-    background-color: #232946;
-}
-.register button:hover{
-    background-color: #333c6d;
+.title h4 {
+  color: #232946;
 }
 
-:host ::ng-deep .custom .p-panel-header{
-    font-size: 25px;
-    font-weight: bold;
-    color:  #232946;
+.title h5 {
+  color: #232946;
+}
+
+h3 {
+  color: #232946;
+  font-weight: bold;
+}
+.register button {
+  background-color: #232946;
+}
+.register button:hover {
+  background-color: #333c6d;
+}
+
+:host ::ng-deep .custom .p-panel-header {
+  font-size: 25px;
+  font-weight: bold;
+  color: #232946;
+}
+.button-r {
+  background-color: #232946;
+}
+.info {
+  font-weight: bold;
+  margin: 10px;
+}
+.title {
+  margin: 10px;
+  font-weight: bold;
+  color: #232946;
+}
+.process {
+  margin: 10px;
+  color: #f4caae;
+  font-weight: bold;
+}
+.btn-title {
+  width: 7rem;
+  margin: 10px;
+  color: white;
+  background-color: #62688a;
+  border: none;
+}
+.btn-x {
+  width: 7rem;
+  margin: 10px;
+  color: white;
+  background-color: grey;
+  border: none;
+}
+a :hover {
+  color: white;
+  background-color: #232946;
+}
+.label-done {
+  margin: 10px;
+}
+:host ::ng-deep .p-progressbar .p-progressbar-value {
+  background-color: #232946;
+}
+:host ::ng-deep .p-progressbar {
+  background-color: #62688a;
+}
+:host ::ng-deep .p-progressbar .p-progressbar-label {
+  color: white;
+}
+@media (min-width: 411px) {
+  .title {
+    font-size: 15px;
   }
-.button-r{
-    background-color: #232946;
-}
-.info{
-    font-weight: bold;
-    margin: 10px;
-}
-.title{
-    margin: 10px;
-    font-weight: bold;
-    color: #232946;
-}
 
-.btn-title{
-    width: 7rem;
-    margin: 10px;
-    color: white;
-    background-color: #62688a;
-    border: none;
-}
-a :hover{
-    color: white;
-    background-color:  #232946;
-}
-.label-done{
-    margin: 10px;
-}
-  :host ::ng-deep .p-progressbar .p-progressbar-value{
-   background-color: #232946;
-  }
-  :host ::ng-deep .p-progressbar {
-    background-color: #62688a;
-   }
-  :host ::ng-deep .p-progressbar .p-progressbar-label{
-      color: white;
-  }
-@media (min-width: 411px){
-    .title{
-        font-size: 15px;
-    }
-    /* .btn-title{
+  /* .btn-title{
         width: 7rem;
         height: 2rem;
     } */
-.left-content{
+  .left-content {
     width: 6rem;
     background-color: #232946;
-}
-.right-content{
+  }
+  .right-content {
     width: 20rem;
+  }
 }
-
-}
-@media(min-width: 768px){
-    .title{
-        font-size: 24px;
-    }
-    .left-content{
-        width: 6rem;
-        background-color: #232946;
-    }
-    .right-content{
-        width: 100%;
-    }
-}
-@media(min-width: 1024px){
-    .title{
-        font-size: 24px;
-    }
-    .left-content{
-        width: 6rem;
-        /* color: white; */
-        background-color: #232946;
-    }
-    .right-content{
-        width: 100%;
-    }
-}
-@media screen and(max-width: 991px){
-    .header-module{
+@media (min-width: 768px) {
+  .title {
+    font-size: 24px;
+  }
+  .left-content {
+    width: 6rem;
     background-color: #232946;
-}   
-.header-module h2{
-    color: #f9bc60;
+  }
+  .right-content {
+    width: 100%;
+  }
 }
+@media (min-width: 1024px) {
+  .title {
+    font-size: 24px;
+  }
+  .left-content {
+    width: 6rem;
+    /* color: white; */
+    background-color: #232946;
+  }
+  .right-content {
+    width: 100%;
+  }
+}
+@media screen and(max-width: 991px) {
+  .header-module {
+    background-color: #232946;
+  }
+  .header-module h2 {
+    color: #f9bc60;
+  }
 }

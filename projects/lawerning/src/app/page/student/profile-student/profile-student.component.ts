@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentProfileResponse } from '../../../model/student-profile-response';
 import { AuthService } from '../../../service/auth.service';
+import { ModuleService } from '../../../service/module.service';
 import { StudentService } from '../../../service/student.service';
 
 @Component({
@@ -48,7 +49,8 @@ export class ProfileStudentComponent implements OnInit {
 
   constructor(
     private studentService: StudentService,
-    private auth: AuthService
+    private auth: AuthService,
+    private moduleService: ModuleService
   ) {}
 
   ngOnInit(): void {

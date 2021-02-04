@@ -29,14 +29,7 @@ export class DetailModuleService {
   }
   getDtlModule(id: string): Observable<ResponseModel<DetailModuleResponse>> {
     return this.http.get<ResponseModel<DetailModuleResponse>>(
-      `${Constants.BASE_URL}/module/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer : ${
-            this.authService.getLoginResponse().token
-          }`,
-        },
-      }
+      `${Constants.BASE_URL}/module/${id}`
     );
   }
 
