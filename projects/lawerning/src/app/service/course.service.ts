@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import Constants from '../constants/constant';
 import { CourseAvailableResponse } from '../model/course-available-response';
+import { CourseCreateRequestDTO } from '../model/course-dto/course-create-request';
+import { CourseUpdateRequestDTO } from '../model/course-dto/course-update-request';
 import { CourseStudentResponse } from '../model/course-student-response';
 import { CourseTeacherResponse } from '../model/course-teacher-response';
 import { ResponseModel } from '../model/response-model';
@@ -48,6 +50,24 @@ export class CourseService {
           Authorization: `Bearer ${this.authService.getLoginResponse().token}`,
         },
       }
+    );
+  }
+
+  insertCourse(
+    data: CourseCreateRequestDTO
+  ): Observable<CourseCreateRequestDTO> {
+    return this.http.post<CourseCreateRequestDTO>(
+      `${Constants.BASE_URL}/course`,
+      data
+    );
+  }
+
+  updateCourse(
+    data: CourseUpdateRequestDTO
+  ): Observable<CourseUpdateRequestDTO> {
+    return this.http.put<CourseUpdateRequestDTO>(
+      `${Constants.BASE_URL}/course`,
+      data
     );
   }
 }
