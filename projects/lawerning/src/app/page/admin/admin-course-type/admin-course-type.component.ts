@@ -1,58 +1,58 @@
 import { Component, OnInit } from '@angular/core';
-
-interface CourseType {
-  code: string;
-  name: string;
-}
+import { CourseTypeCreateRequest } from '../../../model/course-type-dto/course-type-create-request';
+import { CourseTypeResponse } from '../../../model/course-type-dto/course-type-response';
+import { AuthService } from '../../../service/auth.service';
+import { CourseTypeService } from '../../../service/course-type.service';
 
 @Component({
   selector: 'app-admin-course-type',
   templateUrl: './admin-course-type.component.html',
-  styleUrls: ['./admin-course-type.component.css']
+  styleUrls: ['./admin-course-type.component.css'],
 })
 export class AdminCourseTypeComponent implements OnInit {
-
-  listCourseTypes: CourseType[];
+  listCourseTypes: CourseTypeResponse[];
 
   codeVal: string;
   nameVal: string;
 
-  courseType: CourseType;
-
   displayModal: boolean;
   displayConfirmation: boolean;
 
-  constructor() { }
+  constructor(
+    private auth: AuthService,
+    private courseTypeService: CourseTypeService
+  ) {}
 
   ngOnInit(): void {
     this.defineCourseType();
   }
 
   defineCourseType() {
-    this.listCourseTypes = [
-      {
-        code: "CT001",
-        name: "JAVA EXPRESS"
+    this.courseTypeService.getListCourseType().subscribe(
+      (val) => {
+        this.listCourseTypes = val.result;
       },
-      {
-        code: "CT002",
-        name: "JAVA REGULER"
+      (err) => {}
+    );
+  }
+
+  createCrouseType() {
+    let data = new CourseTypeCreateRequest();
+    data.code = this.codeVal;
+    data.name = this.nameVal;
+    data.createdBy = this.auth.getLoginResponse().userId;
+
+    this.courseTypeService.insertCourseType(data).subscribe(
+      (val) => {
+        console.log(val);
       },
-      {
-        code: "CT003",
-        name: "ANGULAR EXPRESS"
-      },
-      {
-        code: "CT004",
-        name: "ANGULAR REGULER"
-      },
-    ]
+      (err) => {}
+    );
   }
 
   showModalEdit(i: number) {
     this.codeVal = this.listCourseTypes[i].code;
     this.nameVal = this.listCourseTypes[i].name;
-
 
     this.displayModal = true;
   }
@@ -64,5 +64,4 @@ export class AdminCourseTypeComponent implements OnInit {
   confirmDelete() {
     this.displayConfirmation = true;
   }
-
 }

@@ -39,11 +39,26 @@ export class CourseCategoryService {
     );
   }
 
-  deleteCourseCategoryById(
+  deleteCourseCategoryById(id: string): Observable<string> {
+    return this.http.delete<string>(
+      `${Constants.BASE_URL}/course/category/id/${id}`
+    );
+  }
+
+  setIsActiveFalse(
     data: DeleteCourseCategoryRequestDTO
   ): Observable<DeleteCourseCategoryRequestDTO> {
     return this.http.patch<DeleteCourseCategoryRequestDTO>(
-      `${Constants.BASE_URL}/course/category`,
+      `${Constants.BASE_URL}/course/category/false`,
+      data
+    );
+  }
+
+  setIsActiveTrue(
+    data: DeleteCourseCategoryRequestDTO
+  ): Observable<DeleteCourseCategoryRequestDTO> {
+    return this.http.patch<DeleteCourseCategoryRequestDTO>(
+      `${Constants.BASE_URL}/course/category/true`,
       data
     );
   }

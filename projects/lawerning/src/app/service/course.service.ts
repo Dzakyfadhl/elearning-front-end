@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import Constants from '../constants/constant';
 import { CourseAvailableResponse } from '../model/course-available-response';
+import { CourseAdminResponseDTO } from '../model/course-dto/course-admin-response';
 import { CourseCreateRequestDTO } from '../model/course-dto/course-create-request';
 import { CourseUpdateRequestDTO } from '../model/course-dto/course-update-request';
 import { CourseStudentResponse } from '../model/course-student-response';
@@ -53,6 +54,12 @@ export class CourseService {
     return this.http.put<CourseUpdateRequestDTO>(
       `${Constants.BASE_URL}/course`,
       data
+    );
+  }
+
+  getCoursesForAdmin(): Observable<ResponseModel<CourseAdminResponseDTO[]>> {
+    return this.http.get<ResponseModel<CourseAdminResponseDTO[]>>(
+      `${Constants.BASE_URL}/course/admin`
     );
   }
 }

@@ -49,11 +49,26 @@ export class SubjectCategoryService {
     );
   }
 
-  deleteSubjectCategory(
+  deleteSubjectCategory(id: string): Observable<string> {
+    return this.http.delete<string>(
+      `${Constants.BASE_URL}/subjectcategory/id/${id}`
+    );
+  }
+
+  setIsActiveFalse(
     data: DeleteSubjectRequestDTO
   ): Observable<DeleteSubjectRequestDTO> {
     return this.http.patch<DeleteSubjectRequestDTO>(
-      `${Constants.BASE_URL}/subjectcategory`,
+      `${Constants.BASE_URL}/subjectcategory/false`,
+      data
+    );
+  }
+
+  setIsActiveTrue(
+    data: DeleteSubjectRequestDTO
+  ): Observable<DeleteSubjectRequestDTO> {
+    return this.http.patch<DeleteSubjectRequestDTO>(
+      `${Constants.BASE_URL}/subjectcategory/true`,
       data
     );
   }

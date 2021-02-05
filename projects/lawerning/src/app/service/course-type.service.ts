@@ -5,6 +5,7 @@ import Constants from '../constants/constant';
 import { CourseTypeCreateRequest } from '../model/course-type-dto/course-type-create-request';
 import { CourseTypeResponse } from '../model/course-type-dto/course-type-response';
 import { CourseTypeUpdateRequestDTO } from '../model/course-type-dto/course-type-update-request';
+import { DeleteCourseTypeRequestDTO } from '../model/course-type-dto/delete-course-type-request';
 import { ResponseModel } from '../model/response-model';
 import { SubjectCategoryUpdateRequestDTO } from '../model/subject-category-dto/subject-category-update-request';
 import { AuthService } from './auth.service';
@@ -17,7 +18,7 @@ export class CourseTypeService {
 
   getListCourseType(): Observable<ResponseModel<CourseTypeResponse[]>> {
     return this.http.get<ResponseModel<CourseTypeResponse[]>>(
-      `${Constants.BASE_URL}/course/category`
+      `${Constants.BASE_URL}/course/type`
     );
   }
 
@@ -25,7 +26,7 @@ export class CourseTypeService {
     data: CourseTypeCreateRequest
   ): Observable<CourseTypeCreateRequest> {
     return this.http.post<CourseTypeCreateRequest>(
-      `${Constants.BASE_URL}/course/category`,
+      `${Constants.BASE_URL}/course/type`,
       data
     );
   }
@@ -34,12 +35,30 @@ export class CourseTypeService {
     data: CourseTypeUpdateRequestDTO
   ): Observable<CourseTypeUpdateRequestDTO> {
     return this.http.put<CourseTypeUpdateRequestDTO>(
-      `${Constants.BASE_URL}/course/category`,
+      `${Constants.BASE_URL}/course/type`,
       data
     );
   }
 
   deleteCourseTypeById(id: string): Observable<any> {
-    return this.http.delete<any>(`${Constants.BASE_URL}/course/category/${id}`);
+    return this.http.delete<any>(`${Constants.BASE_URL}/course/type/id/${id}`);
+  }
+
+  setIsActiveFalse(
+    data: DeleteCourseTypeRequestDTO
+  ): Observable<DeleteCourseTypeRequestDTO> {
+    return this.http.patch<DeleteCourseTypeRequestDTO>(
+      `${Constants.BASE_URL}/course/type/false`,
+      data
+    );
+  }
+
+  setIsActiveTrue(
+    data: DeleteCourseTypeRequestDTO
+  ): Observable<DeleteCourseTypeRequestDTO> {
+    return this.http.patch<DeleteCourseTypeRequestDTO>(
+      `${Constants.BASE_URL}/course/type/true`,
+      data
+    );
   }
 }
