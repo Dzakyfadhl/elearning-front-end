@@ -44,6 +44,11 @@
               <img src="assets/images/calender1.svg" />
             </span>
             <h6>{{ dtlModule.schedule.date | date: "dd MMM yyyy" }}</h6>
+            <span class="ml-2"><img src="assets/images/time1.svg" /> </span>
+            <h6>
+              {{ dtlModule.schedule.startTime }} -
+              {{ dtlModule.schedule.endTime }}
+            </h6>
           </div>
         </h6>
       </div>
@@ -56,13 +61,46 @@
                 <span>Lesson </span>
               </div>
             </ng-template>
-            <div
-              class="col-lg-12 mt-2 p-3 mb-2"
-              *ngFor="let l of lesson; let i = index"
-            >
+            <div class="col-lg-12 mt-2" *ngFor="let l of lesson; let i = index">
               <a href="http://192.168.15.224:8080/file/{{ l.id }}">
-                <h5>{{ l.fileName }}</h5>
+                <div class="d-flex justify-content-evenly">
+                  <i class="mt-1 pi pi-file-o"></i>
+                  <h5 class="ml-2">{{ l.fileName }}</h5>
+                </div>
               </a>
+            </div>
+
+            <div class="col-lg-12 text-center">
+              <h5 class="text-bold text-info">Lesson Module</h5>
+              <div class="input-group mb-3">
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    class="custom-file-input"
+                    (change)="fileChange($event)"
+                    accept=".pdf,.doc,.docx"
+                  />
+                  <label class="custom-file-label" for="inputGroupFile01"
+                    >Choose file</label
+                  >
+                  <label
+                    *ngIf="file != undefined"
+                    class="custom-file-label"
+                    for="inputGroupFile01"
+                    >{{ file }}</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12 text-center mt-3">
+              <h6 class="mb-3">Accepted file types: .doc .docx .pdf</h6>
+              <button
+                pButton
+                class="p-button-secondary"
+                label="Upload"
+                icon="pi pi-upload"
+                (click)="upload()"
+              ></button>
             </div>
           </p-tabPanel>
           <p-tabPanel>
@@ -93,7 +131,7 @@
                 </a>
                 <div class="d-flex justify-content-end">
                   <button
-                    (click)="viewModule(i)"
+                    (click)="viewExamSubmission(i)"
                     pButton
                     type="button"
                     label="Submission"
@@ -209,11 +247,11 @@
               </div>
             </ng-template>
             <div class="col-lg-12 col-md-12">
-              <div *ngFor="let m of discussion">
+              <div class="forum" *ngFor="let m of discussion">
                 <div class="row">
                   <div class="image">
                     <img
-                      [src]="m.photoId"
+                      [src]="photo"
                       height="50"
                       width="50"
                       class="rounded-circle"
@@ -226,8 +264,25 @@
                     </h5>
                   </div>
                   <div class="datetime">
-                    <p class="time m-3 text-secondary">
-                      {{ m.createdAt | date: "dd MMM yyyy HH:MM" }}
+                    <p
+                      *ngIf="m.day > m.dayPost"
+                      class="time m-3 text-secondary"
+                    >
+                      {{ m.createdAt | date: "dd/MM/yyyy H:m" }}
+                    </p>
+                    <p
+                      *ngIf="m.day == m.dayPost && m.durationHour > 0"
+                      class="time m-3 text-secondary"
+                    >
+                      {{ m.durationHour }} hour {{ m.durationMinute }} minute
+                      ago
+                    </p>
+
+                    <p
+                      *ngIf="m.day == m.dayPost && m.durationHour == 0"
+                      class="time m-3 text-secondary"
+                    >
+                      {{ m.durationMinute }} minute ago
                     </p>
                   </div>
                   <div *ngIf="m.roleCode == 'RL-004'" class="role-student">
@@ -239,7 +294,6 @@
                   <div class="message col-sm-6 col-lg-12 col-md-12">
                     <h6 class="m">{{ m.content }}</h6>
                   </div>
-                  <hr class="my-4" />
                 </div>
               </div>
             </div>
@@ -258,14 +312,16 @@
                   />
                 </svg>
 
-                <div class="input-group mb-3">
+                <div class="textarea input-group mb-3">
                   <textarea
                     class="form-control"
                     aria-label="With textarea"
                     placeholder="Write a comment..."
+                    style="height: 40px"
+                    [(ngModel)]="content"
                   ></textarea>
                 </div>
-                <a class="send">
+                <a class="send" (click)="sendContent()">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="25"

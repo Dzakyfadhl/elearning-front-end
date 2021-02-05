@@ -14,6 +14,10 @@ export class HomeTeacherComponent implements OnInit {
   constructor(private courseService: CourseService, private router: Router) {}
 
   ngOnInit(): void {
+    this.showCourseTeacher();
+  }
+
+  showCourseTeacher() {
     this.courseService.getCourseTeacher().subscribe((value) => {
       this.courses = value.result;
       console.log(this.courses);

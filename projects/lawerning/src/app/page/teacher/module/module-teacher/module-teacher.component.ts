@@ -18,10 +18,7 @@ export class ModuleTeacherComponent implements OnInit {
   dtlCourse: DetailCourseResponse;
   student: StudentByCourseIdResponse;
   totalModule: number;
-
   courseId: string;
-  // dtlModule: DetailModuleResponse[];
-
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -30,23 +27,25 @@ export class ModuleTeacherComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activeRoute.params.subscribe((value) => {
-      this.courseId = value.courseId;
-      this.studentService
-        .getStudentByCourseId(value.courseId)
-        .subscribe((val) => {
-          this.student = val.result;
-        });
-    });
+    this.showDetailCourseTeacher();
+    this.showStudentByCourse();
+  }
 
+  showDetailCourseTeacher() {
     this.activeRoute.params.subscribe((value) => {
       console.log(value.courseId);
+      this.courseId = value.courseId;
       this.dtlCourseTeacherService
         .getDetailCourseTeacher(value.courseId)
         .subscribe((val) => {
           this.dtlCourse = val.result;
           this.totalModule = this.dtlCourse.modules.length;
         });
+    });
+  }
+  showStudentByCourse() {
+    this.studentService.getStudentByCourseId(this.courseId).subscribe((val) => {
+      this.student = val.result;
     });
   }
 

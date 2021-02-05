@@ -188,7 +188,11 @@
   background: #ffcdd2;
   color: #c63737;
 }
-
+.forum {
+  /* border: 1px solid; */
+  width: 60%;
+  margin-bottom: 20px;
+}
 .status-badge {
   border-radius: 2px;
   padding: 0.25em 0.5rem;
@@ -278,13 +282,13 @@
   color: #a9b7c4;
 }
 .icon-schedule img {
-  width: 25px;
-  height: 28px;
+  width: 20px;
+  height: 23px;
 }
 
 .icon-schedule h6 {
-  margin-top: 5px;
-  margin-left: 15px;
+  margin-top: 1px;
+  margin-left: 12px;
   font-size: 18px;
 }
 .card-text {
@@ -299,3 +303,8 @@
 .content-description p {
   font-size: 18px;
 }
+
+/* .input-group {
+  width: 50%;
+  margin-left: 2rem;
+} */

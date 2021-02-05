@@ -41,7 +41,7 @@ export class ExamService {
   }
 
   updateScore(data: UpdateScoreRequestDTO): Observable<any> {
-    return this.http.patch<UpdateScoreRequestDTO>(
+    return this.http.put<UpdateScoreRequestDTO>(
       `${Constants.BASE_URL}/exam/submission`,
       data
     );

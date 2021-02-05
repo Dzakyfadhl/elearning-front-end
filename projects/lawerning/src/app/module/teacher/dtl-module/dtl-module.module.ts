@@ -1,23 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {TabViewModule} from 'primeng/tabview';
+import { TabViewModule } from 'primeng/tabview';
 import { DtlModuleRoutingModule } from './dtl-module-routing.module';
 import { DtlModuleComponent } from '@bootcamp-lawerning-page/teacher/dtl-module/dtl-module.component';
-import {PanelModule} from 'primeng/panel';
-import {ButtonModule} from 'primeng/button';
-import {DialogModule} from 'primeng/dialog';
+import { PanelModule } from 'primeng/panel';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
-import {DropdownModule} from 'primeng/dropdown';
+import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
-import {BlockUIModule} from 'primeng/blockui';
-import {InputTextareaModule} from 'primeng/inputtextarea';
-import {CalendarModule} from 'primeng/calendar';
-
+import { BlockUIModule } from 'primeng/blockui';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CalendarModule } from 'primeng/calendar';
+import { FileUploadModule } from 'primeng/fileupload';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
-  declarations: [
-    DtlModuleComponent
-  ],
+  declarations: [DtlModuleComponent],
   imports: [
     CommonModule,
     DtlModuleRoutingModule,
@@ -31,7 +30,9 @@ import {CalendarModule} from 'primeng/calendar';
     FormsModule,
     BlockUIModule,
     InputTextareaModule,
-    CalendarModule
-  ]
+    CalendarModule,
+    FileUploadModule,
+    HttpClientModule,
+  ],
 })
-export class DtlModuleModule { }
+export class DtlModuleModule {}

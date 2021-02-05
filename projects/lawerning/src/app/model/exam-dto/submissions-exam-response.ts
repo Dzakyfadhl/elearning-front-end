@@ -6,4 +6,5 @@ export class SubmissionsByExamResponseDTO {
   grade: number;
   submittedDate: string;
   fileName: string;
+  fileId: string;
 }

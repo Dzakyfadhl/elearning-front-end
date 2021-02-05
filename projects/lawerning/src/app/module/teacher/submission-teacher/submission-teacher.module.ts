@@ -4,13 +4,12 @@ import { SubmissionTeacherRoutingModule } from './submission-teacher-routing.mod
 import { SubmissionTeacherComponent } from '@bootcamp-lawerning-page/teacher/submission-teacher/submission-teacher.component';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
-import {DialogModule} from 'primeng/dialog';
+import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
-import {BlockUIModule} from 'primeng/blockui';
+import { BlockUIModule } from 'primeng/blockui';
+import { FormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [
-    SubmissionTeacherComponent
-  ],
+  declarations: [SubmissionTeacherComponent],
   imports: [
     CommonModule,
     SubmissionTeacherRoutingModule,
@@ -18,7 +17,8 @@ import {BlockUIModule} from 'primeng/blockui';
     ButtonModule,
     DialogModule,
     InputTextModule,
-    BlockUIModule
-  ]
+    BlockUIModule,
+    FormsModule,
+  ],
 })
-export class SubmissionTeacherModule { }
+export class SubmissionTeacherModule {}

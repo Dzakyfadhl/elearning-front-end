@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SubmissionsByExamResponseDTO } from '../../../model/exam-dto/submissions-exam-response';
+import { UpdateScoreRequestDTO } from '../../../model/exam-dto/update-score-request';
+import { AuthService } from '../../../service/auth.service';
 import { ExamService } from '../../../service/exam.service';
 
 @Component({
@@ -10,24 +12,24 @@ import { ExamService } from '../../../service/exam.service';
 })
 export class SubmissionTeacherComponent implements OnInit {
   examSelected: any;
-
+  tempFirstName: string;
+  tempLastName: string;
+  score: number;
+  data = new UpdateScoreRequestDTO();
   studentSubmission: SubmissionsByExamResponseDTO[];
 
-  examStudent: {
-    code: string;
-    name: string;
-    date: string;
-    file: string;
-    grade: string;
-  }[];
   display: boolean = false;
   constructor(
     private activeRoute: ActivatedRoute,
-    private router: Router,
-    private examService: ExamService
+    private examService: ExamService,
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {
+    this.showExamSubmission();
+  }
+
+  showExamSubmission() {
     this.activeRoute.params.subscribe((value) => {
       console.log(value.examId);
       this.examService.getExamSubmission(value.examId).subscribe((value) => {
@@ -35,33 +37,29 @@ export class SubmissionTeacherComponent implements OnInit {
         console.log(this.studentSubmission);
       });
     });
+  }
+  showDialog(index: number) {
+    let tempObj = this.studentSubmission[index];
+    this.tempFirstName = tempObj.firstName;
+    this.tempLastName = tempObj.lastName;
+    this.data.id = tempObj.id;
+    this.data.updatedBy = this.auth.getLoginResponse().userId;
+    console.log(this.data.updatedBy);
+    console.log(this.data.id);
 
-    this.examStudent = [
-      {
-        code: 'ST01',
-        name: 'Moch Apri',
-        date: '29 Jan 2021 09:00',
-        file: 'file.pdf',
-        grade: '0',
-      },
-      {
-        code: 'ST02',
-        name: 'Farrel Yuda Praditya',
-        date: '29 Jan 2021 09:15',
-        file: 'file.pdf',
-        grade: '80',
-      },
-      {
-        code: 'ST03',
-        name: 'Dzaky Fadilah',
-        date: '29 Jan 2021 09:00',
-        file: 'file.pdf',
-        grade: '90',
-      },
-    ];
+    this.display = true;
   }
 
-  showDialog() {
-    this.display = true;
+  updateScore() {
+    this.data.grade = this.score;
+    console.log(this.data.grade);
+    console.log(this.data.updatedBy);
+    console.log(this.data.id);
+
+    this.examService.updateScore(this.data).subscribe((value) => {
+      console.log(value);
+      this.showExamSubmission();
+    });
+    this.display = false;
   }
 }

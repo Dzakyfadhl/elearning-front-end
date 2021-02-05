@@ -18,4 +18,15 @@ export class LessonService {
       `${Constants.BASE_URL}/module/lesson/${idModule}`
     );
   }
+
+  uploadLessonModule(
+    idUser: string,
+    idModule: string,
+    formData: FormData
+  ): Observable<any> {
+    return this.http.post<any>(
+      `${Constants.BASE_URL}/module/lesson?idUser=${idUser}&idModule=${idModule}`,
+      formData
+    );
+  }
 }
