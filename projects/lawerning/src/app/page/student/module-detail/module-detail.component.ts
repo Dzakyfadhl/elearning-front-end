@@ -13,6 +13,8 @@ import { ForumService } from '../../../service/forum.service';
 import { Location } from '@angular/common';
 import { LessonService } from '../../../service/lesson.service';
 import { LessonResponse } from '../../../model/lesson-response';
+import { ExamStudentResponse } from '../../../model/exam-dto/exam-student-response';
+import { ScheduleModel } from '../../../model/schedule-model';
 
 @Component({
   selector: 'app-module-detail',
@@ -36,17 +38,21 @@ export class ModuleDetailComponent implements OnInit {
 
   lessons: LessonResponse[];
 
-  detail = new DetailModuleResponse();
+  detail: DetailModuleResponse;
+
   exams: ExamsModuleResponseDTO[];
+
+  examStudents = new Map<string, any>();
 
   totalPost: number = 0;
   messages: ForumModuleResponseDTO[];
 
   isEmpty: boolean = false;
   isDatePast: boolean = false;
+  isAllowed: boolean;
+
   constructor(
     private activeRoute: ActivatedRoute,
-    private http: HttpClient,
     private dtlModuleService: DetailModuleService,
     private examService: ExamService,
     private forumService: ForumService,
@@ -64,24 +70,51 @@ export class ModuleDetailComponent implements OnInit {
       } else {
         this.isEmpty = false;
       }
+
       this.moduleId = value.id;
+
       this.lessonService.getLessonModule(value.id).subscribe((dataLesson) => {
         this.lessons = dataLesson.result;
       });
 
       this.examService.getDetailModuleExam(value.id).subscribe((dataExam) => {
         this.exams = dataExam.result;
-
         if (this.exams === undefined) {
           this.isEmpty = true;
         } else {
           this.isEmpty = false;
         }
+
+        if (this.exams.length > 0 && this.exams !== undefined) {
+          this.exams.forEach((data) => {
+            let date = new Date(data.endTime);
+            let dateNow = new Date();
+
+            this.examService
+              .getExamStudent(data.id)
+              .subscribe((dataExamStudent) => {
+                if (date < dateNow) {
+                  this.isAllowed = false;
+                  this.examStudents.set(data.id, [
+                    dataExamStudent.result,
+                    this.isAllowed,
+                  ]);
+                } else if (date > dateNow) {
+                  this.isAllowed = true;
+                  this.examStudents.set(data.id, [
+                    dataExamStudent.result,
+                    this.isAllowed,
+                  ]);
+                  console.log(data.title, 'allowed');
+                }
+              });
+          });
+        }
       });
 
       this.dtlModuleService.getDtlModule(value.id).subscribe((dataModule) => {
         this.detail = dataModule.result;
-        console.log(this.detail.schedule.date);
+        console.log(dataModule.result);
       });
     });
     this.showDiscussion();

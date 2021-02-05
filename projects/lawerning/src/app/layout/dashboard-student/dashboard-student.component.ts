@@ -32,8 +32,8 @@ export class DashboardStudentComponent implements OnInit {
     this.route.navigateByUrl('login-page');
   }
 
-  showStudentCourse() {
-    let id = this.auth.getLoginResponse().userRoleId;
-    this.route.navigate([`/student/${id}/course`]);
-  }
+  // showStudentCourse() {
+  //   let id = this.auth.getLoginResponse().userRoleId;
+  //   this.route.navigate([`/student/${id}/course`]);
+  // }
 }

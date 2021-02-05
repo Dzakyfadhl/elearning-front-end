@@ -33,7 +33,7 @@
             class="col-lg-4 col-md-6 mt-3 mb-3"
             *ngFor="let c of courses; let i = index"
           >
-            <div class="card mb-1 bg-white rounded" (click)="viewModule(i)">
+            <div class="card mb-1 bg-white rounded">
               <img
                 *ngIf="c.isCompleted == true"
                 src="assets/images/banner2.svg"
@@ -47,7 +47,9 @@
                 alt="..."
               />
               <div class="card-body">
-                <h5 class="card-title">{{ c.typeName }}</h5>
+                <a (click)="viewModule(i)">
+                  <h5 class="card-title">{{ c.typeName }}</h5>
+                </a>
                 <h6 class="text-secondary">{{ c.categoryName }}</h6>
                 <hr />
 

@@ -24,7 +24,7 @@ export class CoursesStudentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let date = new Date('2021-03-07');
+    let date = new Date();
 
     let month = date.getUTCMonth() + 1;
     let day = date.getUTCDate();

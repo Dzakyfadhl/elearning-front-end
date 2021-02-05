@@ -56,34 +56,26 @@ export class ModuleCourseComponent implements OnInit {
 
           let dateStart = new Date(dateStartMerge);
           let dateEnd = new Date(dateEndMerge);
+          let dateNow = new Date();
 
-          let dateModule = `${dateStart.getDate()}${dateStart.getMonth() + 1}`;
-
-          let dateCurrent = `${this.dateObj.getDate()}${
-            this.dateObj.getMonth() + 1
-          }`;
-
-          let hourStartModule = dateStart.getHours();
-          let minuteStartModule = dateStart.getMinutes();
-
-          let hourEndModule = dateEnd.getHours();
-          let minuteEndModule = dateEnd.getMinutes();
-
-          let hourCurrent = this.dateObj.getHours();
-          let minuteCurrent = this.dateObj.getMinutes();
-
-          if (dateModule == dateCurrent && hourStartModule <= hourCurrent) {
+          if (dateNow > dateStart && dateNow < dateEnd) {
             data.isAttendance = true;
-          } else if (
-            dateModule == dateCurrent &&
-            hourStartModule <= hourCurrent &&
-            minuteStartModule < minuteCurrent &&
-            hourEndModule >= hourCurrent
-          ) {
-            data.isAttendance = false;
-          } else if (dateModule != dateCurrent) {
+          } else {
             data.isAttendance = false;
           }
+
+          // if (dateModule == dateCurrent && hourStartModule <= hourCurrent) {
+          //   data.isAttendance = true;
+          // } else if (
+          //   dateModule == dateCurrent &&
+          //   hourStartModule <= hourCurrent &&
+          //   minuteStartModule < minuteCurrent &&
+          //   hourEndModule >= hourCurrent
+          // ) {
+          //   data.isAttendance = false;
+          // } else if (dateModule != dateCurrent) {
+          //   data.isAttendance = false;
+          // }
         });
 
         this.total = this.modules.modules.length;

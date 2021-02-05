@@ -65,6 +65,11 @@ export class ProfileStudentComponent implements OnInit {
         this.auth.getLoginResponse().photoId
       }`;
     }
+    // this.moduleService
+    //   .getModuleStudent(this.courseId, this.auth.getLoginResponse().userRoleId)
+    //   .subscribe((value) => {
+    //     this.modules = value.result;
+    //   });
 
     this.mymodules.forEach((value) => {
       let percent = (value.value / value.total) * 100;

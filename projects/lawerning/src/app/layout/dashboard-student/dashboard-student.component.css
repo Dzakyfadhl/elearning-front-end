@@ -5,8 +5,35 @@
 .navbar {
   border-bottom: 5px solid #232946;
 }
+.line {
+  width: 50px;
+  height: 5px;
+  background-color: #232946;
+  color: #232946;
+}
+.home-line {
+  width: 25px;
+  height: 5px;
+  background-color: #232946;
+  color: #232946;
+}
+.course-line {
+  width: 50px;
+  height: 5px;
+  background-color: #232946;
+  color: #232946;
+}
 a {
   cursor: pointer;
+}
+.ic {
+  margin-top: 10px;
+  margin-right: 4px;
+  margin-left: 4px;
+}
+.navbar-light .navbar-nav .active > .nav-link {
+  color: #232946;
+  font-weight: bold;
 }
 .notif {
   color: #232946;

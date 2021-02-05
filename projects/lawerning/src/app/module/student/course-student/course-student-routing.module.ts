@@ -4,7 +4,7 @@ import { CoursesStudentComponent } from '@bootcamp-lawerning-page/student/course
 
 const routes: Routes = [
   {
-    path: 'student/:id/course',
+    path: 'student/course',
     component: CoursesStudentComponent,
   },
 ];

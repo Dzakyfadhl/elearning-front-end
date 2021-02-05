@@ -1,127 +1,138 @@
- 
-.button-p{
-    background-color:#232946 ;
-  }
-.header-home{
-  /* position: absolute;
-  height: 50%; */
+.button-p {
+  background-color: #232946;
+}
+.row .categoryy {
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.row .categoryy::-webkit-scrollbar {
+  display: none;
+}
+
+/* .row .categoryy:hover {
+  height: 70px;
+  width: auto;
+  overflow-x: hidden;
+  overflow-y: hidden;
+} */
+/* .compt {
+  width: auto;
+  height: 30px;
+} */
+.header-home {
   height: auto;
   padding-bottom: 30px;
   background-color: #232946;
 }
-/* .body-home{
-  margin-top: 15rem;
-} */
-.custom-select{
-    background-color:rgb(224, 224, 224) !important;
-    border:1px solid #232946;
+.custom-select {
+  background-color: rgb(224, 224, 224) !important;
+  border: 1px solid #232946;
 }
-.form-control:focus{
+.form-control:focus {
   background-color: white;
 }
-.avail{
+.avail {
   color: #f4caae;
 }
 
-.header-home h1{
+.header-home h1 {
   color: #f4caae;
   font-weight: bold;
 }
-  /* .body-margin{
-    border: 1px solid grey;
-  } */
-  .card-body h5{
-    color: #232946;
-    font-weight: bold;
-  }
-  
-  .card-body h6{
-    color: grey;
-    font-weight: bold;
-  }
-  .badge{
-    background-color: #232946;
-    width: 5rem;
-  }
-  
-  .invalid-all{
-    background-color:  #3a4372;
-    border: none;
-  }
-  .invalid-selected{
-    border: none;
-    background-color:  #3a4372;
-  }
-  .valid-all{
-    border: none;
-    color:  #3a4372;
-    background-color: #f4caae;
-  }
-  .valid-selected{
-    color:  #3a4372;
-    border: none;
-    background-color:  #f4caae;
-  }
-  .card:hover{
-    cursor: pointer;
-    
-    /* width: 23rem;
-    height: 26rem; */
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.301), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  .card{
-    height: 25rem;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  .card img:hover{
-    opacity: 0.5;
-    
-  }
-  
-  a {
-      text-decoration: none;
-  }
-  .card-body a :hover{
-    color: #f4caae;
-    cursor: pointer;
-    text-decoration: #f4caae;
-  }
+.card-body h5 {
+  color: #232946;
+  font-weight: bold;
+}
 
-  :host ::ng-deep .p-inputtext{
-    background-color: #3a4372;
-    border: white;
-    color: white;
-    width: 20rem;
-  }
-  :host ::ng-deep .p-inputtext:focus{
-    background-color: white;
-    border: white;
-    color: black;
-    border: white;
-    width: 20rem;
-  }
-  :host ::ng-deep .p-carousel-container{
-    width: 30rem;
-    display: flex;
-    justify-content: center;
-  }
-  .p-scrollpanel.custombar2 .p-scrollpanel-wrapper {
-    border-right: 9px solid var(--layer-1);
-    border-bottom: 9px solid var(--layer-1);
-  }
-  .p-scrollpanel.custombar2 .p-scrollpanel-bar {
-    background-color: var(--layer-2);
-    border-radius: 0;
-    opacity: 1;
-    transition: background-color 0.2s;
-  }
-  .hello{
-      width: 200px;
-      height: 150px;
-      overflow-x: scroll;
-  }
-      
-  /* @media screen and (max-width: 411px) {
+.card-body h6 {
+  color: grey;
+  font-weight: bold;
+}
+.badge {
+  background-color: #232946;
+  width: 5rem;
+}
+.invalid-all {
+  /* max-height: 50px; */
+  background-color: #3a4372;
+
+  /* width: 50% !important; */
+  border: none;
+}
+.invalid-selected {
+  /* max-height: 50px; */
+  border: none;
+  /* width: 50% !important; */
+  background-color: #3a4372;
+}
+.valid-all {
+  /* max-height: 50px; */
+  border: none;
+
+  /* width: 50% !important; */
+  color: #3a4372;
+  background-color: #f4caae;
+}
+.valid-selected {
+  /* max-height: 50px; */
+
+  /* width: 50% !important; */
+  color: #3a4372;
+  border: none;
+  background-color: #f4caae;
+}
+
+.card {
+  height: 25rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+a {
+  text-decoration: none;
+}
+.card-body a :hover {
+  color: #3f5ae6;
+  cursor: pointer;
+
+  text-decoration-line: underline;
+  text-decoration-color: #3f5ae6;
+}
+
+:host ::ng-deep .p-inputtext {
+  background-color: #3a4372;
+  border: white;
+  color: white;
+  width: 20rem;
+}
+:host ::ng-deep .p-inputtext:focus {
+  background-color: white;
+  border: white;
+  color: black;
+  border: white;
+  width: 20rem;
+}
+:host ::ng-deep .p-carousel-container {
+  width: 30rem;
+  display: flex;
+  justify-content: center;
+}
+.p-scrollpanel.custombar2 .p-scrollpanel-wrapper {
+  border-right: 9px solid var(--layer-1);
+  border-bottom: 9px solid var(--layer-1);
+}
+.p-scrollpanel.custombar2 .p-scrollpanel-bar {
+  background-color: var(--layer-2);
+  border-radius: 0;
+  opacity: 1;
+  transition: background-color 0.2s;
+}
+/* .hello {
+  width: 200px;
+  height: 150px;
+  overflow-x: scroll;
+} */
+
+/* @media screen and (max-width: 411px) {
     .header-home{
       position: absolute;
       height: 50%;
@@ -132,56 +143,54 @@
       margin-left: 5%;
     }
   } */
-  @media (min-width: 411px) { 
-    .header-home{
-      /* position: absolute;
+@media (min-width: 411px) {
+  .header-home {
+    /* position: absolute;
       height: 80%; */
-      height: auto;
-      padding-bottom: 30px;
-      background-color: #232946;
-    }
-    .card-img-top{
-      height: 185px;
-    }
-    /* .body-home{
+    height: auto;
+    padding-bottom: 30px;
+    background-color: #232946;
+  }
+  .card-img-top {
+    height: 185px;
+  }
+  /* .body-home{
       margin-top: 22rem;
     } */
-   
-  }
+}
 
-@media (min-width: 768px) { 
-  .header-home{
+@media (min-width: 768px) {
+  .header-home {
     /* position: absolute;
     height: 50%; */
     height: auto;
     padding-bottom: 30px;
     background-color: #232946;
   }
-  .card-img-top{
+  .card-img-top {
     height: 175px;
   }
   /* .body-home{
     margin-top: 19rem;
   } */
-  .search-input{
+  .search-input {
     background-color: #3a4372;
     border: none;
     color: white;
     width: 30rem;
-    
   }
- }
+}
 
 @media (min-width: 1024px) {
   /* .body-home{
     margin-top: 20rem;
   } */
-  .card-img-top{
+  .card-img-top {
     height: 185px;
   }
- }
+}
 
-  /* @media screen and (max-width: 1024px) {
+/* @media screen and (max-width: 1024px) {
     .header-home{
       position: absolute;
       height: 50%;
@@ -192,6 +201,3 @@
       margin-left: 0%;
     }
   } */
-
-  
-  

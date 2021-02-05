@@ -38,29 +38,34 @@
       </div>
       <!-- <div class="d-flex justify-content-center"> -->
       <div class="container justify-content-center">
-        <p-scrollPanel [style]="{ width: '100%', height: '50px' }">
-          <div class="row justify-content-start pl-2">
-            <div class="p-2">
-              <a *ngIf="selectedCourse != 'all'" (click)="onChange('all')">
-                <button class="invalid-all btn btn-secondary">All</button>
-              </a>
-              <a *ngIf="selectedCourse == 'all'" (click)="onChange('all')">
-                <button class="valid-all btn btn-info">All</button>
-              </a>
-            </div>
-            <div class="p-2" *ngFor="let c of data">
-              <a *ngIf="selectedCourse != c" (click)="onChange(c)">
-                <button class="invalid-selected btn btn-secondary">
-                  {{ c }}
-                </button>
-              </a>
-
-              <a *ngIf="selectedCourse == c" (click)="onChange(c)">
-                <button class="valid-selected btn btn-info">{{ c }}</button>
-              </a>
-            </div>
+        <!-- <p-scrollPanel [style]="{ width: '100%', height: '50px' }"> -->
+        <div class="row categoryy">
+          <div class="col-auto p-2">
+            <a *ngIf="selectedCourse != 'all'" (click)="onChange('all')">
+              <button class="invalid-all btn btn-secondary">All</button>
+            </a>
+            <a *ngIf="selectedCourse == 'all'" (click)="onChange('all')">
+              <button class="valid-all btn btn-info">All</button>
+            </a>
           </div>
-        </p-scrollPanel>
+          <div class="col-auto p-2" *ngFor="let c of data">
+            <button
+              *ngIf="selectedCourse != c"
+              (click)="onChange(c)"
+              class="invalid-selected btn btn-secondary"
+            >
+              {{ c }}
+            </button>
+            <button
+              *ngIf="selectedCourse == c"
+              (click)="onChange(c)"
+              class="valid-selected btn btn-info"
+            >
+              {{ c }}
+            </button>
+          </div>
+        </div>
+        <!-- </p-scrollPanel> -->
       </div>
       <!-- </div> -->
     </div>
@@ -104,7 +109,7 @@
             *ngFor="let c of courseFiltering; let i = index"
           >
             <!-- <a > -->
-            <div class="card mb-1 bg-white rounded" (click)="viewModule(i)">
+            <div class="card mb-1 bg-white rounded">
               <div class="img">
                 <img
                   src="assets/images/banner.svg"
@@ -113,9 +118,11 @@
                 />
               </div>
               <div class="card-body">
-                <h5 class="card-title text-truncate" style="max-width: 19rem">
-                  {{ c.typeName }}
-                </h5>
+                <a (click)="viewModule(i)">
+                  <h5 class="card-title text-truncate" style="max-width: 19rem">
+                    {{ c.typeName }}
+                  </h5>
+                </a>
 
                 <h6 class="text-secondary">{{ c.categoryName }}</h6>
                 <hr />

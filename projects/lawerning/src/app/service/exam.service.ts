@@ -8,6 +8,7 @@ import { SubmissionsByExamResponseDTO } from '../model/exam-dto/submissions-exam
 import { UpdateScoreRequestDTO } from '../model/exam-dto/update-score-request';
 import { AuthService } from './auth.service';
 import Constants from '../constants/constant';
+import { ExamStudentResponse } from '../model/exam-dto/exam-student-response';
 
 @Injectable({
   providedIn: 'root',
@@ -52,6 +53,16 @@ export class ExamService {
         this.authService.getLoginResponse().userRoleId
       }`,
       formData
+    );
+  }
+
+  getExamStudent(
+    examId: string
+  ): Observable<ResponseModel<ExamStudentResponse>> {
+    return this.http.get<ResponseModel<ExamStudentResponse>>(
+      `${Constants.BASE_URL}/exam/${examId}/submission/${
+        this.authService.getLoginResponse().userRoleId
+      }`
     );
   }
 }

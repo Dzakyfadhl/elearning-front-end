@@ -69,10 +69,10 @@
   margin: 5px;
 }
 .view-exam {
-  height: 410px;
+  height: 430px;
 }
 .view-module {
-  height: 410px;
+  height: 430px;
 }
 .view-content-exam {
   height: 338px;
@@ -116,6 +116,20 @@
   border: none;
   color: grey;
 }
+.status-badge.status-present {
+  background: #c8e6c9;
+  color: #256029;
+}
+
+.status-badge {
+  border-radius: 2px;
+  padding: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  height: 25px;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+}
 /* :host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link:hover{
     background-color: #263580;
     border: none;
@@ -133,16 +147,34 @@
   .textarea {
     width: 100%;
   }
+  .view-exam {
+    height: 450px;
+  }
 
   .view-content-exam {
-    height: 410px;
+    overflow-y: scroll;
+    height: auto;
   }
   .view-module {
-    margin-top: 100px;
+    overflow-y: scroll;
+    margin-top: 200px;
+  }
+  .view-exam ::-webkit-scrollbar {
+    display: none;
+  }
+  .view-module ::-webkit-scrollbar {
+    display: none;
+  }
+  .head-module ::-webkit-scrollbar {
+    display: none;
+  }
+  .view-content-exam ::-webkit-scrollbar {
+    display: none;
   }
 }
 @media (min-width: 768px) {
   .view-module {
+    overflow-y: scroll;
     margin-top: 0px;
   }
   .textarea {
@@ -154,13 +186,26 @@
   }
 
   .view-content-exam {
-    height: 338px;
+    overflow-y: scroll;
+    height: 360px;
   }
   .forum {
     width: 60%;
   }
+  .view-exam ::-webkit-scrollbar {
+    display: none;
+  }
+  .view-module ::-webkit-scrollbar {
+    display: none;
+  }
+  .head-module ::-webkit-scrollbar {
+    display: none;
+  }
+  .view-content-exam ::-webkit-scrollbar {
+    display: none;
+  }
 }
-@media only screen and (max-width: 900px) {
+@media (min-width: 1024px) {
   .data {
     display: flex;
     flex-wrap: wrap;
@@ -193,13 +238,28 @@
   /* .message h6{
         width: 50px;
     } */
+
   .view-exam {
-    height: 480px;
+    height: 400px;
   }
   .view-module {
+    overflow-y: hidden;
     height: 410px;
   }
   .view-content-exam {
-    height: 380px;
+    overflow-y: scroll;
+    height: 340px;
+  }
+  .view-exam ::-webkit-scrollbar {
+    display: none;
+  }
+  .view-module ::-webkit-scrollbar {
+    display: none;
+  }
+  .head-module ::-webkit-scrollbar {
+    display: none;
+  }
+  .view-content-exam ::-webkit-scrollbar {
+    display: none;
   }
 }
