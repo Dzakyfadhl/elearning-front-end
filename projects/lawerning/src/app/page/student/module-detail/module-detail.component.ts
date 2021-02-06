@@ -57,7 +57,6 @@ export class ModuleDetailComponent implements OnInit {
     private examService: ExamService,
     private forumService: ForumService,
     private auth: AuthService,
-    private route: Router,
     private location: Location,
     private lessonService: LessonService
   ) {}

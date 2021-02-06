@@ -1,0 +1,144 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-1 sticky-top"
+>
+  <div class="d-flex flex-row pl-5 pr-3">
+    <img src="assets/images/logo.png" height="40" alt="" />
+
+    <h4 class="label-logo pt-1 pl-3">Lawerning</h4>
+  </div>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"></li>
+    </ul>
+    <div class="mr-5">
+      <div class="d-flex flex-row p-2">
+        <a class="btn-login btn btn-outline-secondary mr-3" routerLink="/login">
+          Sign In
+        </a>
+        <span class="line mr-3"></span>
+        <a href="" class="btn-register mt-2"> Sign Up </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="header-content container">
+  <div class="row justify-content-center p-5">
+    <div class="header-left col-lg-6 col-md-6 col-sm-12 mb-3">
+      <h1 class="text-center">Improve Your Skills</h1>
+      <h6 class="text-secondary my-4">
+        Let's find material according to your fashion and professional mentors.
+      </h6>
+      <div class="d-flex justify-content-center">
+        <button class="btn-get btn btn-primary">Find Course!</button>
+      </div>
+    </div>
+    <div class="header-right col-lg-6 col-md-6 col-sm-12">
+      <img src="assets/images/dataEmpty.png" class="img-improve" alt="" />
+    </div>
+  </div>
+</div>
+
+<div class="header-content2 container-fluid">
+  <div class="row justify-content-center p-5">
+    <div class="col-lg-12">
+      <h1 class="text-center">Let's find material according to your fashion</h1>
+      <hr />
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-3">
+    <div class="col-lg-4 mb-3">
+      <div class="d-flex justify-content-center">
+        <img
+          src="assets/images/female.jpg"
+          class="img-adv rounded-circle"
+          alt=""
+        />
+        <div class="d-flex flex-column p-3">
+          <h5>Advantage 1</h5>
+          <p>this is advantage 1</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 mb-3">
+      <div class="d-flex justify-content-center">
+        <img
+          src="assets/images/female.jpg"
+          class="img-adv rounded-circle"
+          alt=""
+        />
+        <div class="d-flex flex-column p-3">
+          <h5>Advantage 1</h5>
+          <p>this is advantage 1</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="d-flex justify-content-center">
+        <img
+          src="assets/images/female.jpg"
+          class="img-adv rounded-circle"
+          alt=""
+        />
+        <div class="d-flex flex-column p-3">
+          <h5>Advantage 1</h5>
+          <p>this is advantage 1</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="body-content bg-light container-fluid">
+  <div class="row justify-content-center p-5">
+    <h1 class="text-center mb-5">Courses</h1>
+    <div class="col-lg-12" *ngFor="let cm of categoryMerge">
+      <!-- <div class="col-lg-12"> -->
+      <h4 class="category text-info">{{ cm }}</h4>
+      <hr />
+      <!-- </div> -->
+      <div class="row mb-5">
+        <div class="d-flex justify-content-center" *ngFor="let c of courses">
+          <!-- <div class=""> -->
+          <div *ngIf="c.category == cm" class="card shadow-sm rounded-lg my-3">
+            <div class="d-flex flex-column">
+              <img
+                src="assets/images/ilustrator.jpg"
+                class="ilustrator rounded-sm"
+                alt=""
+              />
+              <div class="title m-3">
+                <h5>{{ c.typeName }}</h5>
+                <hr />
+              </div>
+              <div class="d-flex justify-content-start">
+                <img
+                  src="assets/images/female.jpg"
+                  class="img-teach rounded-circle m-3"
+                  alt=""
+                />
+                <div class="d-flex flex-column pt-3">
+                  <h5 class="text-info">{{ c.teacherName }}</h5>
+                  <h6 class="text-secondary">{{ c.special }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

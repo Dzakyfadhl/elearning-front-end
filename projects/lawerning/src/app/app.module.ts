@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { LoginPageComponent } from '@bootcamp-lawerning-page/login-page/login-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { Page404Component } from './page/page404/page404.component';
 import { FormsModule } from '@angular/forms';
@@ -13,13 +12,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ConfirmationService } from 'primeng/api';
 import { BaseHttpInterceptor } from './shared/base-http-interceptor';
 import { ToastModule } from 'primeng/toast';
+import { HomePageComponent } from './page/home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent,
     Page404Component,
     DashboardAdminComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
