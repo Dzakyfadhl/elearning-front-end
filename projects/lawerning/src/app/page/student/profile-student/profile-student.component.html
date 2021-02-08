@@ -42,13 +42,13 @@
               {{ studentProfile.firstName }} {{ studentProfile.lastName }}
             </h1>
             <img
-              *ngIf="studentProfile.gender == 'MALE'"
+              *ngIf="studentProfile.gender && studentProfile.gender.toString() === 'MALE'"
               src="assets/images/icon_male.png"
               height="30"
               alt=""
             />
             <img
-              *ngIf="studentProfile.gender == 'FEMALE'"
+              *ngIf="studentProfile.gender && studentProfile.gender.toString() === 'FEMALE'"
               src="assets/images/icon_female.png"
               height="30"
               alt=""

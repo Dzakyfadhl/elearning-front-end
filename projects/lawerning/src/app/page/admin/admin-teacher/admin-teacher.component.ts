@@ -6,9 +6,9 @@ import { AuthService } from '../../../service/auth.service';
 import { TeacherService } from '../../../service/teacher.service';
 import { UpdateTeacherRequest } from '../../../model/teacher-dto/update-teacher-request';
 import { ToastService } from '../../../service/toast.service';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { ResponseModel } from '../../../model/response-model';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Gender } from '../../../model/gender';
+import StringUtil from '../../../util/string-util';
 
 @Component({
   selector: 'app-admin-teacher',
@@ -16,6 +16,13 @@ import { Gender } from '../../../model/gender';
   styleUrls: ['./admin-teacher.component.css'],
 })
 export class AdminTeacherComponent implements OnInit {
+  constructor(
+    private authService: AuthService,
+    private teacherService: TeacherService,
+    private confirmationService: ConfirmationService,
+    private toastService: ToastService
+  ) {}
+  
   isCreateModalVisible: boolean;
   isEditModalVisible: boolean;
 
@@ -27,16 +34,15 @@ export class AdminTeacherComponent implements OnInit {
 
   submitted: boolean;
 
-  genders: string[] = Object.keys(Gender);
-
-  constructor(
-    private authService: AuthService,
-    private teacherService: TeacherService,
-    private confirmationService: ConfirmationService,
-    private toastService: ToastService
-  ) {}
+  genders: { key: string; value: string }[];
+  selectedGender: string;
 
   ngOnInit(): void {
+    this.genders = Object.keys(Gender)
+      .filter((item) => isNaN(Number(item)))
+      .map((item) => {
+        return { key: item.toUpperCase(), value: item };
+      });
     this.defineTeachers();
   }
 
@@ -91,14 +97,15 @@ export class AdminTeacherComponent implements OnInit {
         if (response.code === 200) {
           this.toastService.emitSuccessMessage(
             'Updated',
-            'Teacher has been updated successfully.'
+            response.result
           );
+          this.hideModal();
         }
       },
       (error: HttpErrorResponse) => {
         this.toastService.emitHttpErrorMessage(
           error,
-          'Failed to update teacher'
+          'Failed to update teacher.'
         );
       }
     );
@@ -140,6 +147,7 @@ export class AdminTeacherComponent implements OnInit {
 
   createTeacher() {
     this.submitted = true;
+    this.createRequest.gender = Gender[this.selectedGender];
     this.createRequest.createdBy = this.authService.getUserId();
     this.teacherService.createTeacher(this.createRequest).subscribe(
       (response) => {

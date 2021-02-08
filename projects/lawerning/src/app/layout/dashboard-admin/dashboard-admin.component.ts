@@ -40,6 +40,6 @@ export class DashboardAdminComponent implements OnInit {
 
   logout() {
     this.authService.signOut();
-    this.router.navigateByUrl('/login-page');
+    this.router.navigateByUrl('/login');
   }
 }

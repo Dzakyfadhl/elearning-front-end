@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { StudentProfileResponse } from '../../../model/student-profile-response';
+import { StudentResponse } from '../../../model/student/student-response';
 import { AuthService } from '../../../service/auth.service';
 import { ModuleService } from '../../../service/module.service';
 import { StudentService } from '../../../service/student.service';
+import { Gender } from '../../../model/gender';
 
 @Component({
   selector: 'app-profile-student',
@@ -10,7 +11,7 @@ import { StudentService } from '../../../service/student.service';
   styleUrls: ['./profile-student.component.css'],
 })
 export class ProfileStudentComponent implements OnInit {
-  studentProfile = new StudentProfileResponse();
+  studentProfile = new StudentResponse();
   photo: any;
 
   result: any = [];

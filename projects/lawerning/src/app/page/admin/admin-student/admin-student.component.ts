@@ -1,69 +1,115 @@
 import { Component, OnInit } from '@angular/core';
-
-interface Student {
-  code?: string;
-  name?: string;
-  phone?: string;
-  email?: string;
-  username?: string;
-}
+import { ConfirmationService } from 'primeng/api';
+import { Gender } from '../../../model/gender';
+import { StudentUpdateRequest } from '../../../model/student/student-edit-request';
+import { StudentResponse } from '../../../model/student/student-response';
+import { AuthService } from '../../../service/auth.service';
+import { StudentService } from '../../../service/student.service';
+import { ToastService } from '../../../service/toast.service';
 
 @Component({
   selector: 'app-admin-student',
   templateUrl: './admin-student.component.html',
-  styleUrls: ['./admin-student.component.css']
+  styleUrls: ['./admin-student.component.css'],
 })
 export class AdminStudentComponent implements OnInit {
+  constructor(
+    private toastService: ToastService,
+    private confirmationService: ConfirmationService,
+    private studentService: StudentService,
+    private authService: AuthService
+  ) {}
 
+  isEditModalVisible: boolean;
+  submitted = false;
 
-  selectedStudents: Student[];
+  students: StudentResponse[];
+  editRequest: StudentUpdateRequest;
 
-
-  statuses: any[];
-
-  loading: boolean = false;
-
-  activityValues: number[] = [0, 100];
-
-  listStudents: Student[];
-
-  constructor() { }
+  genders: { key: string; value: string }[];
+  selectedGender: string;
 
   ngOnInit(): void {
-    this.defineStudents();
+    this.initStudentList();
+    this.genders = Object.keys(Gender)
+      .filter((item) => isNaN(Number(item)))
+      .map((item) => {
+        return { key: item.toUpperCase(), value: item };
+      });
   }
 
-  defineStudents() {
-    this.listStudents = [
-      {
-        code: "S001",
-        name: "Atalya",
-        phone: "081280810022",
-        email: "atalya@gmail.com",
-        username: "atalatal"
-      },
-      {
-        code: "S002",
-        name: "Alfi",
-        phone: "081280810033",
-        email: "alfi@gmail.com",
-        username: "alfialfi"
-      },
-      {
-        code: "S003",
-        name: "Ibon",
-        phone: "081280810044",
-        email: "ibon@gmail.com",
-        username: "ibontangsel"
-      },
-      {
-        code: "S004",
-        name: "Galih",
-        phone: "081280810055",
-        email: "galih@gmail.com",
-        username: "galihom"
-      },
-    ]
+  async initStudentList() {
+    try {
+      const response = await this.studentService.getAllStudent();
+      if (response.code === 200) {
+        this.students = response.result;
+      }
+    } catch (error) {
+      this.toastService.emitHttpErrorMessage(
+        error,
+        'Failed to get student list.'
+      );
+    }
   }
 
+  openEditDialog(): void {
+    this.isEditModalVisible = true;
+    this.submitted = false;
+  }
+
+  hideEditDialog(): void {
+    this.isEditModalVisible = false;
+    this.submitted = false;
+  }
+
+  edit(student: StudentResponse): void {
+    this.isEditModalVisible = true;
+    this.selectedGender = student.gender.toString();
+    this.editRequest = {
+      id: student.id,
+      username: student.username,
+      firstName: student.firstName,
+      lastName: student.lastName,
+      phone: student.phone,
+      gender: Gender[this.selectedGender],
+      updatedBy: this.authService.getUserId(),
+    };
+  }
+
+  async updateTeacher() {
+    this.editRequest.gender = Gender[this.selectedGender];
+    try {
+      const response = await this.studentService.updateStudent(
+        this.editRequest
+      );
+      if (response.code === 200) {
+        this.toastService.emitSuccessMessage('Updated', response.result);
+        this.hideEditDialog();
+      }
+    } catch (error) {
+      this.toastService.emitHttpErrorMessage(error, 'Failed to update student');
+    }
+  }
+
+  delete(student: StudentResponse) {
+    this.confirmationService.confirm({
+      message: `Are you sure you want to delete ${student.firstName} ${student.lastName} ?`,
+      header: 'Delete Confirm.',
+      icon: 'pi pi-exclamation-triangle',
+      accept: async () => {
+        try {
+          const response = await this.studentService.deleteStudent(student.id);
+          if (response.code === 200) {
+            this.toastService.emitSuccessMessage('Deleted', response.result);
+          }
+          console.log(response);
+        } catch (error) {
+          this.toastService.emitHttpErrorMessage(
+            error,
+            'Failed to delete student'
+          );
+        }
+      },
+    });
+  }
 }

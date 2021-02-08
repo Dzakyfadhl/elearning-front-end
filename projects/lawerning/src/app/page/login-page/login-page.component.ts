@@ -26,8 +26,6 @@ export class LoginPageComponent implements OnInit {
         let result = value.result;
         this.authService.setLoginResponse(result);
 
-        console.log(this.authService.getLoginResponse());
-
         if (result.role.code == 'RL-003') {
           this.router.navigateByUrl('/home-teacher');
         } else if (result.role.code == 'RL-004') {
