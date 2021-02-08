@@ -24,8 +24,8 @@ export class CourseTypeService {
 
   insertCourseType(
     data: CourseTypeCreateRequest
-  ): Observable<CourseTypeCreateRequest> {
-    return this.http.post<CourseTypeCreateRequest>(
+  ): Observable<ResponseModel<string>> {
+    return this.http.post<ResponseModel<string>>(
       `${Constants.BASE_URL}/course/type`,
       data
     );
@@ -33,15 +33,17 @@ export class CourseTypeService {
 
   updateCourseType(
     data: CourseTypeUpdateRequestDTO
-  ): Observable<CourseTypeUpdateRequestDTO> {
-    return this.http.put<CourseTypeUpdateRequestDTO>(
+  ): Observable<ResponseModel<string>> {
+    return this.http.put<ResponseModel<string>>(
       `${Constants.BASE_URL}/course/type`,
       data
     );
   }
 
-  deleteCourseTypeById(id: string): Observable<any> {
-    return this.http.delete<any>(`${Constants.BASE_URL}/course/type/id/${id}`);
+  deleteCourseTypeById(id: string): Observable<ResponseModel<string>> {
+    return this.http.delete<ResponseModel<string>>(
+      `${Constants.BASE_URL}/course/type/id/${id}`
+    );
   }
 
   setIsActiveFalse(

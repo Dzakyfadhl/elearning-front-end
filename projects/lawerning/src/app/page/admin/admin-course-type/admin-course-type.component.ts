@@ -1,8 +1,13 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
+import { CourseCategoryCreateRequestDTO } from '../../../model/course-category-dto/course-category-create-request';
+import { CourseCategoryUpdateRequestDTO } from '../../../model/course-category-dto/course-category-update-request';
 import { CourseTypeCreateRequest } from '../../../model/course-type-dto/course-type-create-request';
 import { CourseTypeResponse } from '../../../model/course-type-dto/course-type-response';
 import { AuthService } from '../../../service/auth.service';
 import { CourseTypeService } from '../../../service/course-type.service';
+import { ToastService } from '../../../service/toast.service';
 
 @Component({
   selector: 'app-admin-course-type',
@@ -10,8 +15,14 @@ import { CourseTypeService } from '../../../service/course-type.service';
   styleUrls: ['./admin-course-type.component.css'],
 })
 export class AdminCourseTypeComponent implements OnInit {
-  listCourseTypes: CourseTypeResponse[];
+  isCreateModalVisible: boolean;
+  isEditModalVisible: boolean;
 
+  courseTypes: CourseTypeResponse[];
+  createRequest: CourseCategoryCreateRequestDTO;
+  updateRequest: CourseCategoryUpdateRequestDTO;
+
+  submitted: boolean;
   codeVal: string;
   nameVal: string;
 
@@ -20,7 +31,9 @@ export class AdminCourseTypeComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private courseTypeService: CourseTypeService
+    private courseTypeService: CourseTypeService,
+    private confirmationService: ConfirmationService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -30,38 +43,102 @@ export class AdminCourseTypeComponent implements OnInit {
   defineCourseType() {
     this.courseTypeService.getListCourseType().subscribe(
       (val) => {
-        this.listCourseTypes = val.result;
+        this.courseTypes = val.result;
       },
-      (err) => {}
+      (err) => {
+        console.error(err.error);
+      }
     );
   }
 
-  createCrouseType() {
-    let data = new CourseTypeCreateRequest();
-    data.code = this.codeVal;
-    data.name = this.nameVal;
-    data.createdBy = this.auth.getLoginResponse().userId;
+  openNew() {
+    this.createRequest = new CourseCategoryCreateRequestDTO();
+    this.submitted = false;
+    this.isCreateModalVisible = true;
+  }
 
-    this.courseTypeService.insertCourseType(data).subscribe(
-      (val) => {
-        console.log(val);
+  createCourseType() {
+    this.submitted = true;
+    this.createRequest.createdBy = this.auth.getUserId();
+    this.courseTypeService.insertCourseType(this.createRequest).subscribe(
+      (response) => {
+        if (response.code === 201 && response.result) {
+          this.toastService.emitSuccessMessage('Submitted', response.result);
+          this.hideModal();
+        }
       },
-      (err) => {}
+      (error: HttpErrorResponse) => {
+        this.toastService.emitHttpErrorMessage(
+          error,
+          'Failed to add new course type'
+        );
+      }
     );
   }
 
-  showModalEdit(i: number) {
-    this.codeVal = this.listCourseTypes[i].code;
-    this.nameVal = this.listCourseTypes[i].name;
-
-    this.displayModal = true;
+  editCourseType(courseType: CourseTypeResponse) {
+    this.isEditModalVisible = true;
+    this.updateRequest = {
+      id: courseType.id,
+      code: courseType.code,
+      name: courseType.name,
+      createdBy: 'admin',
+      updatedBy: this.auth.getUserId(),
+    };
   }
 
-  showModalCreate() {
-    this.displayModal = true;
+  updateCourseType() {
+    this.courseTypeService.updateCourseType(this.updateRequest).subscribe(
+      (response) => {
+        if (response.code === 200) {
+          this.toastService.emitSuccessMessage(
+            'Updated',
+            'Course type has been updated successfully.'
+          );
+        }
+      },
+      (error: HttpErrorResponse) => {
+        this.toastService.emitHttpErrorMessage(
+          error,
+          'Failed to update course type'
+        );
+      }
+    );
+  }
+
+  deleteCourseType(ct: CourseTypeResponse) {
+    this.confirmationService.confirm({
+      message: `Are you sure you want to delete ${ct.code} ?`,
+      header: 'Delete Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.courseTypeService.deleteCourseTypeById(ct.id).subscribe(
+          (response) => {
+            if (response.code === 200 && response.result) {
+              this.toastService.emitSuccessMessage('Deleted', response.result);
+              this.courseTypes = this.courseTypes.filter(
+                (value) => value.id !== ct.id
+              );
+            }
+          },
+          (error: HttpErrorResponse) => {
+            this.toastService.emitHttpErrorMessage(
+              error,
+              'Failed to delete teacher'
+            );
+          }
+        );
+      },
+    });
   }
 
   confirmDelete() {
     this.displayConfirmation = true;
+  }
+
+  hideModal() {
+    this.isCreateModalVisible = false;
+    this.isEditModalVisible = false;
+    this.submitted = false;
   }
 }

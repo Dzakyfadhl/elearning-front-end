@@ -33,8 +33,8 @@ export class SubjectCategoryService {
 
   insertSubjectCategory(
     data: SubjectCategoryCreateRequestDTO
-  ): Observable<ResponseModel<SubjectCategoryCreateRequestDTO[]>> {
-    return this.http.post<ResponseModel<SubjectCategoryCreateRequestDTO[]>>(
+  ): Observable<ResponseModel<string>> {
+    return this.http.post<ResponseModel<string>>(
       `${Constants.BASE_URL}/subjectcategory`,
       data
     );
@@ -42,15 +42,15 @@ export class SubjectCategoryService {
 
   updateSubjectCategory(
     data: SubjectCategoryUpdateRequestDTO
-  ): Observable<SubjectCategoryUpdateRequestDTO> {
-    return this.http.put<SubjectCategoryUpdateRequestDTO>(
+  ): Observable<ResponseModel<string>> {
+    return this.http.put<ResponseModel<string>>(
       `${Constants.BASE_URL}/subjectcategory`,
       data
     );
   }
 
-  deleteSubjectCategory(id: string): Observable<string> {
-    return this.http.delete<string>(
+  deleteSubjectCategory(id: string): Observable<ResponseModel<string>> {
+    return this.http.delete<ResponseModel<string>>(
       `${Constants.BASE_URL}/subjectcategory/id/${id}`
     );
   }

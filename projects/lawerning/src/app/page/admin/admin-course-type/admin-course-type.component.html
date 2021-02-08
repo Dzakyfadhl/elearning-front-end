@@ -1,135 +1,166 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-light">
         <li class="breadcrumb-item">
-            <a [routerLink]="['/admin']" routerLinkActive="router-link-active">Home</a
-      >
-    </li>
-    <li class="breadcrumb-item active" aria-current="page">CourseType</li>
-  </ol>
+            <a [routerLink]="['/admin']" routerLinkActive="active">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Course-Type</li>
+    </ol>
 </nav>
 
-<div class="d-flex align-items-center justify-content-between px-2 mb-3">
-  <h3>List Course Types</h3>
-  <button
-    pButton
-    type="button"
-    icon="pi pi-plus"
-    label="Add Course Type"
-    class="p-button-raised p-button-sm"
-    (click)="showModalCreate()"
-  ></button>
+<div class="container-fluid">
+    <p-toolbar styleClass="p-mb-4">
+        <div>
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+        </div>
+    </p-toolbar>
+
+    <p-table #dt [value]="courseTypes" [rows]="10" [paginator]="true" [globalFilterFields]="['code', 'name']" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="d-flex align-items-center justify-content-between">
+                <h5 class="p-m-0">Manage Course Type</h5>
+                <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filterGlobal($event.target.value, 'contains')"
+            placeholder="Search..."
+          />
+        </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 6rem">No.</th>
+                <th pSortableColumn="code">
+                    Code
+                    <p-sortIcon field="code"></p-sortIcon>
+                </th>
+                <th pSortableColumn="name">
+                    Name
+                    <p-sortIcon field="name"></p-sortIcon>
+                </th>
+
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-ct let-rowIndex="rowIndex">
+            <tr>
+                <td>{{ rowIndex + 1 }}</td>
+                <td>{{ ct.code }}</td>
+                <td>{{ ct.name }}</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editCourseType(ct)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCourseType(ct)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                In total there are {{ courseTypes ? courseTypes.length : 0 }} course types.
+            </div>
+        </ng-template>
+    </p-table>
 </div>
-<p-table
-  [value]="listCourseTypes"
-  [paginator]="true"
-  [rows]="5"
-  styleClass="test"
-  [showCurrentPageReport]="true"
-  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-  [rowsPerPageOptions]="[5, 10, 20]"
->
-  <ng-template pTemplate="header">
-    <tr>
-      <th>No</th>
-      <th>Course Type Code</th>
-      <th>Course Type Name</th>
-      <th>Action</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-ct let-rowIndex="rowIndex">
-    <tr>
-      <td>{{ rowIndex + 1 }}</td>
-      <td>{{ ct.code }}</td>
-      <td>{{ ct.name }}</td>
-      <td>
-        <button
-          pButton
-          pRipple
-          icon="pi pi-pencil"
-          (click)="showModalEdit(rowIndex)"
-          type="button"
-          label="Edit"
-          class="p-button-outlined p-button-warning p-button-sm"
-        ></button>
-        <button
-          pButton
-          pRipple
-          icon="pi pi-trash"
-          (click)="confirmDelete()"
-          type="button"
-          label="Delete"
-          class="p-button-outlined p-button-danger p-button-sm"
-        ></button>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
 
-<!-- Modal Form -->
-<p-dialog
-  header="Course Type"
-  [(visible)]="displayModal"
-  [modal]="true"
-  [style]="{ width: '50vw' }"
-  [baseZIndex]="10000"
-  [draggable]="false"
-  [resizable]="false"
->
-  <div class="form-row">
-    <div class="form-group col-12">
-      <label>Code</label>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Code..."
-        [(ngModel)]="codeVal"
-      />
+<p-dialog [(visible)]="isCreateModalVisible" [style]="{ width: '650px' }" header="Create Course Type" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="row mt-3">
+            <div class="p-field col">
+                <label for="code">Course type code</label>
+                <input type="text" pInputText id="code" [(ngModel)]="createRequest.code" required autofocus />
+                <small class="p-error" *ngIf="submitted && !createRequest.code">First Name is required.</small
+        >
+      </div>
+      <div class="p-field col">
+        <label for="name">Course type name</label>
+        <input
+          type="text"
+          pInputText
+          id="name"
+          [(ngModel)]="createRequest.name"
+          required
+          autofocus
+        />
+      </div>
     </div>
-    <div class="form-group col-12">
-      <label>Name</label>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Type..."
-        [(ngModel)]="nameVal"
-      />
-    </div>
-  </div>
+  </ng-template>
 
   <ng-template pTemplate="footer">
     <button
       pButton
       pRipple
-      icon="pi pi-plus"
-      (click)="displayModal = false"
-      type="button"
-      label="Save"
-      class="p-button-primary p-button-sm"
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideModal()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Submit"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="createCourseType()"
     ></button>
   </ng-template>
 </p-dialog>
 
-<!-- Modal Confirmation Delete -->
 <p-dialog
-  header="Delete Confirmation"
-  [(visible)]="displayConfirmation"
+  [(visible)]="isEditModalVisible"
+  [style]="{ width: '650px' }"
+  header="Edit Course Type"
   [modal]="true"
-  [style]="{ width: '50vw' }"
-  [baseZIndex]="10000"
-  [draggable]="false"
-  [resizable]="false"
+  styleClass="p-fluid"
 >
-  <p>Do you want to delete this record?</p>
+  <ng-template pTemplate="content">
+    <div class="row mt-3">
+      <div class="p-field col">
+        <label for="code">Course Type Code</label>
+        <input
+          type="text"
+          pInputText
+          id="code"
+          [(ngModel)]="updateRequest.code"
+          required
+          autofocus
+        />
+        <small class="p-error" *ngIf="submitted && !updateRequest.code"
+          >Code is required.</small
+        >
+      </div>
+      <div class="p-field col">
+        <label for="name">Course Type Name</label>
+        <input
+          type="text"
+          pInputText
+          id="name"
+          [(ngModel)]="updateRequest.name"
+          required
+          autofocus
+        />
+      </div>
+    </div>
+  </ng-template>
 
   <ng-template pTemplate="footer">
     <button
       pButton
       pRipple
-      icon="pi pi-trash"
-      (click)="displayConfirmation = false"
-      type="button"
-      label="Delete"
-      class="p-button-danger p-button-sm"
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideModal()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Submit"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="updateCourseType()"
     ></button>
   </ng-template>
 </p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
