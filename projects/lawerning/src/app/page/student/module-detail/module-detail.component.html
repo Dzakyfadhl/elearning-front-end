@@ -257,46 +257,54 @@
       <hr />
       <div class="forum" *ngFor="let m of messages">
         <div class="row">
-          <div class="image">
-            <img
-              [src]="photo"
-              height="50"
-              width="50"
-              class="rounded-circle"
-              alt=""
-            />
-          </div>
-          <div class="fullname">
-            <h5 class="m-3 text-bold text-info">
-              {{ m.firstName }} {{ m.lastName }}
-            </h5>
-          </div>
-          <div class="datetime">
-            <p *ngIf="m.day > m.dayPost" class="time m-3 text-secondary">
-              {{ m.createdAt | date: "dd/MM/yyyy H:m" }}
-            </p>
-            <p
-              *ngIf="m.day == m.dayPost && m.durationHour > 0"
-              class="time m-3 text-secondary"
-            >
-              {{ m.durationHour }} hour {{ m.durationMinute }} minute ago
-            </p>
+          <div class="d-flex flex-row">
+            <div class="image">
+              <img
+                [src]="photo"
+                height="50"
+                width="50"
+                class="rounded-circle"
+                alt=""
+              />
+            </div>
 
-            <p
-              *ngIf="m.day == m.dayPost && m.durationHour == 0"
-              class="time m-3 text-secondary"
-            >
-              {{ m.durationMinute }} minute ago
-            </p>
-          </div>
-          <div *ngIf="m.roleCode == 'RL-004'" class="role-student">
-            <span class="label-student mt-3 badge p-2">Student</span>
-          </div>
-          <div *ngIf="m.roleCode == 'RL-003'" class="role-teacher">
-            <span class="label-teacher mt-3 badge p-2">Teacher</span>
-          </div>
-          <div class="message col-sm-6 col-lg-12 col-md-12">
-            <h6 class="m">{{ m.content }}</h6>
+            <div class="d-flex flex-column">
+              <div class="d-flex flex-row">
+                <div class="fullname">
+                  <h5 class="ml-3 text-bold text-info">
+                    {{ m.firstName }} {{ m.lastName }}
+                  </h5>
+                </div>
+                <div class="datetime">
+                  <p *ngIf="m.day > m.dayPost" class="ml-3 time text-secondary">
+                    {{ m.createdAt | date: "dd/MM/yyyy H:m" }}
+                  </p>
+                  <p
+                    *ngIf="m.day == m.dayPost && m.durationHour > 0"
+                    class="time ml-3 text-secondary"
+                  >
+                    {{ m.durationHour }} hour {{ m.durationMinute }} minute ago
+                  </p>
+
+                  <p
+                    *ngIf="m.day == m.dayPost && m.durationHour == 0"
+                    class="time ml-3 text-secondary"
+                  >
+                    {{ m.durationMinute }} minute ago
+                  </p>
+                </div>
+                <div *ngIf="m.roleCode == 'RL-004'" class="role-student">
+                  <span class="label-student ml-2 mt-2 badge p-2">Student</span>
+                </div>
+                <div *ngIf="m.roleCode == 'RL-003'" class="role-teacher">
+                  <span class="label-teacher ml-2 mt-2 badge p-2">Teacher</span>
+                </div>
+              </div>
+
+              <div class="message col-sm-6 col-lg-12 col-md-12">
+                <h6 class="m">{{ m.content }}</h6>
+              </div>
+            </div>
           </div>
           <!-- <hr class="my-4"> -->
         </div>

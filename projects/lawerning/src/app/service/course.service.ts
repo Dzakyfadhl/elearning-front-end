@@ -19,10 +19,12 @@ export class CourseService {
 
   getAvailableCourse(): Observable<ResponseModel<CourseAvailableResponse[]>> {
     return this.http.get<ResponseModel<CourseAvailableResponse[]>>(
-      `${Constants.BASE_URL}/course/available`
+      `${Constants.BASE_URL}/course/available?id=${
+        this.authService.getLoginResponse().userRoleId
+      }`
     );
   }
-  // http://192.168.15.224:8080/student/ddbf2c2a-f0ad-46bc-ad64-088860fe1d9a/course
+
   getStudentCourse(
     id: string
   ): Observable<ResponseModel<CourseStudentResponse[]>> {

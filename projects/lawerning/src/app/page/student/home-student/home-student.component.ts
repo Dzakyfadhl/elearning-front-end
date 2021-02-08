@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CourseAvailableResponse } from '../../../model/course-available-response';
 import { CourseStudentResponse } from '../../../model/course-student-response';
+import { Gender } from '../../../model/gender';
 import { AuthService } from '../../../service/auth.service';
 import { CourseService } from '../../../service/course.service';
 
@@ -26,6 +27,9 @@ export class HomeStudentComponent implements OnInit {
 
   isRegistered: boolean = false;
   studentCourse: CourseStudentResponse[];
+
+  isValid: boolean = false;
+
   constructor(
     private route: Router,
     private courseService: CourseService,
@@ -33,29 +37,36 @@ export class HomeStudentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.courseService.getAvailableCourse().subscribe((value) => {
-      this.courses = value.result;
-      this.courses.forEach((val) => {
-        if (!val.teacher.photoId) {
-          val.teacher.photoId = `assets/images/default.png`;
-        } else {
-          val.teacher.photoId = `http://192.168.15.224:8080/file/${val.teacher.photoId}`;
-        }
-      });
+    this.courseService.getAvailableCourse().subscribe(
+      (value) => {
+        this.courses = value.result;
+        console.log(this.courses);
 
-      if (this.courses.length > 0) {
-        this.courseFiltering = this.courses;
-        // concat list category
+        this.isValid = true;
+
         this.courses.forEach((val) => {
-          this.category.push(val.categoryName);
+          if (!val.teacher.photoId) {
+            val.teacher.photoId = `assets/images/default.png`;
+          } else {
+            val.teacher.photoId = `http://192.168.15.224:8080/file/${val.teacher.photoId}`;
+          }
         });
-        // merging category
-        this.data = this.category.filter(
-          (item, i, array) => array.indexOf(item) === i
-        );
-        console.log(this.data);
-      }
-    });
+
+        if (this.courses.length > 0) {
+          this.courseFiltering = this.courses;
+          // concat list category
+          this.courses.forEach((val) => {
+            this.category.push(val.categoryName);
+          });
+          // merging category
+          this.data = this.category.filter(
+            (item, i, array) => array.indexOf(item) === i
+          );
+          console.log(this.data);
+        }
+      },
+      (error) => (this.isValid = false)
+    );
 
     if (this.selectedCourse == undefined) {
       this.courseFiltering = this.courses;

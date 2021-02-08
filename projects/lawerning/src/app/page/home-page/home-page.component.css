@@ -4,6 +4,15 @@
   margin-top: 1px;
   background-color: grey;
 }
+.row .categoryy {
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.row .categoryy::-webkit-scrollbar {
+  display: none;
+}
+
 .label-logo {
   color: #232946;
 }
@@ -47,8 +56,18 @@
   color: #232946;
   font-weight: bold;
 }
+.advantage-text {
+  font-weight: bold;
+  color: #232946;
+}
 
 @media (min-width: 411px) {
+  .underline {
+    width: 5rem;
+    height: 0.5rem;
+    margin-left: 9.5rem;
+    background-color: #232946;
+  }
   .header-left {
     margin-top: 0rem;
   }
@@ -72,6 +91,13 @@
 @media (min-width: 768px) {
   .header-left {
     margin-top: 8rem;
+  }
+
+  .underline {
+    width: 5rem;
+    height: 0.5rem;
+    margin-left: 11rem;
+    background-color: #232946;
   }
   .img-improve {
     height: 400px;

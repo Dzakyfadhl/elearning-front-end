@@ -4,13 +4,13 @@ import { ScoreDetailComponent } from '@bootcamp-lawerning-page/student/score-det
 
 const routes: Routes = [
   {
-    path:'student/my-report',
-    component:ScoreDetailComponent
-  }
+    path: 'student/report',
+    component: ScoreDetailComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ScoreDetailRoutingModule { }
+export class ScoreDetailRoutingModule {}

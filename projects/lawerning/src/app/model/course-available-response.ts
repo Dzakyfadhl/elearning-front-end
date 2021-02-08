@@ -9,4 +9,5 @@ export class CourseAvailableResponse {
   periodEnd: string;
   teacher: TeacherModel;
   categoryName: string;
+  isRegist: boolean;
 }

@@ -77,33 +77,41 @@
       <div class="container">
         <div class="row">
           <!-- SKLETON -->
+          <!-- <div
+            class="col-lg-4 col-md-6 col-sm-12 mt-3 mb-3"
+            *ngFor="let c of courseFiltering; let i = index"
+          >
+            <div class="custom-skeleton p-p-4">
+              <p-skeleton width="100%" height="150px"></p-skeleton>
+              <div class="d-flex flex-column">
+                <p-skeleton
+                  class="pb-2 pt-2"
+                  width="17rem"
+                  height="2rem"
+                ></p-skeleton>
+                <div class="d-flex flex-row">
+                  <p-skeleton
+                    class="pr-3"
+                    width="4rem"
+                    height="2rem"
+                  ></p-skeleton>
 
-          <!-- <div class="col-lg-4 col-md-6 col-sm-12 mt-3 mb-3" *ngFor="let c of courseFiltering;let i = index">
-                        <div class="custom-skeleton p-p-4">
+                  <p-skeleton width="10rem" height="2rem"></p-skeleton>
+                </div>
+                <div class="d-flex justify-content-between pt-2">
+                  <p-skeleton
+                    class="pr-3"
+                    width="7rem"
+                    height="2rem"
+                  ></p-skeleton>
 
-                            <p-skeleton width="100%" height="150px"></p-skeleton>
-                            <div class="d-flex flex-column">
-                                <p-skeleton class="pb-2 pt-2" width="17rem" height="2rem"></p-skeleton>
-                                <div class="d-flex flex-row">
-
-                                    <p-skeleton class="pr-3" width="4rem" height="2rem"></p-skeleton>
-                                    
-                                    <p-skeleton width="10rem" height="2rem"></p-skeleton>
-                                </div>
-                                <div class="d-flex justify-content-between pt-2">
-
-                                    <p-skeleton class="pr-3" width="7rem" height="2rem"></p-skeleton>
-                                    
-                                    <p-skeleton width="2rem" height="2rem"></p-skeleton>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div> -->
+                  <p-skeleton width="2rem" height="2rem"></p-skeleton>
+                </div>
+              </div>
+            </div>
+          </div> -->
 
           <!-- SKLETON -->
-
           <div
             class="col-lg-4 col-md-6 col-sm-12 mt-3 mb-3"
             *ngFor="let c of courseFiltering; let i = index"
@@ -112,7 +120,14 @@
             <div class="card mb-1 bg-white rounded">
               <div class="img">
                 <img
+                  *ngIf="c.isRegist == true"
                   src="assets/images/banner.svg"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <img
+                  *ngIf="c.isRegist == false"
+                  src="assets/images/banner3.svg"
                   class="card-img-top"
                   alt="..."
                 />
@@ -131,17 +146,18 @@
                   <img
                     [src]="c.teacher.photoId"
                     height="50"
-                    class="rounded-circle"
+                    class="rounded"
                     width="50"
                     alt=""
                   />
-                  <div class="d-flex flex-column p-2">
+                  <div class="d-flex flex-column pl-2">
                     <h6 class="text-info">
                       {{ c.teacher.firstName }} {{ c.teacher.lastName }},
-                      {{ c.teacher.tittle }}.
+                      {{ c.teacher.title }}.
                     </h6>
+                    <h6 class="text-secondary">{{ c.teacher.experience }}</h6>
 
-                    <span class="badge badge-primary">Teacher</span>
+                    <!-- <span class="badge badge-primary">Teacher</span> -->
                   </div>
                 </div>
               </div>

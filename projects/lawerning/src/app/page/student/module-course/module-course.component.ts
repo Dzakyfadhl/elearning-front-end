@@ -17,8 +17,8 @@ export class ModuleCourseComponent implements OnInit {
   total: number = 0;
   value: number = 0;
   isAttendance: boolean = false;
-  dateTimes = [];
-  dataAttendance = [];
+
+  dataAttendance = new Map<string, [string, boolean]>();
 
   modules = new DetailCourseResponse();
 
@@ -63,19 +63,6 @@ export class ModuleCourseComponent implements OnInit {
           } else {
             data.isAttendance = false;
           }
-
-          // if (dateModule == dateCurrent && hourStartModule <= hourCurrent) {
-          //   data.isAttendance = true;
-          // } else if (
-          //   dateModule == dateCurrent &&
-          //   hourStartModule <= hourCurrent &&
-          //   minuteStartModule < minuteCurrent &&
-          //   hourEndModule >= hourCurrent
-          // ) {
-          //   data.isAttendance = false;
-          // } else if (dateModule != dateCurrent) {
-          //   data.isAttendance = false;
-          // }
         });
 
         this.total = this.modules.modules.length;
@@ -87,52 +74,24 @@ export class ModuleCourseComponent implements OnInit {
       });
   }
   checkValidate() {
-    let currentMonth = this.dateObj.getUTCMonth() + 1;
-    let currentDay = this.dateObj.getUTCDate();
-    let currentHour = this.dateObj.getHours();
-    let currentMinute = this.dateObj.getMinutes();
-
     this.modules.modules.forEach((value) => {
       let datetime = value.schedule.date + ' ' + value.schedule.endTime;
-      this.dateTimes.push(datetime);
-      this.dataAttendance.push(value.attendanceId);
-    });
 
-    this.dateTimes.forEach((value, index) => {
-      let newDate = new Date(value);
-
-      let moduleMonth = newDate.getUTCMonth() + 1;
-      let moduleDay = newDate.getUTCDate();
-
-      let moduleHour = newDate.getHours();
-      let moduleMinute = newDate.getMinutes();
-      console.log(
-        'Current: ',
-        currentDay,
-        currentMonth,
-        currentHour,
-        ':',
-        currentMinute
-      );
-      console.log(
-        'Module: ',
-        moduleDay,
-        moduleMonth,
-        moduleHour,
-        ':',
-        moduleMinute
-      );
+      this.dataAttendance.set(value.id, [
+        value.attendanceId,
+        value.verifyStatus,
+      ]);
+      let dateModule = new Date(datetime);
+      let date = new Date();
 
       if (
-        this.dataAttendance[index] != null &&
-        currentMonth >= moduleMonth &&
-        currentDay > moduleDay &&
-        currentHour >= moduleHour
+        dateModule < date &&
+        this.dataAttendance.get(value.id)[0] != null &&
+        this.dataAttendance.get(value.id)[1] === true
       ) {
-        console.log('Completed');
         this.countTemp += 1;
       } else {
-        console.log('Process');
+        console.log('process');
       }
     });
   }

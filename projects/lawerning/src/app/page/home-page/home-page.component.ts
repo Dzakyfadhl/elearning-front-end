@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Gender } from '../../model/gender';
 
 @Component({
   selector: 'app-home-page',
@@ -71,7 +72,8 @@ export class HomePageComponent implements OnInit {
   ];
   category = [];
   categoryMerge: any[] = [];
-  courseByCategory = new Map<string, any[]>();
+  selectedCourse: any = 'all';
+  courseFiltering: any[] = [];
 
   constructor() {}
 
@@ -83,9 +85,22 @@ export class HomePageComponent implements OnInit {
     this.categoryMerge = this.category.filter(
       (item, i, array) => array.indexOf(item) === i
     );
-    // console.log(this.courseByCategory);
     this.categoryMerge.forEach((val) => console.log(val));
+    this.courseFiltering = this.courses;
 
     console.log(this.categoryMerge);
+  }
+
+  onChange(newValue) {
+    this.selectedCourse = newValue;
+    console.log(this.selectedCourse);
+
+    if (this.selectedCourse == 'all') {
+      this.courseFiltering = this.courses;
+    } else {
+      this.courseFiltering = this.courses.filter(
+        (value) => value.category == this.selectedCourse
+      );
+    }
   }
 }

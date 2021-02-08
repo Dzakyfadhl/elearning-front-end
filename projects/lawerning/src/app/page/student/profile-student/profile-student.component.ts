@@ -55,22 +55,15 @@ export class ProfileStudentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.studentService
-      .getProfile()
-      .subscribe((value) => (this.studentProfile = value.result));
+    this.studentService.getProfile().subscribe((value) => {
+      this.studentProfile = value.result;
 
-    if (!this.auth.getLoginResponse().photoId) {
-      this.photo = `assets/images/default.png`;
-    } else {
-      this.photo = `http://192.168.15.224:8080/file/${
-        this.auth.getLoginResponse().photoId
-      }`;
-    }
-    // this.moduleService
-    //   .getModuleStudent(this.courseId, this.auth.getLoginResponse().userRoleId)
-    //   .subscribe((value) => {
-    //     this.modules = value.result;
-    //   });
+      if (!this.studentProfile.idPhoto) {
+        this.photo = `assets/images/default.png`;
+      } else {
+        this.photo = `http://192.168.15.224:8080/file/${this.studentProfile.idPhoto}`;
+      }
+    });
 
     this.mymodules.forEach((value) => {
       let percent = (value.value / value.total) * 100;

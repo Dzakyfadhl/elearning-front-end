@@ -1,128 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { report } from 'process';
+import { StudentReportResponse } from '../../../model/student-report-response';
+import { AuthService } from '../../../service/auth.service';
+import { ReportService } from '../../../service/report.service';
 
 @Component({
   selector: 'app-score-detail',
   templateUrl: './score-detail.component.html',
-  styleUrls: ['./score-detail.component.css']
+  styleUrls: ['./score-detail.component.css'],
 })
 export class ScoreDetailComponent implements OnInit {
   cols: any[];
 
-  reports: any[] = [
-    {
-      course: 'Java Framework',
-      module: 'Spring Boot',
-      examType: 'Quiz',
-      exam: 'Quiz Spring Boot',
-      date: '25 Jan 2020',
-      score: '88'
-    },
-    {
-      course: 'Java Framework',
-      module: 'Spring Boot',
-      examType: 'Exam',
-      exam: 'Exam Spring Boot',
-      date: '25 Jan 2020',
-      score: '80'
-    },
-    {
-      course: 'Java Framework',
-      module: 'JDBC',
-      examType: 'Quiz',
-      exam: 'Quiz JDBC',
-      date: '28 Jan 2020',
-      score: '98'
-    },
-    {
-      course: 'Java Framework',
-      module: 'JDBC',
-      examType: 'Exam',
-      exam: 'Exam JDBC',
-      date: '25 Jan 2020',
-      score: '88'
-    },
-    {
-      course: 'Database & Mysql',
-      module: 'Aggregate Function',
-      examType: 'Quiz',
-      exam: 'Quiz Avg Sum Function',
-      date: '25 Jan 2020',
-      score: '88'
-    },
-    {
-      course: 'Java Framework',
-      module: 'Spring Boot',
-      examType: 'Quiz',
-      exam: 'Quiz Spring Boot',
-      date: '25 Jan 2020',
-      score: '88'
-    },
-    {
-      course: 'Java Framework',
-      module: 'Spring Boot',
-      examType: 'Quiz',
-      exam: 'Quiz Spring Boot',
-      date: '25 Jan 2020',
-      score: '88'
-    },
-    {
-      course: 'Java Framework',
-      module: 'Spring Boot',
-      examType: 'Quiz',
-      exam: 'Quiz Spring Boot',
-      date: '25 Jan 2020',
-      score: '88'
-    },
-    {
-      course: 'Java Framework',
-      module: 'Spring Boot',
-      examType: 'Quiz',
-      exam: 'Quiz Spring Boot',
-      date: '25 Jan 2020',
-      score: '88'
-    },
-    {
-      course: 'Java Framework',
-      module: 'Spring Boot',
-      examType: 'Quiz',
-      exam: 'Quiz Spring Boot',
-      date: '25 Jan 2020',
-      score: '88'
-    },
-    {
-      course: 'Java Framework',
-      module: 'Spring Boot',
-      examType: 'Quiz',
-      exam: 'Quiz Spring Boot',
-      date: '25 Jan 2020',
-      score: '88'
-    },
-    {
-      course: 'Java Framework',
-      module: 'Spring Boot',
-      examType: 'Quiz',
-      exam: 'Quiz Spring Boot',
-      date: '25 Jan 2020',
-      score: '88'
-    }
-  ];
+  reports: StudentReportResponse[];
 
   first = 0;
 
   rows = 10;
-  constructor() { }
+
+  studentId: string;
+
+  constructor(
+    private reportService: ReportService,
+    private auth: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.cols = [
-      {field: 'course', header: 'Course'},
-      {field: 'module', header: 'Module'},
-      {field: 'examType', header: 'Exam Type'},
-      {field: 'exam', header: 'Exam'},
-      {field: 'date', header: 'Date'},
-      {field: 'score', header: 'Score'}
-    ]
-    
+    this.studentId = this.auth.getLoginResponse().userRoleId;
+    this.reportService.getStudentReporting().subscribe((value) => {
+      this.reports = value.result;
+      console.log(this.reports);
+    });
+  }
+  downloadReport() {
+    this.reportService.downloadReporting().subscribe((val) => console.log(val));
   }
 
   next() {
@@ -137,10 +48,10 @@ export class ScoreDetailComponent implements OnInit {
     this.first = 0;
   }
   isLastPage(): boolean {
-    return this.reports ? this.first === (this.reports.length - this.rows): true;
-}
+    return this.reports ? this.first === this.reports.length - this.rows : true;
+  }
 
-isFirstPage(): boolean {
+  isFirstPage(): boolean {
     return this.reports ? this.first === 0 : true;
-}
+  }
 }

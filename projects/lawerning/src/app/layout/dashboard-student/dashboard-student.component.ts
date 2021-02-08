@@ -18,8 +18,10 @@ export class DashboardStudentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (!this.auth.getLoginResponse().photoId) {
-      this.photo = `assets/images/default.png`;
+    console.log(this.auth.getLoginResponse().photoId);
+
+    if (this.auth.getLoginResponse().photoId == 'null') {
+      this.photo = 'assets/images/default.png';
     } else {
       this.photo = `http://192.168.15.224:8080/file/${
         this.auth.getLoginResponse().photoId
@@ -29,7 +31,7 @@ export class DashboardStudentComponent implements OnInit {
 
   signOut() {
     this.authService.signOut();
-    this.route.navigateByUrl('login-page');
+    this.route.navigateByUrl('home-page');
   }
 
   // showStudentCourse() {

@@ -39,7 +39,10 @@
 <div class="container my-4">
   <div class="row">
     <div class="col-lg-12">
-      <h5 class="text-info">
+      <h5 *ngIf="countTemp == total" class="text-info">
+        Completed: {{ countTemp }} of {{ total }} Modules
+      </h5>
+      <h5 *ngIf="countTemp < total" class="text-info">
         Progress: {{ countTemp }} of {{ total }} Modules
       </h5>
       <p-progressBar [value]="value" class="progress-body"></p-progressBar>

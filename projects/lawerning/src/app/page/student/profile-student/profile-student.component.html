@@ -126,7 +126,7 @@
             d="M3 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V2zm6 11a1 1 0 1 0-2 0 1 1 0 0 0 2 0z"
           />
         </svg>
-        0896-3580-1409
+        {{ studentProfile.phone }}
       </h4>
       <hr />
       <div class="d-flex justify-content-start my-5">
@@ -240,7 +240,12 @@
     </div>
     <div class="p-inputgroup mb-2">
       <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-      <input type="text" pInputText placeholder="Phone.." />
+      <input
+        type="text"
+        pInputText
+        placeholder="Phone.."
+        [(ngModel)]="studentProfile.phone"
+      />
     </div>
     <div class="text-secondary">
       <h6>Gender</h6>

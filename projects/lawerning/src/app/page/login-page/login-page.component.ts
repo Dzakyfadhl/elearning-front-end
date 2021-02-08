@@ -29,7 +29,7 @@ export class LoginPageComponent implements OnInit {
         if (result.role.code == 'RL-003') {
           this.router.navigateByUrl('/home-teacher');
         } else if (result.role.code == 'RL-004') {
-          this.router.navigateByUrl('/home-student');
+          this.router.navigateByUrl('/student/home');
         } else if (result.role.code == 'RL-002') {
           this.router.navigateByUrl('/admin');
         }

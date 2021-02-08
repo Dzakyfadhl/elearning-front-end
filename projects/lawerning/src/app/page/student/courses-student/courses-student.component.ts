@@ -14,6 +14,7 @@ export class CoursesStudentComponent implements OnInit {
   result: any = [];
   studentId: string;
   isCompleted: boolean;
+  isEmpty: boolean = true;
 
   courses: CourseStudentResponse[];
 
@@ -35,6 +36,11 @@ export class CoursesStudentComponent implements OnInit {
       .getStudentCourse(this.auth.getLoginResponse().userRoleId)
       .subscribe((value) => {
         this.courses = value.result;
+        if (this.courses.length > 0) {
+          this.isEmpty = false;
+        } else {
+          this.isEmpty = true;
+        }
         this.courses.forEach((data) => {
           let dateObj = new Date(data.periodEnd);
           let periodMonth = dateObj.getUTCMonth() + 1;
