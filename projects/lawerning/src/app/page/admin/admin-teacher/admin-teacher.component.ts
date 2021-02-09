@@ -8,7 +8,6 @@ import { UpdateTeacherRequest } from '../../../model/teacher-dto/update-teacher-
 import { ToastService } from '../../../service/toast.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Gender } from '../../../model/gender';
-import StringUtil from '../../../util/string-util';
 
 @Component({
   selector: 'app-admin-teacher',
@@ -22,7 +21,7 @@ export class AdminTeacherComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private toastService: ToastService
   ) {}
-  
+
   isCreateModalVisible: boolean;
   isEditModalVisible: boolean;
 
@@ -59,6 +58,7 @@ export class AdminTeacherComponent implements OnInit {
 
   openNew() {
     this.createRequest = new CreateTeacherRequest();
+    this.selectedGender = null;
     this.submitted = false;
     this.isCreateModalVisible = true;
   }
@@ -80,35 +80,36 @@ export class AdminTeacherComponent implements OnInit {
 
   editTeacher(teacher: TeacherForAdminResponse) {
     this.isEditModalVisible = true;
+    this.selectedGender = teacher.gender.toString();
     this.updateRequest = {
       id: teacher.id,
+      username: teacher.username,
       firstName: teacher.firstName,
       lastName: teacher.lastName,
-      email: null,
-      gender: teacher.gender,
-      titleDegree: null,
+      phone: teacher.phone,
+      titleDegree: teacher.titleDegree,
+      gender: Gender[this.selectedGender],
       updatedBy: this.authService.getUserId(),
     };
   }
 
-  updateTeacher() {
-    this.teacherService.updateTeacherProfile(this.updateRequest).subscribe(
-      (response) => {
-        if (response.code === 200) {
-          this.toastService.emitSuccessMessage(
-            'Updated',
-            response.result
-          );
-          this.hideModal();
-        }
-      },
-      (error: HttpErrorResponse) => {
-        this.toastService.emitHttpErrorMessage(
-          error,
-          'Failed to update teacher.'
-        );
+  async updateTeacher() {
+    this.updateRequest.gender = Gender[this.selectedGender];
+    try {
+      const response = await this.teacherService.updateTeacherProfile(
+        this.updateRequest
+      );
+      if (response.code === 200) {
+        this.toastService.emitSuccessMessage('Updated', response.result);
+        this.defineTeachers();
+        this.hideModal();
       }
-    );
+    } catch (error) {
+      this.toastService.emitHttpErrorMessage(
+        error,
+        'Failed to update teacher.'
+      );
+    }
   }
 
   deleteTeacher(teacher: TeacherForAdminResponse) {
@@ -153,6 +154,7 @@ export class AdminTeacherComponent implements OnInit {
       (response) => {
         if (response.code === 201 && response.result) {
           this.toastService.emitSuccessMessage('Submitted', response.result);
+          this.defineTeachers();
           this.hideModal();
         }
       },

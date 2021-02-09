@@ -3,11 +3,14 @@ import { Gender } from '../gender';
 export class TeacherForAdminDTO {
   id: string;
   code: string;
-  phone: string;
   username: string;
-  gender: Gender;
-  isActive: boolean;
-  version: number;
   firstName: string;
   lastName: string;
+  email: string;
+  phone: string;
+  gender: Gender;
+  titleDegree: string;
+  idPhoto: string;
+  createdAt: string;
+  active: boolean;
 }

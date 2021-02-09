@@ -76,7 +76,7 @@ export class AdminStudentComponent implements OnInit {
     };
   }
 
-  async updateTeacher() {
+  async updateStudent() {
     this.editRequest.gender = Gender[this.selectedGender];
     try {
       const response = await this.studentService.updateStudent(
@@ -84,6 +84,7 @@ export class AdminStudentComponent implements OnInit {
       );
       if (response.code === 200) {
         this.toastService.emitSuccessMessage('Updated', response.result);
+        await this.initStudentList();
         this.hideEditDialog();
       }
     } catch (error) {
@@ -101,8 +102,8 @@ export class AdminStudentComponent implements OnInit {
           const response = await this.studentService.deleteStudent(student.id);
           if (response.code === 200) {
             this.toastService.emitSuccessMessage('Deleted', response.result);
+            this.initStudentList();
           }
-          console.log(response);
         } catch (error) {
           this.toastService.emitHttpErrorMessage(
             error,

@@ -40,11 +40,11 @@ export class TeacherService {
 
   updateTeacherProfile(
     data: UpdateTeacherRequest
-  ): Observable<ResponseModel<string>> {
+  ): Promise<ResponseModel<string>> {
     return this.http.put<ResponseModel<string>>(
       `${Constants.BASE_URL}/teacher`,
       data
-    );
+    ).toPromise();
   }
 
   deleteTeacher(data: DeleteTeacherRequest): Observable<ResponseModel<string>> {

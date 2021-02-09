@@ -11,4 +11,5 @@ export class StudentResponse {
   gender: Gender;
   idPhoto: string;
   createdAt: string;
+  isActive: boolean;
 }
