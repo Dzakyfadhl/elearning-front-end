@@ -98,10 +98,13 @@
       <div class="d-flex justify-content-between">
         <h2>Module</h2>
 
-        <div class="register text-center">
-          <a>
+        <div *ngIf="isRegistered == 'false'" class="register text-center">
+          <a (click)="registerCourse()">
             <button class="btn btn-secondary">REGISTER NOW!</button>
           </a>
+        </div>
+        <div *ngIf="isRegistered == 'true'" class="text-center">
+          <button disabled class="btn btn-secondary">REGISTER NOW!</button>
         </div>
       </div>
       <hr />

@@ -1,29 +1,41 @@
-h3{
-    color:  white;
-    font-weight: bold;
+h3 {
+  color: white;
+  font-weight: bold;
 }
-.download{
-    color:  white;
+.download {
+  color: white;
 }
 
-.head-card{
-    
-    background-color: #232946 ;
+div {
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
-:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page:hover{
-    border-radius: 50%;
+
+div img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 10;
+  margin: auto;
 }
-:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight{
-    border-radius: 50%;
-    background-color: #232946;
-    color: white;
+.head-card {
+  background-color: #232946;
 }
-@media(min-width: 411px){
-        
-.head-card{
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page:hover {
+  border-radius: 50%;
+}
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  border-radius: 50%;
+  background-color: #232946;
+  color: white;
+}
+@media (min-width: 411px) {
+  .head-card {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    background-color: #232946 ;
-    }
+    background-color: #232946;
+  }
 }

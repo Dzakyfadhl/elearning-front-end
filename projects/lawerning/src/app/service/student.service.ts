@@ -7,6 +7,7 @@ import { StudentByCourseIdResponse } from '../model/student-by-courseid-response
 import { AuthService } from './auth.service';
 import Constants from '../constants/constant';
 import { StudentUpdateRequest } from '../model/student/student-edit-request';
+import { PhotoRequest } from '../model/photo-request';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,19 @@ export class StudentService {
       `${Constants.BASE_URL}/student/dashboard/${
         this.authService.getLoginResponse().userRoleId
       }`
+    );
+  }
+  updatePhoto(data: FormData): Observable<ResponseModel<string>> {
+    return this.http.patch<ResponseModel<string>>(
+      `${Constants.BASE_URL}/file`,
+      data
+    );
+  }
+
+  updateProfile(data: StudentUpdateRequest): Observable<ResponseModel<string>> {
+    return this.http.put<ResponseModel<string>>(
+      `${Constants.BASE_URL}/student`,
+      data
     );
   }
 

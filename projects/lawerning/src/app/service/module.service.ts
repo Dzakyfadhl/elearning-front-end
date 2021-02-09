@@ -10,22 +10,23 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class ModuleService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
-  getModuleAvailable(
-    id: string
-  ): Observable<ResponseModel<DetailCourseResponse>> {
-    return this.http.get<ResponseModel<DetailCourseResponse>>(
-      `${Constants.BASE_URL}/course/${id}`
-    );
-  }
+  // getModuleAvailable(
+  //   idCourse: string,
+  //   idStudent: string
+  // ): Observable<ResponseModel<DetailCourseResponse>> {
+  //   return this.http.get<ResponseModel<DetailCourseResponse>>(
+  //     `${Constants.BASE_URL}/course/${idCourse}?studentId=${idStudent}`
+  //   );
+  // }
 
   getModuleStudent(
-    idCourse: string,
-    idStudent: string
+    idCourse: string
   ): Observable<ResponseModel<DetailCourseResponse>> {
     return this.http.get<ResponseModel<DetailCourseResponse>>(
-      `${Constants.BASE_URL}/course/${idCourse}?studentId=${idStudent}`
+      `${Constants.BASE_URL}/course/${idCourse}`,
+      { params: { studentId: this.auth.getLoginResponse().userRoleId } }
     );
   }
 }

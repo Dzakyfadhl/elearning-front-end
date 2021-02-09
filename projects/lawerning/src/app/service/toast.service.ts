@@ -29,5 +29,6 @@ export class ToastService {
       summary: 'Failed',
       detail: `${message ?? 'Failed request'}. Caused by ${msg}`,
     });
+    console.log(error);
   }
 }

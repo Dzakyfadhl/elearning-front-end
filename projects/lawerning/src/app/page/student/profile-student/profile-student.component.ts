@@ -4,6 +4,9 @@ import { AuthService } from '../../../service/auth.service';
 import { ModuleService } from '../../../service/module.service';
 import { StudentService } from '../../../service/student.service';
 import { Gender } from '../../../model/gender';
+import { StudentUpdateRequest } from '../../../model/student/student-edit-request';
+import { ToastService } from '../../../service/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-student',
@@ -12,6 +15,7 @@ import { Gender } from '../../../model/gender';
 })
 export class ProfileStudentComponent implements OnInit {
   studentProfile = new StudentResponse();
+  formData = new FormData();
   photo: any;
 
   result: any = [];
@@ -51,12 +55,14 @@ export class ProfileStudentComponent implements OnInit {
   constructor(
     private studentService: StudentService,
     private auth: AuthService,
-    private moduleService: ModuleService
+    private moduleService: ModuleService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.studentService.getProfile().subscribe((value) => {
       this.studentProfile = value.result;
+      console.log(this.studentProfile.idPhoto);
 
       if (!this.studentProfile.idPhoto) {
         this.photo = `assets/images/default.png`;
@@ -80,5 +86,9 @@ export class ProfileStudentComponent implements OnInit {
   cancelDialog() {
     this.blockedDocument = false;
     this.isDisplay = false;
+  }
+
+  openFormEdit(data: StudentResponse) {
+    this.router.navigate(['/student/update-profile', data]);
   }
 }

@@ -27,10 +27,20 @@ export class ScoreDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.studentId = this.auth.getLoginResponse().userRoleId;
-    this.reportService.getStudentReporting().subscribe((value) => {
-      this.reports = value.result;
-      console.log(this.reports);
-    });
+    this.reportService.getStudentReporting().subscribe(
+      (value) => {
+        this.reports = value.result;
+        console.log(this.reports);
+      },
+      (error) => {
+        if (error.error.code != 200) {
+          this.reports = [];
+          console.log(this.reports.length);
+
+          console.log(error);
+        }
+      }
+    );
   }
   downloadReport() {
     this.reportService.downloadReporting().subscribe((val) => console.log(val));

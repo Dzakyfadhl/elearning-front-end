@@ -72,9 +72,14 @@ export class ModuleDetailComponent implements OnInit {
 
       this.moduleId = value.id;
 
-      this.lessonService.getLessonModule(value.id).subscribe((dataLesson) => {
-        this.lessons = dataLesson.result;
-      });
+      this.lessonService.getLessonModule(value.id).subscribe(
+        (dataLesson) => {
+          this.lessons = dataLesson.result;
+        },
+        (error) => {
+          this.lessons = [];
+        }
+      );
 
       this.examService.getDetailModuleExam(value.id).subscribe((dataExam) => {
         this.exams = dataExam.result;
@@ -122,9 +127,8 @@ export class ModuleDetailComponent implements OnInit {
     this.location.back();
   }
   showDiscussion() {
-    this.forumService
-      .getModuleDiscussions(this.moduleId)
-      .subscribe((dataForum) => {
+    this.forumService.getModuleDiscussions(this.moduleId).subscribe(
+      (dataForum) => {
         this.messages = dataForum.result;
         this.messages.forEach((val) => {
           let dateFuture = new Date(val.createdAt);
@@ -156,7 +160,11 @@ export class ModuleDetailComponent implements OnInit {
           this.totalPost = this.messages.length;
         }
         console.log(this.messages);
-      });
+      },
+      (error) => {
+        this.messages = [];
+      }
+    );
   }
   sendingContent() {
     let data = new ForumRequestDTO();

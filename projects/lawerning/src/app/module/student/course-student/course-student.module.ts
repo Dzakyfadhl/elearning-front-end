@@ -9,7 +9,8 @@ import { ProfileStudentComponent } from '@bootcamp-lawerning-page/student/profil
 import { ProfileStudentModule } from '../profile-student/profile-student.module';
 import { ScoreDetailModule } from '../score-detail/score-detail.module';
 import { ProgressBarModule } from 'primeng/progressbar';
-
+import { UpdateProfileStudentComponent } from '@bootcamp-lawerning-page/student/update-profile-student/update-profile-student.component';
+import { UpdateProfileModule } from '../update-profile/update-profile.module';
 
 @NgModule({
   declarations: [CoursesStudentComponent],
@@ -18,9 +19,10 @@ import { ProgressBarModule } from 'primeng/progressbar';
     CourseStudentRoutingModule,
     ModuleCourseModule,
     ModuleDetailModule,
+    UpdateProfileModule,
     ProfileStudentModule,
     ScoreDetailModule,
-    ProgressBarModule
-  ]
+    ProgressBarModule,
+  ],
 })
-export class CourseStudentModule { }
+export class CourseStudentModule {}

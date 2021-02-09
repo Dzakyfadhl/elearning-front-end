@@ -8,6 +8,7 @@
     <div class="col-lg-12">
       <div class="d-flex flex-column">
         <div class="d-flex justify-content-center">
+          <h6 hidden>{{ studentProfile.idPhoto }}</h6>
           <img
             [src]="photo"
             height="180"
@@ -16,7 +17,7 @@
             alt=""
           />
         </div>
-        <div class="camera d-flex justify-content-center">
+        <!-- <div class="camera d-flex justify-content-center">
           <a>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +33,7 @@
               />
             </svg>
           </a>
-        </div>
+        </div> -->
       </div>
 
       <div class="d-flex flex-column">
@@ -42,13 +43,19 @@
               {{ studentProfile.firstName }} {{ studentProfile.lastName }}
             </h1>
             <img
-              *ngIf="studentProfile.gender && studentProfile.gender.toString() === 'MALE'"
+              *ngIf="
+                studentProfile.gender &&
+                studentProfile.gender.toString() === 'MALE'
+              "
               src="assets/images/icon_male.png"
               height="30"
               alt=""
             />
             <img
-              *ngIf="studentProfile.gender && studentProfile.gender.toString() === 'FEMALE'"
+              *ngIf="
+                studentProfile.gender &&
+                studentProfile.gender.toString() === 'FEMALE'
+              "
               src="assets/images/icon_female.png"
               height="30"
               alt=""
@@ -80,7 +87,7 @@
           </svg>
           <h3 class="text-secondary ml-3">My Contact</h3>
         </div>
-        <a class="text-secondary" (click)="showDialog()">
+        <a class="text-secondary" (click)="openFormEdit(studentProfile)">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -210,6 +217,7 @@
   [baseZIndex]="100000"
 >
   <hr class="my-3" />
+  <input type="hidden" [(ngModel)]="studentProfile.id" />
   <div class="d-flex flex-column">
     <div class="text-secondary">
       <h6>First Name</h6>
@@ -233,6 +241,19 @@
         pInputText
         placeholder="Last name.."
         [(ngModel)]="studentProfile.lastName"
+      />
+    </div>
+
+    <div class="text-secondary">
+      <h6>Username</h6>
+    </div>
+    <div class="p-inputgroup mb-2">
+      <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+      <input
+        type="text"
+        pInputText
+        placeholder="Last name.."
+        [(ngModel)]="studentProfile.username"
       />
     </div>
     <div class="text-secondary">
@@ -281,7 +302,7 @@
     <a (click)="cancelDialog()">
       <button class="btn btn-sm btn-secondary">Cancel</button>
     </a>
-    <a (click)="cancelDialog()">
+    <a (click)="updateProfile()">
       <button class="save btn btn-sm btn-info">Save</button>
     </a>
   </ng-template>

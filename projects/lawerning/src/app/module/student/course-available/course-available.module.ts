@@ -11,9 +11,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { InputTextModule } from 'primeng/inputtext';
 @NgModule({
-  declarations: [
-    HomeStudentComponent
-  ],
+  declarations: [HomeStudentComponent],
   imports: [
     CommonModule,
     CourseAvailableRoutingModule,
@@ -23,8 +21,7 @@ import { InputTextModule } from 'primeng/inputtext';
     OrderListModule,
     SkeletonModule,
     InputTextModule,
-    ScrollPanelModule
-    
-  ]
+    ScrollPanelModule,
+  ],
 })
-export class CourseAvailableModule { }
+export class CourseAvailableModule {}

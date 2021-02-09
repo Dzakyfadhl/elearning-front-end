@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CourseAvailableResponse } from '../../../model/course-available-response';
 import { CourseStudentResponse } from '../../../model/course-student-response';
 import { Gender } from '../../../model/gender';
+import { RegisterCourseRequest } from '../../../model/register-course-request';
 import { AuthService } from '../../../service/auth.service';
 import { CourseService } from '../../../service/course.service';
 
@@ -94,7 +95,12 @@ export class HomeStudentComponent implements OnInit {
 
   viewModule(index: number) {
     let tempCourse: CourseAvailableResponse = this.courses[index];
-    let courseId = tempCourse.id;
-    this.route.navigate(['/module/course', courseId]);
+    let request = new RegisterCourseRequest();
+    request.courseId = tempCourse.id;
+    request.isRegist = tempCourse.isRegist;
+
+    this.route.navigate([
+      `/module/course/${request.courseId}/isRegist/${request.isRegist}`,
+    ]);
   }
 }

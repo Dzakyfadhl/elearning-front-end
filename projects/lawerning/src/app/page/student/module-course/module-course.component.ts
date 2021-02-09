@@ -36,42 +36,44 @@ export class ModuleCourseComponent implements OnInit {
   ngOnInit(): void {
     this.activeRoute.params.subscribe((val) => {
       this.courseId = val.courseId;
+      console.log(val);
+
+      console.log(this.courseId);
+
       this.showModule();
     });
 
-    this.activeRoute.params.subscribe((value) => {
-      this.course = value;
-    });
+    // this.activeRoute.params.subscribe((value) => {
+    //   this.course = value;
+    // });
   }
 
   showModule() {
-    this.moduleService
-      .getModuleStudent(this.courseId, this.auth.getLoginResponse().userRoleId)
-      .subscribe((value) => {
-        this.modules = value.result;
+    this.moduleService.getModuleStudent(this.courseId).subscribe((value) => {
+      this.modules = value.result;
 
-        this.modules.modules.forEach((data) => {
-          let dateStartMerge = `${data.schedule.date} ${data.schedule.startTime}`;
-          let dateEndMerge = `${data.schedule.date} ${data.schedule.endTime}`;
+      this.modules.modules.forEach((data) => {
+        let dateStartMerge = `${data.schedule.date} ${data.schedule.startTime}`;
+        let dateEndMerge = `${data.schedule.date} ${data.schedule.endTime}`;
 
-          let dateStart = new Date(dateStartMerge);
-          let dateEnd = new Date(dateEndMerge);
-          let dateNow = new Date();
+        let dateStart = new Date(dateStartMerge);
+        let dateEnd = new Date(dateEndMerge);
+        let dateNow = new Date();
 
-          if (dateNow > dateStart && dateNow < dateEnd) {
-            data.isAttendance = true;
-          } else {
-            data.isAttendance = false;
-          }
-        });
-
-        this.total = this.modules.modules.length;
-
-        this.checkValidate();
-
-        let val = (this.countTemp / this.total) * 100;
-        this.value = Math.ceil(val);
+        if (dateNow > dateStart && dateNow < dateEnd) {
+          data.isAttendance = true;
+        } else {
+          data.isAttendance = false;
+        }
       });
+
+      this.total = this.modules.modules.length;
+
+      this.checkValidate();
+
+      let val = (this.countTemp / this.total) * 100;
+      this.value = Math.ceil(val);
+    });
   }
   checkValidate() {
     this.modules.modules.forEach((value) => {

@@ -5,12 +5,12 @@ import { ProfileStudentComponent } from '@bootcamp-lawerning-page/student/profil
 const routes: Routes = [
   {
     path: 'profile-student',
-    component: ProfileStudentComponent
-  }
+    component: ProfileStudentComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ProfileStudentRoutingModule { }
+export class ProfileStudentRoutingModule {}

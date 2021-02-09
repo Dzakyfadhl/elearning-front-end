@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import Constants from '../constants/constant';
@@ -19,9 +19,8 @@ export class CourseService {
 
   getAvailableCourse(): Observable<ResponseModel<CourseAvailableResponse[]>> {
     return this.http.get<ResponseModel<CourseAvailableResponse[]>>(
-      `${Constants.BASE_URL}/course/available?id=${
-        this.authService.getLoginResponse().userRoleId
-      }`
+      `${Constants.BASE_URL}/course/available`,
+      { params: { id: this.authService.getLoginResponse().userRoleId } }
     );
   }
 
@@ -62,6 +61,19 @@ export class CourseService {
   getCoursesForAdmin(): Observable<ResponseModel<CourseAdminResponseDTO[]>> {
     return this.http.get<ResponseModel<CourseAdminResponseDTO[]>>(
       `${Constants.BASE_URL}/course/admin`
+    );
+  }
+
+  registerCourseStudent(idCourse: string): Observable<ResponseModel<any>> {
+    return this.http.post<ResponseModel<any>>(
+      `${Constants.BASE_URL}/course/register`,
+      null,
+      {
+        params: {
+          studentId: this.authService.getLoginResponse().userRoleId,
+          courseId: idCourse,
+        },
+      }
     );
   }
 }

@@ -25,6 +25,10 @@
 .header-module p {
   color: white;
 }
+.download:hover {
+  color: grey;
+  cursor: pointer;
+}
 .icon {
   color: #f4caae;
 }
