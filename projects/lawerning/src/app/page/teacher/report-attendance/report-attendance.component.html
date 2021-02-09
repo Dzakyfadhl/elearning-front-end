@@ -1,0 +1,77 @@
+<div class="container-fluid p-5">
+  <div class="row">
+    <div class="col-lg-12 col-sm-12">
+      <div class="card">
+        <p-table
+          #dt1
+          [value]="attendanceReports"
+          [paginator]="true"
+          [scrollable]="true"
+          scrolHeight="100%"
+          [rows]="10"
+          [showCurrentPageReport]="true"
+          styleClass="p-datatable-striped"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+          [globalFilterFields]="['module']"
+        >
+          <ng-template pTemplate="caption">
+            <div class="head-card d-flex justify-content-between p-3">
+              <h3>Report Attendance</h3>
+              <a
+                href="http://192.168.15.224:8080/teacher/attendance/report/{{
+                  idTeacher
+                }}"
+              >
+                <button
+                  pButton
+                  type="button"
+                  icon="pi pi-file"
+                  label="Download"
+                  class="download p-button-secondary p-button-sm"
+                ></button>
+              </a>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th width="20px">No</th>
+              <th width="80px">Course Name</th>
+              <th width="80px">Module Name</th>
+              <th width="80px">Date</th>
+              <th width="80px">Student Absent</th>
+              <th width="80px">Student Present</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-ap let-rowIndex="rowIndex">
+            <tr>
+              <td width="20px">{{ rowIndex + 1 }}</td>
+              <td width="80px">
+                {{ ap.courseName }}
+              </td>
+              <td width="80px">
+                {{ ap.moduleName }}
+              </td>
+              <td width="80px">{{ ap.date }}</td>
+              <td width="80px">{{ ap.studentAbsent }}</td>
+              <td width="80px">{{ ap.studentPresent }}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="paginatorleft">
+            <p-button
+              type="button"
+              icon="pi pi-plus"
+              styleClass="p-button-text"
+            ></p-button>
+          </ng-template>
+          <ng-template pTemplate="paginatorright">
+            <p-button
+              type="button"
+              icon="pi pi-cloud"
+              styleClass="p-button-text"
+            ></p-button>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>

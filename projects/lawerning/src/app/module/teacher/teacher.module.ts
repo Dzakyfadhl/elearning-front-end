@@ -9,11 +9,11 @@ import { DtlModuleModule } from './dtl-module/dtl-module.module';
 import { ProfileTeacherModule } from './profile-teacher/profile-teacher.module';
 import { CalendarModule } from 'primeng/calendar';
 import { SubmissionTeacherModule } from './submission-teacher/submission-teacher.module';
+import { ExamTeacherModule } from './exam-teacher/exam-teacher.module';
+import { ReportAttendanceModule } from './report-attendance/report-attendance.module';
 
 @NgModule({
-  declarations: [
-    HomeTeacherComponent,
-  ],
+  declarations: [HomeTeacherComponent],
   imports: [
     CommonModule,
     TeacherRoutingModule,
@@ -22,7 +22,9 @@ import { SubmissionTeacherModule } from './submission-teacher/submission-teacher
     DtlModuleModule,
     ProfileTeacherModule,
     CalendarModule,
-    SubmissionTeacherModule
-  ]
+    SubmissionTeacherModule,
+    ExamTeacherModule,
+    ReportAttendanceModule,
+  ],
 })
-export class TeacherModule { }
+export class TeacherModule {}

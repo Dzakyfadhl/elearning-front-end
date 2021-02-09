@@ -19,6 +19,13 @@ export class ModuleTeacherComponent implements OnInit {
   student: StudentByCourseIdResponse;
   totalModule: number;
   courseId: string;
+
+  attendanceReport: {
+    moduleName: string;
+    date: string;
+    studentAbsent: number;
+    studentPresent: number;
+  }[];
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -27,6 +34,80 @@ export class ModuleTeacherComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.attendanceReport = [
+      {
+        moduleName: 'Module Title-0011',
+        date: '02 Feb 2021',
+        studentAbsent: 10,
+        studentPresent: 4,
+      },
+      {
+        moduleName: 'Module Title-001',
+        date: '04 Feb 2021',
+        studentAbsent: 12,
+        studentPresent: 2,
+      },
+      {
+        moduleName: 'Module Title-001',
+        date: '04 Feb 2021',
+        studentAbsent: 12,
+        studentPresent: 2,
+      },
+      {
+        moduleName: 'Module Title-001',
+        date: '04 Feb 2021',
+        studentAbsent: 12,
+        studentPresent: 2,
+      },
+      {
+        moduleName: 'Module Title-001',
+        date: '04 Feb 2021',
+        studentAbsent: 12,
+        studentPresent: 2,
+      },
+      {
+        moduleName: 'Module Title-001',
+        date: '04 Feb 2021',
+        studentAbsent: 12,
+        studentPresent: 2,
+      },
+      {
+        moduleName: 'Module Title-001',
+        date: '04 Feb 2021',
+        studentAbsent: 12,
+        studentPresent: 2,
+      },
+      {
+        moduleName: 'Module Title-001',
+        date: '04 Feb 2021',
+        studentAbsent: 12,
+        studentPresent: 2,
+      },
+      {
+        moduleName: 'Module Title-001',
+        date: '04 Feb 2021',
+        studentAbsent: 12,
+        studentPresent: 2,
+      },
+      {
+        moduleName: 'Module Title-001',
+        date: '04 Feb 2021',
+        studentAbsent: 12,
+        studentPresent: 2,
+      },
+      {
+        moduleName: 'Module Title-001',
+        date: '04 Feb 2021',
+        studentAbsent: 12,
+        studentPresent: 2,
+      },
+      {
+        moduleName: 'Module Title-001',
+        date: '04 Feb 2021',
+        studentAbsent: 12,
+        studentPresent: 2,
+      },
+    ];
     this.showDetailCourseTeacher();
     this.showStudentByCourse();
   }

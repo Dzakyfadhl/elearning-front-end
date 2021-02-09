@@ -1,3 +1,4 @@
-export enum ExamType{
-    QUIZ, EXAM
+export enum ExamType {
+  QUIZ = 'QUIZ',
+  EXAM = 'EXAM',
 }

@@ -31,20 +31,17 @@
 <p-dialog
   header="Edit Score"
   [(visible)]="display"
-  [style]="{ width: '50vw' }"
+  [style]="{ width: '35vw' }"
   [baseZIndex]="10000"
 >
-  <h6>{{ tempFirstName }} {{ tempLastName }}</h6>
+  <div class="title-student">
+    <h6>{{ tempFirstName }} {{ tempLastName }}</h6>
+  </div>
   <div class="p-fluid p-formgrid p-grid">
-    <label>Score</label>
     <div class="p-field p-col-12">
-      <input
-        id="score"
-        type="score"
-        pInputText
-        placeholder="input your score"
-        [(ngModel)]="score"
-      />
+      <label for="username">Score</label>
+      <input id="score" type="score" pInputText [(ngModel)]="score" />
+      <small id="username-help">Enter your score to update your score.</small>
     </div>
   </div>
   <ng-template pTemplate="footer">
@@ -62,7 +59,14 @@
         <p-table
           [value]="studentSubmission"
           [scrollable]="true"
-          scrollHeight="100%"
+          [paginator]="true"
+          [scrollable]="true"
+          scrolHeight="100%"
+          [rows]="10"
+          [showCurrentPageReport]="true"
+          styleClass="p-datatable-striped"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+          [globalFilterFields]="['module']"
         >
           <ng-template pTemplate="header">
             <tr>

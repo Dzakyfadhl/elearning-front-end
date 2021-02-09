@@ -7,7 +7,7 @@ import { StudentByCourseIdResponse } from '../model/student-by-courseid-response
 import { AuthService } from './auth.service';
 import Constants from '../constants/constant';
 import { StudentUpdateRequest } from '../model/student/student-edit-request';
-import { PhotoRequest } from '../model/photo-request';
+import { StudentRegisterRequest } from '../model/student-register-request';
 
 @Injectable({
   providedIn: 'root',
@@ -43,7 +43,6 @@ export class StudentService {
       `${Constants.BASE_URL}/course/${id}/students`
     );
   }
-
   getAllStudent(): Promise<ResponseModel<StudentResponse[]>> {
     return this.http
       .get<ResponseModel<StudentResponse[]>>(
@@ -67,5 +66,14 @@ export class StudentService {
         },
       })
       .toPromise();
+  }
+
+  insertStudent(
+    data: StudentRegisterRequest
+  ): Observable<ResponseModel<StudentRegisterRequest>> {
+    return this.http.post<ResponseModel<StudentRegisterRequest>>(
+      `${Constants.BASE_URL}/student`,
+      data
+    );
   }
 }

@@ -14,6 +14,6 @@ export class DashboardTeacherComponent implements OnInit {
 
   signOut() {
     this.authService.signOut();
-    this.route.navigateByUrl('login-page');
+    this.route.navigateByUrl('login');
   }
 }

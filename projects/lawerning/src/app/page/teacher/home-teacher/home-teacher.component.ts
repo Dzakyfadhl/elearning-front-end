@@ -28,6 +28,6 @@ export class HomeTeacherComponent implements OnInit {
     let tempCourses: any = this.courses[index];
     let courseId = tempCourses.id;
     console.log(courseId);
-    this.router.navigate([`/list-module-teacher/${courseId}`]);
+    this.router.navigate([`/teacher/module/${courseId}`]);
   }
 }

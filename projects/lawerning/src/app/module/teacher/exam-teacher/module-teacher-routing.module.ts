@@ -4,7 +4,7 @@ import { ModuleTeacherComponent } from '@bootcamp-lawerning-page/teacher/module/
 
 const routes: Routes = [
   {
-    path: 'teacher/module/:courseId',
+    path: 'teacher/exam/:moduleId',
     component: ModuleTeacherComponent,
   },
 ];

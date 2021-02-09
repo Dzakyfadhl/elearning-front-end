@@ -27,7 +27,7 @@ export class LoginPageComponent implements OnInit {
         this.authService.setLoginResponse(result);
 
         if (result.role.code == 'RL-003') {
-          this.router.navigateByUrl('/home-teacher');
+          this.router.navigateByUrl('teacher/home');
         } else if (result.role.code == 'RL-004') {
           this.router.navigateByUrl('/student/home');
         } else if (result.role.code == 'RL-002') {

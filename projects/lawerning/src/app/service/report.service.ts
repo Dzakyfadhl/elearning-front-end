@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import Constants from '../constants/constant';
+import { AttendanceReport } from '../model/attendance-report';
 import { ResponseModel } from '../model/response-model';
 import { StudentReportResponse } from '../model/student-report-response';
 import { AuthService } from './auth.service';
@@ -25,6 +26,14 @@ export class ReportService {
   getStudentReporting(): Observable<ResponseModel<StudentReportResponse[]>> {
     return this.http.get<ResponseModel<StudentReportResponse[]>>(
       `${Constants.BASE_URL}/student/report?studentId=${
+        this.auth.getLoginResponse().userRoleId
+      }`
+    );
+  }
+
+  getAttendanceReportTeacher(): Observable<ResponseModel<AttendanceReport[]>> {
+    return this.http.get<ResponseModel<AttendanceReport[]>>(
+      `${Constants.BASE_URL}/teacher/attendance/reports/${
         this.auth.getLoginResponse().userRoleId
       }`
     );

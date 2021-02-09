@@ -4,10 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from '@bootcamp-lawerning-page/login-page/login-page.component';
 import { DashboardTeacherComponent } from './layout/dashboard-teacher/dashboard-teacher.component';
 import { Page404Component } from '@bootcamp-lawerning-page/page404/page404.component';
-
 import { DashboardStudentComponent } from './layout/dashboard-student/dashboard-student.component';
 import { DashboardAdminComponent } from './layout/dashboard-admin/dashboard-admin.component';
 import { HomePageComponent } from '@bootcamp-lawerning-page/home-page/home-page.component';
+import { RegisterPageComponent } from '@bootcamp-lawerning-page/register-page/register-page.component';
 const routes: Routes = [
   {
     path: 'home-page',
@@ -23,6 +23,12 @@ const routes: Routes = [
     component: LoginPageComponent,
     loadChildren: () =>
       import('./module/login/login.module').then((m) => m.LoginModule),
+  },
+  {
+    path: '',
+    component: RegisterPageComponent,
+    loadChildren: () =>
+      import('./module/register/register.module').then((m) => m.RegisterModule),
   },
   {
     path: '',

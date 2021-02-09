@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ExamType } from '../../model/exam-dto/exam-type';
 import { Gender } from '../../model/gender';
 
 @Component({
@@ -75,9 +76,14 @@ export class HomePageComponent implements OnInit {
   selectedCourse: any = 'all';
   courseFiltering: any[] = [];
 
+  quiz: string;
+  exam: string;
   constructor() {}
 
   ngOnInit(): void {
+    this.quiz = ExamType.QUIZ;
+    this.exam = ExamType.EXAM;
+
     this.courses.forEach((data) => {
       this.category.push(data.category);
     });

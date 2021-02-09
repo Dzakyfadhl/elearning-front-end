@@ -1,0 +1,123 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 d-flex justify-content-center">
+      <div class="card shadow-sm p-3 mt-3 mb-2 bg-white rounded">
+        <div class="card-body">
+          <div class="row">
+            <div class="header col-lg-12">
+              <div class="d-flex justify-content-space-evenly">
+                <div class="d-flex justify-content-between">
+                  <a>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="35"
+                      height="35"
+                      fill="currentColor"
+                      class="bi bi-arrow-left-circle-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"
+                      />
+                    </svg>
+                  </a>
+                  <h3>Add Exam</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="d-flex justify-content-center">
+                <img src="assets/images/submission.svg" style="height: 15rem" />
+              </div>
+            </div>
+            <div class="col-lg-6 mt-3">
+              <label for="title" class="form-label">Title</label>
+              <input
+                [(ngModel)]="examTeacher.title"
+                type="text"
+                class="form-control"
+                placeholder="Enter a title here"
+              />
+            </div>
+            <div class="col-lg-6 mt-3">
+              <label class="mb-1">
+                <h6 class="mb-1 text-sm">Type</h6>
+              </label>
+              <select class="custom-select" [(ngModel)]="examTeacher.type">
+                <option [value]="quiz">Quiz</option>
+                <option [value]="exam">Exam</option>
+              </select>
+            </div>
+            <div class="col-lg-12 mt-3">
+              <label>Description</label>
+              <textarea
+                [(ngModel)]="examTeacher.description"
+                class="form-control"
+                placeholder="Enter a description here"
+                id="floatingTextarea"
+              ></textarea>
+            </div>
+            <div class="col-lg-6 mt-3">
+              <h6>Start Exam</h6>
+              <p-calendar
+                [style]="{ width: '100%', height: '2.44rem' }"
+                showTime="true"
+                [showIcon]="true"
+                hourFormat="24"
+                [(ngModel)]="examTeacher.startTime"
+                inputId="time2"
+              ></p-calendar>
+            </div>
+            <div class="col-lg-6 mt-3">
+              <h6>Deadline Exam</h6>
+              <div class="deadline">
+                <p-calendar
+                  [style]="{ width: '100%', height: '2.44rem' }"
+                  showTime="true"
+                  [showIcon]="true"
+                  hourFormat="24"
+                  [(ngModel)]="examTeacher.endTime"
+                  inputId="time"
+                ></p-calendar>
+              </div>
+            </div>
+
+            <div class="col-lg-12 mt-3">
+              <h6>Upload the exam file</h6>
+            </div>
+            <div class="col-lg-12 text-center">
+              <div class="input-group mb-3">
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    class="custom-file-input"
+                    (change)="fileChange($event)"
+                    accept=".pdf,.doc,.docx"
+                  />
+                  <label class="custom-file-label" for="inputGroupFile01"
+                    >Choose file</label
+                  >
+                  <label
+                    *ngIf="file != undefined"
+                    class="custom-file-label"
+                    for="inputGroupFile01"
+                  ></label>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12 text-center mt-3">
+              <h6 class="">Accepted file types: .doc .docx .pdf</h6>
+              <button
+                pButton
+                class="p-button-secondary"
+                label="Upload"
+                icon="pi pi-upload"
+                (click)="uploadExam()"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,23 +1,27 @@
-.header-module{
-    position: absolute;
-    height: 25%;
-    background-color: #232946;
-  }
-.header-module a{
-    margin-left: 5px;
-    color: #f9bc60;
+.header-module {
+  position: absolute;
+  height: 25%;
+  background-color: #232946;
 }
-.header-module h6{
-    color: #f9bc60;
-    font-size: 30px;
-    margin-left: 15px;
-} 
-.header-module h5{
-    color: #a7a9be;
-    font-size: 18px;
-    margin-left: 55px;
-} 
+.header-module a {
+  margin-left: 5px;
+  color: #f9bc60;
+}
+.header-module h6 {
+  color: #f9bc60;
+  font-size: 30px;
+  margin-left: 15px;
+}
+.header-module h5 {
+  color: #a7a9be;
+  font-size: 18px;
+  margin-left: 55px;
+}
 
-.body-module{
-    margin-top: 5%;
+.body-module {
+  margin-top: 5%;
+}
+.title-student h6 {
+  font-weight: bold;
+  font-size: 20px;
 }

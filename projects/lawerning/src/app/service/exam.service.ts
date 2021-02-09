@@ -9,6 +9,7 @@ import { UpdateScoreRequestDTO } from '../model/exam-dto/update-score-request';
 import { AuthService } from './auth.service';
 import Constants from '../constants/constant';
 import { ExamStudentResponse } from '../model/exam-dto/exam-student-response';
+import { ExamTeacherRequest } from '../model/exam-dto/exam-teacher-request';
 
 @Injectable({
   providedIn: 'root',
@@ -64,5 +65,9 @@ export class ExamService {
         this.authService.getLoginResponse().userRoleId
       }`
     );
+  }
+
+  uploadExamTeacher(formData: FormData): Observable<any> {
+    return this.http.post<any>(`${Constants.BASE_URL}/exam/module`, formData);
   }
 }

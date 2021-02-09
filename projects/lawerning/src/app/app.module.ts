@@ -13,6 +13,8 @@ import { ConfirmationService } from 'primeng/api';
 import { BaseHttpInterceptor } from './shared/base-http-interceptor';
 import { ToastModule } from 'primeng/toast';
 import { HomePageComponent } from './page/home-page/home-page.component';
+import { CalendarModule } from 'primeng/calendar';
+import { ReportAttendanceComponent } from './page/teacher/report-attendance/report-attendance.component';
 
 @NgModule({
   declarations: [

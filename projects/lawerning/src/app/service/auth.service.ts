@@ -19,8 +19,11 @@ export class AuthService {
     localStorage.clear();
   }
 
-  getToken(): string {
-    return this.getLoginResponse().token;
+  getToken(): string | null {
+    if (this.getLoginResponse() && this.getLoginResponse().token) {
+      return this.getLoginResponse().token;
+    }
+    return null;
   }
 
   getUserId(): string {

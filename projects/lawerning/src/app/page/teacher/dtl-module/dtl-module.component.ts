@@ -184,4 +184,8 @@ export class DtlModuleComponent implements OnInit {
         this.showDetailModule();
       });
   }
+  uploadExam() {
+    console.log(this.moduleId);
+    this.router.navigate([`teacher/exam/`, this.moduleId]);
+  }
 }

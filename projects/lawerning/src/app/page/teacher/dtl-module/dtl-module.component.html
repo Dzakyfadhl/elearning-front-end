@@ -110,6 +110,16 @@
                 <span>Exam</span>
               </div>
             </ng-template>
+            <div class="d-flex justify-content-start">
+              <a (click)="uploadExam()">
+                <button
+                  pButton
+                  type="button"
+                  label="Add Exam"
+                  icon="pi pi-plus"
+                ></button>
+              </a>
+            </div>
             <div *ngIf="exam == null">
               <img src="assets/images/" />
             </div>
@@ -126,10 +136,10 @@
                 </h6>
                 <h6>Deadline: {{ m.endTime | date: "dd MMM yyyy HH:MM" }}</h6>
                 <p>{{ m.description }}</p>
-                <a href="http://192.168.15.224:8080/file/{{ m.fileId }}">
-                  <h6>{{ m.fileName }}</h6>
-                </a>
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-between">
+                  <a href="http://192.168.15.224:8080/file/{{ m.fileId }}">
+                    <h6>{{ m.fileName }}</h6>
+                  </a>
                   <button
                     (click)="viewExamSubmission(i)"
                     pButton
@@ -148,15 +158,37 @@
               </div>
             </ng-template>
             <div class="content-attendance">
-              <h5>Student Attendance</h5>
+              <div class="d-flex justify-content-end p-3">
+                <a
+                  href="http://192.168.15.224:8080/attendance/report?idCourse={{
+                    courseId
+                  }}&idModule={{ moduleId }}"
+                >
+                  <button
+                    pButton
+                    type="button"
+                    icon="pi pi-file"
+                    label="Download"
+                    class="download p-button-secondary p-button-sm"
+                  ></button>
+                </a>
+              </div>
+              <!-- <h5>Student Attendance</h5> -->
               <p-table
+                #dt1
                 [value]="studentAttendance"
+                [paginator]="true"
                 [scrollable]="true"
-                scrollHeight="100%"
+                scrolHeight="100%"
+                [rows]="10"
+                [showCurrentPageReport]="true"
+                styleClass="p-datatable-striped"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+                [globalFilterFields]="['firstName']"
               >
                 <ng-template pTemplate="header">
                   <tr>
-                    <th width="80px">No</th>
+                    <th width="20px">No</th>
                     <th width="80px">Name</th>
                     <th width="80px">Date</th>
                     <th width="80px">Status</th>
@@ -168,7 +200,7 @@
                   let-rowIndex="rowIndex"
                 >
                   <tr>
-                    <td width="80px">
+                    <td width="20px">
                       {{ rowIndex + 1 }}
                     </td>
                     <td width="80px">
@@ -340,213 +372,10 @@
           </p-tabPanel>
         </p-tabView>
       </div>
-      <!-- <div class="card shadow p-3 mb-5 bg-white rounded"> -->
-      <!-- <p-tabView styleClass="tabview-custom">
-                    <p-tabPanel>
-                        <ng-template pTemplate="header">
-                            <i class="pi pi-calendar"></i>
-                            <div class="ml-2">
-                                <span>Description</span>
-                            </div>
-                        </ng-template>
-                        <div class="content-description">
-                            <h5>Description</h5>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus sint dolorem odit
-                                quisquam nulla perspiciatis, ex obcaecati iure iusto eligendi architecto minima quae,
-                                aspernatur, aperiam voluptas quis tenetur voluptates unde! Lorem ipsum dolor sit amet,
-                                consectetur adipisicing elit. Neque veritatis quas, quidem aliquam possimus, eaque quo,
-                                vel praesentium iste dolorem asperiores cum reiciendis optio. Voluptatem autem quidem
-                                veniam eligendi dolorum. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Deserunt est quia eos error minima similique odio aut amet, porro eligendi veniam
-                                dignissimos reprehenderit possimus dolorum! Nulla repudiandae error laudantium ratione?
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime debitis numquam
-                                tenetur, placeat cupiditate magnam nobis laborum a adipisci consectetur perferendis
-                                tempore nihil culpa expedita assumenda vel ducimus praesentium et. Lorem ipsum dolor,
-                                sit amet consectetur adipisicing elit. Molestias, porro cupiditate voluptatum pariatur
-                                sint voluptas odio nobis, commodi asperiores eaque cum debitis odit accusamus, molestiae
-                                unde. Enim dicta distinctio obcaecati! Lorem, ipsum dolor sit amet consectetur
-                                adipisicing elit. Iusto ipsam quam voluptatibus aspernatur quidem facilis, cupiditate
-                                totam quae voluptate at, quis porro. Esse optio in temporibus! Tempore non optio cum?
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae placeat vero ullam
-                                nemo nesciunt? Debitis asperiores saepe nesciunt, adipisci aut repellendus nisi aliquam
-                                modi vel maxime harum ad provident quam.</p>
-                            <h5>Schedule</h5>
-                            <h6 class="card-text p-1">
-                                <div class="content-body d-flex justify-content-evenly">
-                                    <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-calendar-event-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z" />
-                                        </svg>
-
-                                    </span>
-                                    <h6>Friday, 21-02-2021</h6>
-                                </div>
-                            </h6>
-                            <h6 class="card-text p-1">
-                                <div class="content-body d-flex justify-content-evenly">
-                                    <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                        </svg>
-                                    </span>
-                                    <h6>09:30-12:30</h6>
-                                </div>
-                            </h6>
-                            <h5>Module</h5>
-                            <div class="d-flex justify-content-end mt-3">
-                                <a (click)="showDialogModule()">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
-                                        class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </p-tabPanel>
-                    <p-tabPanel>
-                        <ng-template pTemplate="header">
-                            <i class="pi pi-calendar"></i>
-                            <div class="ml-2">
-                                <span>Exam</span>
-                            </div>
-                        </ng-template>
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="button-add-exam col-lg-12 d-flex justify-content-end">
-                                    <button pButton (click)="showDialogExam()" type="button" label="Add Exam"></button>
-                                </div>
-                                <div class="col-lg-12 mt-2 shadow-sm p-3 mb-2 bg-white rounded"
-                                    *ngFor="let m of exam; let i=index">
-                                    <h6 class="card-text p-1">
-                                        <div class="content-body d-flex justify-content-evenly">
-                                            <h3>{{m.title}} - </h3>
-                                            <h4> {{m.type}}</h4>
-                                        </div>
-                                    </h6>
-                                    <h6>Deadline {{m.deadline}}</h6>
-                                    <p>{{m.description}}</p>
-                                    <a href="">
-                                        <h6>{{m.file}}</h6>
-                                    </a>
-                                    <div class="d-flex justify-content-end">
-                                        <button (click)="viewModule(i)" pButton type="button"
-                                            label="Submission"></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </p-tabPanel>
-                    <p-tabPanel>
-                        <ng-template pTemplate="header">
-                            <i class="pi pi-calendar"></i>
-                            <div class="ml-2">
-                                <span>Attendance</span>
-                            </div>
-                        </ng-template>
-                        <div class="content-attendance">
-                            <h5>Student Attendance</h5>
-                            <p-table [value]="student" [scrollable]="true" scrollHeight="100%">
-                                <ng-template pTemplate="header">
-                                    <tr>
-                                        <th width="80px">Code</th>
-                                        <th width="80px">Name</th>
-                                        <th width="80px">Date</th>
-                                        <th width="80px">Action</th>
-                                    </tr>
-                                </ng-template>
-                                <ng-template pTemplate="body" let-student>
-                                    <tr>
-                                        <td width="80px">{{student.code}}</td>
-                                        <td width="80px">{{student.name}}</td>
-                                        <td width="80px">{{student.attendanceDate}} {{student.attendanceTime}}</td>
-                                        <td width="80px">
-                                            <p-button label="Confirm" icon="pi pi-check" styleClass="p-button-success">
-                                            </p-button>
-                                        </td>
-                                    </tr>
-                                </ng-template>
-                            </p-table>
-                        </div>
-                    </p-tabPanel>
-                    <p-tabPanel>
-                        <ng-template pTemplate="header">
-                            <i class="pi pi-calendar"></i>
-                            <div class="ml-2">
-                                <span>Discussion</span>
-                            </div>
-
-                        </ng-template>
-                        <div class="col-lg-12 col-md-12">
-
-                            <div *ngFor="let m of messages">
-                                <div class="row">
-
-                                    <div class="image">
-                                        <img [src]="m.image" height="50" width="50" class="rounded-circle" alt="">
-
-                                    </div>
-                                    <div class="fullname">
-                                        <h5 class="m-3 text-bold text-info">{{m.nama}}</h5>
-
-                                    </div>
-                                    <div class="datetime">
-                                        <p class="time m-3 text-secondary">{{m.time}}</p>
-
-                                    </div>
-                                    <div *ngIf="m.role == 'Student'" class="role-student">
-                                        <span class="label-student mt-3 badge p-2">{{m.role}}</span>
-                                    </div>
-                                    <div *ngIf="m.role == 'Teacher'" class="role-teacher">
-                                        <span class="label-teacher mt-3 badge p-2">{{m.role}}</span>
-                                    </div>
-                                    <div class="message col-sm-6 col-lg-12 col-md-12">
-                                        <h6 class="m">{{m.message}}</h6>
-
-                                    </div>
-                                    <hr class="my-4">
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <div class="col-lg-12 mt-2">
-                            <div class="d-flex justify-content-space-evenly">
-
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                    class="icon-comment bi bi-chat-left-text-fill mt-2 mr-2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z" />
-                                </svg>
-
-                                <div class="input-group mb-3">
-
-                                    <textarea class="form-control" aria-label="With textarea"
-                                        placeholder="Write a comment..."></textarea>
-
-                                </div>
-                                <a class="send">
-
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                        class="bi bi-cursor-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z" />
-                                    </svg>
-                                </a>
-
-                            </div>
-                        </div>
-                    </p-tabPanel>
-                </p-tabView> -->
-      <!-- </div> -->
     </div>
   </div>
 </div>
-
+<router-outlet></router-outlet>
 <!-- <p-blockUI [blocked]="blockedDocument"></p-blockUI> -->
 
 <p-dialog
