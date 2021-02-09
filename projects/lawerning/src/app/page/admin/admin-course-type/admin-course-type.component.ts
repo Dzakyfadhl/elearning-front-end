@@ -1,10 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
-import { CourseCategoryCreateRequestDTO } from '../../../model/course-category-dto/course-category-create-request';
-import { CourseCategoryUpdateRequestDTO } from '../../../model/course-category-dto/course-category-update-request';
 import { CourseTypeCreateRequest } from '../../../model/course-type-dto/course-type-create-request';
 import { CourseTypeResponse } from '../../../model/course-type-dto/course-type-response';
+import { CourseTypeUpdateRequestDTO } from '../../../model/course-type-dto/course-type-update-request';
 import { AuthService } from '../../../service/auth.service';
 import { CourseTypeService } from '../../../service/course-type.service';
 import { ToastService } from '../../../service/toast.service';
@@ -19,8 +18,8 @@ export class AdminCourseTypeComponent implements OnInit {
   isEditModalVisible: boolean;
 
   courseTypes: CourseTypeResponse[];
-  createRequest: CourseCategoryCreateRequestDTO;
-  updateRequest: CourseCategoryUpdateRequestDTO;
+  createRequest: CourseTypeCreateRequest;
+  updateRequest: CourseTypeUpdateRequestDTO;
 
   submitted: boolean;
   codeVal: string;
@@ -52,7 +51,7 @@ export class AdminCourseTypeComponent implements OnInit {
   }
 
   openNew() {
-    this.createRequest = new CourseCategoryCreateRequestDTO();
+    this.createRequest = new CourseTypeCreateRequest();
     this.submitted = false;
     this.isCreateModalVisible = true;
   }
@@ -124,7 +123,7 @@ export class AdminCourseTypeComponent implements OnInit {
           (error: HttpErrorResponse) => {
             this.toastService.emitHttpErrorMessage(
               error,
-              'Failed to delete teacher'
+              'Failed to delete course type'
             );
           }
         );

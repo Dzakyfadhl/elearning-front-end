@@ -8,6 +8,7 @@ import { CourseTypeUpdateRequestDTO } from '../model/course-type-dto/course-type
 import { DeleteCourseTypeRequestDTO } from '../model/course-type-dto/delete-course-type-request';
 import { ResponseModel } from '../model/response-model';
 import { SubjectCategoryUpdateRequestDTO } from '../model/subject-category-dto/subject-category-update-request';
+import { UpdateIsActiveRequestDTO } from '../model/update-isactive-request';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -46,19 +47,10 @@ export class CourseTypeService {
     );
   }
 
-  setIsActiveFalse(
-    data: DeleteCourseTypeRequestDTO
-  ): Observable<DeleteCourseTypeRequestDTO> {
-    return this.http.patch<DeleteCourseTypeRequestDTO>(
-      `${Constants.BASE_URL}/course/type/false`,
-      data
-    );
-  }
-
-  setIsActiveTrue(
-    data: DeleteCourseTypeRequestDTO
-  ): Observable<DeleteCourseTypeRequestDTO> {
-    return this.http.patch<DeleteCourseTypeRequestDTO>(
+  updateIsActive(
+    data: UpdateIsActiveRequestDTO
+  ): Observable<ResponseModel<string>> {
+    return this.http.patch<ResponseModel<string>>(
       `${Constants.BASE_URL}/course/type/true`,
       data
     );

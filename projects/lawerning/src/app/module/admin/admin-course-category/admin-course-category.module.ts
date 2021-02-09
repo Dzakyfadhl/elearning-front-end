@@ -8,16 +8,15 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
-import { InputTextareaModule } from 'primeng/inputtextarea';
 
-import { AdminSubjectRoutingModule } from './admin-subject-routing.module';
-import { AdminSubjectComponent } from '../../../page/admin/admin-subject/admin-subject.component';
+import { AdminCourseCategoryRoutingModule } from './admin-course-category-routing.module';
+import { CourseCategoryComponent } from '@bootcamp-lawerning-page/admin/course-category/course-category.component';
 
 @NgModule({
-  declarations: [AdminSubjectComponent],
+  declarations: [CourseCategoryComponent],
   imports: [
     CommonModule,
-    AdminSubjectRoutingModule,
+    AdminCourseCategoryRoutingModule,
     TableModule,
     ButtonModule,
     FormsModule,
@@ -26,7 +25,6 @@ import { AdminSubjectComponent } from '../../../page/admin/admin-subject/admin-s
     ConfirmDialogModule,
     InputTextModule,
     DropdownModule,
-    InputTextareaModule,
   ],
 })
-export class AdminSubjectModule {}
+export class AdminCourseCategoryModule {}

@@ -8,12 +8,10 @@ import { AdminSubjectModule } from './admin-subject/admin-subject.module';
 import { AdminTeacherModule } from './admin-teacher/admin-teacher.module';
 import { AdminCourseTypeModule } from './admin-course-type/admin-course-type.module';
 import { AdminStudentModule } from './admin-student/admin-student.module';
-
+import { AdminCourseCategoryModule } from './admin-course-category/admin-course-category.module';
 
 @NgModule({
-  declarations: [
-    HomeAdminComponent
-  ],
+  declarations: [HomeAdminComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -21,7 +19,8 @@ import { AdminStudentModule } from './admin-student/admin-student.module';
     AdminSubjectModule,
     AdminTeacherModule,
     AdminCourseTypeModule,
-    AdminStudentModule
-  ]
+    AdminStudentModule,
+    AdminCourseCategoryModule,
+  ],
 })
-export class AdminModule { }
+export class AdminModule {}

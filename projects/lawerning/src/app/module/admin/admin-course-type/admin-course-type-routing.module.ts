@@ -5,16 +5,12 @@ import { AdminCourseTypeComponent } from '@bootcamp-lawerning-page/admin/admin-c
 const routes: Routes = [
   {
     path: 'course-type',
-    component: AdminCourseTypeComponent
-  }
-  // {
-  //   path: 'course-type/modif',
-  //   component: ModifAdminSubjectComponent
-  // }
+    component: AdminCourseTypeComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdminCourseTypeRoutingModule { }
+export class AdminCourseTypeRoutingModule {}

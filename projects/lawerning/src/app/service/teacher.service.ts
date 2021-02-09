@@ -8,6 +8,7 @@ import { TeacherProfileResponse } from '../model/teacher-dto/teacher-profile-res
 import { CreateTeacherRequest } from '../model/teacher-dto/create-teacher-request';
 import { UpdateTeacherRequest } from '../model/teacher-dto/update-teacher-request';
 import Constants from '../constants/constant';
+import { UpdateIsActiveRequestDTO } from '../model/update-isactive-request';
 
 @Injectable({
   providedIn: 'root',
@@ -48,6 +49,15 @@ export class TeacherService {
   }
 
   deleteTeacher(data: DeleteTeacherRequest): Observable<ResponseModel<string>> {
+    return this.http.patch<ResponseModel<string>>(
+      `${Constants.BASE_URL}/teacher`,
+      data
+    );
+  }
+
+  updateIsActive(
+    data: UpdateIsActiveRequestDTO
+  ): Observable<ResponseModel<string>> {
     return this.http.patch<ResponseModel<string>>(
       `${Constants.BASE_URL}/teacher`,
       data

@@ -7,6 +7,7 @@ import { DeleteSubjectRequestDTO } from '../model/subject-category-dto/delete-su
 import { SubjectCategoryCreateRequestDTO } from '../model/subject-category-dto/subject-category-create-request';
 import { SubjectCategoryResponseDTO } from '../model/subject-category-dto/subject-category-response';
 import { SubjectCategoryUpdateRequestDTO } from '../model/subject-category-dto/subject-category-update-request';
+import { UpdateIsActiveRequestDTO } from '../model/update-isactive-request';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -55,20 +56,11 @@ export class SubjectCategoryService {
     );
   }
 
-  setIsActiveFalse(
-    data: DeleteSubjectRequestDTO
-  ): Observable<DeleteSubjectRequestDTO> {
-    return this.http.patch<DeleteSubjectRequestDTO>(
-      `${Constants.BASE_URL}/subjectcategory/false`,
-      data
-    );
-  }
-
-  setIsActiveTrue(
-    data: DeleteSubjectRequestDTO
-  ): Observable<DeleteSubjectRequestDTO> {
-    return this.http.patch<DeleteSubjectRequestDTO>(
-      `${Constants.BASE_URL}/subjectcategory/true`,
+  updateIsActive(
+    data: UpdateIsActiveRequestDTO
+  ): Observable<ResponseModel<string>> {
+    return this.http.patch<ResponseModel<string>>(
+      `${Constants.BASE_URL}/subjectcategory`,
       data
     );
   }

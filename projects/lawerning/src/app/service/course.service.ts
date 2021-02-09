@@ -43,8 +43,8 @@ export class CourseService {
 
   insertCourse(
     data: CourseCreateRequestDTO
-  ): Observable<CourseCreateRequestDTO> {
-    return this.http.post<CourseCreateRequestDTO>(
+  ): Observable<ResponseModel<string>> {
+    return this.http.post<ResponseModel<string>>(
       `${Constants.BASE_URL}/course`,
       data
     );

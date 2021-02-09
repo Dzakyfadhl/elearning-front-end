@@ -1,6 +1,10 @@
-.form-outer {
-    padding: 25px 10px;
+:host ::ng-deep .test {
     border: 1px solid gainsboro;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+:host ::ng-deep .test .p-button-outlined {
+    width: 85px;
+    margin-right: 8px;
 }

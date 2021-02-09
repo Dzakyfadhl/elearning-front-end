@@ -7,6 +7,7 @@ import { CourseCategoryResponseDTO } from '../model/course-category-dto/course-c
 import { CourseCategoryUpdateRequestDTO } from '../model/course-category-dto/course-category-update-request';
 import { DeleteCourseCategoryRequestDTO } from '../model/course-category-dto/delete-course-category-request';
 import { ResponseModel } from '../model/response-model';
+import { UpdateIsActiveRequestDTO } from '../model/update-isactive-request';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -15,7 +16,9 @@ import { AuthService } from './auth.service';
 export class CourseCategoryService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  getSubjectCategory(): Observable<ResponseModel<CourseCategoryResponseDTO[]>> {
+  getCourseCategories(): Observable<
+    ResponseModel<CourseCategoryResponseDTO[]>
+  > {
     return this.http.get<ResponseModel<CourseCategoryResponseDTO[]>>(
       `${Constants.BASE_URL}/course/category`
     );
@@ -23,8 +26,8 @@ export class CourseCategoryService {
 
   insertCourseCategory(
     data: CourseCategoryCreateRequestDTO
-  ): Observable<CourseCategoryCreateRequestDTO> {
-    return this.http.post<CourseCategoryCreateRequestDTO>(
+  ): Observable<ResponseModel<string>> {
+    return this.http.post<ResponseModel<string>>(
       `${Constants.BASE_URL}/course/category`,
       data
     );
@@ -32,15 +35,15 @@ export class CourseCategoryService {
 
   updateCourseCategory(
     data: CourseCategoryUpdateRequestDTO
-  ): Observable<CourseCategoryUpdateRequestDTO> {
-    return this.http.put<CourseCategoryUpdateRequestDTO>(
+  ): Observable<ResponseModel<string>> {
+    return this.http.put<ResponseModel<string>>(
       `${Constants.BASE_URL}/course/category`,
       data
     );
   }
 
-  deleteCourseCategoryById(id: string): Observable<string> {
-    return this.http.delete<string>(
+  deleteCourseCategoryById(id: string): Observable<ResponseModel<string>> {
+    return this.http.delete<ResponseModel<string>>(
       `${Constants.BASE_URL}/course/category/id/${id}`
     );
   }
@@ -54,11 +57,11 @@ export class CourseCategoryService {
     );
   }
 
-  setIsActiveTrue(
-    data: DeleteCourseCategoryRequestDTO
-  ): Observable<DeleteCourseCategoryRequestDTO> {
-    return this.http.patch<DeleteCourseCategoryRequestDTO>(
-      `${Constants.BASE_URL}/course/category/true`,
+  updateIsActive(
+    data: UpdateIsActiveRequestDTO
+  ): Observable<ResponseModel<string>> {
+    return this.http.patch<ResponseModel<string>>(
+      `${Constants.BASE_URL}/course/category`,
       data
     );
   }

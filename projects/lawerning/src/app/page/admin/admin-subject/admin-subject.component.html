@@ -1,20 +1,12 @@
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb bg-light">
-        <li class="breadcrumb-item">
-            <a [routerLink]="['/admin']" routerLinkActive="active">Home</a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">Subject-Category</li>
-    </ol>
-</nav>
-
-<div class="container-fluid">
+<div class="container-fluid mt-4">
     <p-toolbar styleClass="p-mb-4">
         <div>
             <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
         </div>
     </p-toolbar>
 
-    <p-table #dt [value]="listSubjects" [rows]="10" [paginator]="true" [globalFilterFields]="['code', 'name', 'description']" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+    <p-table #dt [value]="listSubjects" [rows]="10" [paginator]="true" [globalFilterFields]="['code', 'name', 'description']" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [scrollable]="true"
+        [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
             <div class="d-flex align-items-center justify-content-between">
                 <h5 class="p-m-0">Manage Subject Category</h5>
@@ -31,32 +23,30 @@
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th style="width: 6rem">No.</th>
                 <th pSortableColumn="code" style="width: 10rem">
                     Code
                     <p-sortIcon field="code"></p-sortIcon>
                 </th>
-                <th pSortableColumn="name" style="width: 15rem">
+                <th pSortableColumn="name" style="width: 10rem">
                     Name
                     <p-sortIcon field="name"></p-sortIcon>
                 </th>
-                <th pSortableColumn="description" style="width: 25rem">
+                <th pSortableColumn="description" style="width: 20rem">
                     Description
                     <p-sortIcon field="description"></p-sortIcon>
                 </th>
 
-                <th>Action</th>
+                <th style="width: 10rem" class="text-center">Action</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-sc let-rowIndex="rowIndex">
+        <ng-template pTemplate="body" let-sc>
             <tr>
-                <td>{{ rowIndex + 1 }}</td>
-                <td>{{ sc.code }}</td>
-                <td>{{ sc.name }}</td>
-                <td>
-                    {{ sc.description }}{{ sc.description }}{{ sc.description }}{{ sc.description }}{{ sc.description }}{{ sc.description }}
+                <td style="width: 10rem">{{ sc.code }}</td>
+                <td style="width: 10rem">{{ sc.name }}</td>
+                <td style="width: 20rem">
+                    {{ sc.description }}
                 </td>
-                <td>
+                <td style="width: 10rem" class="text-center">
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editSubjectCategory(sc)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteSubjectCategory(sc)"></button>
                 </td>
