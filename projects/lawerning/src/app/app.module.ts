@@ -13,9 +13,8 @@ import { ConfirmationService } from 'primeng/api';
 import { BaseHttpInterceptor } from './shared/base-http-interceptor';
 import { ToastModule } from 'primeng/toast';
 import { HomePageComponent } from './page/home-page/home-page.component';
-import { CalendarModule } from 'primeng/calendar';
-import { ReportAttendanceComponent } from './page/teacher/report-attendance/report-attendance.component';
-
+import { ScrollTopModule } from 'primeng/scrolltop';
+import { CarouselModule } from 'primeng/carousel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +31,8 @@ import { ReportAttendanceComponent } from './page/teacher/report-attendance/repo
     ButtonModule,
     HttpClientModule,
     ToastModule,
+    ScrollTopModule,
+    CarouselModule,
   ],
   providers: [
     ConfirmationService,

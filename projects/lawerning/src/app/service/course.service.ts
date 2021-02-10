@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import Constants from '../constants/constant';
+import { CourseAllResponse } from '../model/course-all-response';
 import { CourseAvailableResponse } from '../model/course-available-response';
 import { CourseAdminResponseDTO } from '../model/course-dto/course-admin-response';
 import { CourseCreateRequestDTO } from '../model/course-dto/course-create-request';
@@ -16,6 +17,12 @@ import { AuthService } from './auth.service';
 })
 export class CourseService {
   constructor(private http: HttpClient, private authService: AuthService) {}
+
+  getCourseAll(): Observable<ResponseModel<CourseAllResponse[]>> {
+    return this.http.get<ResponseModel<CourseAllResponse[]>>(
+      `${Constants.BASE_URL}/course/all`
+    );
+  }
 
   getAvailableCourse(): Observable<ResponseModel<CourseAvailableResponse[]>> {
     return this.http.get<ResponseModel<CourseAvailableResponse[]>>(

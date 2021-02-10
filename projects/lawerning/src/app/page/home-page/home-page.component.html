@@ -34,6 +34,7 @@
   </div>
 </nav>
 
+<!-- <div class="container-fluid"> -->
 <div class="header-content container">
   <div class="row justify-content-center p-5">
     <div class="header-left col-lg-6 col-md-6 col-sm-12 mb-3">
@@ -99,77 +100,90 @@
   </div>
 </div>
 <div class="body-content bg-light container-fluid">
-  <div class="row justify-content-center p-5">
-    <div class="d-flex flex-column mb-5">
+  <div class="row justify-content-center p-4">
+    <div class="d-flex flex-column mb-4">
       <h1 class="text-center">Courses</h1>
       <span class="underline text-center mb-3"></span>
-
-      <div class="container justify-content-center">
-        <div class="row categoryy">
-          <div class="col-auto p-2">
-            <a *ngIf="selectedCourse != 'all'" (click)="onChange('all')">
-              <button class="invalid-all btn btn-secondary">All</button>
-            </a>
-            <a *ngIf="selectedCourse == 'all'" (click)="onChange('all')">
-              <button class="valid-all btn btn-info">All</button>
-            </a>
-          </div>
-          <div class="col-auto p-2" *ngFor="let c of categoryMerge">
-            <button
-              *ngIf="selectedCourse != c"
-              (click)="onChange(c)"
-              class="invalid-selected btn btn-secondary"
-            >
-              {{ c }}
-            </button>
-            <button
-              *ngIf="selectedCourse == c"
-              (click)="onChange(c)"
-              class="valid-selected btn btn-info"
-            >
-              {{ c }}
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
-    <div class="col-lg-12">
-      <div *ngIf="selectedCourse != 'all'">
-        <h4 class="category text-info">{{ selectedCourse }}</h4>
-        <hr />
-      </div>
-      <div class="row mb-3">
-        <div
-          class="d-flex justify-content-center"
-          *ngFor="let c of courseFiltering"
-        >
-          <div class="card shadow-sm rounded-lg my-3">
-            <div class="d-flex flex-column">
+    <div class="row mb-3">
+      <div class="col-lg-3" *ngFor="let c of courses">
+        <div class="card shadow rounded-lg my-3">
+          <div class="d-flex flex-column">
+            <img [src]="c.banner" class="ilustrator rounded-sm" alt="" />
+            <span class="label text-center text-truncate">{{
+              c.categoryName
+            }}</span>
+
+            <div class="title m-3">
+              <h5>{{ c.typeName }}</h5>
+              <hr />
+            </div>
+            <div class="d-flex justify-content-start">
               <img
-                src="assets/images/ilustrator.jpg"
-                class="ilustrator rounded-sm"
+                [src]="c.teacher.photoId"
+                class="img-teach rounded ml-3"
                 alt=""
               />
-              <div class="title m-3">
-                <h5>{{ c.typeName }}</h5>
-                <h6 class="text-secondary">{{ c.category }}</h6>
-                <hr />
-              </div>
-              <div class="d-flex justify-content-start">
-                <img
-                  src="assets/images/female.jpg"
-                  class="img-teach rounded ml-3"
-                  alt=""
-                />
-                <div class="d-flex flex-column pl-3">
-                  <h5 class="text-info">{{ c.teacherName }}</h5>
-                  <h6 class="text-secondary">{{ c.special }}</h6>
-                </div>
+              <div class="d-flex flex-column pl-3">
+                <h5 class="text-info">
+                  {{ c.teacher.firstName }} {{ c.teacher.lastName }},
+                  {{ c.teacher.title }}
+                </h5>
+                <h6 class="text-secondary">{{ c.teacher.experience }}</h6>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="body-mentor container-fluid">
+  <div class="row justify-content-center p-4">
+    <div class="col-lg-12">
+      <div class="d-flex flex-column mb-4">
+        <h1 class="text-center">Mentors</h1>
+        <span class="underline-mentor text-center mb-3"></span>
+      </div>
+      <div class="mentor-data">
+        <p-carousel
+          [value]="mentors"
+          [numVisible]="4"
+          [numScroll]="4"
+          [circular]="false"
+          [responsiveOptions]="responsiveOptions"
+        >
+          <ng-template let-mentor pTemplate="item">
+            <div class="product-item">
+              <div class="product-item-content shadow-sm">
+                <div class="p-mb-3 text-center">
+                  <img
+                    [src]="mentor.photoId"
+                    class="rounded"
+                    height="120"
+                    width="120"
+                  />
+                </div>
+                <h5 class="teacher-name p-mb-1 text-center mt-3">
+                  {{ mentor.teacherName }}
+                </h5>
+                <h6 class="p-mt-0 p-mb-3 text-secondary text-center">
+                  {{ mentor.experience }}
+                </h6>
+              </div>
+            </div>
+          </ng-template>
+        </p-carousel>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer container-fluid">
+  <div class="row justify-content-center p-4">
+    <div class="col-lg-12">
+      <h1 class="text-center text-light">Footer Content</h1>
     </div>
   </div>
 </div>

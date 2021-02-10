@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import Constants from '../../constants/constant';
+import { CourseAllResponse } from '../../model/course-all-response';
 import { ExamType } from '../../model/exam-dto/exam-type';
 import { Gender } from '../../model/gender';
+import { CourseService } from '../../service/course.service';
 
 @Component({
   selector: 'app-home-page',
@@ -8,105 +11,77 @@ import { Gender } from '../../model/gender';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
-  courses = [
-    {
-      category: 'Programming',
-      typeName: 'Java Framework',
-      teacherName: 'Ryan Rivaldo, S.Kom.',
-      special: 'Backend Developer',
-    },
-    {
-      category: 'Programming',
-      typeName: 'Java OOP',
-      teacherName: 'Ryan Rivaldo, S.Kom.',
-      special: 'Backend Developer',
-    },
-    {
-      category: 'Programming',
-      typeName: 'Java OOP',
-      teacherName: 'Ryan Rivaldo, S.Kom.',
-      special: 'Backend Developer',
-    },
-    {
-      category: 'Business',
-      typeName: 'Marketing MIX',
-      teacherName: 'Ryan Rivaldo, S.Kom.',
-      special: 'Manager',
-    },
-    {
-      category: 'Business',
-      typeName: 'Creative Industry',
-      teacherName: 'Ryan Rivaldo, S.Kom.',
-      special: 'Manager',
-    },
+  courses: CourseAllResponse[];
 
+  mentors = [
     {
-      category: 'Business',
-      typeName: 'Marketing MIX',
-      teacherName: 'Ryan Rivaldo, S.Kom.',
-      special: 'Manager',
+      photoId: 'assets/images/female.jpg',
+      teacherName: 'Ryan Rivaldo, S.Kom',
+      experience: 'Backend Developer',
     },
     {
-      category: 'Business',
-      typeName: 'Creative Industry',
-      teacherName: 'Ryan Rivaldo, S.Kom.',
-      special: 'Manager',
+      photoId: 'assets/images/female.jpg',
+      teacherName: 'Ryan Rivaldo, S.Kom',
+      experience: 'Backend Developer',
     },
     {
-      category: 'Business',
-      typeName: 'Creative Industry',
-      teacherName: 'Ryan Rivaldo, S.Kom.',
-      special: 'Manager',
+      photoId: 'assets/images/female.jpg',
+      teacherName: 'Ryan Rivaldo, S.Kom',
+      experience: 'Backend Developer',
     },
     {
-      category: 'UI/UX Design',
-      typeName: 'Web Apps',
-      teacherName: 'Ryan Rivaldo, S.Kom.',
-      special: 'Designer',
+      photoId: 'assets/images/female.jpg',
+      teacherName: 'Ryan Rivaldo, S.Kom',
+      experience: 'Backend Developer',
     },
     {
-      category: 'UI/UX Design',
-      typeName: 'Mobile Apps',
-      teacherName: 'Ryan Rivaldo, S.Kom.',
-      special: 'Designer',
+      photoId: 'assets/images/female.jpg',
+      teacherName: 'Ryan Rivaldo, S.Kom',
+      experience: 'Backend Developer',
     },
   ];
-  category = [];
-  categoryMerge: any[] = [];
-  selectedCourse: any = 'all';
-  courseFiltering: any[] = [];
+  responsiveOptions;
 
-  quiz: string;
-  exam: string;
-  constructor() {}
-
-  ngOnInit(): void {
-    this.quiz = ExamType.QUIZ;
-    this.exam = ExamType.EXAM;
-
-    this.courses.forEach((data) => {
-      this.category.push(data.category);
-    });
-
-    this.categoryMerge = this.category.filter(
-      (item, i, array) => array.indexOf(item) === i
-    );
-    this.categoryMerge.forEach((val) => console.log(val));
-    this.courseFiltering = this.courses;
-
-    console.log(this.categoryMerge);
+  constructor(private courseService: CourseService) {
+    this.responsiveOptions = [
+      {
+        breakpoint: '1024px',
+        numVisible: 4,
+        numScroll: 4,
+      },
+      {
+        breakpoint: '768px',
+        numVisible: 2,
+        numScroll: 1,
+      },
+      {
+        breakpoint: '568px',
+        numVisible: 1,
+        numScroll: 1,
+      },
+    ];
   }
 
-  onChange(newValue) {
-    this.selectedCourse = newValue;
-    console.log(this.selectedCourse);
+  ngOnInit(): void {
+    this.courseService.getCourseAll().subscribe((result) => {
+      this.courses = result.result;
 
-    if (this.selectedCourse == 'all') {
-      this.courseFiltering = this.courses;
-    } else {
-      this.courseFiltering = this.courses.filter(
-        (value) => value.category == this.selectedCourse
-      );
-    }
+      this.courses.forEach((data) => {
+        if (data.teacher.photoId == null) {
+          data.teacher.photoId = `assets/images/default.png`;
+        } else {
+          data.teacher.photoId = `${Constants.BASE_URL}/file/${data.teacher.photoId}`;
+        }
+      });
+      for (let i = 0; i < this.courses.length; i++) {
+        if (i % 2 == 0) {
+          this.courses[i].banner = 'assets/images/ilustrator4.jpg';
+        } else {
+          this.courses[i].banner = 'assets/images/ilustrator3.png';
+        }
+      }
+
+      console.log(this.courses.length);
+    });
   }
 }

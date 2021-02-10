@@ -4,6 +4,16 @@
   margin-top: 1px;
   background-color: grey;
 }
+.label {
+  border-radius: 0% 20px 0px 0%;
+  width: 12rem;
+  height: 2rem;
+  position: absolute;
+  color: white;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: rgb(1, 94, 122);
+}
 .row .categoryy {
   flex-wrap: nowrap;
   overflow-x: scroll;
@@ -46,6 +56,12 @@
   width: 60px;
 }
 .category {
+  border-radius: 0% 30px 0% 0%;
+  width: 20rem;
+  height: 2rem;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: rgb(1, 94, 122);
   font-weight: bold;
 }
 .card {
@@ -60,12 +76,50 @@
   font-weight: bold;
   color: #232946;
 }
-
+.footer {
+  height: auto;
+  background-color: teal;
+}
 @media (min-width: 411px) {
+  /* .mentor-data {
+    width: 80%;
+  } */
   .underline {
     width: 5rem;
     height: 0.5rem;
-    margin-left: 9.5rem;
+    margin-left: 1.5rem;
+    background-color: #232946;
+  }
+  .product-item-content {
+    border: 1px solid var(--surface-d);
+    border-radius: 3px;
+    margin: 0.3rem;
+    text-align: center;
+    padding: 2rem 0;
+
+    /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); */
+  }
+  :host
+    ::ng-deep
+    .p-carousel
+    .p-carousel-indicators
+    .p-carousel-indicator.p-highlight
+    button {
+    background-color: #232946;
+  }
+  .teacher-name {
+    color: #232946;
+    font-weight: bold;
+  }
+
+  .product-image {
+    width: 50%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+  .underline-mentor {
+    width: 5rem;
+    height: 0.5rem;
+    margin-left: 8rem;
     background-color: #232946;
   }
   .header-left {
@@ -92,11 +146,17 @@
   .header-left {
     margin-top: 8rem;
   }
+  .underline-mentor {
+    width: 5rem;
+    height: 0.5rem;
+    margin-left: 42.5rem;
+    background-color: #232946;
+  }
 
   .underline {
     width: 5rem;
     height: 0.5rem;
-    margin-left: 11rem;
+    margin-left: 1.5rem;
     background-color: #232946;
   }
   .img-improve {

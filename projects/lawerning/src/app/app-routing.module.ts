@@ -8,6 +8,7 @@ import { DashboardStudentComponent } from './layout/dashboard-student/dashboard-
 import { DashboardAdminComponent } from './layout/dashboard-admin/dashboard-admin.component';
 import { HomePageComponent } from '@bootcamp-lawerning-page/home-page/home-page.component';
 import { RegisterPageComponent } from '@bootcamp-lawerning-page/register-page/register-page.component';
+import { CheckLoginGuard } from './shared/check-login.guard';
 const routes: Routes = [
   {
     path: 'home-page',
@@ -23,6 +24,7 @@ const routes: Routes = [
     component: LoginPageComponent,
     loadChildren: () =>
       import('./module/login/login.module').then((m) => m.LoginModule),
+    // canActivate: [CheckLoginGuard],
   },
   {
     path: '',
