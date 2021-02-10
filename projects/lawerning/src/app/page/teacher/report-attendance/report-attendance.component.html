@@ -40,6 +40,7 @@
               <th width="80px">Date</th>
               <th width="80px">Student Absent</th>
               <th width="80px">Student Present</th>
+              <th width="80px">Total Student</th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-ap let-rowIndex="rowIndex">
@@ -52,8 +53,9 @@
                 {{ ap.moduleName }}
               </td>
               <td width="80px">{{ ap.date }}</td>
-              <td width="80px">{{ ap.studentAbsent }}</td>
-              <td width="80px">{{ ap.studentPresent }}</td>
+              <td width="80px">{{ ap.absent }}</td>
+              <td width="80px">{{ ap.present }}</td>
+              <td width="80px">{{ ap.totalStudent }}</td>
             </tr>
           </ng-template>
           <ng-template pTemplate="paginatorleft">

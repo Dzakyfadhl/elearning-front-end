@@ -32,6 +32,7 @@ export class DtlModuleComponent implements OnInit {
   courseId: string;
   formData: FormData;
   file: string;
+  isValidate = false;
 
   displayExam: boolean = false;
   displayModule: boolean = false;
@@ -77,6 +78,17 @@ export class DtlModuleComponent implements OnInit {
         console.log(this.exam);
       });
   }
+
+  validateExam() {
+    for (let i = 0; i < this.exam.length; i++) {
+      let dateExam = new Date(this.exam[i].endTime);
+      let dateNow = new Date();
+      if (dateNow > dateExam) {
+        this.isValidate = true;
+      }
+    }
+  }
+
   showLessonModule() {
     this.lessonService.getLessonModule(this.moduleId).subscribe((val) => {
       this.lesson = val.result;
@@ -155,9 +167,22 @@ export class DtlModuleComponent implements OnInit {
     this.displayExam = false;
   }
   viewExamSubmission(index: number) {
+    let dataObj = {
+      idExam: '',
+      title: '',
+    };
     let tempExam: any = this.exam[index];
     let examId = tempExam.id;
-    this.router.navigate([`/submission-teacher/${examId}`]);
+    let examTitle = tempExam.title;
+    console.log(tempExam.id);
+    console.log(tempExam.title);
+
+    dataObj.idExam = examId;
+    dataObj.title = examTitle;
+    // console.log(dataObj.idExam);
+    // console.log(dataObj.title);
+
+    this.router.navigate([`/submission/teacher`], { queryParams: dataObj });
   }
 
   fileChange(event) {

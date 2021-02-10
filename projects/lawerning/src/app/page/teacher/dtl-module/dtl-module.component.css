@@ -38,7 +38,7 @@
 
 .content-body h6 {
   margin-top: 6px;
-  margin-left: 15px;
+  margin-left: 8px;
 }
 
 .card-body {
@@ -161,6 +161,7 @@
 
 .content-body h3 {
   font-size: 25px;
+  margin-left: 15px;
   font-weight: bold;
 }
 
@@ -180,6 +181,11 @@
 .button-add-exam {
   margin-left: 15px;
 }
+
+.status-exam-badge {
+  background: #c8e6c9;
+  color: #256029;
+}
 .status-badge.status-present {
   background: #c8e6c9;
   color: #256029;
@@ -193,6 +199,14 @@
   width: 60%;
   margin-bottom: 20px;
 }
+.status-exam-badge {
+  border-radius: 2px;
+  padding: 0.45em 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+}
 .status-badge {
   border-radius: 2px;
   padding: 0.25em 0.5rem;
@@ -201,7 +215,18 @@
   font-size: 14px;
   letter-spacing: 0.3px;
 }
+.exam-header {
+  margin-bottom: 20px;
+}
+/* .exam-span {
+  width: 10px;
+  height: auto;
+  background-color: #256029;
+} */
 
+.deadlineTime {
+  color: rgb(231, 35, 35);
+}
 /* Small devices (landscape phones, 576px and up) */
 
 @media (min-width: 300px) {
@@ -293,7 +318,6 @@
 }
 .card-text {
   color: #858699;
-  margin-bottom: 20px;
 }
 .content-description h5 {
   font-size: 30px;

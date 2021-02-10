@@ -10,7 +10,9 @@ import { CourseService } from '../../../service/course.service';
 })
 export class HomeTeacherComponent implements OnInit {
   courses: CourseTeacherResponse[];
-
+  totalModule = 0;
+  totalStudent = 0;
+  totalCourse = 0;
   constructor(private courseService: CourseService, private router: Router) {}
 
   ngOnInit(): void {
@@ -21,6 +23,13 @@ export class HomeTeacherComponent implements OnInit {
     this.courseService.getCourseTeacher().subscribe((value) => {
       this.courses = value.result;
       console.log(this.courses);
+      for (let i = 0; i < this.courses.length; i++) {
+        this.totalModule = this.totalModule + this.courses[i].totalModule;
+        this.totalStudent = this.totalStudent + this.courses[i].totalStudent;
+      }
+      this.totalCourse = this.courses.length;
+      console.log(this.totalStudent);
+      console.log(this.totalModule);
     });
   }
 

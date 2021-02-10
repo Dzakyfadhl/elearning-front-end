@@ -31,11 +31,11 @@ export class ReportService {
     );
   }
 
-  getAttendanceReportTeacher(): Observable<ResponseModel<AttendanceReport[]>> {
+  getAttendanceReportTeacher(
+    courseId: string
+  ): Observable<ResponseModel<AttendanceReport[]>> {
     return this.http.get<ResponseModel<AttendanceReport[]>>(
-      `${Constants.BASE_URL}/teacher/attendance/reports/${
-        this.auth.getLoginResponse().userRoleId
-      }`
+      `${Constants.BASE_URL}/teacher/attendance/reports/${courseId}`
     );
   }
 }

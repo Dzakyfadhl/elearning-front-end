@@ -128,12 +128,18 @@
               <ng-template pTemplate="header">
                 <i class="pi pi-user"></i>
                 <div class="ml-2">
-                  <span>Report Attendance</span>
+                  <span>Report</span>
                 </div>
               </ng-template>
               <div class="col-lg-12">
-                <div class="d-flex justify-content-end p-3">
-                  <a>
+                <div class="head-card d-flex justify-content-between p-3">
+                  <h3>Report Attendance</h3>
+
+                  <a
+                    href="http://192.168.15.224:8080/teacher/attendance/report/{{
+                      courseId
+                    }}"
+                  >
                     <button
                       pButton
                       type="button"
@@ -146,7 +152,7 @@
 
                 <p-table
                   #dt1
-                  [value]="attendanceReport"
+                  [value]="attendanceReports"
                   [paginator]="true"
                   [scrollable]="true"
                   [rows]="10"
@@ -157,22 +163,24 @@
                 >
                   <ng-template pTemplate="header">
                     <tr>
-                      <th width="80px">No</th>
+                      <th width="20px">No</th>
                       <th width="80px">Module Name</th>
                       <th width="80px">Date</th>
                       <th width="80px">Student Absent</th>
                       <th width="80px">Student Present</th>
+                      <th width="80px">Total Student</th>
                     </tr>
                   </ng-template>
                   <ng-template pTemplate="body" let-ap let-rowIndex="rowIndex">
                     <tr>
-                      <td width="80px">{{ rowIndex + 1 }}</td>
+                      <td width="20px">{{ rowIndex + 1 }}</td>
                       <td width="80px">
                         {{ ap.moduleName }}
                       </td>
                       <td width="80px">{{ ap.date }}</td>
-                      <td width="80px">{{ ap.studentAbsent }}</td>
-                      <td width="80px">{{ ap.studentPresent }}</td>
+                      <td width="80px">{{ ap.absent }}</td>
+                      <td width="80px">{{ ap.present }}</td>
+                      <td width="80px">{{ ap.totalStudent }}</td>
                     </tr>
                   </ng-template>
                   <ng-template pTemplate="paginatorleft">

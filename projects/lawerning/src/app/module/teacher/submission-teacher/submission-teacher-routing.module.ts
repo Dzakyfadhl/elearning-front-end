@@ -5,7 +5,7 @@ import { SubmissionTeacherModule } from './submission-teacher.module';
 
 const routes: Routes = [
   {
-    path: 'submission-teacher/:examId',
+    path: 'submission/teacher',
     component: SubmissionTeacherComponent,
   },
 ];

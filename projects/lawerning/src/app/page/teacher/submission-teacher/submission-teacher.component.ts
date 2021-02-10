@@ -15,6 +15,7 @@ export class SubmissionTeacherComponent implements OnInit {
   tempFirstName: string;
   tempLastName: string;
   score: number;
+  examTitle: string;
   data = new UpdateScoreRequestDTO();
   studentSubmission: SubmissionsByExamResponseDTO[];
 
@@ -30,9 +31,12 @@ export class SubmissionTeacherComponent implements OnInit {
   }
 
   showExamSubmission() {
-    this.activeRoute.params.subscribe((value) => {
-      console.log(value.examId);
-      this.examService.getExamSubmission(value.examId).subscribe((value) => {
+    this.activeRoute.queryParams.subscribe((value) => {
+      console.log(value.idExam);
+      this.examTitle = value.title;
+      console.log(this.examTitle);
+
+      this.examService.getExamSubmission(value.idExam).subscribe((value) => {
         this.studentSubmission = value.result;
         console.log(this.studentSubmission);
       });
