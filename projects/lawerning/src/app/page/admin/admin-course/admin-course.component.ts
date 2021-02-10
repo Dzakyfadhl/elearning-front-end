@@ -39,6 +39,8 @@ export class AdminCourseComponent implements OnInit {
   courseTypes: CourseTypeResponse[];
   categories: CourseCategoryResponseDTO[];
 
+  teacherVal: { key: string; value: string }[] = [];
+
   submitted: boolean;
 
   first = 0;
@@ -66,6 +68,7 @@ export class AdminCourseComponent implements OnInit {
     this.courseService.getCoursesForAdmin().subscribe(
       (val) => {
         this.courses = val.result;
+        console.log(this.courses);
       },
       (err) => {
         console.error(err.error);
@@ -102,6 +105,12 @@ export class AdminCourseComponent implements OnInit {
       (val) => {
         this.teachers = val.result;
         console.log(this.teachers);
+        this.teachers.forEach((teacher) => {
+          this.teacherVal.push({
+            key: teacher.id,
+            value: `${teacher.firstName} ${teacher.lastName}`,
+          });
+        });
       },
       (err) => {
         console.error(err.error);
@@ -138,25 +147,41 @@ export class AdminCourseComponent implements OnInit {
     );
   }
 
-  // editTeacher(course: CourseAdminResponseDTO) {
-  //   this.isEditModalVisible = true;
-  //   this.updateRequest = {
+  editCourse(course: CourseAdminResponseDTO) {
+    this.selectedCategory = course.categoryId;
+    this.selectedType = course.typeId;
+    this.selectedTeacher = course.teacherId;
 
-  //     id: course.id,
-  //     code: course.code,
-  // description: course.description,
-  // courseTypeId: course.,
-  // teacherId: string,
-  // courseCategoryId: string,
-  // capacity: course.capacity,
-  // periodStart: course.periodStart,
-  // periodEnd: course.periodEnd,
-  // createdBy: 'admin',
-  // status: course.status,
-
-  //     updateBy: this.auth.getUserId(),
-  //   };
-  // }
+    this.isEditModalVisible = true;
+    this.updateRequest = {
+      id: course.id,
+      code: course.code,
+      description: course.description,
+      capacity: course.capacity,
+      periodStart: course.periodStart,
+      periodEnd: course.periodEnd,
+      createdBy: null,
+      status: course.status,
+      courseCategoryId: this.selectedCategory,
+      courseTypeId: this.selectedType,
+      teacherId: this.selectedTeacher,
+      updateBy: this.auth.getUserId(),
+    };
+  }
+  async updateCourse() {
+    try {
+      const response = await this.courseService.updateCourse(
+        this.updateRequest
+      );
+      if (response.code === 200) {
+        this.toastService.emitSuccessMessage('Updated', response.result);
+        this.defineCourses();
+        this.hideModal();
+      }
+    } catch (error) {
+      this.toastService.emitHttpErrorMessage(error, 'Failed to update Course.');
+    }
+  }
 
   hideModal() {
     this.isCreateModalVisible = false;

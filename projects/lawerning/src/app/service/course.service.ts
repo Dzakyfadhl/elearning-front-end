@@ -49,13 +49,10 @@ export class CourseService {
     );
   }
 
-  updateCourse(
-    data: CourseUpdateRequestDTO
-  ): Observable<CourseUpdateRequestDTO> {
-    return this.http.put<CourseUpdateRequestDTO>(
-      `${Constants.BASE_URL}/course`,
-      data
-    );
+  updateCourse(data: CourseUpdateRequestDTO): Promise<ResponseModel<string>> {
+    return this.http
+      .put<ResponseModel<string>>(`${Constants.BASE_URL}/course`, data)
+      .toPromise();
   }
 
   getCoursesForAdmin(): Observable<ResponseModel<CourseAdminResponseDTO[]>> {

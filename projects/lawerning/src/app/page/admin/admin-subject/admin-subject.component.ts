@@ -67,6 +67,7 @@ export class AdminSubjectComponent implements OnInit {
       (response) => {
         if (response.code === 201 && response.result) {
           this.toastService.emitSuccessMessage('Submitted', response.result);
+          this.defineSubjects();
           this.hideModal();
         }
       },
@@ -86,7 +87,7 @@ export class AdminSubjectComponent implements OnInit {
       code: subjectCategory.code,
       description: subjectCategory.description,
       subjectName: subjectCategory.name,
-      createdBy: 'admin',
+      createdBy: null,
       updatedBy: this.auth.getUserId(),
     };
   }
@@ -99,6 +100,8 @@ export class AdminSubjectComponent implements OnInit {
             'Updated',
             'Subject category has been updated successfully.'
           );
+          this.defineSubjects();
+          this.hideModal();
         }
       },
       (error: HttpErrorResponse) => {
@@ -134,18 +137,6 @@ export class AdminSubjectComponent implements OnInit {
         );
       },
     });
-  }
-
-  next() {
-    this.first = this.first + this.rows;
-  }
-
-  prev() {
-    this.first = this.first - this.rows;
-  }
-
-  reset() {
-    this.first = 0;
   }
 
   confirmDelete() {

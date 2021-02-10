@@ -8,4 +8,7 @@ export class CourseAdminResponseDTO {
   periodEnd: string;
   status: string;
   description: string;
+  typeId: string;
+  categoryId: string;
+  teacherId: string;
 }

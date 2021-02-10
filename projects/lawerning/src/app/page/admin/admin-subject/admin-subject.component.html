@@ -67,18 +67,21 @@
                 <label for="code">Subject Category Code</label>
                 <input type="text" pInputText id="code" [(ngModel)]="createRequest.code" required autofocus />
                 <small class="p-error" *ngIf="submitted && !createRequest.code">
-          First Name is required.
+          Subject Category is required.
         </small>
             </div>
             <div class="p-field col">
                 <label for="name">Subject Category Name</label>
-                <input type="text" pInputText id="name" [(ngModel)]="createRequest.name" required autofocus />
+                <input type="text" pInputText id="name" [(ngModel)]="createRequest.subjectName" required autofocus />
+                <small class="p-error" *ngIf="submitted && !createRequest.subjectName">
+          Subject Name is required.
+        </small>
             </div>
         </div>
         <div class="p-field mt-3">
             <label for="description">Description</label>
             <textarea [rows]="3" pInputTextarea autoResize="autoResize" id="description" [(ngModel)]="createRequest.description" required autofocus></textarea>
-            <small class="p-error" *ngIf="submitted && !updateRequest.description">Description is required.</small
+            <small class="p-error" *ngIf="submitted && !createRequest.description">Description is required.</small
       >
     </div>
   </ng-template>
@@ -123,7 +126,7 @@
           autofocus
         />
         <small class="p-error" *ngIf="submitted && !updateRequest.code"
-          >Code is required.</small
+          >Subject Code is required.</small
         >
       </div>
       <div class="p-field col">
@@ -136,6 +139,9 @@
           required
           autofocus
         />
+        <small class="p-error" *ngIf="submitted && !updateRequest.subjectName"
+          >Subject Name is required.</small
+        >
       </div>
     </div>
     <div class="p-field mt-3">

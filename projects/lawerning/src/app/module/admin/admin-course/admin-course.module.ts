@@ -13,10 +13,9 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 
 import { AdminCourseRoutingModule } from './admin-course-routing.module';
 import { AdminCourseComponent } from '../../../page/admin/admin-course/admin-course.component';
-import { ModifAdminCourseComponent } from '../../../page/admin/admin-course/modif-admin-course/modif-admin-course.component';
 
 @NgModule({
-  declarations: [AdminCourseComponent, ModifAdminCourseComponent],
+  declarations: [AdminCourseComponent],
   imports: [
     CommonModule,
     AdminCourseRoutingModule,

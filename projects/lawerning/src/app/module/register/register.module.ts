@@ -6,7 +6,6 @@ import { RegisterPageComponent } from '@bootcamp-lawerning-page/register-page/re
 import { FormsModule } from '@angular/forms';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { DropdownModule } from 'primeng/dropdown';
-import { ValidateEqualModule } from 'ng-validate-equal';
 
 @NgModule({
   declarations: [RegisterPageComponent],
@@ -16,7 +15,6 @@ import { ValidateEqualModule } from 'ng-validate-equal';
     FormsModule,
     RadioButtonModule,
     DropdownModule,
-    ValidateEqualModule,
   ],
 })
 export class RegisterModule {}

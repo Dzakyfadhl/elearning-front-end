@@ -58,7 +58,7 @@
             <div class="p-field col">
                 <label for="code">Course type code</label>
                 <input type="text" pInputText id="code" [(ngModel)]="createRequest.code" required autofocus />
-                <small class="p-error" *ngIf="submitted && !createRequest.code">First Name is required.</small
+                <small class="p-error" *ngIf="submitted && !createRequest.code">Code is required.</small
         >
       </div>
       <div class="p-field col">
@@ -71,6 +71,9 @@
           required
           autofocus
         />
+        <small class="p-error" *ngIf="submitted && !createRequest.name"
+          >Name is required.</small
+        >
       </div>
     </div>
   </ng-template>
@@ -128,6 +131,9 @@
           required
           autofocus
         />
+        <small class="p-error" *ngIf="submitted && !updateRequest.name"
+          >Name is required.</small
+        >
       </div>
     </div>
   </ng-template>

@@ -13,7 +13,7 @@
       'periodeEnd',
       'status',
       'capacity'
-    ]" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+    ]" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [scrollable]="true" scrollWidth="100%" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
             <div class="d-flex align-items-center justify-content-between">
                 <h5 class="p-m-0">Manage Courses</h5>
@@ -30,49 +30,59 @@
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="code">
+                <th pSortableColumn="code" style="width: 7rem">
                     Code
                     <p-sortIcon field="code"></p-sortIcon>
                 </th>
-                <th pSortableColumn="typeName">
+                <th pSortableColumn="typeName" style="width: 10rem">
                     Cours Type
                     <p-sortIcon field="typeName"></p-sortIcon>
                 </th>
-                <th pSortableColumn="category">
+                <th pSortableColumn="category" style="width: 10rem">
                     Category
                     <p-sortIcon field="category"></p-sortIcon>
                 </th>
-                <th pSortableColumn="periodeStart">
+                <th pSortableColumn="description" style="width: 15rem">
+                    Description
+                    <p-sortIcon field="description"></p-sortIcon>
+                </th>
+                <th pSortableColumn="periodeStart" style="width: 10rem">
                     Periode Start
                     <p-sortIcon field="periodeStart"></p-sortIcon>
                 </th>
-                <th pSortableColumn="periodeEnd">
+                <th pSortableColumn="periodeEnd" style="width: 10rem">
                     Periode End
                     <p-sortIcon field="periodeEnd"></p-sortIcon>
                 </th>
-                <th pSortableColumn="status">
+                <th pSortableColumn="status" style="width: 10rem">
                     Status
                     <p-sortIcon field="status"></p-sortIcon>
                 </th>
-                <th pSortableColumn="capacity">
+                <th pSortableColumn="capacity" style="width: 8rem">
                     Capacity
                     <p-sortIcon field="capacity"></p-sortIcon>
                 </th>
-                <th>Action</th>
+                <th class="text-center" style="width: 10rem">Action</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-course>
             <tr>
-                <td>{{ course.code }}</td>
-                <td>{{ course.typeName }}</td>
-                <td>{{ course.categoryName }}</td>
-                <td>{{ course.periodStart }}</td>
-                <td>{{ course.periodEnd }}</td>
-                <td>{{ course.status }}</td>
-                <td>{{ course.capacity }}</td>
-                <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editTeacher(teacher)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteTeacher(teacher)"></button>
+                <td style="width: 7rem">{{ course.code }}</td>
+                <td style="width: 10rem">{{ course.typeName }}</td>
+                <td style="width: 10rem">{{ course.categoryName }}</td>
+                <td style="width: 15rem">{{ course.description }}</td>
+                <td style="width: 10rem">
+                    {{ course.periodStart | date: "dd MMM yyyy" }}
+                </td>
+                <td style="width: 10rem">
+                    {{ course.periodEnd | date: "dd MMM yyyy" }}
+                </td>
+                <td style="width: 10rem">{{ course.status }}</td>
+                <td class="text-center" style="width: 8rem">{{ course.capacity }}</td>
+                <td style="width: 10rem">
+                    <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-info"></button>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mx-1" (click)="editCourse(course)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
                 </td>
             </tr>
         </ng-template>
@@ -127,10 +137,10 @@
         <label for="teachers">Teacher</label>
         <p-dropdown
           [(ngModel)]="selectedTeacher"
-          [options]="teachers"
+          [options]="teacherVal"
           placeholder="Select Teacher"
-          optionLabel="firstName"
-          optionValue="id"
+          optionLabel="value"
+          optionValue="key"
         ></p-dropdown>
         <small class="p-error" *ngIf="submitted && !createRequest.teacherId"
           >Teacher is required.</small
@@ -146,12 +156,12 @@
           optionLabel="name"
           optionValue="id"
         ></p-dropdown>
+        <small
+          class="p-error"
+          *ngIf="submitted && !createRequest.courseCategoryId"
+          >Category is required.</small
+        >
       </div>
-      <small
-        class="p-error"
-        *ngIf="submitted && !createRequest.courseCategoryId"
-        >Teacher is required.</small
-      >
     </div>
 
     <div class="row mt-3">
@@ -163,6 +173,9 @@
           appendTo="body"
           hourFormat="24"
         ></p-calendar>
+        <small class="p-error" *ngIf="submitted && !createRequest.periodStart"
+          >Period Start is required.</small
+        >
       </div>
       <div class="p-field col-md-6">
         <label for="periodEnd">Period End</label>
@@ -172,6 +185,9 @@
           appendTo="body"
           hourFormat="24"
         ></p-calendar>
+        <small class="p-error" *ngIf="submitted && !createRequest.periodEnd"
+          >Period End is required.</small
+        >
       </div>
     </div>
     <div class="p-field mt-3">
@@ -184,6 +200,9 @@
         autoResize="autoResize"
         [(ngModel)]="createRequest.description"
       ></textarea>
+      <small class="p-error" *ngIf="submitted && !createRequest.description"
+        >Description is required.</small
+      >
     </div>
   </ng-template>
 
@@ -203,6 +222,156 @@
       icon="pi pi-check"
       class="p-button-text"
       (click)="createCourse()"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<!-- Modal Edit -->
+<p-dialog
+  [(visible)]="isEditModalVisible"
+  [style]="{ width: '950px' }"
+  header="Edit Course"
+  maximizable="true"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="row mt-3">
+      <div class="p-field col-md-9">
+        <label for="code">Code</label>
+        <input
+          type="text"
+          pInputText
+          id="code"
+          [(ngModel)]="updateRequest.code"
+          required
+          autofocus
+        />
+        <small class="p-error" *ngIf="submitted && !updateRequest.code"
+          >Code is required.</small
+        >
+      </div>
+      <div class="p-field col-md-3">
+        <label for="capacity">Capacity</label>
+        <input
+          type="text"
+          pInputText
+          id="capacity"
+          [(ngModel)]="updateRequest.capacity"
+          required
+          autofocus
+        />
+        <small class="p-error" *ngIf="submitted && !updateRequest.code"
+          >Capacity is required.</small
+        >
+      </div>
+    </div>
+
+    <div class="p-field mt-3">
+      <label for="courseTypes">Course Type</label>
+      <p-dropdown
+        [(ngModel)]="updateRequest.courseTypeId"
+        [options]="courseTypes"
+        placeholder="Select Course Type"
+        optionLabel="name"
+        optionValue="id"
+      ></p-dropdown>
+      <small class="p-error" *ngIf="submitted && !updateRequest.courseTypeId"
+        >Course Type is required.</small
+      >
+    </div>
+    <div class="row mt-3">
+      <div class="p-field col">
+        <label for="teachers">Teacher</label>
+        <p-dropdown
+          [(ngModel)]="updateRequest.teacherId"
+          [options]="teacherVal"
+          placeholder="Select Teacher"
+          optionLabel="value"
+          optionValue="key"
+        ></p-dropdown>
+        <small class="p-error" *ngIf="submitted && !updateRequest.teacherId"
+          >Teacher is required.</small
+        >
+      </div>
+
+      <div class="p-field col">
+        <label for="categories">Category</label>
+        <p-dropdown
+          [(ngModel)]="updateRequest.courseCategoryId"
+          [options]="categories"
+          placeholder="Select Category"
+          optionLabel="name"
+          optionValue="id"
+        ></p-dropdown>
+        <small
+          class="p-error"
+          *ngIf="submitted && !updateRequest.courseCategoryId"
+          >Category is required.</small
+        >
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="p-field col-md-6">
+        <label for="periodStart">Period Start</label>
+        <p-calendar
+          [(ngModel)]="updateRequest.periodStart"
+          [showIcon]="true"
+          appendTo="body"
+          hourFormat="24"
+          dateFormat="yy-mm-dd"
+        ></p-calendar>
+        <small class="p-error" *ngIf="submitted && !updateRequest.periodStart"
+          >Period Start is required.</small
+        >
+      </div>
+      <div class="p-field col-md-6">
+        <label for="periodEnd">Period End</label>
+        <p-calendar
+          [(ngModel)]="updateRequest.periodEnd"
+          [showIcon]="true"
+          appendTo="body"
+          hourFormat="24"
+          dateFormat="yy-mm-dd"
+        ></p-calendar>
+        <small class="p-error" *ngIf="submitted && !updateRequest.periodEnd"
+          >Period End is required.</small
+        >
+      </div>
+    </div>
+    <div class="p-field mt-3">
+      <label for="description">Description</label>
+      <textarea
+        [rows]="3"
+        [cols]="30"
+        pInputTextarea
+        id="description"
+        autoResize="autoResize"
+        [(ngModel)]="updateRequest.description"
+      ></textarea>
+      <small class="p-error" *ngIf="submitted && !updateRequest.description"
+        >Description is required.</small
+      >
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideModal()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Submit"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="updateCourse()"
     ></button>
   </ng-template>
 </p-dialog>
