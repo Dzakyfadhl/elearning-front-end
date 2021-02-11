@@ -6,6 +6,7 @@ import { CourseCategoryResponseDTO } from '../../../model/course-category-dto/co
 import { CourseAdminResponseDTO } from '../../../model/course-dto/course-admin-response';
 import { CourseCreateRequestDTO } from '../../../model/course-dto/course-create-request';
 import { CourseUpdateRequestDTO } from '../../../model/course-dto/course-update-request';
+import { CourseStatus } from '../../../model/course-status';
 import { CourseTypeResponse } from '../../../model/course-type-dto/course-type-response';
 import { TeacherForAdminDTO } from '../../../model/teacher-dto/teacher-admin-response';
 import { AuthService } from '../../../service/auth.service';
@@ -40,6 +41,7 @@ export class AdminCourseComponent implements OnInit {
   categories: CourseCategoryResponseDTO[];
 
   teacherVal: { key: string; value: string }[] = [];
+  courseStatus: { key: string; value: string }[];
 
   submitted: boolean;
 
@@ -58,6 +60,13 @@ export class AdminCourseComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.courseStatus = Object.keys(CourseStatus)
+      .filter((item) => isNaN(Number(item)))
+      .map((item) => {
+        return { key: item.toUpperCase(), value: item };
+      });
+    console.log(this.courseStatus);
+
     this.defineCourses();
     this.dropdownCategories();
     this.dropdownCourseTypes();
