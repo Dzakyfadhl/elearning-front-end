@@ -4,8 +4,21 @@
   margin-top: 1px;
   background-color: grey;
 }
+.badge {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: rgb(74, 110, 0);
+}
+a h5:hover {
+  cursor: pointer;
+  color: teal;
+  text-decoration-line: underline;
+  text-decoration-color: teal;
+}
+.teacher-name {
+  font-weight: bold;
+}
 .label {
-  border-radius: 0% 20px 0px 0%;
+  border-radius: 15px 0px 15px 0%;
   width: 12rem;
   height: 2rem;
   position: absolute;
@@ -49,11 +62,15 @@
 }
 
 .ilustrator {
+  border-radius: 15px 15px 0px 0px;
   height: 10rem;
 }
 .img-teach {
   height: 60px;
   width: 60px;
+}
+.data-teacher {
+  margin-top: -1rem;
 }
 .category {
   border-radius: 0% 30px 0% 0%;
@@ -67,6 +84,7 @@
 .card {
   width: 20rem;
   height: 22rem;
+  border-radius: 15px 15px 15px 15px;
 }
 .title h5 {
   color: #232946;

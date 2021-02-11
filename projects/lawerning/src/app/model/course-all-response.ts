@@ -7,6 +7,7 @@ export class CourseAllResponse {
   capacity: string;
   periodStart: string;
   periodEnd: string;
+  duration: number;
   teacher: TeacherModel;
   categoryName: string;
   isRegist: boolean;

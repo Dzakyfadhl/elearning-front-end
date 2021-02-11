@@ -6,18 +6,9 @@ import { DashboardTeacherComponent } from '../../layout/dashboard-teacher/dashbo
 import { ButtonModule } from 'primeng/button';
 import { DashboardStudentComponent } from '../../layout/dashboard-student/dashboard-student.component';
 import { FieldsetModule } from 'primeng/fieldset';
-import { DashboardAdminComponent } from '../../layout/dashboard-admin/dashboard-admin.component';
 
 @NgModule({
-  declarations: [
-    DashboardTeacherComponent,
-    DashboardStudentComponent
-  ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    FieldsetModule,
-    ButtonModule
-  ]
+  declarations: [DashboardTeacherComponent, DashboardStudentComponent],
+  imports: [CommonModule, DashboardRoutingModule, FieldsetModule, ButtonModule],
 })
-export class DashboardModule { }
+export class DashboardModule {}

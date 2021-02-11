@@ -61,7 +61,13 @@
               <td width="100px">{{ r.examType }}</td>
               <td width="100px">{{ r.examTitle }}</td>
               <td width="100px">{{ r.dateExam | date: "dd MMM yyyy" }}</td>
-              <td width="100px" class="text-info">{{ r.grade }}</td>
+              <td *ngIf="r.grade <= 50" width="100px" class="text-danger">
+                {{ r.grade }}
+              </td>
+
+              <td *ngIf="r.grade > 50" width="100px" class="text-info">
+                {{ r.grade }}
+              </td>
             </tr>
           </ng-template>
           <ng-template pTemplate="paginatorleft">

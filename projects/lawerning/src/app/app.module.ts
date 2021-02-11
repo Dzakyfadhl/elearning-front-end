@@ -15,6 +15,7 @@ import { ToastModule } from 'primeng/toast';
 import { HomePageComponent } from './page/home-page/home-page.component';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { CarouselModule } from 'primeng/carousel';
+import { DetailCourseModule } from './module/detail-course/detail-course.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { CarouselModule } from 'primeng/carousel';
   ],
   imports: [
     BrowserModule,
+    DetailCourseModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,

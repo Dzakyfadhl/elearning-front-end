@@ -1,0 +1,113 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-1 sticky-top"
+>
+  <div class="d-flex flex-row pl-5 pr-3">
+    <img src="assets/images/logo.png" height="40" alt="" />
+
+    <h4 class="label-logo pt-1 pl-3">Lawerning</h4>
+  </div>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"></li>
+    </ul>
+    <div class="mr-5">
+      <div class="d-flex flex-row p-2">
+        <a class="btn-login btn btn-outline-secondary mr-3" routerLink="/login">
+          Sign In
+        </a>
+        <span class="line mr-3"></span>
+        <a href="" class="btn-register mt-2" routerLink="/register"> Sign Up</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="body-home container-fluid">
+  <div class="row">
+    <div class="col-lg-8 mb-3">
+      <div class="card-title mt-3 shadow">
+        <a class="back m-3" (click)="prev()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            fill="currentColor"
+            class="bi bi-arrow-left"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+            />
+          </svg>
+        </a>
+        <div class="title">
+          <h1>Java Framework Spring</h1>
+        </div>
+        <div class="content">
+          <p>
+            Java frameworks allow you to focus on the business logic of your
+            apps instead of writing basic functionality such as making database
+            connections or handling exceptions. Also, if you have some
+            experience with Java, you can get started quickly.
+          </p>
+        </div>
+      </div>
+      <div class="mt-5 ml-2">
+        <h3>Module</h3>
+        <hr />
+      </div>
+
+      <div class="card-module mt-3 shadow-sm">
+        <div class="d-flex flex-row">
+          <img src="assets/images/module.png" height="70" height="70" alt="" />
+          <div class="d-flex flex-column m-2">
+            <h4>Module title 01</h4>
+            <p>
+              this is module title 01 this is module title 01 this is module
+              title 01
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card-join mt-3 bg-light shadow-sm">
+        <div class="d-flex flex-row">
+          <img src="assets/images/female.jpg" height="100" width="100" alt="" />
+          <div class="d-flex flex-column ml-3">
+            <h3>Student Enrolled</h3>
+            <h5 class="text-secondary">210 Joins</h5>
+          </div>
+        </div>
+      </div>
+      <div class="card-teacher mt-3 bg-light shadow-sm">
+        <div class="d-flex flex-row p-3">
+          <img
+            src="assets/images/female.jpg"
+            class="rounded-lg"
+            height="100"
+            width="100"
+            alt=""
+          />
+          <div class="d-flex flex-column ml-3 mt-3 mb-5">
+            <h3>Ryan Rivaldo, S.Kom</h3>
+            <h5 class="text-secondary">Backend Developer</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

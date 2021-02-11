@@ -39,19 +39,18 @@
             class="col-lg-4 col-md-6 mt-3 mb-3"
             *ngFor="let c of courses; let i = index"
           >
-            <div class="card mb-1 bg-white rounded">
-              <img
+            <div class="card mb-1 bg-white">
+              <span
                 *ngIf="c.isCompleted == true"
-                src="assets/images/banner2.svg"
-                class="card-img-top"
-                alt="..."
-              />
+                class="label text-center text-truncate"
+                >Completed</span
+              >
               <img
-                *ngIf="c.isCompleted == false"
-                src="assets/images/banner3.svg"
+                src="assets/images/banner-card1.jpg"
                 class="card-img-top"
                 alt="..."
               />
+
               <div class="card-body">
                 <a (click)="viewModule(i)">
                   <h5 class="card-title">{{ c.typeName }}</h5>
@@ -61,7 +60,7 @@
 
                 <h6 class="card-text text-info mb-3">
                   {{ c.teacher.firstName }} {{ c.teacher.lastName }},
-                  {{ c.teacher.tittle
+                  {{ c.teacher.title
                   }}<span class="badge badge-primary ml-2">{{ c.role }}</span>
                 </h6>
                 <h6 class="card-text mb-3">

@@ -1,6 +1,8 @@
 .header-module {
-  background-color: #232946;
+  background-image: url("../../../../assets/images/banner-card1.jpg");
   height: auto;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 .header-module h1 {
   color: #f4caae;

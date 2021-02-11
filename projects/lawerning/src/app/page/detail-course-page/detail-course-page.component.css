@@ -1,0 +1,127 @@
+.btn-login {
+  color: #232946;
+}
+.btn-login:hover {
+  background-color: #232946;
+  color: white;
+}
+
+.btn-get {
+  color: white;
+  border: none;
+  background-color: #232946;
+}
+
+.btn-register {
+  color: #232946;
+}
+.line {
+  width: 1px;
+  height: 2rem;
+  margin-top: 1px;
+  background-color: grey;
+}
+
+.left-content {
+  width: 65%;
+  /* border: 1px solid; */
+}
+.right-content {
+  width: 25%;
+  /* border: 1px solid; */
+}
+.back {
+  color: white;
+  font-weight: bold;
+}
+.back:hover {
+  color: black;
+  cursor: pointer;
+}
+.header {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+.title {
+  color: white;
+}
+
+.card-join {
+  border: 1px solid rgb(199, 199, 199);
+  border-radius: 15px;
+  height: 8rem;
+  /* background-color: whi; */
+  padding: 1rem;
+}
+.card-teacher {
+  border: 1px solid rgb(199, 199, 199);
+  border-radius: 15px;
+  height: 10.8rem;
+  /* background-color: whi; */
+  padding: 1rem;
+}
+
+.card-module {
+  border: 1px solid rgb(199, 199, 199);
+  border-radius: 15px;
+  padding: 1rem;
+}
+
+@media (min-width: 411px) {
+  .card-title {
+    border-radius: 15px;
+
+    background-image: url("../../../assets/images/banner-card1.jpg");
+    height: 15rem;
+    background-size: 100% 100%;
+
+    background-repeat: no-repeat;
+    padding-top: 1rem;
+    padding-bottom: 0rem;
+  }
+  .title {
+    margin-left: 1rem;
+  }
+  .content {
+    width: 60%;
+    height: 10rem;
+    color: white;
+    margin-left: 1rem;
+    margin-top: 0rem;
+  }
+  .content p {
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (min-width: 768px) {
+  .card-title {
+    border-radius: 15px;
+
+    background-image: url("../../../assets/images/banner-card1.jpg");
+    height: 20rem;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+  }
+  .title {
+    margin-left: 4rem;
+  }
+  .content {
+    width: 60%;
+    height: auto;
+    color: white;
+    margin-left: 4rem;
+    margin-top: 2rem;
+  }
+  .content p {
+    white-space: normal;
+    width: 100%;
+    overflow: auto;
+    /* text-overflow: ellipsis; */
+  }
+}

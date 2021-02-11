@@ -7,20 +7,20 @@ import { DashboardAdminComponent } from '../../layout/dashboard-admin/dashboard-
 const routes: Routes = [
   {
     path: 'dashboard-teacher',
-    component: DashboardTeacherComponent
+    component: DashboardTeacherComponent,
   },
   {
     path: 'dashboard-student',
-    component: DashboardStudentComponent
+    component: DashboardStudentComponent,
   },
   {
     path: 'dashboard-admin',
-    component: DashboardAdminComponent
+    component: DashboardAdminComponent,
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {}

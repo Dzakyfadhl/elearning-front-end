@@ -98,9 +98,16 @@ export class HomeStudentComponent implements OnInit {
     let request = new RegisterCourseRequest();
     request.courseId = tempCourse.id;
     request.isRegist = tempCourse.isRegist;
-
-    this.route.navigate([
-      `/module/course/${request.courseId}/isRegist/${request.isRegist}`,
-    ]);
+    if (request.isRegist == true) {
+      this.route.navigate([
+        `/course/${request.courseId}/student/${
+          this.auth.getLoginResponse().userRoleId
+        }`,
+      ]);
+    } else {
+      this.route.navigate([
+        `/module/course/${request.courseId}/isRegist/${request.isRegist}`,
+      ]);
+    }
   }
 }

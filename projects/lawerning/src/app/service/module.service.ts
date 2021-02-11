@@ -29,4 +29,10 @@ export class ModuleService {
       { params: { studentId: this.auth.getLoginResponse().userRoleId } }
     );
   }
+
+  getModule(idCourse: string): Observable<ResponseModel<DetailCourseResponse>> {
+    return this.http.get<ResponseModel<DetailCourseResponse>>(
+      `${Constants.BASE_URL}/course/${idCourse}`
+    );
+  }
 }

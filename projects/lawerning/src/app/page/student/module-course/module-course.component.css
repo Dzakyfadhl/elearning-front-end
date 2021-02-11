@@ -16,11 +16,15 @@
   letter-spacing: 0.3px;
 }
 .header-module {
-  background-color: #232946;
+  background-image: url("../../../../assets/images/banner-card1.jpg");
+  height: auto;
+  background-size: 100%;
+  background-repeat: no-repeat;
   height: auto;
 }
 .header-module h1 {
-  color: #f4caae;
+  color: #232946;
+  font-weight: bold;
 }
 .header-module p {
   color: white;
@@ -30,7 +34,7 @@
   cursor: pointer;
 }
 .icon {
-  color: #f4caae;
+  color: #232946;
 }
 a {
   color: #232946;
@@ -103,8 +107,10 @@ a :hover {
 }
 :host ::ng-deep .p-progressbar {
   background-color: #62688a;
+  /* border-radius: 20px 20px 20px 20px; */
 }
 :host ::ng-deep .p-progressbar .p-progressbar-label {
+  /* visibility: hidden; */
   color: white;
 }
 @media (min-width: 411px) {
