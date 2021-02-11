@@ -9,12 +9,11 @@ import { DialogModule } from 'primeng/dialog';
 import { BlockUIModule } from 'primeng/blockui';
 import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
-
+import { UpdateProfileTeacherComponent } from '@bootcamp-lawerning-page/teacher/update-profile-teacher/update-profile-teacher.component';
+import { UpdateProfileRoutingModule } from '../../student/update-profile/update-profile-routing.module';
 
 @NgModule({
-  declarations: [
-    ProfileTeacherComponent
-  ],
+  declarations: [ProfileTeacherComponent],
   imports: [
     CommonModule,
     ProfileTeacherRoutingModule,
@@ -24,7 +23,7 @@ import { CalendarModule } from 'primeng/calendar';
     BlockUIModule,
     FormsModule,
     InputTextModule,
-    CalendarModule
-  ]
+    CalendarModule,
+  ],
 })
-export class ProfileTeacherModule { }
+export class ProfileTeacherModule {}

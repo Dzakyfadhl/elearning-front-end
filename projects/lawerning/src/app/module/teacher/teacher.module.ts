@@ -11,6 +11,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { SubmissionTeacherModule } from './submission-teacher/submission-teacher.module';
 import { ExamTeacherModule } from './exam-teacher/exam-teacher.module';
 import { ReportAttendanceModule } from './report-attendance/report-attendance.module';
+import { UpdateProfileTeacherModule } from './update-profile-teacher/update-profile-teacher.module';
 
 @NgModule({
   declarations: [HomeTeacherComponent],
@@ -25,6 +26,7 @@ import { ReportAttendanceModule } from './report-attendance/report-attendance.mo
     SubmissionTeacherModule,
     ExamTeacherModule,
     ReportAttendanceModule,
+    UpdateProfileTeacherModule,
   ],
 })
 export class TeacherModule {}

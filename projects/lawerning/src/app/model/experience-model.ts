@@ -2,6 +2,8 @@ export class ExperienceModel {
   id: string;
   title: string;
   description: string;
-  startDate: string;
-  endDate: string;
+  startDate: any;
+  endDate: any;
+  userId: string;
+  teacherId: string;
 }

@@ -9,12 +9,14 @@ import { CreateTeacherRequest } from '../model/teacher-dto/create-teacher-reques
 import { UpdateTeacherRequest } from '../model/teacher-dto/update-teacher-request';
 import Constants from '../constants/constant';
 import { UpdateIsActiveRequestDTO } from '../model/update-isactive-request';
+import { AuthService } from './auth.service';
+import { ExperienceModel } from '../model/experience-model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TeacherService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getAllTeachersForAdmin(): Observable<ResponseModel<TeacherForAdminDTO[]>> {
     return this.http.get<ResponseModel<TeacherForAdminDTO[]>>(
@@ -22,11 +24,11 @@ export class TeacherService {
     );
   }
 
-  getById(
-    teacherId: string
-  ): Observable<ResponseModel<TeacherProfileResponse>> {
+  getById(): Observable<ResponseModel<TeacherProfileResponse>> {
     return this.http.get<ResponseModel<TeacherProfileResponse>>(
-      `${Constants.BASE_URL}/teacher/${teacherId}`
+      `${Constants.BASE_URL}/teacher/${
+        this.authService.getLoginResponse().userRoleId
+      }`
     );
   }
 
@@ -39,13 +41,26 @@ export class TeacherService {
     );
   }
 
+  updatePhoto(data: FormData): Observable<ResponseModel<string>> {
+    return this.http.patch<ResponseModel<string>>(
+      `${Constants.BASE_URL}/file`,
+      data
+    );
+  }
+
+  createExperience(data: ExperienceModel): Observable<ResponseModel<string>> {
+    return this.http.post<ResponseModel<string>>(
+      `${Constants.BASE_URL}/experience`,
+      data
+    );
+  }
+
   updateTeacherProfile(
     data: UpdateTeacherRequest
   ): Promise<ResponseModel<string>> {
-    return this.http.put<ResponseModel<string>>(
-      `${Constants.BASE_URL}/teacher`,
-      data
-    ).toPromise();
+    return this.http
+      .put<ResponseModel<string>>(`${Constants.BASE_URL}/teacher`, data)
+      .toPromise();
   }
 
   deleteTeacher(data: DeleteTeacherRequest): Observable<ResponseModel<string>> {

@@ -7,6 +7,7 @@ export class TeacherProfileResponse {
   firstName: string;
   lastName: string;
   email: string;
+  phone: string;
   createdAt: string;
   gender: Gender;
   photoId: string;

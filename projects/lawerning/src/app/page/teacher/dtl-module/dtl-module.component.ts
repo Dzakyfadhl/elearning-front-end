@@ -179,8 +179,6 @@ export class DtlModuleComponent implements OnInit {
 
     dataObj.idExam = examId;
     dataObj.title = examTitle;
-    // console.log(dataObj.idExam);
-    // console.log(dataObj.title);
 
     this.router.navigate([`/submission/teacher`], { queryParams: dataObj });
   }

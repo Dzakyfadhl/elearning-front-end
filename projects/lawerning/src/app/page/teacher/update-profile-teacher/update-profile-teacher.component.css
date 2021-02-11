@@ -1,0 +1,22 @@
+.bi {
+  margin-top: 2px;
+  margin-left: 2px;
+  margin-right: 4px;
+}
+.card {
+  width: 80%;
+}
+.photo {
+  color: #232946;
+}
+@media (min-width: 411px) {
+  .container {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 50%;
+  }
+}
