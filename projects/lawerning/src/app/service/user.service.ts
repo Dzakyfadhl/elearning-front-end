@@ -18,4 +18,21 @@ export class UserService {
       data
     );
   }
+
+  updatePassword(
+    userId: string,
+    newPassword: string
+  ): Observable<ResponseModel<string>> {
+    return this.http.patch<ResponseModel<string>>(
+      `${Constants.BASE_URL}/user?userId=${userId}&newPassword=${newPassword}`,
+      null
+    );
+  }
+
+  resetPassword(email: string): Observable<ResponseModel<string>> {
+    return this.http.patch<ResponseModel<string>>(
+      `${Constants.BASE_URL}/user/email/${email}`,
+      null
+    );
+  }
 }

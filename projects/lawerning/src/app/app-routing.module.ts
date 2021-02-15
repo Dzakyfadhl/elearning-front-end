@@ -9,10 +9,15 @@ import { DashboardAdminComponent } from './layout/dashboard-admin/dashboard-admi
 import { HomePageComponent } from '@bootcamp-lawerning-page/home-page/home-page.component';
 import { RegisterPageComponent } from '@bootcamp-lawerning-page/register-page/register-page.component';
 import { CheckLoginGuard } from './shared/check-login.guard';
+import { ResetPasswordComponent } from '@bootcamp-lawerning-page/reset-password/reset-password.component';
 const routes: Routes = [
   {
     path: 'home-page',
     component: HomePageComponent,
+  },
+  {
+    path: 'password/reset',
+    component: ResetPasswordComponent,
   },
   {
     path: '',

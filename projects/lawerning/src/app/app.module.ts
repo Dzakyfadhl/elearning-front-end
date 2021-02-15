@@ -16,12 +16,14 @@ import { HomePageComponent } from './page/home-page/home-page.component';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { CarouselModule } from 'primeng/carousel';
 import { DetailCourseModule } from './module/detail-course/detail-course.module';
+import { ResetPasswordComponent } from './page/reset-password/reset-password.component';
 @NgModule({
   declarations: [
     AppComponent,
     Page404Component,
     DashboardAdminComponent,
     HomePageComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
