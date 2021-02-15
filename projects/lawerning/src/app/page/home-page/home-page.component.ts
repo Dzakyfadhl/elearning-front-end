@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Constants from '../../constants/constant';
 import { CourseAllResponse } from '../../model/course-all-response';
-import { ExamType } from '../../model/exam-dto/exam-type';
-import { Gender } from '../../model/gender';
-import { TeacherToModuleResponse } from '../../model/teacher-to-module-response';
+import { TeacherForAdminDTO } from '../../model/teacher-dto/teacher-admin-response';
 import { CourseService } from '../../service/course.service';
-import { PixabayService } from '../../service/pixabay.service';
+import { TeacherService } from '../../service/teacher.service';
 
 @Component({
   selector: 'app-home-page',
@@ -15,37 +13,14 @@ import { PixabayService } from '../../service/pixabay.service';
 })
 export class HomePageComponent implements OnInit {
   courses: CourseAllResponse[];
-
-  mentors = [
-    {
-      photoId: 'assets/images/female.jpg',
-      teacherName: 'Ryan Rivaldo, S.Kom',
-      experience: 'Backend Developer',
-    },
-    {
-      photoId: 'assets/images/female.jpg',
-      teacherName: 'Ryan Rivaldo, S.Kom',
-      experience: 'Backend Developer',
-    },
-    {
-      photoId: 'assets/images/female.jpg',
-      teacherName: 'Ryan Rivaldo, S.Kom',
-      experience: 'Backend Developer',
-    },
-    {
-      photoId: 'assets/images/female.jpg',
-      teacherName: 'Ryan Rivaldo, S.Kom',
-      experience: 'Backend Developer',
-    },
-    {
-      photoId: 'assets/images/female.jpg',
-      teacherName: 'Ryan Rivaldo, S.Kom',
-      experience: 'Backend Developer',
-    },
-  ];
+  mentors: TeacherForAdminDTO[];
   responsiveOptions;
 
-  constructor(private courseService: CourseService, private route: Router) {
+  constructor(
+    private courseService: CourseService,
+    private teacherService: TeacherService,
+    private route: Router
+  ) {
     this.responsiveOptions = [
       {
         breakpoint: '1024px',
@@ -66,8 +41,25 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.teacherService.getAllTeachers().subscribe((data) => {
+      this.mentors = data.result;
+
+      if (this.mentors.length > 0) {
+        console.log(this.mentors);
+
+        this.mentors.forEach((val) => {
+          if (!val.idPhoto) {
+            val.idPhoto = 'assets/images/default.png';
+          } else {
+            val.idPhoto = `${Constants.BASE_URL_FILE}/${val.idPhoto}`;
+          }
+        });
+      }
+    });
+
     this.courseService.getCourseAll().subscribe((result) => {
       this.courses = result.result;
+      console.log(this.courses);
 
       this.courses.forEach((data) => {
         let start = new Date(data.periodStart);
@@ -78,11 +70,10 @@ export class HomePageComponent implements OnInit {
         let day = Math.floor(diff / oneDay);
 
         data.duration = Math.ceil(day / 7);
-
-        if (data.teacher.photoId == null) {
+        if (!data.teacher.photoId) {
           data.teacher.photoId = `assets/images/default.png`;
         } else {
-          data.teacher.photoId = `${Constants.BASE_URL}/file/${data.teacher.photoId}`;
+          data.teacher.photoId = `${Constants.BASE_URL_FILE}/${data.teacher.photoId}`;
         }
       });
     });
@@ -90,12 +81,7 @@ export class HomePageComponent implements OnInit {
 
   viewModule(index: number) {
     let tempCourse: CourseAllResponse = this.courses[index];
-    let response = new TeacherToModuleResponse();
-    response.courseId = tempCourse.id;
-    response.photoId = tempCourse.teacher.photoId;
-    response.teacherName = `${tempCourse.teacher.firstName} ${tempCourse.teacher.lastName}, ${tempCourse.teacher.experience}.`;
-    response.experience = tempCourse.teacher.experience;
-
-    this.route.navigate([`/course/module`], { queryParams: response });
+    let id: string = tempCourse.id;
+    this.route.navigate([`/course/module/${id}`]);
   }
 }

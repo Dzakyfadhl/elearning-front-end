@@ -1,8 +1,12 @@
 .header-module {
-  background-image: url("../../../../assets/images/banner-card1.jpg");
-  height: auto;
+  border-radius: 15px;
+
+  background-image: url("../../../../assets/images/banner_course.png");
+  height: 20rem;
   background-size: 100%;
   background-repeat: no-repeat;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
 }
 .header-module h1 {
   color: #f4caae;
@@ -55,7 +59,7 @@ a {
   font-weight: bold;
 }
 .register button {
-  background-color: #232946;
+  background-color: #323096;
 }
 .register button:hover {
   background-color: #333c6d;

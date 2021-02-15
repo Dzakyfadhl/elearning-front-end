@@ -34,9 +34,9 @@
   </div>
 </nav>
 
-<div class="body-home container-fluid">
+<div class="body-home container">
   <div class="row">
-    <div class="col-lg-8 mb-3">
+    <div class="col-lg-12 mb-3">
       <div class="card-title mt-3 shadow">
         <a class="back m-3" (click)="prev()">
           <svg
@@ -53,59 +53,44 @@
             />
           </svg>
         </a>
-        <div class="title">
-          <h1>Java Framework Spring</h1>
+        <div class="title mt-4">
+          <h1>{{ modules.name }}</h1>
         </div>
         <div class="content">
-          <p>
-            Java frameworks allow you to focus on the business logic of your
-            apps instead of writing basic functionality such as making database
-            connections or handling exceptions. Also, if you have some
-            experience with Java, you can get started quickly.
-          </p>
+          <h5>{{ modules.totalStudent }} of {{ modules.capacity }} Joins</h5>
         </div>
       </div>
-      <div class="mt-5 ml-2">
+      <div class="about mt-5">
+        <h3>About Course</h3>
+        <hr />
+        <p>{{ modules.description }}</p>
+      </div>
+      <div class="mt-5">
         <h3>Module</h3>
         <hr />
       </div>
 
-      <div class="card-module mt-3 shadow-sm">
-        <div class="d-flex flex-row">
-          <img src="assets/images/module.png" height="70" height="70" alt="" />
-          <div class="d-flex flex-column m-2">
-            <h4>Module title 01</h4>
-            <p>
-              this is module title 01 this is module title 01 this is module
-              title 01
-            </p>
+      <div class="card-module mt-3 shadow-sm" *ngFor="let m of modules.modules">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex flex-row">
+            <img
+              src="assets/images/icon-student.svg"
+              height="80"
+              height="80"
+              alt=""
+            />
+            <div class="d-flex flex-column ml-3 mt-1">
+              <h4>{{ m.title }}</h4>
+              <h5>{{ m.subjectName }}</h5>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="card-join mt-3 bg-light shadow-sm">
-        <div class="d-flex flex-row">
-          <img src="assets/images/female.jpg" height="100" width="100" alt="" />
-          <div class="d-flex flex-column ml-3">
-            <h3>Student Enrolled</h3>
-            <h5 class="text-secondary">210 Joins</h5>
-          </div>
-        </div>
-      </div>
-      <div class="card-teacher mt-3 bg-light shadow-sm">
-        <div class="d-flex flex-row p-3">
           <img
-            src="assets/images/female.jpg"
-            class="rounded-lg"
-            height="100"
-            width="100"
+            src="assets/images/lock.svg"
+            class="mt-3"
+            height="40"
+            width="40"
             alt=""
           />
-          <div class="d-flex flex-column ml-3 mt-3 mb-5">
-            <h3>Ryan Rivaldo, S.Kom</h3>
-            <h5 class="text-secondary">Backend Developer</h5>
-          </div>
         </div>
       </div>
     </div>

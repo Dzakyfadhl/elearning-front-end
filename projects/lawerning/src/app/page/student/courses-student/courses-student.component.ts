@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CourseProgressResponse } from '../../../model/course-dto/course-progress-response';
 import { CourseStudentResponse } from '../../../model/course-student-response';
 import { AuthService } from '../../../service/auth.service';
 import { CourseService } from '../../../service/course.service';
@@ -17,6 +18,7 @@ export class CoursesStudentComponent implements OnInit {
   isEmpty: boolean = true;
 
   courses: CourseStudentResponse[];
+  courseProgress: CourseProgressResponse[];
 
   constructor(
     private route: Router,
@@ -31,11 +33,26 @@ export class CoursesStudentComponent implements OnInit {
     let day = date.getUTCDate();
 
     console.log(month, day);
+    this.courseService
+      .getCourseProgress(this.auth.getLoginResponse().userRoleId)
+      .subscribe((data) => {
+        this.courseProgress = data.result;
+        if (this.courseProgress.length > 0) {
+          this.courseProgress.forEach((res) => {
+            let val = (res.moduleComplete / res.totalModule) * 100;
+            res.value = Math.ceil(val);
+            if (isNaN(res.value)) {
+              res.value = 0;
+            }
+          });
+        }
+      });
 
     this.courseService
       .getStudentCourse(this.auth.getLoginResponse().userRoleId)
       .subscribe((value) => {
         this.courses = value.result;
+
         if (this.courses.length > 0) {
           this.isEmpty = false;
         } else {
@@ -46,6 +63,16 @@ export class CoursesStudentComponent implements OnInit {
           let periodMonth = dateObj.getUTCMonth() + 1;
           let periodDay = dateObj.getUTCDate();
           console.log(periodMonth, periodDay);
+          if (!data.teacher.experience) {
+            data.teacher.experience = 'Experience not yet';
+          } else {
+            data.teacher.experience = data.teacher.experience;
+          }
+          if (data.teacher.photoId == '') {
+            data.teacher.photoId = 'assets/images/default.png';
+          } else {
+            data.teacher.photoId = `http://192.168.15.224:8080/file/${data.teacher.photoId}`;
+          }
           if (month >= periodMonth && day > periodDay) {
             this.isCompleted = true;
             data.isCompleted = this.isCompleted;

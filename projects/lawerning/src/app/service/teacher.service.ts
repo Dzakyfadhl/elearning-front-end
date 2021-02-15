@@ -78,4 +78,9 @@ export class TeacherService {
       data
     );
   }
+  getAllTeachers(): Observable<ResponseModel<TeacherForAdminDTO[]>> {
+    return this.http.get<ResponseModel<TeacherForAdminDTO[]>>(
+      `${Constants.BASE_URL}/teacher/all`
+    );
+  }
 }

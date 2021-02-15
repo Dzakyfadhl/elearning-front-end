@@ -161,45 +161,45 @@
           *ngFor="let mm of mymodules; let i = index"
         >
           <p-knob
-            *ngIf="result[i] < 50"
-            [(ngModel)]="result[i]"
+            *ngIf="mm.value < 50"
+            [(ngModel)]="mm.value"
             [size]="150"
             rangeColor=" #d9d9d9"
             valueColor="#e60000"
             [readonly]="true"
-            valueTemplate="{value}%"
+            valueTemplate="{{ mm.value }}%"
           ></p-knob>
           <p-knob
-            *ngIf="result[i] >= 50 && result[i] < 80"
-            [(ngModel)]="result[i]"
+            *ngIf="mm.value >= 50 && mm.value < 80"
+            [(ngModel)]="mm.value"
             [size]="150"
             rangeColor=" #d9d9d9"
             valueColor="#FFC300"
             [readonly]="true"
-            valueTemplate="{value}%"
+            valueTemplate="{{ mm.value }}%"
           ></p-knob>
           <p-knob
-            *ngIf="result[i] == 100"
-            [(ngModel)]="result[i]"
+            *ngIf="mm.value == 100"
+            [(ngModel)]="mm.value"
             [size]="150"
             rangeColor=" #d9d9d9"
             valueColor="Green"
             [readonly]="true"
-            valueTemplate="{value}%"
+            valueTemplate="{{ mm.value }}%"
           ></p-knob>
           <p-knob
-            *ngIf="result[i] >= 85 && result[i] < 100"
-            [(ngModel)]="result[i]"
+            *ngIf="mm.value >= 85 && mm.value < 100"
+            [(ngModel)]="mm.value"
             [size]="150"
             rangeColor=" #d9d9d9"
             valueColor="#2fb62f"
             [readonly]="true"
-            valueTemplate="{value}%"
+            valueTemplate="{{ mm.value }}%"
           ></p-knob>
 
-          <h5 class="mmcourse">{{ mm.course }}</h5>
+          <h5 class="mmcourse">{{ mm.courseName }}</h5>
           <h6 class="text-secondary">
-            {{ mm.value }} of {{ mm.total }} Modules Completed
+            {{ mm.moduleComplete }} of {{ mm.totalModule }} modules completed
           </h6>
         </div>
       </div>

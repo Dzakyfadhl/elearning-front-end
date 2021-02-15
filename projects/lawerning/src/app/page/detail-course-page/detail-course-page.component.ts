@@ -11,6 +11,7 @@ import { Location } from '@angular/common';
 export class DetailCoursePageComponent implements OnInit {
   totalModule: number;
   modules = new DetailCourseResponse();
+  photo: string;
   constructor(
     private activeRoute: ActivatedRoute,
     private moduleService: ModuleService,
@@ -18,15 +19,17 @@ export class DetailCoursePageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activeRoute.queryParams.subscribe((value) => {
+    this.activeRoute.params.subscribe((value) => {
       console.log(value);
 
-      this.moduleService.getModule(value.courseId).subscribe((data) => {
-        this.modules = data.result;
-        this.totalModule = this.modules.modules.length;
+      this.moduleService
+        .getModuleAvailable(value.courseId)
+        .subscribe((data) => {
+          this.modules = data.result;
+          this.totalModule = this.modules.modules.length;
 
-        console.log(this.modules);
-      });
+          console.log(this.modules);
+        });
     });
   }
 

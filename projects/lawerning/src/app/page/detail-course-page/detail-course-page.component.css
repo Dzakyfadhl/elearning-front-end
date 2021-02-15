@@ -46,17 +46,20 @@
   color: white;
 }
 
+.body-module {
+  width: 100%;
+}
 .card-join {
-  border: 1px solid rgb(199, 199, 199);
+  border: 1px solid rgb(218, 218, 218);
   border-radius: 15px;
-  height: 8rem;
+  height: 9rem;
   /* background-color: whi; */
   padding: 1rem;
 }
 .card-teacher {
-  border: 1px solid rgb(199, 199, 199);
+  border: 1px solid rgb(218, 218, 218);
   border-radius: 15px;
-  height: 10.8rem;
+  height: 10rem;
   /* background-color: whi; */
   padding: 1rem;
 }
@@ -71,7 +74,7 @@
   .card-title {
     border-radius: 15px;
 
-    background-image: url("../../../assets/images/banner-card1.jpg");
+    background-image: url("../../../assets/images/banner_course.png");
     height: 15rem;
     background-size: 100% 100%;
 
@@ -101,7 +104,7 @@
   .card-title {
     border-radius: 15px;
 
-    background-image: url("../../../assets/images/banner-card1.jpg");
+    background-image: url("../../../assets/images/banner_course.png");
     height: 20rem;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -116,7 +119,7 @@
     height: auto;
     color: white;
     margin-left: 4rem;
-    margin-top: 2rem;
+    margin-top: 0rem;
   }
   .content p {
     white-space: normal;

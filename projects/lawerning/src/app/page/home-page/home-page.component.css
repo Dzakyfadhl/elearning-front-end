@@ -5,27 +5,29 @@
   background-color: grey;
 }
 .badge {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: rgb(74, 110, 0);
+  color: #e65c1c;
+  font-weight: bold;
+  background-color: #faceb9fd;
 }
 a h5:hover {
   cursor: pointer;
-  color: teal;
+  color: #323096;
   text-decoration-line: underline;
-  text-decoration-color: teal;
+  text-decoration-color: #323096;
 }
 .teacher-name {
   font-weight: bold;
 }
 .label {
-  border-radius: 15px 0px 15px 0%;
+  border-radius: 10px 0px 10px 0%;
   width: 12rem;
   height: 2rem;
   position: absolute;
-  color: white;
+  color: #323096;
+  font-weight: bold;
 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: rgb(1, 94, 122);
+  background-color: #b5b4dc;
 }
 .row .categoryy {
   flex-wrap: nowrap;
@@ -62,7 +64,7 @@ a h5:hover {
 }
 
 .ilustrator {
-  border-radius: 15px 15px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
   height: 10rem;
 }
 .img-teach {
@@ -84,7 +86,7 @@ a h5:hover {
 .card {
   width: 20rem;
   height: 22rem;
-  border-radius: 15px 15px 15px 15px;
+  border-radius: 10px;
 }
 .title h5 {
   color: #232946;

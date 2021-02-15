@@ -46,6 +46,11 @@ export class HomeStudentComponent implements OnInit {
         this.isValid = true;
 
         this.courses.forEach((val) => {
+          if (val.teacher.experience == null) {
+            val.teacher.experience = 'Experience not yet';
+          } else {
+            val.teacher.experience = val.teacher.experience;
+          }
           if (!val.teacher.photoId) {
             val.teacher.photoId = `assets/images/default.png`;
           } else {

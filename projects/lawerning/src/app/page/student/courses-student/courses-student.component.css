@@ -1,15 +1,11 @@
 .button-p {
   background-color: #232946;
 }
-.header-home {
-  position: absolute;
-  height: auto;
-  background-color: #232946;
-}
-.body-home {
-  margin-top: 15rem;
-}
 
+.img-teach {
+  height: 80px;
+  width: 80px;
+}
 .header-home h1 {
   color: #f4caae;
   font-weight: bold;
@@ -30,35 +26,93 @@
   background-color: #f4caae;
   color: #232946;
 }
+.my-course {
+  font-weight: bold;
+}
 
-.label {
-  border-radius: 0px 0px 20px 20px;
-  width: 12rem;
-  height: 1.8rem;
-  position: absolute;
-  margin-left: 5rem;
-  /* top: 50; */
-  color: white;
+.course-progress {
+  font-weight: bold;
+}
+.body-progress {
+  border-radius: 10px;
+  border: 1px solid rgb(214, 214, 214);
+}
+/* 
+.row .progress {
+  background-color: white !important;
+  flex-wrap: nowrap;
+  height: 9rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
 
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: teal;
+.row .progress::-webkit-scrollbar {
+  display: none;
+} */
+
+:host ::ng-deep .p-progressbar .p-progressbar-value {
+  background-color: #2095f2;
+}
+:host ::ng-deep .p-progressbar {
+  width: 100%;
+  height: 1.2rem;
+  background-color: #ddf0ff;
+  border-radius: 20px 20px 20px 20px;
+}
+:host ::ng-deep .p-progressbar .p-progressbar-label {
+  /* visibility: hidden; */
+  /* font-size: 10px; */
+  margin-top: -2px;
+  color: #2b2c34;
 }
 .card {
-  border-radius: 15px;
-  height: 25rem;
+  border-radius: 7px;
+  height: 100%;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.card :hover {
+  cursor: pointer;
+}
+.card-header-course {
+  border-radius: 7px 7px 0px 0px;
+  height: 10rem;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding-left: 1rem;
+  padding-top: 3rem;
+}
+
+.category-badge.category-name {
+  color: #323096;
+  background-color: #b5b4dc;
+}
+.category-badge {
+  border-radius: 2px;
+  padding: 0.25rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  height: 20px;
+  font-size: 10px;
+  letter-spacing: 0.3px;
+}
+.teacher-name {
+  font-weight: bold;
+}
+.card-title {
+  color: white;
+  font-weight: bold;
 }
 
 a {
   text-decoration: none;
 }
-
+/* 
 .card-body a :hover {
   color: #3f5ae6;
   cursor: pointer;
   text-decoration-line: underline;
   text-decoration-color: #3f5ae6;
-}
+} */
 
 @media (min-width: 411px) {
   .header-home {
@@ -66,11 +120,8 @@ a {
     height: auto;
     background-color: #232946;
   }
-  .body-home {
-    margin-top: 15rem;
-  }
   .card-img-top {
-    border-radius: 15px 15px 0px 0px;
+    border-radius: 10px 10px 0px 0px;
     height: 185px;
   }
   .image-card {
@@ -100,19 +151,13 @@ a {
     height: 24rem;
     width: 24rem;
   }
-  .body-home {
-    margin-top: 13rem;
-  }
   .card-img-top {
-    border-radius: 15px 15px 0px 0px;
+    border-radius: 10px 10px 0px 0px;
     height: 175px;
   }
 }
 
 @media (min-width: 992px) {
-  .body-home {
-    margin-top: 12rem;
-  }
 }
 @media (min-width: 1024px) {
   .card-img-top {

@@ -124,15 +124,17 @@
             *ngFor="let c of courseFiltering; let i = index"
           >
             <div class="card mb-1 bg-white">
-              <span
-                *ngIf="c.isRegist == true"
-                class="label text-center text-truncate"
-                >Registered</span
-              >
-
-              <div class="img">
+              <div *ngIf="c.isRegist == true" class="img">
                 <img
-                  src="assets/images/banner-card1.jpg"
+                  src="assets/images/banner_course_registered.png"
+                  class="card-img-top"
+                  alt="..."
+                />
+              </div>
+
+              <div *ngIf="c.isRegist == false" class="img">
+                <img
+                  src="assets/images/banner_course.png"
                   class="card-img-top"
                   alt="..."
                 />
@@ -145,7 +147,10 @@
                   </h5>
                 </a>
 
-                <h6 class="text-secondary">{{ c.categoryName }}</h6>
+                <span class="category-badge category-name">{{
+                  c.categoryName
+                }}</span>
+                <!-- <h6 class="text-secondary"></h6> -->
                 <hr />
 
                 <div class="d-flex flex-row">
@@ -157,7 +162,7 @@
                     alt=""
                   />
                   <div class="d-flex flex-column pl-2 m-2">
-                    <h6 class="text-info">
+                    <h6 class="teacher-name">
                       {{ c.teacher.firstName }} {{ c.teacher.lastName }},
                       {{ c.teacher.title }}.
                     </h6>

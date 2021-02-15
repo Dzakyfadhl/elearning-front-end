@@ -51,6 +51,7 @@ export class ModuleCourseComponent implements OnInit {
   showModule() {
     this.moduleService.getModuleStudent(this.courseId).subscribe((value) => {
       this.modules = value.result;
+      console.log(this.modules);
 
       this.modules.modules.forEach((data) => {
         let dateStartMerge = `${data.schedule.date} ${data.schedule.startTime}`;

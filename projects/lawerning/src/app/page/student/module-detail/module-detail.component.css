@@ -1,8 +1,8 @@
 .card-body {
-  background-color: #232946;
+  background-color: #323096;
 }
 .card-body h3 {
-  color: #f4caae;
+  color: white;
 }
 .card-body h5 {
   color: white;
@@ -15,7 +15,7 @@
   color: #f4caae;
 }
 .s-card {
-  background-color: #232946;
+  background-color: #323096;
 }
 .input-group-text {
   background-color: #232946;
@@ -31,7 +31,7 @@
   font-weight: bold;
 }
 .head-exam {
-  background-color: #f4caae;
+  background-color: white;
 }
 .body-module {
   background-color: white;
@@ -53,7 +53,7 @@
   height: 25px;
 }
 .label-teacher {
-  background-color: #232946;
+  background-color: #323096;
   color: white;
   height: 25px;
 }
@@ -103,11 +103,11 @@
   border: none;
 }
 :host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-  background-color: #232946;
+  background-color: #323096;
   height: 3rem;
   border: none;
   border-radius: 10px;
-  color: #f4caae;
+  color: white;
 }
 :host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
   border: none;

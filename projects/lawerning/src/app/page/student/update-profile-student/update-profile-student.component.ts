@@ -85,7 +85,7 @@ export class UpdateProfileStudentComponent implements OnInit {
       requestProfile.phone = this.studentProfile.phone;
       requestProfile.username = this.studentProfile.username;
       requestProfile.gender = this.studentProfile.gender;
-      requestProfile.updatedBy = this.studentProfile.id;
+      requestProfile.updatedBy = this.auth.getLoginResponse().userId;
     }
 
     if (this.isEdited == true) {

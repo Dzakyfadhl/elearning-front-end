@@ -7,6 +7,8 @@ import { Gender } from '../../../model/gender';
 import { StudentUpdateRequest } from '../../../model/student/student-edit-request';
 import { ToastService } from '../../../service/toast.service';
 import { Router } from '@angular/router';
+import { CourseService } from '../../../service/course.service';
+import { CourseProgressResponse } from '../../../model/course-dto/course-progress-response';
 
 @Component({
   selector: 'app-profile-student',
@@ -21,33 +23,7 @@ export class ProfileStudentComponent implements OnInit {
   result: any = [];
 
   isTwoRow: boolean = false;
-
-  mymodules = [
-    {
-      course: 'Java Framework',
-      value: 3,
-      total: 11,
-      score: '90',
-    },
-    {
-      course: 'Object Oriented Programming',
-      value: 10,
-      total: 10,
-      score: '90',
-    },
-    {
-      course: 'PHP Framework',
-      value: 11,
-      total: 14,
-      score: '90',
-    },
-    {
-      course: 'Flutter',
-      value: 18,
-      total: 20,
-      score: '90',
-    },
-  ];
+  mymodules: CourseProgressResponse[];
 
   isDisplay = false;
   blockedDocument: boolean = false;
@@ -55,11 +31,27 @@ export class ProfileStudentComponent implements OnInit {
   constructor(
     private studentService: StudentService,
     private auth: AuthService,
-    private moduleService: ModuleService,
+    private courseService: CourseService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.courseService
+      .getCourseProgress(this.auth.getLoginResponse().userRoleId)
+      .subscribe((data) => {
+        this.mymodules = data.result;
+        if (this.mymodules.length > 0) {
+          this.mymodules.forEach((res) => {
+            let val = (res.moduleComplete / res.totalModule) * 100;
+            res.value = Math.ceil(val);
+            if (isNaN(res.value)) {
+              res.value = 0;
+              console.log(res.value);
+            }
+          });
+        }
+      });
+
     this.studentService.getProfile().subscribe((value) => {
       this.studentProfile = value.result;
       console.log(this.studentProfile.idPhoto);
@@ -71,12 +63,12 @@ export class ProfileStudentComponent implements OnInit {
       }
     });
 
-    this.mymodules.forEach((value) => {
-      let percent = (value.value / value.total) * 100;
+    // this.mymodules.forEach((value) => {
+    //   let percent = (value.value / value.total) * 100;
 
-      this.result.push(Math.ceil(percent));
-    });
-    console.log(this.result);
+    //   this.result.push(Math.ceil(percent));
+    // });
+    // console.log(this.result);
   }
 
   showDialog() {

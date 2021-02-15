@@ -6,6 +6,7 @@ import { CourseAllResponse } from '../model/course-all-response';
 import { CourseAvailableResponse } from '../model/course-available-response';
 import { CourseAdminResponseDTO } from '../model/course-dto/course-admin-response';
 import { CourseCreateRequestDTO } from '../model/course-dto/course-create-request';
+import { CourseProgressResponse } from '../model/course-dto/course-progress-response';
 import { CourseUpdateRequestDTO } from '../model/course-dto/course-update-request';
 import { CourseStudentResponse } from '../model/course-student-response';
 import { CourseTeacherResponse } from '../model/course-teacher-response';
@@ -78,6 +79,14 @@ export class CourseService {
           courseId: idCourse,
         },
       }
+    );
+  }
+
+  getCourseProgress(
+    idStudent: string
+  ): Observable<ResponseModel<CourseProgressResponse[]>> {
+    return this.http.get<ResponseModel<CourseProgressResponse[]>>(
+      `${Constants.BASE_URL}/course/progress/${idStudent}`
     );
   }
 }

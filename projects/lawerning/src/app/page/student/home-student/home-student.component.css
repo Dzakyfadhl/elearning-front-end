@@ -9,33 +9,24 @@
 .row .categoryy::-webkit-scrollbar {
   display: none;
 }
-
-.label {
-  border-radius: 0px 0px 20px 20px;
-  width: 12rem;
-  height: 1.8rem;
-  position: absolute;
-  margin-left: 5rem;
-  /* top: 50; */
-  color: white;
-
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: teal;
-}
-/* .row .categoryy:hover {
-  height: 70px;
-  width: auto;
-  overflow-x: hidden;
-  overflow-y: hidden;
-} */
-/* .compt {
-  width: auto;
-  height: 30px;
-} */
 .header-home {
   height: auto;
   padding-bottom: 30px;
-  background-color: #232946;
+  background-color: #323096;
+}
+
+.category-badge.category-name {
+  background: #fcbc9ece;
+  color: #e65c1c;
+}
+.category-badge {
+  border-radius: 2px;
+  padding: 0.25rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  height: 20px;
+  font-size: 10px;
+  letter-spacing: 0.3px;
 }
 .custom-select {
   background-color: rgb(224, 224, 224) !important;
@@ -45,29 +36,33 @@
   background-color: white;
 }
 .avail {
-  color: #f4caae;
+  color: #ddf0ff;
 }
 
 .header-home h1 {
-  color: #f4caae;
+  color: white;
   font-weight: bold;
 }
 .card-body h5 {
   color: #232946;
   font-weight: bold;
 }
-
-.card-body h6 {
+.teacher-name {
+  font-weight: bold;
+  color: #2b2c34;
+}
+/* .card-body h6 {
   color: grey;
   font-weight: bold;
-}
+} */
 .badge {
   background-color: #232946;
   width: 5rem;
 }
 .invalid-all {
   /* max-height: 50px; */
-  background-color: #3a4372;
+  color: #323096;
+  background-color: #b5b4dc;
 
   /* width: 50% !important; */
   border: none;
@@ -75,24 +70,25 @@
 .invalid-selected {
   /* max-height: 50px; */
   border: none;
+  color: #323096;
   /* width: 50% !important; */
-  background-color: #3a4372;
+  background-color: #b5b4dc;
 }
 .valid-all {
   /* max-height: 50px; */
   border: none;
 
   /* width: 50% !important; */
-  color: #3a4372;
-  background-color: #f4caae;
+  color: white;
+  background-color: #6868ef;
 }
 .valid-selected {
   /* max-height: 50px; */
 
   /* width: 50% !important; */
-  color: #3a4372;
+  color: white;
   border: none;
-  background-color: #f4caae;
+  background-color: #6868ef;
 }
 
 .card {
@@ -113,7 +109,7 @@ a {
 }
 
 :host ::ng-deep .p-inputtext {
-  background-color: #3a4372;
+  background-color: #b5b4dc;
   border: white;
   color: white;
   width: 20rem;
@@ -163,10 +159,10 @@ a {
       height: 80%; */
     height: auto;
     padding-bottom: 30px;
-    background-color: #232946;
+    background-color: #323096;
   }
   .card-img-top {
-    border-radius: 15px 15px 0px 0px;
+    border-radius: 10px 10px 0px 0px;
     height: 185px;
   }
   /* .body-home{
@@ -180,10 +176,10 @@ a {
     height: 50%; */
     height: auto;
     padding-bottom: 30px;
-    background-color: #232946;
+    background-color: #323096;
   }
   .card-img-top {
-    border-radius: 15px 15px 0px 0px;
+    border-radius: 10px 10px 0px 0px;
     height: 175px;
   }
   /* .body-home{

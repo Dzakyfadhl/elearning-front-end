@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="row">
     <div class="header-home col-lg-12">
       <h1 class="text-center m-4">My Course</h1>
@@ -23,7 +23,7 @@
       </p>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="body-home container-fluid mb-5">
   <div class="row">
@@ -34,44 +34,112 @@
         </div>
       </div>
       <div *ngIf="isEmpty == false" class="container">
+        <h4 class="course-progress mt-5">COURSE PROGRESS</h4>
+        <!-- <div class="body-progress container"> -->
+        <div class="row justify-content-center">
+          <div class="col-lg-3 p-2" *ngFor="let cp of courseProgress">
+            <div class="body-progress p-3">
+              <div class="d-flex flex-row">
+                <img
+                  src="assets/images/icon-student.svg"
+                  height="70"
+                  height="70"
+                  alt=""
+                />
+                <div class="d-flex flex-column ml-3 mt-1">
+                  <h4 class="text-truncate" style="max-width: 8rem">
+                    {{ cp.courseName }}
+                  </h4>
+                  <h6>
+                    {{ cp.moduleComplete }} of {{ cp.totalModule }}
+                    completed
+                  </h6>
+                </div>
+              </div>
+              <div class="progressbar mt-3">
+                <p-progressBar
+                  [value]="cp.value"
+                  class="progress-body"
+                ></p-progressBar>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- </div> -->
+
+        <!-- <div class="container justify-content-center">
+          <div class="row progress"></div>
+        </div> -->
+        <h4 class="my-course mt-5">MY COURSE</h4>
         <div class="row justify-content-center">
           <div
             class="col-lg-4 col-md-6 mt-3 mb-3"
             *ngFor="let c of courses; let i = index"
           >
-            <div class="card mb-1 bg-white">
-              <span
-                *ngIf="c.isCompleted == true"
-                class="label text-center text-truncate"
-                >Completed</span
-              >
-              <img
-                src="assets/images/banner-card1.jpg"
-                class="card-img-top"
-                alt="..."
-              />
+            <a (click)="viewModule(i)">
+              <div class="card mb-1 bg-white">
+                <div class="card-body-course">
+                  <div class="d-flex flex-column">
+                    <div
+                      *ngIf="c.isCompleted == false"
+                      class="card-header-course"
+                      style="
+                        background-image: url('../../../../assets/images/banner_course.png');
+                      "
+                    >
+                      <h4
+                        class="card-title text-truncate"
+                        style="max-width: 200px"
+                      >
+                        {{ c.typeName }}
+                      </h4>
 
-              <div class="card-body">
-                <a (click)="viewModule(i)">
-                  <h5 class="card-title">{{ c.typeName }}</h5>
-                </a>
-                <h6 class="text-secondary">{{ c.categoryName }}</h6>
-                <hr />
+                      <span class="category-badge category-name">{{
+                        c.categoryName
+                      }}</span>
+                    </div>
 
-                <h6 class="card-text text-info mb-3">
-                  {{ c.teacher.firstName }} {{ c.teacher.lastName }},
-                  {{ c.teacher.title
-                  }}<span class="badge badge-primary ml-2">{{ c.role }}</span>
-                </h6>
-                <h6 class="card-text mb-3">
-                  <span class="pr-1">
-                    <i class="pi pi-calendar"></i>
-                  </span>
-                  {{ c.periodStart | date: "dd MMM " }} -
-                  {{ c.periodEnd | date: "dd MMM yyyy" }}
-                </h6>
+                    <div
+                      *ngIf="c.isCompleted == true"
+                      class="card-header-course"
+                      style="
+                        background-image: url('../../../../assets/images/banner_course_finished.png');
+                      "
+                    >
+                      <h4
+                        class="card-title text-truncate"
+                        style="max-width: 200px"
+                      >
+                        {{ c.typeName }}
+                      </h4>
+
+                      <span class="category-badge category-name">{{
+                        c.categoryName
+                      }}</span>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row p-3">
+                    <img
+                      [src]="c.teacher.photoId"
+                      class="img-teach rounded"
+                      alt=""
+                    />
+                    <div class="d-flex flex-column p-2">
+                      <h5
+                        class="teacher-name text-truncate"
+                        style="max-width: 240px"
+                      >
+                        {{ c.teacher.firstName }} {{ c.teacher.lastName }},
+                        {{ c.teacher.title }}.
+                      </h5>
+
+                      <h6 class="text-secondary">{{ c.teacher.experience }}</h6>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>

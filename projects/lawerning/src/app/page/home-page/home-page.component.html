@@ -112,7 +112,7 @@
         <div class="card shadow my-3">
           <div class="d-flex flex-column">
             <img
-              src="assets/images/banner-card1.jpg"
+              src="assets/images/banner_course.png"
               class="ilustrator"
               alt=""
             />
@@ -125,13 +125,27 @@
                 <h5>{{ c.typeName }}</h5>
               </a>
               <div class="d-flex flex-row">
-                <span class="badge badge-pill p-2 badge-primary"
+                <!-- <span class="badge p-2 badge-primary"
                   >{{ c.capacity }} students</span
-                >
+                > -->
 
-                <span class="badge badge-pill p-2 mx-2 badge-primary"
-                  >{{ c.duration }} weeks</span
-                >
+                <span class="badge p-2 badge-primary">
+                  <div class="d-flex flex-row">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                      fill="currentColor"
+                      class="bi bi-clock-fill mr-1"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"
+                      />
+                    </svg>
+                    {{ c.duration }} weeks
+                  </div>
+                </span>
               </div>
               <hr />
             </div>
@@ -142,7 +156,7 @@
                 alt=""
               />
               <div class="d-flex flex-column pl-3">
-                <h6 class="teacher-name text-info">
+                <h6 class="teacher-name">
                   {{ c.teacher.firstName }} {{ c.teacher.lastName }},
                   {{ c.teacher.title }}
                 </h6>
@@ -181,18 +195,16 @@
               <div class="product-item-content shadow-sm">
                 <div class="p-mb-3 text-center">
                   <img
-                    [src]="mentor.photoId"
+                    [src]="mentor.idPhoto"
                     class="rounded"
                     height="120"
                     width="120"
                   />
                 </div>
                 <h5 class="teacher-name p-mb-1 text-center mt-3">
-                  {{ mentor.teacherName }}
+                  {{ mentor.firstName }} {{ mentor.lastName }},
+                  {{ mentor.titleDegree }}.
                 </h5>
-                <h6 class="p-mt-0 p-mb-3 text-secondary text-center">
-                  {{ mentor.experience }}
-                </h6>
               </div>
             </div>
           </ng-template>

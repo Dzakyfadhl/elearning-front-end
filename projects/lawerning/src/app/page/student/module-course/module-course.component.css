@@ -15,20 +15,6 @@
   font-size: 10px;
   letter-spacing: 0.3px;
 }
-.header-module {
-  background-image: url("../../../../assets/images/banner-card1.jpg");
-  height: auto;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  height: auto;
-}
-.header-module h1 {
-  color: #232946;
-  font-weight: bold;
-}
-.header-module p {
-  color: white;
-}
 .download:hover {
   color: grey;
   cursor: pointer;
@@ -56,6 +42,10 @@ h3 {
 }
 .register button:hover {
   background-color: #333c6d;
+}
+.module-title {
+  font-weight: bold;
+  color: white;
 }
 
 :host ::ng-deep .custom .p-panel-header {
@@ -103,19 +93,28 @@ a :hover {
   margin: 10px;
 }
 :host ::ng-deep .p-progressbar .p-progressbar-value {
-  background-color: #232946;
+  background-color: #2095f2;
 }
 :host ::ng-deep .p-progressbar {
-  background-color: #62688a;
-  /* border-radius: 20px 20px 20px 20px; */
+  width: 50%;
+  background-color: #ddf0ff;
+  border-radius: 20px 20px 20px 20px;
 }
 :host ::ng-deep .p-progressbar .p-progressbar-label {
   /* visibility: hidden; */
-  color: white;
+  color: #2b2c34;
 }
 @media (min-width: 411px) {
   .title {
     font-size: 15px;
+  }
+  .card-header-module {
+    border-radius: 10px;
+    background-image: url("../../../../assets/images/banner_course.png");
+    height: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding: 1rem;
   }
 
   /* .btn-title{
@@ -133,6 +132,15 @@ a :hover {
 @media (min-width: 768px) {
   .title {
     font-size: 24px;
+  }
+
+  .card-header-module {
+    border-radius: 10px;
+    background-image: url("../../../../assets/images/banner_course.png");
+    height: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding: 3rem;
   }
   .left-content {
     width: 6rem;

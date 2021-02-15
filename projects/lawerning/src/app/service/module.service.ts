@@ -35,4 +35,11 @@ export class ModuleService {
       `${Constants.BASE_URL}/course/${idCourse}`
     );
   }
+  getModuleAvailable(
+    idCourse: string
+  ): Observable<ResponseModel<DetailCourseResponse>> {
+    return this.http.get<ResponseModel<DetailCourseResponse>>(
+      `${Constants.BASE_URL}/course/module/${idCourse}`
+    );
+  }
 }
