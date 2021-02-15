@@ -10,6 +10,7 @@ import { CourseProgressResponse } from '../model/course-dto/course-progress-resp
 import { CourseUpdateRequestDTO } from '../model/course-dto/course-update-request';
 import { CourseStudentResponse } from '../model/course-student-response';
 import { CourseTeacherResponse } from '../model/course-teacher-response';
+import { DetailCourseResponse } from '../model/detail-course-response';
 import { ResponseModel } from '../model/response-model';
 import { AuthService } from './auth.service';
 
@@ -82,11 +83,20 @@ export class CourseService {
     );
   }
 
+<<<<<<< Updated upstream
   getCourseProgress(
     idStudent: string
   ): Observable<ResponseModel<CourseProgressResponse[]>> {
     return this.http.get<ResponseModel<CourseProgressResponse[]>>(
       `${Constants.BASE_URL}/course/progress/${idStudent}`
     );
+=======
+  getDetailCourse(id: string): Promise<ResponseModel<DetailCourseResponse>> {
+    return this.http
+      .get<ResponseModel<DetailCourseResponse>>(
+        `${Constants.BASE_URL}/course/${id}`
+      )
+      .toPromise();
+>>>>>>> Stashed changes
   }
 }

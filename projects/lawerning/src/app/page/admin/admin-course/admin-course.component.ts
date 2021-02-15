@@ -1,6 +1,7 @@
 import { NgIf } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { CourseCategoryResponseDTO } from '../../../model/course-category-dto/course-category-reponse';
 import { CourseAdminResponseDTO } from '../../../model/course-dto/course-admin-response';
@@ -56,7 +57,8 @@ export class AdminCourseComponent implements OnInit {
     private toastService: ToastService,
     private teacherService: TeacherService,
     private courseTypeService: CourseTypeService,
-    private courseCategoryService: CourseCategoryService
+    private courseCategoryService: CourseCategoryService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -65,7 +67,6 @@ export class AdminCourseComponent implements OnInit {
       .map((item) => {
         return { key: item.toUpperCase(), value: item };
       });
-    console.log(this.courseStatus);
 
     this.defineCourses();
     this.dropdownCategories();
@@ -77,10 +78,9 @@ export class AdminCourseComponent implements OnInit {
     this.courseService.getCoursesForAdmin().subscribe(
       (val) => {
         this.courses = val.result;
-        console.log(this.courses);
       },
       (err) => {
-        console.error(err.error);
+        this.toastService.emitHttpErrorMessage(err);
       }
     );
   }
@@ -89,10 +89,9 @@ export class AdminCourseComponent implements OnInit {
     this.courseTypeService.getListCourseType().subscribe(
       (val) => {
         this.courseTypes = val.result;
-        console.log(this.courseTypes);
       },
       (err) => {
-        console.error(err.error);
+        this.toastService.emitHttpErrorMessage(err);
       }
     );
   }
@@ -101,10 +100,9 @@ export class AdminCourseComponent implements OnInit {
     this.courseCategoryService.getCourseCategories().subscribe(
       (val) => {
         this.categories = val.result;
-        console.log(this.categories);
       },
       (err) => {
-        console.error(err.error);
+        this.toastService.emitHttpErrorMessage(err);
       }
     );
   }
@@ -113,7 +111,6 @@ export class AdminCourseComponent implements OnInit {
     this.teacherService.getAllTeachersForAdmin().subscribe(
       (val) => {
         this.teachers = val.result;
-        console.log(this.teachers);
         this.teachers.forEach((teacher) => {
           this.teacherVal.push({
             key: teacher.id,
@@ -122,7 +119,7 @@ export class AdminCourseComponent implements OnInit {
         });
       },
       (err) => {
-        console.error(err.error);
+        this.toastService.emitHttpErrorMessage(err);
       }
     );
   }
@@ -196,5 +193,9 @@ export class AdminCourseComponent implements OnInit {
     this.isCreateModalVisible = false;
     this.isEditModalVisible = false;
     this.submitted = false;
+  }
+
+  viewModules(id: string) {
+    this.router.navigateByUrl(`/admin/course/${id}`);
   }
 }

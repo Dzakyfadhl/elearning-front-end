@@ -17,6 +17,8 @@ import { ScrollTopModule } from 'primeng/scrolltop';
 import { CarouselModule } from 'primeng/carousel';
 import { DetailCourseModule } from './module/detail-course/detail-course.module';
 import { ResetPasswordComponent } from './page/reset-password/reset-password.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +39,7 @@ import { ResetPasswordComponent } from './page/reset-password/reset-password.com
     ToastModule,
     ScrollTopModule,
     CarouselModule,
+    FontAwesomeModule,
   ],
   providers: [
     ConfirmationService,

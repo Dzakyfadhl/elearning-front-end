@@ -19,7 +19,10 @@ export class ToastService {
     });
   }
 
-  emitHttpErrorMessage(error: HttpErrorResponse, message: string | null) {
+  emitHttpErrorMessage(
+    error: HttpErrorResponse,
+    message: string | null = null
+  ) {
     let msg: string;
     if (error.error) {
       msg = error.error.result;

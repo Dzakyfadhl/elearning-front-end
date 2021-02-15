@@ -1,3 +1,60 @@
-<h1 class="mt-4">Simple Sidebar</h1>
-<p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
+<div class="p-3">
+    <section class="container-fluid">
+        <h1 class="mb-4">Dashboard</h1>
+        <div class="row justify-content-lg-between justify-content-center mx-5">
+            <article class="card card-info mb-3 shadow-sm">
+                <div class="row no-gutters justify-content-center align-items-center">
+                    <div class="col-md-6 text-center">
+                        <img src="assets/images/students.svg" alt class="card-img p-2">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <h5 class="card-title">Student</h5>
+                            <p class="card-text" *ngIf="dashboard && dashboard.student">{{dashboard.student.total}}</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="card card-info mb-3 shadow-sm">
+                <div class="row no-gutters justify-content-center align-items-center">
+                    <div class="col-md-6 text-center">
+                        <img src="assets/images/students.svg" alt class="card-img p-2">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <h5 class="card-title">Teacher</h5>
+                            <p class="card-text" *ngIf="dashboard && dashboard.teacher">{{dashboard.teacher.total}}</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="card card-info mb-3 shadow-sm">
+                <div class="row no-gutters justify-content-center align-items-center">
+                    <div class="col-md-6 text-center">
+                        <img src="assets/images/students.svg" alt class="card-img p-2">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <h5 class="card-title">Course</h5>
+                            <p class="card-text" *ngIf="dashboard && dashboard.course">{{dashboard.course.total}}</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+    <section class="container-fluid mt-5">
+        <h1>Chart Report</h1>
+        <div class="row">
+            <article class="card shadow col-md-6 col-sm-12 mt-sm-4">
+                <p-chart type="pie" [data]="studentData" [options]="studentChartOption"></p-chart>
+            </article>
+            <article class="card shadow col-md-6 col-sm-12 mt-sm-4">
+                <p-chart type="pie" [data]="teacherData" [options]="teacherChartOption"></p-chart>
+            </article>
+            <article class="card shadow col-12 mt-4">
+                <p-chart type="pie" [data]="courseData" [options]="courseChartOption"></p-chart>
+            </article>
+        </div>
+    </section>
+</div>

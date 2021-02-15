@@ -4,7 +4,7 @@ import { AdminCourseComponent } from '@bootcamp-lawerning-page/admin/admin-cours
 
 const routes: Routes = [
   {
-    path: 'courses',
+    path: 'course',
     component: AdminCourseComponent,
   },
 ];

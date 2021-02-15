@@ -1,0 +1,8 @@
+img.card-img {
+  max-width: 68px;
+}
+
+.card-info {
+  min-width: 320px;
+  height: auto;
+}

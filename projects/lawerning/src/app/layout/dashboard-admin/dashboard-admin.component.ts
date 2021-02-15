@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
+import Constants from '../../constants/constant';
+import { LoginResponse } from '../../model/login-response';
 import { AuthService } from '../../service/auth.service';
 
 @Component({
@@ -10,11 +13,24 @@ import { AuthService } from '../../service/auth.service';
 export class DashboardAdminComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
+  loginResponse: LoginResponse;
+
   ngOnInit(): void {
-    if (!this.authService.getLoginResponse()) {
+    this.loginResponse = this.authService.getLoginResponse();
+    if (!this.loginResponse) {
       this.router.navigateByUrl('/login-page');
+      return;
     }
+    this.setupUserPhoto();
     this.setupMenuToggle();
+  }
+
+  setupUserPhoto(): void {
+    if (!this.loginResponse.photoId) {
+      this.loginResponse.photoId = 'assets/images/default.png';
+    } else {
+      this.loginResponse.photoId = `${Constants.BASE_URL}/file/${this.loginResponse.photoId}`;
+    }
   }
 
   setupMenuToggle() {

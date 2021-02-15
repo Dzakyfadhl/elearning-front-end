@@ -1,0 +1,120 @@
+<p-toolbar styleClass="my-4">
+    <div>
+        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-raised p-button-success mr-2"
+            (click)="openCreateModal()"></button>
+    </div>
+</p-toolbar>
+
+<p-table #dt [scrollable]="true" [value]="detailCourse.modules" [rows]="10" [paginator]="true"
+    [globalFilterFields]="['code', 'title', 'subjectname', 'schedule.date', 'schedule.startTime', 'schedule.endTime']"
+    [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true" *ngIf="detailCourse && detailCourse.modules">
+    <ng-template pTemplate="caption">
+        <div class="d-flex align-items-center justify-content-between">
+            <h5 class="p-m-0">Manage Modules</h5>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                    placeholder="Search..." />
+            </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th width="120px" pSortableColumn="code">
+                Code
+                <p-sortIcon field="code"></p-sortIcon>
+            </th>
+            <th width="120px" pSortableColumn="title">
+                Title
+                <p-sortIcon field="title"></p-sortIcon>
+            </th>
+            <th width="180px">Description</th>
+            <th width="120px" pSortableColumn="subjectName">
+                Subject
+                <p-sortIcon field="subjectName"></p-sortIcon>
+            </th>
+            <th width="120px" pSortableColumn="schedule.date">
+                Date
+                <p-sortIcon field="schedule.date"></p-sortIcon>
+            </th>
+            <th width="120px" pSortableColumn="schedule.startTime">
+                Start Time
+                <p-sortIcon field="schedule.startTime"></p-sortIcon>
+            </th>
+            <th width="120px" pSortableColumn="schedule.endTime">
+                End Time
+                <p-sortIcon field="schedule.endTime"></p-sortIcon>
+            </th>
+            <th width="120px">Action</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-module>
+        <tr>
+            <td width="120px" class="text-break">{{ module.code }}</td>
+            <td width="120px" class="text-break">{{ module.title }}</td>
+            <td width="180px" class="text-break">{{ module.description }}</td>
+            <td width="120px" class="text-break">{{ module.subjectName }}</td>
+            <td width="120px" class="text-break">{{ module.schedule.date }}</td>
+            <td width="120px" class="text-break">{{ module.schedule.startTime }}</td>
+            <td width="120px" class="text-break">{{ module.schedule.endTime }}</td>
+            <td width="120px" class="text-break">
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                    (click)="edit(module)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="delete(module)"></button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="d-flex align-items-center justify-content-center">
+            In total there are {{ detailCourse && detailCourse.modules ? detailCourse.modules.length : 0 }} modules.
+        </div>
+    </ng-template>
+</p-table>
+
+<p-dialog [(visible)]="isCreateModalVisible" [style]="{ width: '650px' }" header="Create Module" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field mt-3">
+            <label for="code">Code</label>
+            <input type="text" pInputText id="code" [(ngModel)]="createRequest.code" required autofocus />
+            <small class="p-error" *ngIf="submitted && !createRequest.code">Code is required.</small>
+        </div>
+        <div class="p-field mt-3">
+            <label for="title">Title</label>
+            <input type="text" pInputText id="title" [(ngModel)]="createRequest.title" required autofocus />
+            <small class="p-error" *ngIf="submitted && !createRequest.code">Code is required.</small>
+        </div>
+        <div class="p-field mt-3">
+            <label for="description">Description</label>
+            <input type="text" pInputText id="description" [(ngModel)]="createRequest.description" required autofocus />
+            <small class="p-error" *ngIf="submitted && !createRequest.code">Code is required.</small>
+        </div>
+        <div class="p-field mt-3">
+            <label for="subject">Subject Categories</label>
+            <p-dropdown [(ngModel)]="selectedSubjectCategory" [options]="subjectCategoriesOptions"
+                placeholder="Select Subject Categories" optionLabel="name" optionValue="id"></p-dropdown>
+        </div>
+        <h5 class="mt-5">Schedule</h5>
+        <div class="p-field mt-3">
+            <label for="date">Date</label>
+            <p-calendar [(ngModel)]="date" inputId="date">
+            </p-calendar>
+        </div>
+        <div class="p-field mt-3">
+            <label for="startTime">Start Time</label>
+            <p-calendar [(ngModel)]="startTime" [timeOnly]="true" inputId="startTime">
+            </p-calendar>
+        </div>
+        <div class="p-field mt-3">
+            <label for="endTime">End Time</label>
+            <p-calendar [(ngModel)]="endTime" [timeOnly]="true" inputId="endTime"></p-calendar>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideModal()"></button>
+        <button pButton pRipple label="Submit" icon="pi pi-check" class="p-button-text" (click)="create()"></button>
+    </ng-template>
+    </p-dialog>

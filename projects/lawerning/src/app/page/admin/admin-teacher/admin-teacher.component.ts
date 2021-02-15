@@ -29,8 +29,6 @@ export class AdminTeacherComponent implements OnInit {
   createRequest: CreateTeacherRequest;
   updateRequest: UpdateTeacherRequest;
 
-  selectedTeachers: TeacherForAdminResponse[];
-
   submitted: boolean;
 
   genders: { key: string; value: string }[];
@@ -61,21 +59,6 @@ export class AdminTeacherComponent implements OnInit {
     this.selectedGender = null;
     this.submitted = false;
     this.isCreateModalVisible = true;
-  }
-
-  deleteSelectedTeachers() {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete the selected teachers?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.teachers = this.teachers.filter(
-          (val) => !this.selectedTeachers.includes(val)
-        );
-        this.selectedTeachers = null;
-        alert('Teachers Deleted');
-      },
-    });
   }
 
   editTeacher(teacher: TeacherForAdminResponse) {

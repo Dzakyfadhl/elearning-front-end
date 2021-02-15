@@ -47,7 +47,7 @@ export class AdminStudentComponent implements OnInit {
     } catch (error) {
       this.toastService.emitHttpErrorMessage(
         error,
-        'Failed to get student list.'
+        'Failed to get student data.'
       );
     }
   }

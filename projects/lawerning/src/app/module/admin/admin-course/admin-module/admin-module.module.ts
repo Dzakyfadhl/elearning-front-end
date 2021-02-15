@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { AdminModuleRoutingModule } from './admin-module-routing.module';
+import { AdminModuleComponent } from '../../../../page/admin/admin-course/admin-module/admin-module.component';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
-
-import { AdminTeacherRoutingModule } from './admin-teacher-routing.module';
-import { AdminTeacherComponent } from '../../../page/admin/admin-teacher/admin-teacher.component';
-import { DialogModule } from 'primeng/dialog';
-import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { InputTextModule } from 'primeng/inputtext';
+import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { ToolbarModule } from 'primeng/toolbar';
+import { CalendarModule } from 'primeng/calendar';
+
 
 @NgModule({
-  declarations: [AdminTeacherComponent],
+  declarations: [AdminModuleComponent],
   imports: [
     CommonModule,
-    AdminTeacherRoutingModule,
+    AdminModuleRoutingModule,
     TableModule,
     ButtonModule,
     FormsModule,
@@ -25,6 +27,7 @@ import { DropdownModule } from 'primeng/dropdown';
     ConfirmDialogModule,
     InputTextModule,
     DropdownModule,
+    CalendarModule,
   ],
 })
-export class AdminTeacherModule {}
+export class AdminModuleModule {}

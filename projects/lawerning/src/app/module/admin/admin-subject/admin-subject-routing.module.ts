@@ -4,7 +4,7 @@ import { AdminSubjectComponent } from '@bootcamp-lawerning-page/admin/admin-subj
 
 const routes: Routes = [
   {
-    path: 'subjects',
+    path: 'subject-category',
     component: AdminSubjectComponent,
   },
 ];

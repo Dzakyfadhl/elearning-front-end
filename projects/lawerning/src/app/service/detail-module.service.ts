@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import Constants from '../constants/constant';
-import { ModulRequestDTO } from '../model/course-dto/module-request';
+import { ModuleCreateRequest } from '../model/course-dto/module-create-request';
 import { DetailModuleResponse } from '../model/detail-module-response';
 import { ResponseModel } from '../model/response-model';
 import { AuthService } from './auth.service';
@@ -26,10 +26,10 @@ export class DetailModuleService {
     );
   }
 
-  insertModule(data: ModulRequestDTO): Observable<ModulRequestDTO> {
-    return this.http.post<ModulRequestDTO>(
+  insertModule(data: ModuleCreateRequest[]): Promise<ResponseModel<String>> {
+    return this.http.post<ResponseModel<String>>(
       `${Constants.BASE_URL}/module`,
       data
-    );
+    ).toPromise();
   }
 }
