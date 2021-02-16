@@ -83,20 +83,19 @@ export class CourseService {
     );
   }
 
-<<<<<<< Updated upstream
   getCourseProgress(
     idStudent: string
   ): Observable<ResponseModel<CourseProgressResponse[]>> {
     return this.http.get<ResponseModel<CourseProgressResponse[]>>(
       `${Constants.BASE_URL}/course/progress/${idStudent}`
     );
-=======
+  }
+
   getDetailCourse(id: string): Promise<ResponseModel<DetailCourseResponse>> {
     return this.http
       .get<ResponseModel<DetailCourseResponse>>(
         `${Constants.BASE_URL}/course/${id}`
       )
       .toPromise();
->>>>>>> Stashed changes
   }
 }
