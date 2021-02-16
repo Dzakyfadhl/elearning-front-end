@@ -1,10 +1,12 @@
 import { DatePipe } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ExperienceModel } from '../../../model/experience-model';
 import { TeacherProfileResponse } from '../../../model/teacher-dto/teacher-profile-response';
 import { AuthService } from '../../../service/auth.service';
 import { TeacherService } from '../../../service/teacher.service';
+import { ToastService } from '../../../service/toast.service';
 
 @Component({
   selector: 'app-profile-teacher',
@@ -35,7 +37,8 @@ export class ProfileTeacherComponent implements OnInit {
   constructor(
     private teacherService: TeacherService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -86,9 +89,22 @@ export class ProfileTeacherComponent implements OnInit {
     this.experience.endDate = formatDateEnd;
     this.experience.userId = this.authService.getLoginResponse().userId;
     this.experience.teacherId = this.authService.getLoginResponse().userRoleId;
-    this.teacherService.createExperience(this.experience).subscribe((val) => {
-      console.log(val);
-      this.isDisplayEx = false;
-    });
+    this.teacherService.createExperience(this.experience).subscribe(
+      (response) => {
+        if (response.code === 201 && response.result) {
+          this.toastService.emitSuccessMessage(
+            'Submitted',
+            'Success to update experience teacher'
+          );
+          this.isDisplayEx = false;
+        }
+      },
+      (error: HttpErrorResponse) => {
+        this.toastService.emitHttpErrorMessage(
+          error,
+          'Failed to update experience teacher'
+        );
+      }
+    );
   }
 }

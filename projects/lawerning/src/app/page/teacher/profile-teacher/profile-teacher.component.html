@@ -548,6 +548,7 @@
   [(visible)]="isDisplayEx"
   [style]="{ width: '40vw' }"
   [modal]="true"
+  [baseZIndex]="9999"
 >
   <ng-template pTemplate="content">
     <div class="row">
@@ -581,6 +582,7 @@
         </div>
         <div class="p-inputgroup mb-2">
           <p-calendar
+            [baseZIndex]="10000"
             [style]="{ width: '100%' }"
             [showIcon]="true"
             [(ngModel)]="dateStart"
@@ -598,6 +600,7 @@
         </div>
         <div class="p-inputgroup mb-2">
           <p-calendar
+            [baseZIndex]="10000"
             [style]="{ width: '100%' }"
             [showIcon]="true"
             [(ngModel)]="dateEnd"
@@ -617,8 +620,9 @@
     <a (click)="cancelDialogEx()">
       <button class="btn btn-sm btn-secondary">Cancel</button>
     </a>
-    <a (click)="saveDialog()">
-      <button class="save btn btn-sm btn-info">Save</button>
-    </a>
+
+    <button (click)="saveDialog()" class="save btn btn-sm btn-info">
+      Save
+    </button>
   </ng-template>
 </p-dialog>

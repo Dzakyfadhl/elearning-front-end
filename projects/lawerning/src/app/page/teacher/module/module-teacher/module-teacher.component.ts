@@ -2,6 +2,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import Constants from 'projects/lawerning/src/app/constants/constant';
 import { AttendanceReport } from 'projects/lawerning/src/app/model/attendance-report';
 import { DetailCourseResponse } from 'projects/lawerning/src/app/model/detail-course-response';
 import { DetailModuleResponse } from 'projects/lawerning/src/app/model/detail-module-response';
@@ -77,5 +78,12 @@ export class ModuleTeacherComponent implements OnInit {
         this.attendanceReports = val.result;
         console.log(this.attendanceReports);
       });
+  }
+
+  downloadReport() {
+    window.open(
+      `${Constants.BASE_URL}/report/course/attendance?courseId=${this.courseId}`,
+      '_blank'
+    );
   }
 }

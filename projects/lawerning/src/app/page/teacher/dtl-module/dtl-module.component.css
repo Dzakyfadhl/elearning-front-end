@@ -1,21 +1,9 @@
-.header-module {
-  position: absolute;
-  height: 15%;
-  background-color: #323096;
-}
-
-.header-module a {
+.header a {
   margin-left: 10px;
   color: white;
 }
 
-.header-module h6 {
-  color: white;
-  font-size: 30px;
-  margin-left: 15px;
-}
-
-.header-module h5 {
+.header h5 {
   color: #a7a9be;
   font-size: 18px;
   margin-left: 60px;
@@ -195,7 +183,6 @@
   color: #c63737;
 }
 .forum {
-  /* border: 1px solid; */
   width: 60%;
   margin-bottom: 20px;
 }
@@ -216,7 +203,7 @@
   letter-spacing: 0.3px;
 }
 .exam-header {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 /* .exam-span {
   width: 10px;
@@ -224,8 +211,9 @@
   background-color: #256029;
 } */
 
-.deadlineTime {
+.deadlineTime h6 {
   color: rgb(231, 35, 35);
+  margin-left: 7px;
 }
 /* Small devices (landscape phones, 576px and up) */
 
@@ -348,9 +336,9 @@
   margin-top: 10px;
 }
 .header h6 {
-  font-size: 16px;
-  margin-top: 5px;
+  font-size: 30px;
   color: white;
+  margin-left: 15px;
 }
 
 :host ::ng-deep .p-tabview .p-tabview-panels {
@@ -405,4 +393,23 @@
 }
 .icon-phone {
   margin-left: 5px;
+}
+
+.icon-file img {
+  width: 40px;
+  height: 40px;
+}
+.file h5 {
+  margin-top: 8px;
+}
+.icon-exam img {
+  width: 90px;
+  height: 90px;
+}
+
+.card-header {
+  border-radius: 10px;
+  padding: 1rem;
+  background-color: #f7fcff;
+  border: none;
 }

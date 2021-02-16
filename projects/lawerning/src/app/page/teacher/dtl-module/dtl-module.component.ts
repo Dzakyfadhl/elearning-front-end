@@ -13,6 +13,7 @@ import { LessonService } from '../../../service/lesson.service';
 import { Location } from '@angular/common';
 import { ForumRequestDTO } from '../../../model/forum-dto/forum-request';
 import { AuthService } from '../../../service/auth.service';
+import Constants from '../../../constants/constant';
 
 @Component({
   selector: 'app-dtl-module',
@@ -210,5 +211,11 @@ export class DtlModuleComponent implements OnInit {
   uploadExam() {
     console.log(this.moduleId);
     this.router.navigate([`teacher/exam/`, this.moduleId]);
+  }
+  downloadReport() {
+    window.open(
+      `${Constants.BASE_URL}/report/attendance?idCourse=${this.courseId}&idModule=${this.moduleId}`,
+      '_blank'
+    );
   }
 }

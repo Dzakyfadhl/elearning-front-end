@@ -70,4 +70,10 @@ export class ExamService {
   uploadExamTeacher(formData: FormData): Observable<any> {
     return this.http.post<any>(`${Constants.BASE_URL}/exam/module`, formData);
   }
+
+  deleteExamTeacher(id: string): Observable<ResponseModel<string>> {
+    return this.http.delete<ResponseModel<string>>(
+      `${Constants.BASE_URL}/exam/id/${id}`
+    );
+  }
 }

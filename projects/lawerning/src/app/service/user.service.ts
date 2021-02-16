@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import Constants from '../constants/constant';
 import { LoginRequest } from '../model/login-request';
 import { LoginResponse } from '../model/login-response';
+import { PasswordRequest } from '../model/password-request';
 import { ResponseModel } from '../model/response-model';
 
 @Injectable({
@@ -19,13 +20,10 @@ export class UserService {
     );
   }
 
-  updatePassword(
-    userId: string,
-    newPassword: string
-  ): Observable<ResponseModel<string>> {
+  updatePassword(data: PasswordRequest): Observable<ResponseModel<string>> {
     return this.http.patch<ResponseModel<string>>(
-      `${Constants.BASE_URL}/user?userId=${userId}&newPassword=${newPassword}`,
-      null
+      `${Constants.BASE_URL}/user`,
+      data
     );
   }
 

@@ -1,7 +1,7 @@
 .header-profile {
   position: absolute;
   height: 25%;
-  background-color: #232946;
+  background-color: #323096;
 }
 .body-profile {
   margin-top: 7%;
@@ -83,12 +83,12 @@ a:hover {
     color: rgb(7, 123, 168);
   }
   .camera a:hover {
-    color: #232946;
+    color: #323096;
   }
   .header-profile {
     position: absolute;
     height: 20%;
-    background-color: #232946;
+    background-color: #323096;
   }
 
   .name {
