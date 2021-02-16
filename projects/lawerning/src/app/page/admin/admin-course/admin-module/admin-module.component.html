@@ -84,37 +84,83 @@
         <div class="p-field mt-3">
             <label for="title">Title</label>
             <input type="text" pInputText id="title" [(ngModel)]="createRequest.title" required autofocus />
-            <small class="p-error" *ngIf="submitted && !createRequest.code">Code is required.</small>
+            <small class="p-error" *ngIf="submitted && !createRequest.title">Title is required.</small>
         </div>
         <div class="p-field mt-3">
             <label for="description">Description</label>
             <input type="text" pInputText id="description" [(ngModel)]="createRequest.description" required autofocus />
-            <small class="p-error" *ngIf="submitted && !createRequest.code">Code is required.</small>
-        </div>
-        <div class="p-field mt-3">
-            <label for="subject">Subject Categories</label>
-            <p-dropdown [(ngModel)]="selectedSubjectCategory" [options]="subjectCategoriesOptions"
-                placeholder="Select Subject Categories" optionLabel="name" optionValue="id"></p-dropdown>
-        </div>
-        <h5 class="mt-5">Schedule</h5>
-        <div class="p-field mt-3">
-            <label for="date">Date</label>
-            <p-calendar [(ngModel)]="date" inputId="date">
-            </p-calendar>
-        </div>
-        <div class="p-field mt-3">
-            <label for="startTime">Start Time</label>
-            <p-calendar [(ngModel)]="startTime" [timeOnly]="true" inputId="startTime">
-            </p-calendar>
-        </div>
-        <div class="p-field mt-3">
-            <label for="endTime">End Time</label>
-            <p-calendar [(ngModel)]="endTime" [timeOnly]="true" inputId="endTime"></p-calendar>
-        </div>
-    </ng-template>
-
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideModal()"></button>
-        <button pButton pRipple label="Submit" icon="pi pi-check" class="p-button-text" (click)="create()"></button>
-    </ng-template>
-    </p-dialog>
+            <small class="p-error" *ngIf="submitted && !createRequest.description">Description is required.</small>
+            </div>
+            <div class="p-field mt-3">
+                <label for="subject">Subject Categories</label>
+                <p-dropdown [(ngModel)]="selectedSubjectCategory" [options]="subjectCategoriesOptions"
+                    placeholder="Select Subject Categories" optionLabel="name" optionValue="id"></p-dropdown>
+            </div>
+            <h5 class="mt-5">Schedule</h5>
+            <div class="p-field mt-3">
+                <label for="date">Date</label>
+                <p-calendar [(ngModel)]="date" inputId="date">
+                </p-calendar>
+            </div>
+            <div class="p-field mt-3">
+                <label for="startTime">Start Time</label>
+                <p-calendar [(ngModel)]="startTime" [timeOnly]="true" inputId="startTime">
+                </p-calendar>
+            </div>
+            <div class="p-field mt-3">
+                <label for="endTime">End Time</label>
+                <p-calendar [(ngModel)]="endTime" [timeOnly]="true" inputId="endTime"></p-calendar>
+            </div>
+            </ng-template>
+            
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideModal()"></button>
+                <button pButton pRipple label="Submit" icon="pi pi-check" class="p-button-text" (click)="create()"></button>
+            </ng-template>
+            </p-dialog>
+            <p-dialog [(visible)]="isEditModalVisible" [style]="{ width: '650px' }" header="Edit Module" [modal]="true"
+                styleClass="p-fluid">
+                <ng-template pTemplate="content">
+                    <div class="p-field mt-3">
+                        <label for="code">Code</label>
+                        <input type="text" pInputText id="code" [(ngModel)]="updateRequest.code" required autofocus />
+                        <small class="p-error" *ngIf="submitted && !updateRequest.code">Code is required.</small>
+                    </div>
+                    <div class="p-field mt-3">
+                        <label for="title">Title</label>
+                        <input type="text" pInputText id="title" [(ngModel)]="updateRequest.title" required autofocus />
+                        <small class="p-error" *ngIf="submitted && !updateRequest.title">Title is required.</small>
+                    </div>
+                    <div class="p-field mt-3">
+                        <label for="description">Description</label>
+                        <input type="text" pInputText id="description" [(ngModel)]="updateRequest.description" required autofocus />
+                        <small class="p-error" *ngIf="submitted && !updateRequest.description">Description is required.</small>
+                    </div>
+                    <div class="p-field mt-3">
+                        <label for="subject">Subject Categories</label>
+                        <p-dropdown [(ngModel)]="selectedSubjectCategory" [options]="subjectCategoriesOptions"
+                            placeholder="Select Subject Categories" optionLabel="name" optionValue="id"></p-dropdown>
+                    </div>
+                    <h5 class="mt-5">Schedule</h5>
+                    <div class="p-field mt-3">
+                        <a [routerLink]="['/', {courseId: xx}]" routerLinkActive="router-link-active"></a>
+                        <label for="date">Date</label>
+                        <p-calendar [(ngModel)]="date" inputId="date">
+                        </p-calendar>
+                    </div>
+                    <div class="p-field mt-3">
+                        <label for="startTime">Start Time</label>
+                        <p-calendar [(ngModel)]="startTime" [timeOnly]="true" inputId="startTime">
+                        </p-calendar>
+                    </div>
+                    <div class="p-field mt-3">
+                        <label for="endTime">End Time</label>
+                        <p-calendar [(ngModel)]="endTime" [timeOnly]="true" inputId="endTime"></p-calendar>
+                    </div>
+                </ng-template>
+            
+                <ng-template pTemplate="footer">
+                    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideModal()"></button>
+                    <button pButton pRipple label="Submit" icon="pi pi-check" class="p-button-text" (click)="update()"></button>
+                </ng-template>
+            </p-dialog>

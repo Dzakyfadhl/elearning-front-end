@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import Constants from '../constants/constant';
 import { DetailCourseResponse } from '../model/detail-course-response';
+import { ModuleUpdateRequest } from '../model/module/module-update-request';
 import { ResponseModel } from '../model/response-model';
 import { AuthService } from './auth.service';
 
@@ -35,11 +36,16 @@ export class ModuleService {
       `${Constants.BASE_URL}/course/${idCourse}`
     );
   }
+  
   getModuleAvailable(
     idCourse: string
   ): Observable<ResponseModel<DetailCourseResponse>> {
     return this.http.get<ResponseModel<DetailCourseResponse>>(
       `${Constants.BASE_URL}/course/module/${idCourse}`
     );
+  }
+
+  updateModule(module: ModuleUpdateRequest): Promise<ResponseModel<string>> {
+    return this.http.put<ResponseModel<string>>(`${Constants.BASE_URL}/module`, module).toPromise();
   }
 }

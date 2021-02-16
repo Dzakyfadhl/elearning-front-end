@@ -5,10 +5,11 @@ import { ModuleCreateRequest } from 'projects/lawerning/src/app/model/course-dto
 import { ScheduleCreateRequest } from 'projects/lawerning/src/app/model/course-dto/schedule-create-request';
 import { DetailCourseResponse } from 'projects/lawerning/src/app/model/detail-course-response';
 import { ModuleModel } from 'projects/lawerning/src/app/model/module-model';
-import { SubjectCategoryResponseDTO } from 'projects/lawerning/src/app/model/subject-category-dto/subject-category-response';
+import { ModuleUpdateRequest } from 'projects/lawerning/src/app/model/module/module-update-request';
 import { AuthService } from 'projects/lawerning/src/app/service/auth.service';
 import { CourseService } from 'projects/lawerning/src/app/service/course.service';
 import { DetailModuleService } from 'projects/lawerning/src/app/service/detail-module.service';
+import { ModuleService } from 'projects/lawerning/src/app/service/module.service';
 import { SubjectCategoryService } from 'projects/lawerning/src/app/service/subject-category.service';
 import { ToastService } from 'projects/lawerning/src/app/service/toast.service';
 
@@ -24,7 +25,8 @@ export class AdminModuleComponent implements OnInit {
     private courseService: CourseService,
     private authService: AuthService,
     private subjectCategoryService: SubjectCategoryService,
-    private detailModuleService: DetailModuleService
+    private detailModuleService: DetailModuleService,
+    private moduleService: ModuleService
   ) {}
 
   courseId: string;
@@ -33,13 +35,15 @@ export class AdminModuleComponent implements OnInit {
   isEditModalVisible: boolean;
 
   createRequest: ModuleCreateRequest;
+  updateRequest: ModuleUpdateRequest;
 
-  subjectCategoriesOptions: any[];
+  subjectCategoriesOptions: { id: string; name: string }[];
   selectedSubjectCategory: string;
 
   date: Date;
   startTime: Date;
   endTime: Date;
+  datePipe = new DatePipe('en-US');
 
   detailCourse: DetailCourseResponse;
 
@@ -52,6 +56,7 @@ export class AdminModuleComponent implements OnInit {
       this.courseId = param.courseId;
       if (this.courseId) {
         this.getDetailCourse();
+        this.getSubjectCategories();
       }
     });
   }
@@ -76,7 +81,6 @@ export class AdminModuleComponent implements OnInit {
     this.submitted = false;
     this.createRequest = new ModuleCreateRequest();
     this.createRequest.schedule = new ScheduleCreateRequest();
-    this.getSubjectCategories();
   }
 
   getSubjectCategories() {
@@ -98,44 +102,102 @@ export class AdminModuleComponent implements OnInit {
   }
 
   async create() {
-    this.submitted = true;
-    this.createRequest.courseId = this.courseId;
-    this.createRequest.createdBy = this.authService.getUserId();
-    this.createRequest.subjectId = this.selectedSubjectCategory;
-    const datePipe = new DatePipe('en-US');
-    const formattedDate = datePipe.transform(
-      this.date.toLocaleDateString(),
-      'yyyy-MM-dd'
-    );
-    console.log(this.startTime.toTimeString());
-    const formattedStartTime = datePipe.transform(this.startTime, 'hh:mm:ss a');
-    const formattedEndTime = datePipe.transform(this.endTime, 'hh:mm:ss a');
-    this.createRequest.schedule.date = formattedDate;
-    this.createRequest.schedule.startTime = formattedStartTime;
-    this.createRequest.schedule.endTime = formattedEndTime;
-    this.createRequest.schedule.createdBy = this.authService.getUserId();
-
+    this.setupRequest(this.createRequest);
     try {
       const response = await this.detailModuleService.insertModule([
         this.createRequest,
       ]);
       if (response.code === 201) {
-        this.toastService.emitSuccessMessage('Submitted', 'Module has been created successfully.')
-        this.initDetailCourse();
-        this.hideModal();
-      } 
+        this.toastService.emitSuccessMessage('Submitted', response.result);
+        this.afterSubmitted();
+      }
     } catch (error) {
       this.toastService.emitHttpErrorMessage(error);
     }
   }
 
-  edit(module: ModuleModel) {}
+  edit(module: ModuleModel) {
+    const moduleSubject = this.subjectCategoriesOptions.find(
+      (subject) => module.subjectName === subject.name
+    );
+    this.updateRequest = {
+      id: module.id,
+      code: module.code,
+      title: module.title,
+      description: module.description,
+      courseId: this.courseId,
+      subjectId: moduleSubject.id,
+      updatedBy: this.authService.getUserId(),
+      schedule: {
+        id: module.schedule.id,
+        date: module.schedule.date,
+        startTime: module.schedule.startTime,
+        endTime: module.schedule.endTime,
+      },
+    };
+    this.selectedSubjectCategory = moduleSubject.id;
+    this.date = new Date(module.schedule.date);
+
+    const startTimeArr = module.schedule.startTime.split(':');
+    this.startTime = new Date(
+      this.date.setHours(parseInt(startTimeArr[0]), parseInt(startTimeArr[1]))
+    );
+
+    const endTimeArr = module.schedule.endTime.split(':');
+    this.endTime = new Date(
+      this.date.setHours(parseInt(endTimeArr[0]), parseInt(endTimeArr[1]))
+    );
+    this.isEditModalVisible = true;
+  }
+
+  async update() {
+    this.setupRequest(this.updateRequest);
+    console.log(this.updateRequest, this.courseId);
+    try {
+      const response = await this.moduleService.updateModule(
+        this.updateRequest
+      );
+      if (response.code === 200) {
+        this.toastService.emitSuccessMessage('Updated', response.result);
+        this.afterSubmitted();
+      }
+    } catch (error) {
+      this.toastService.emitHttpErrorMessage(error, 'Failed to update module.');
+    }
+  }
 
   delete(module: ModuleModel) {}
 
   hideModal() {
     this.isCreateModalVisible = false;
     this.isEditModalVisible = false;
+    this.submitted = false;
+  }
+
+  private setupRequest(request: any) {
+    this.submitted = true;
+    request.courseId = this.courseId;
+    request.createdBy = this.authService.getUserId();
+    request.subjectId = this.selectedSubjectCategory;
+    const formattedDate = this.datePipe.transform(this.date, 'yyyy-MM-dd');
+    console.log(this.startTime.toTimeString());
+    const formattedStartTime = this.datePipe.transform(
+      this.startTime,
+      'hh:mm:ss a'
+    );
+    const formattedEndTime = this.datePipe.transform(
+      this.endTime,
+      'hh:mm:ss a'
+    );
+    request.schedule.date = formattedDate;
+    request.schedule.startTime = formattedStartTime;
+    request.schedule.endTime = formattedEndTime;
+    request.schedule.createdBy = this.authService.getUserId();
+  }
+
+  private afterSubmitted() {
+    this.initDetailCourse();
+    this.hideModal();
     this.submitted = false;
   }
 }

@@ -26,10 +26,9 @@ export class DetailModuleService {
     );
   }
 
-  insertModule(data: ModuleCreateRequest[]): Promise<ResponseModel<String>> {
-    return this.http.post<ResponseModel<String>>(
-      `${Constants.BASE_URL}/module`,
-      data
-    ).toPromise();
+  insertModule(data: ModuleCreateRequest[]): Promise<ResponseModel<string>> {
+    return this.http
+      .post<ResponseModel<string>>(`${Constants.BASE_URL}/module`, data)
+      .toPromise();
   }
 }
