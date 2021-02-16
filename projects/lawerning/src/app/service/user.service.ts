@@ -31,7 +31,7 @@ export class UserService {
 
   resetPassword(email: string): Observable<ResponseModel<string>> {
     return this.http.patch<ResponseModel<string>>(
-      `${Constants.BASE_URL}/user/email/${email}`,
+      `${Constants.BASE_URL}/reset-password?email=${email}`,
       null
     );
   }
