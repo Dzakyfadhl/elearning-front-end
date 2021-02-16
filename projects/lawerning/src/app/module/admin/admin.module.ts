@@ -24,6 +24,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faLeanpub } from '@fortawesome/free-brands-svg-icons';
 import { AdminModuleModule } from './admin-course/admin-module/admin-module.module';
+import { CheckLoginGuard } from '../../shared/check-login.guard';
 
 @NgModule({
   declarations: [HomeAdminComponent],
@@ -40,6 +41,8 @@ import { AdminModuleModule } from './admin-course/admin-module/admin-module.modu
     ChartModule,
     FontAwesomeModule,
   ],
+
+  providers: [CheckLoginGuard, Permissions],
 })
 export class AdminModule {
   constructor(library: FaIconLibrary) {

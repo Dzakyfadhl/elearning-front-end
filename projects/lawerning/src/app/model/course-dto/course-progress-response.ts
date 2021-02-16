@@ -3,5 +3,8 @@ export class CourseProgressResponse {
   courseName: string;
   totalModule: number;
   moduleComplete: number;
-  value: number;
+  percentProgress: number;
+  periodStart: string;
+  periodEnd: string;
+  isPast: boolean;
 }

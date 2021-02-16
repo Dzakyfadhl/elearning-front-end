@@ -40,6 +40,8 @@ export class ModuleAvailableComponent implements OnInit {
       this.isRegistered = value.isRegist;
 
       this.moduleService.getModuleStudent(value.courseId).subscribe((data) => {
+        console.log(data.result);
+
         this.modules = data.result;
         this.totalModule = this.modules.modules.length;
 

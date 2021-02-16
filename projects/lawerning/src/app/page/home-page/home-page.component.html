@@ -22,13 +22,21 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item"></li>
     </ul>
-    <div class="mr-5">
+    <div *ngIf="token == ''" class="mr-5">
       <div class="d-flex flex-row p-2">
         <a class="btn-login btn btn-outline-secondary mr-3" routerLink="/login">
           Sign In
         </a>
         <span class="line mr-3"></span>
         <a href="" class="btn-register mt-2" routerLink="/register"> Sign Up</a>
+      </div>
+    </div>
+
+    <div *ngIf="token" class="mr-5">
+      <div class="d-flex flex-row p-2">
+        <a class="btn-login btn btn-outline-secondary mr-3" routerLink="/login">
+          {{ roleName }} Page
+        </a>
       </div>
     </div>
   </div>
@@ -151,7 +159,7 @@
             <div class="data-teacher d-flex justify-content-start">
               <img
                 [src]="c.teacher.photoId"
-                class="img-teach rounded ml-3"
+                class="img-teach rounded-circle ml-3"
                 alt=""
               />
               <div class="d-flex flex-column pl-3">

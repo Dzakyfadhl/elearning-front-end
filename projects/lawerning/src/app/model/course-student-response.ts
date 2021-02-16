@@ -10,4 +10,5 @@ export class CourseStudentResponse {
   categoryName: string;
   isCompleted: boolean;
   teacher: TeacherModel;
+  percentProgress: number;
 }

@@ -40,16 +40,6 @@ export class ProfileStudentComponent implements OnInit {
       .getCourseProgress(this.auth.getLoginResponse().userRoleId)
       .subscribe((data) => {
         this.mymodules = data.result;
-        if (this.mymodules.length > 0) {
-          this.mymodules.forEach((res) => {
-            let val = (res.moduleComplete / res.totalModule) * 100;
-            res.value = Math.ceil(val);
-            if (isNaN(res.value)) {
-              res.value = 0;
-              console.log(res.value);
-            }
-          });
-        }
       });
 
     this.studentService.getProfile().subscribe((value) => {

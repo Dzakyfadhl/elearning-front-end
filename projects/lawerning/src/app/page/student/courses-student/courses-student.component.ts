@@ -18,7 +18,9 @@ export class CoursesStudentComponent implements OnInit {
   isEmpty: boolean = true;
 
   courses: CourseStudentResponse[];
-  courseProgress: CourseProgressResponse[];
+  isPast: boolean;
+
+  valueProgress = new Map<string, any>();
 
   constructor(
     private route: Router,
@@ -32,22 +34,6 @@ export class CoursesStudentComponent implements OnInit {
     let month = date.getUTCMonth() + 1;
     let day = date.getUTCDate();
 
-    console.log(month, day);
-    this.courseService
-      .getCourseProgress(this.auth.getLoginResponse().userRoleId)
-      .subscribe((data) => {
-        this.courseProgress = data.result;
-        if (this.courseProgress.length > 0) {
-          this.courseProgress.forEach((res) => {
-            let val = (res.moduleComplete / res.totalModule) * 100;
-            res.value = Math.ceil(val);
-            if (isNaN(res.value)) {
-              res.value = 0;
-            }
-          });
-        }
-      });
-
     this.courseService
       .getStudentCourse(this.auth.getLoginResponse().userRoleId)
       .subscribe((value) => {
@@ -58,11 +44,11 @@ export class CoursesStudentComponent implements OnInit {
         } else {
           this.isEmpty = true;
         }
+
         this.courses.forEach((data) => {
           let dateObj = new Date(data.periodEnd);
           let periodMonth = dateObj.getUTCMonth() + 1;
           let periodDay = dateObj.getUTCDate();
-          console.log(periodMonth, periodDay);
           if (!data.teacher.experience) {
             data.teacher.experience = 'Experience not yet';
           } else {
@@ -76,14 +62,13 @@ export class CoursesStudentComponent implements OnInit {
           if (month >= periodMonth && day > periodDay) {
             this.isCompleted = true;
             data.isCompleted = this.isCompleted;
-            console.log('completed');
           } else {
             this.isCompleted = false;
             data.isCompleted = this.isCompleted;
-            console.log('process');
           }
         });
-        console.log(this.courses);
+        // console.log(this.courses);
+        console.log(this.valueProgress);
       });
   }
   viewModule(index: number) {

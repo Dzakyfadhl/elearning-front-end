@@ -18,6 +18,8 @@ import { CarouselModule } from 'primeng/carousel';
 import { DetailCourseModule } from './module/detail-course/detail-course.module';
 import { ResetPasswordComponent } from './page/reset-password/reset-password.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CheckLoginGuard } from './shared/check-login.guard';
+import { Permissions } from './shared/permissions';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   providers: [
     ConfirmationService,
+    CheckLoginGuard,
+    Permissions,
     { provide: HTTP_INTERCEPTORS, useClass: BaseHttpInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

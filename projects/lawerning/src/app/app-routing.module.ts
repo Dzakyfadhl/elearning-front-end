@@ -8,8 +8,9 @@ import { DashboardStudentComponent } from './layout/dashboard-student/dashboard-
 import { DashboardAdminComponent } from './layout/dashboard-admin/dashboard-admin.component';
 import { HomePageComponent } from '@bootcamp-lawerning-page/home-page/home-page.component';
 import { RegisterPageComponent } from '@bootcamp-lawerning-page/register-page/register-page.component';
-import { CheckLoginGuard } from './shared/check-login.guard';
+
 import { ResetPasswordComponent } from '@bootcamp-lawerning-page/reset-password/reset-password.component';
+import { CheckLoginGuard } from './shared/check-login.guard';
 const routes: Routes = [
   {
     path: 'home-page',
@@ -27,25 +28,30 @@ const routes: Routes = [
   {
     path: '',
     component: LoginPageComponent,
+    canActivate: [CheckLoginGuard],
     loadChildren: () =>
       import('./module/login/login.module').then((m) => m.LoginModule),
-    // canActivate: [CheckLoginGuard],
   },
   {
     path: '',
     component: RegisterPageComponent,
+    canActivate: [CheckLoginGuard],
     loadChildren: () =>
       import('./module/register/register.module').then((m) => m.RegisterModule),
   },
   {
     path: '',
     component: DashboardTeacherComponent,
+
+    canActivate: [CheckLoginGuard],
     loadChildren: () =>
       import('./module/teacher/teacher.module').then((m) => m.TeacherModule),
   },
   {
     path: '',
     component: DashboardStudentComponent,
+
+    canActivate: [CheckLoginGuard],
     loadChildren: () =>
       import('./module/student/course-available/course-available.module').then(
         (m) => m.CourseAvailableModule

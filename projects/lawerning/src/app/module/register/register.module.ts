@@ -6,6 +6,8 @@ import { RegisterPageComponent } from '@bootcamp-lawerning-page/register-page/re
 import { FormsModule } from '@angular/forms';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { DropdownModule } from 'primeng/dropdown';
+import { CheckLoginGuard } from '../../shared/check-login.guard';
+import { Permissions } from '../../shared/permissions';
 
 @NgModule({
   declarations: [RegisterPageComponent],
@@ -16,5 +18,6 @@ import { DropdownModule } from 'primeng/dropdown';
     RadioButtonModule,
     DropdownModule,
   ],
+  providers: [CheckLoginGuard, Permissions],
 })
 export class RegisterModule {}

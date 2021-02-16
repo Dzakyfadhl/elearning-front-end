@@ -161,40 +161,40 @@
           *ngFor="let mm of mymodules; let i = index"
         >
           <p-knob
-            *ngIf="mm.value < 50"
-            [(ngModel)]="mm.value"
+            *ngIf="mm.percentProgress < 50"
+            [(ngModel)]="mm.percentProgress"
             [size]="150"
             rangeColor=" #d9d9d9"
             valueColor="#e60000"
             [readonly]="true"
-            valueTemplate="{{ mm.value }}%"
+            valueTemplate="{{ mm.percentProgress }}%"
           ></p-knob>
           <p-knob
-            *ngIf="mm.value >= 50 && mm.value < 80"
-            [(ngModel)]="mm.value"
+            *ngIf="mm.percentProgress >= 50 && mm.percentProgress < 80"
+            [(ngModel)]="mm.percentProgress"
             [size]="150"
             rangeColor=" #d9d9d9"
             valueColor="#FFC300"
             [readonly]="true"
-            valueTemplate="{{ mm.value }}%"
+            valueTemplate="{{ mm.percentProgress }}%"
           ></p-knob>
           <p-knob
-            *ngIf="mm.value == 100"
-            [(ngModel)]="mm.value"
+            *ngIf="mm.percentProgress == 100"
+            [(ngModel)]="mm.percentProgress"
             [size]="150"
             rangeColor=" #d9d9d9"
             valueColor="Green"
             [readonly]="true"
-            valueTemplate="{{ mm.value }}%"
+            valueTemplate="{{ mm.percentProgress }}%"
           ></p-knob>
           <p-knob
-            *ngIf="mm.value >= 85 && mm.value < 100"
-            [(ngModel)]="mm.value"
+            *ngIf="mm.percentProgress >= 85 && mm.percentProgress < 100"
+            [(ngModel)]="mm.percentProgress"
             [size]="150"
             rangeColor=" #d9d9d9"
             valueColor="#2fb62f"
             [readonly]="true"
-            valueTemplate="{{ mm.value }}%"
+            valueTemplate="{{ mm.percentProgress }}%"
           ></p-knob>
 
           <h5 class="mmcourse">{{ mm.courseName }}</h5>

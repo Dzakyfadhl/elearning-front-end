@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginRequest } from '../../model/login-request';
 import { AuthService } from '../../service/auth.service';
+import { ToastService } from '../../service/toast.service';
 import { UserService } from '../../service/user.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastService: ToastService
   ) {}
 
   data = new LoginRequest();
@@ -35,6 +37,7 @@ export class LoginPageComponent implements OnInit {
         }
       },
       (error) => {
+        this.toastService.emitHttpErrorMessage(error, 'Sign In Failure');
         console.log(error);
       }
     );

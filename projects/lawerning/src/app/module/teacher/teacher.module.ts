@@ -12,6 +12,8 @@ import { SubmissionTeacherModule } from './submission-teacher/submission-teacher
 import { ExamTeacherModule } from './exam-teacher/exam-teacher.module';
 import { ReportAttendanceModule } from './report-attendance/report-attendance.module';
 import { UpdateProfileTeacherModule } from './update-profile-teacher/update-profile-teacher.module';
+import { CheckLoginGuard } from '../../shared/check-login.guard';
+import { Permissions } from '../../shared/permissions';
 
 @NgModule({
   declarations: [HomeTeacherComponent],
@@ -28,5 +30,7 @@ import { UpdateProfileTeacherModule } from './update-profile-teacher/update-prof
     ReportAttendanceModule,
     UpdateProfileTeacherModule,
   ],
+
+  providers: [CheckLoginGuard, Permissions],
 })
 export class TeacherModule {}

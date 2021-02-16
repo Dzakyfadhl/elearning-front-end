@@ -37,7 +37,8 @@ export class CourseService {
     id: string
   ): Observable<ResponseModel<CourseStudentResponse[]>> {
     return this.http.get<ResponseModel<CourseStudentResponse[]>>(
-      `${Constants.BASE_URL}/student/${id}/course`
+      `${Constants.BASE_URL}/course/student`,
+      { params: { id: id } }
     );
   }
 

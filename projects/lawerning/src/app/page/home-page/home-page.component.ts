@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import Constants from '../../constants/constant';
 import { CourseAllResponse } from '../../model/course-all-response';
 import { TeacherForAdminDTO } from '../../model/teacher-dto/teacher-admin-response';
+import { AuthService } from '../../service/auth.service';
 import { CourseService } from '../../service/course.service';
 import { TeacherService } from '../../service/teacher.service';
 
@@ -15,11 +16,14 @@ export class HomePageComponent implements OnInit {
   courses: CourseAllResponse[];
   mentors: TeacherForAdminDTO[];
   responsiveOptions;
+  token: string;
+  roleName: string;
 
   constructor(
     private courseService: CourseService,
     private teacherService: TeacherService,
-    private route: Router
+    private route: Router,
+    private auth: AuthService
   ) {
     this.responsiveOptions = [
       {
@@ -41,6 +45,15 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!this.auth.getLoginResponse()) {
+      this.token = '';
+      this.roleName = '';
+    } else {
+      this.token = this.auth.getLoginResponse().token;
+      this.roleName = this.auth.getLoginResponse().role.name;
+    }
+    // console.log(this.routeActive);
+
     this.teacherService.getAllTeachers().subscribe((data) => {
       this.mentors = data.result;
 

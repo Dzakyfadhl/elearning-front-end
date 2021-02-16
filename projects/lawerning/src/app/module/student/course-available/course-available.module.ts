@@ -10,6 +10,8 @@ import { OrderListModule } from 'primeng/orderlist';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { InputTextModule } from 'primeng/inputtext';
+import { CheckLoginGuard } from '../../../shared/check-login.guard';
+import { Permissions } from '../../../shared/permissions';
 @NgModule({
   declarations: [HomeStudentComponent],
   imports: [
@@ -23,5 +25,6 @@ import { InputTextModule } from 'primeng/inputtext';
     InputTextModule,
     ScrollPanelModule,
   ],
+  providers: [CheckLoginGuard, Permissions],
 })
 export class CourseAvailableModule {}
