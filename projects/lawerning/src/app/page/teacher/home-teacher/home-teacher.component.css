@@ -1,74 +1,99 @@
 .header {
-  background-color: #232946;
-  height: 10rem;
-  margin-top: 10px;
+  background-color: #323096;
+  height: 9rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
 }
 .content-body {
   width: 100%;
 }
-.content-students {
-  margin-top: 10px;
-  width: 49%;
-}
-.content-students img {
-  width: 100px;
-  height: 100px;
-  text-align: center;
-}
-.content-students h4 {
-  font-size: 40px;
-  font-weight: bold;
-  color: #232946;
-}
-
-.content-courses {
-  width: 49%;
-  margin-top: 10px;
-}
-.content-courses img {
-  width: 80px;
-  height: 100px;
-  text-align: center;
-}
-.content-courses h4 {
-  font-size: 40px;
-  font-weight: bold;
-  color: #232946;
-}
-
-.content-mycourse {
-  margin-top: 10px;
-}
-.card-title {
-  font-size: 20px;
-  font-weight: bold;
-}
-.icon-time img {
+.icon-module img {
   width: 16px;
   height: 16px;
 }
-.icon-time h6 {
+.icon-module h6 {
   margin: 5px;
   font-size: 14px;
-  color: #b0aeae;
+  color: white;
 }
 
 .icon-calender img {
   width: 16px;
   height: 20px;
 }
-
 .icon-calender h6 {
   font-size: 14px;
   margin: 5px;
+  color: white;
+}
+
+.student-course {
   color: #b0aeae;
 }
 
-.description h6 {
-  margin-top: 10px;
-  margin-bottom: 50px;
-  color: #b0aeae;
+/*  NOW */
+.header h2 {
+  font-weight: bold;
+  color: white;
+  margin-left: 3rem;
 }
-.student-course {
-  color: #b0aeae;
+.header h6 {
+  color: white;
+  margin-left: 3rem;
+}
+.card-header {
+  background-image: url("../../../../assets/images/img/banner_course.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 11rem;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.card-header h5 {
+  margin-top: 2rem;
+  font-size: 24px;
+  color: #ffffff;
+}
+.buttonView {
+  width: 10px;
+}
+.card-student {
+  padding: 1rem;
+  border-radius: 10px;
+}
+.card-student img {
+  width: 38%;
+  height: 38%;
+}
+.card-student .icon-student h3 {
+  margin-top: 22px;
+  margin-left: 8px;
+}
+.card-student .icon-student h4 {
+  margin-left: 8px;
+}
+.card-course {
+  padding: 1rem;
+  border-radius: 10px;
+}
+.card-course img {
+  width: 38%;
+  height: 38%;
+}
+.card-course .icon-course h3 {
+  margin-top: 22px;
+  margin-left: 8px;
+}
+.card-course-finish {
+  padding: 1rem;
+  border-radius: 10px;
+}
+.card-course-finish img {
+  width: 38%;
+  height: 38%;
+}
+.card-course-finish .icon-course-finish h3 {
+  margin-top: 22px;
+  margin-left: 8px;
 }

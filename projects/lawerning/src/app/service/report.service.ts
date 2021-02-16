@@ -35,7 +35,7 @@ export class ReportService {
     courseId: string
   ): Observable<ResponseModel<AttendanceReport[]>> {
     return this.http.get<ResponseModel<AttendanceReport[]>>(
-      `${Constants.BASE_URL}/teacher/attendance/reports/${courseId}`
+      `${Constants.BASE_URL}/course/attendance/reports/${courseId}`
     );
   }
 }

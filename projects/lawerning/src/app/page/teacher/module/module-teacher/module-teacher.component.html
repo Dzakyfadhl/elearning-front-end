@@ -1,22 +1,21 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="header-module col-lg-12">
-      <div class="d-flex flex-column mb-4 text-center mt-4">
+    <div class="header col-lg-12">
+      <div class="d-flex flex-column text-center mb-3 mt-3">
         <h2>{{ dtlCourse.name }}</h2>
-        <h5>Dibangun oleh Rian Rivaldo, S.Kom</h5>
         <div class="d-flex justify-content-center">
           <div class="d-flex flex-row">
-            <div class="d-flex flex-column mr-5">
+            <div class="d-flex flex-column mr-3">
               <div class="icon-student ml-1">
-                <img src="../../../../../assets/images/students1.svg" />
+                <img src="assets/images/img/student.svg" />
               </div>
-              <h6>{{ dtlCourse.totalStudent }} Student</h6>
+              <h6>{{ dtlCourse.totalStudent }} student</h6>
             </div>
-            <div class="d-flex flex-column ml-5">
-              <div class="icon-course">
-                <img src="../../../../../assets/images/course1.svg" />
+            <div class="d-flex flex-column ml-3">
+              <div class="icon-module">
+                <img src="assets/images/img/module.svg" />
               </div>
-              <h6>{{ totalModule }} Module</h6>
+              <h6>{{ totalModule }} modules</h6>
             </div>
           </div>
         </div>
@@ -25,47 +24,57 @@
   </div>
 </div>
 
-<div class="body-module container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <div class="content-description">
-        <h5>Description</h5>
-        <p>
-          {{ dtlCourse.description }}
-        </p>
-        <h5>Schedule</h5>
-        <h6 class="card-text p-1">
-          <div class="icon-schedule d-flex justify-content-evenly">
-            <span>
-              <img src="assets/images/calender1.svg" />
-            </span>
-            <h6>
-              {{ dtlCourse.periodStart | date: "dd MMM yyyy" }} -
-              {{ dtlCourse.periodEnd | date: "dd MMM yyyy" }}
-            </h6>
-          </div>
-        </h6>
-      </div>
-      <div class="content-module">
-        <h5>Module Content</h5>
-        <div class="card shadow p-3 mb-5 mt-3 bg-white rounded">
-          <p-tabView styleClass="tabview-custom">
-            <p-tabPanel>
-              <ng-template pTemplate="header">
-                <i class="pi pi-calendar"></i>
-                <div class="ml-2">
-                  <span>Module</span>
-                </div>
-              </ng-template>
-              <div class="container-fluid">
-                <div class="row">
-                  <div
-                    class="col-lg-12 mt-2 shadow-sm p-3 mb-2 bg-white rounded"
-                    *ngFor="let m of dtlCourse.modules; let i = index"
-                  >
+      <p-tabView styleClass="tabview-custom">
+        <p-tabPanel>
+          <ng-template pTemplate="header">
+            <div class="ml-2">
+              <span>ABOUT </span>
+            </div>
+          </ng-template>
+          <div class="row">
+            <div class="col-lg-12">
+              <h4>About this course</h4>
+            </div>
+            <div class="col-lg-12">
+              <p>
+                {{ dtlCourse.description }}
+              </p>
+            </div>
+            <div class="col-lg-12">
+              <h4>Schedule this course</h4>
+              <div class="d-flex justify-content-evenly">
+                <h6 class="card-text p-1">
+                  <div class="icon-calender d-flex justify-content-between">
+                    <span>
+                      <img src="assets/images/calender1.svg" />
+                    </span>
+                    <h6>
+                      {{ dtlCourse.periodStart | date: "dd MMM yyyy hh:mm a" }}
+                    </h6>
+                  </div>
+                </h6>
+              </div>
+            </div>
+            <div class="col-lg-12 mt-2">
+              <h4>Modules</h4>
+            </div>
+            <div class="col-lg-12">
+              <div
+                class="col-lg-12 mt-2 shadow-sm p-3 mb-2 bg-white rounded"
+                *ngFor="let m of dtlCourse.modules; let i = index"
+              >
+                <div class="d-flex flex-row">
+                  <img
+                    src="assets/images/img/icon-student.svg"
+                    style="width: 8rem"
+                  />
+                  <div class="d-flex flex-column">
                     <div class="header-content p-1">
                       <a (click)="viewModule(i)">
-                        <h3>{{ m.tittle }}</h3>
+                        <h3>{{ m.title }}</h3>
                       </a>
                     </div>
                     <div class="d-flex justify-content-evenly">
@@ -93,145 +102,124 @@
                   </div>
                 </div>
               </div>
-            </p-tabPanel>
-            <p-tabPanel header="Header II">
-              <ng-template pTemplate="header">
-                <i class="pi pi-user"></i>
-                <div class="ml-2">
-                  <span>Student</span>
-                </div>
-              </ng-template>
-              <p-orderList
-                [value]="student"
-                [listStyle]="{ height: 'auto' }"
-                filterBy="student.firstName"
-                filterPlaceholder="Filter by student name"
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel>
+          <ng-template pTemplate="header">
+            <div class="ml-2">
+              <span>STUDENT </span>
+            </div>
+          </ng-template>
+          <div class="row">
+            <div class="col-lg-12">
+              <h4>Enrolled Student</h4>
+            </div>
+            <div class="col-lg-12">
+              <div
+                class="col-lg-12 mt-2 shadow-sm p-3 mb-2 bg-white rounded"
+                *ngFor="let s of students; let i = index"
               >
-                <ng-template let-student pTemplate="item">
-                  <div class="student-item">
-                    <div class="student-list-detail">
-                      <h4 class="p-mb-2">
-                        {{ student.firstName }} {{ student.lastName }}
-                      </h4>
-                      <i class="pi pi-envelope student-category-icon"></i>
-                      <span class="student-category">{{ student.email }}</span>
+                <div class="d-flex flex-column">
+                  <div class="d-flex flex-row">
+                    <h4>{{ s.firstName }} {{ s.lastName }}</h4>
+                    <div class="icon-male" *ngIf="s.gender == 'MALE'">
+                      <img src="assets/images/img/gender_male.svg" alt="" />
                     </div>
-                    <div class="student-list-action">
-                      <h6 class="p-mb-2">${{ student.phone }}</h6>
-                      <h6>{{ student.gender }}</h6>
+                    <div class="icon-female" *ngIf="s.gender == 'FEMALE'">
+                      <img src="assets/images/img/gender_female.svg" alt="" />
                     </div>
                   </div>
-                </ng-template>
-              </p-orderList>
-            </p-tabPanel>
-            <p-tabPanel>
-              <ng-template pTemplate="header">
-                <i class="pi pi-user"></i>
-                <div class="ml-2">
-                  <span>Report</span>
+                  <div class="d-flex flex-row">
+                    <div class="icon-email">
+                      <h6>{{ s.email }}</h6>
+                    </div>
+                    <div class="icon-phone">
+                      <h6>{{ s.phone }}</h6>
+                    </div>
+                  </div>
                 </div>
-              </ng-template>
-              <div class="col-lg-12">
-                <div class="head-card d-flex justify-content-between p-3">
-                  <h3>Report Attendance</h3>
-
-                  <a
-                    href="http://192.168.15.224:8080/teacher/attendance/report/{{
-                      courseId
-                    }}"
-                  >
-                    <button
-                      pButton
-                      type="button"
-                      icon="pi pi-file"
-                      label="Download"
-                      class="download p-button-secondary p-button-sm"
-                    ></button>
-                  </a>
-                </div>
-
-                <p-table
-                  #dt1
-                  [value]="attendanceReports"
-                  [paginator]="true"
-                  [scrollable]="true"
-                  [rows]="10"
-                  [showCurrentPageReport]="true"
-                  styleClass="p-datatable-striped"
-                  currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
-                  [globalFilterFields]="['moduleName', 'module']"
-                >
-                  <ng-template pTemplate="header">
-                    <tr>
-                      <th width="20px">No</th>
-                      <th width="80px">Module Name</th>
-                      <th width="80px">Date</th>
-                      <th width="80px">Student Absent</th>
-                      <th width="80px">Student Present</th>
-                      <th width="80px">Total Student</th>
-                    </tr>
-                  </ng-template>
-                  <ng-template pTemplate="body" let-ap let-rowIndex="rowIndex">
-                    <tr>
-                      <td width="20px">{{ rowIndex + 1 }}</td>
-                      <td width="80px">
-                        {{ ap.moduleName }}
-                      </td>
-                      <td width="80px">{{ ap.date }}</td>
-                      <td width="80px">{{ ap.absent }}</td>
-                      <td width="80px">{{ ap.present }}</td>
-                      <td width="80px">{{ ap.totalStudent }}</td>
-                    </tr>
-                  </ng-template>
-                  <ng-template pTemplate="paginatorleft">
-                    <p-button
-                      type="button"
-                      icon="pi pi-plus"
-                      styleClass="p-button-text"
-                    ></p-button>
-                  </ng-template>
-                  <ng-template pTemplate="paginatorright">
-                    <p-button
-                      type="button"
-                      icon="pi pi-cloud"
-                      styleClass="p-button-text"
-                    ></p-button>
-                  </ng-template>
-                </p-table>
-                <!-- <div class="card">
-
-                </div>
-                <p-table
-                  [value]="attendanceReport"
-                  [scrollable]="true"
-                  scrollHeight="100%"
-                >
-                  <ng-template pTemplate="header">
-                    <tr>
-                      <th width="80px">No</th>
-                      <th width="80px">Module Name</th>
-                      <th width="80px">Date</th>
-                      <th width="80px">Student Absent</th>
-                      <th width="80px">Student Present</th>
-                    </tr>
-                  </ng-template>
-                  <ng-template pTemplate="body" let-ap let-rowIndex="rowIndex">
-                    <tr>
-                      <td width="80px">{{ rowIndex + 1 }}</td>
-                      <td width="80px">
-                        {{ ap.moduleName }}
-                      </td>
-                      <td width="80px">{{ ap.date }}</td>
-                      <td width="80px">{{ ap.studentAbsent }}</td>
-                      <td width="80px">{{ ap.studentPresent }}</td>
-                    </tr>
-                  </ng-template>
-                </p-table> -->
               </div>
-            </p-tabPanel>
-          </p-tabView>
-        </div>
-      </div>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel>
+          <ng-template pTemplate="header">
+            <div class="ml-2">
+              <span>REPORT </span>
+            </div>
+          </ng-template>
+          <div class="col-lg-12">
+            <div class="head-card d-flex justify-content-between p-3">
+              <h3>Report Attendance</h3>
+
+              <a
+                href="http://192.168.15.224:8080/course/attendance/report/{{
+                  courseId
+                }}"
+              >
+                <button
+                  pButton
+                  type="button"
+                  icon="pi pi-file"
+                  label="Download"
+                  class="download p-button-secondary p-button-sm"
+                ></button>
+              </a>
+            </div>
+
+            <p-table
+              #dt1
+              [value]="attendanceReports"
+              [paginator]="true"
+              [scrollable]="true"
+              [rows]="10"
+              [showCurrentPageReport]="true"
+              styleClass="p-datatable-striped"
+              currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+              [globalFilterFields]="['moduleName', 'module']"
+            >
+              <ng-template pTemplate="header">
+                <tr>
+                  <th width="20px">No</th>
+                  <th width="80px">Module Name</th>
+                  <th width="80px">Date</th>
+                  <th width="80px">Student Absent</th>
+                  <th width="80px">Student Present</th>
+                  <th width="80px">Total Student</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-ap let-rowIndex="rowIndex">
+                <tr>
+                  <td width="20px">{{ rowIndex + 1 }}</td>
+                  <td width="80px">
+                    {{ ap.moduleName }}
+                  </td>
+                  <td width="80px">{{ ap.date }}</td>
+                  <td width="80px">{{ ap.absent }}</td>
+                  <td width="80px">{{ ap.present }}</td>
+                  <td width="80px">{{ ap.totalStudent }}</td>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="paginatorleft">
+                <p-button
+                  type="button"
+                  icon="pi pi-plus"
+                  styleClass="p-button-text"
+                ></p-button>
+              </ng-template>
+              <ng-template pTemplate="paginatorright">
+                <p-button
+                  type="button"
+                  icon="pi pi-cloud"
+                  styleClass="p-button-text"
+                ></p-button>
+              </ng-template>
+            </p-table>
+          </div>
+          <div class="col-lg-12 mt-2"></div>
+        </p-tabPanel>
+      </p-tabView>
     </div>
   </div>
 </div>

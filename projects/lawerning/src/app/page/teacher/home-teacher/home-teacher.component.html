@@ -1,14 +1,40 @@
-<div class="container">
-  <div class="row m-1">
-    <div class="header col-lg-12 shadow p-2 mb-2 rounded"></div>
-    <div class="content-body d-flex justify-content-between">
-      <div class="content-students shadow p-2 mb-2 rounded text-center">
-        <img src="assets/images/students.svg" />
-        <h4>{{ totalStudent }} Students</h4>
+<div class="container-fluid">
+  <div class="row">
+    <div class="header col-lg-12">
+      <div class="d-flex flex-column text-center mb-3 mt-3">
+        <h2>Hi, Rian Rivaldo</h2>
+        <h6>Ready for your next lesson? Let's go manage your class now!</h6>
       </div>
-      <div class="content-courses shadow p-2 mb-2 rounded text-center">
-        <img src="assets/images/course.svg" />
-        <h4>{{ totalCourse }} Courses</h4>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12 mt-2 mb-3">
+      <div class="card-student shadow d-flex flex-row">
+        <img src="assets/images/img/icon-student.svg" />
+        <div class="icon-student d-flex flex-column">
+          <h3>Enrolled Student</h3>
+          <h4 class="text-center">{{ totalStudent }}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 mt-2 mb-3">
+      <div class="card-course shadow d-flex flex-row">
+        <img src="assets/images/img/icon-student.svg" />
+        <div class="icon-course d-flex flex-column">
+          <h3>Enrolled Course</h3>
+          <h4 class="text-center">{{ totalModule }}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 mt-2 mb-3">
+      <div class="card-course-finish shadow d-flex flex-row">
+        <img src="assets/images/img/icon-student.svg" />
+        <div class="icon-course-finish d-flex flex-column">
+          <h3>Course Finished</h3>
+          <h4 class="text-center">{{ totalStudent }}</h4>
+        </div>
       </div>
     </div>
   </div>
@@ -18,9 +44,6 @@
         <div class="courses1">
           <h5>My Courses</h5>
         </div>
-        <div class="courses2">
-          <h5>see my courses</h5>
-        </div>
       </div>
     </div>
   </div>
@@ -29,16 +52,13 @@
       class="col-lg-4 col-md-6 col-sm-12 mt-2 mb-3"
       *ngFor="let c of courses; let i = index"
     >
-      <div class="card mb-1 bg-white rounded">
-        <div class="img">
-          <img src="assets/images/banner.svg" class="card-img-top" alt="..." />
-        </div>
-        <div class="card-body">
+      <a (click)="viewModule(i)">
+        <div class="card-header">
           <h5 class="card-title">
             {{ c.name }}
           </h5>
           <div class="d-flex justify-content-start">
-            <div class="icon-time d-flex flex-row mr-2">
+            <div class="icon-module d-flex flex-row mr-2">
               <span>
                 <img src="assets/images/time1.svg" />
               </span>
@@ -49,22 +69,13 @@
                 <img src="assets/images/calender1.svg" />
               </span>
               <h6>
-                {{ c.periodStart | date: "dd MMM yyyy" }} -
-                {{ c.periodEnd | date: "dd MMM yyyy" }}
+                {{ c.periodStart | date: "dd/MM/yyyy" }} -
+                {{ c.periodEnd | date: "dd/MM/yyyy" }}
               </h6>
             </div>
           </div>
-          <div class="description">
-            <h6>{{ c.description }}</h6>
-          </div>
-          <div class="student-course d-flex justify-content-start">
-            <h6>{{ c.totalStudent }} enrolled students</h6>
-          </div>
-          <a (click)="viewModule(i)">
-            <button pButton type="button" label="view module"></button>
-          </a>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </div>

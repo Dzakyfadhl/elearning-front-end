@@ -8,6 +8,7 @@ import { OrderListModule } from 'primeng/orderlist';
 import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { CardModule } from 'primeng/card';
 @NgModule({
   declarations: [ModuleTeacherComponent],
   imports: [
@@ -18,6 +19,7 @@ import { TableModule } from 'primeng/table';
     PanelModule,
     ButtonModule,
     TableModule,
+    CardModule,
   ],
 })
 export class ModuleTeacherModule {}

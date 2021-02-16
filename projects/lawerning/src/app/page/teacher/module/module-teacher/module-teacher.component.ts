@@ -18,17 +18,11 @@ import { StudentService } from 'projects/lawerning/src/app/service/student.servi
 export class ModuleTeacherComponent implements OnInit {
   course: any;
   dtlCourse = new DetailCourseResponse();
-  student: StudentByCourseIdResponse;
   totalModule: number;
   courseId: string;
   attendanceReports: AttendanceReport[];
+  students: StudentByCourseIdResponse[];
 
-  attendanceReport: {
-    moduleName: string;
-    date: string;
-    studentAbsent: number;
-    studentPresent: number;
-  }[];
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -38,80 +32,6 @@ export class ModuleTeacherComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.attendanceReport = [
-      {
-        moduleName: 'Module Title-0011',
-        date: '02 Feb 2021',
-        studentAbsent: 10,
-        studentPresent: 4,
-      },
-      {
-        moduleName: 'Module Title-001',
-        date: '04 Feb 2021',
-        studentAbsent: 12,
-        studentPresent: 2,
-      },
-      {
-        moduleName: 'Module Title-001',
-        date: '04 Feb 2021',
-        studentAbsent: 12,
-        studentPresent: 2,
-      },
-      {
-        moduleName: 'Module Title-001',
-        date: '04 Feb 2021',
-        studentAbsent: 12,
-        studentPresent: 2,
-      },
-      {
-        moduleName: 'Module Title-001',
-        date: '04 Feb 2021',
-        studentAbsent: 12,
-        studentPresent: 2,
-      },
-      {
-        moduleName: 'Module Title-001',
-        date: '04 Feb 2021',
-        studentAbsent: 12,
-        studentPresent: 2,
-      },
-      {
-        moduleName: 'Module Title-001',
-        date: '04 Feb 2021',
-        studentAbsent: 12,
-        studentPresent: 2,
-      },
-      {
-        moduleName: 'Module Title-001',
-        date: '04 Feb 2021',
-        studentAbsent: 12,
-        studentPresent: 2,
-      },
-      {
-        moduleName: 'Module Title-001',
-        date: '04 Feb 2021',
-        studentAbsent: 12,
-        studentPresent: 2,
-      },
-      {
-        moduleName: 'Module Title-001',
-        date: '04 Feb 2021',
-        studentAbsent: 12,
-        studentPresent: 2,
-      },
-      {
-        moduleName: 'Module Title-001',
-        date: '04 Feb 2021',
-        studentAbsent: 12,
-        studentPresent: 2,
-      },
-      {
-        moduleName: 'Module Title-001',
-        date: '04 Feb 2021',
-        studentAbsent: 12,
-        studentPresent: 2,
-      },
-    ];
     this.showDetailCourseTeacher();
     this.showStudentByCourse();
     this.viewReportAttendance();
@@ -125,13 +45,15 @@ export class ModuleTeacherComponent implements OnInit {
         .getDetailCourseTeacher(value.courseId)
         .subscribe((val) => {
           this.dtlCourse = val.result;
+          console.log(this.dtlCourse);
           this.totalModule = this.dtlCourse.modules.length;
         });
     });
   }
   showStudentByCourse() {
     this.studentService.getStudentByCourseId(this.courseId).subscribe((val) => {
-      this.student = val.result;
+      this.students = val.result;
+      console.log(this.students);
     });
   }
 

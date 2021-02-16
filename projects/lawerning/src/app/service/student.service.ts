@@ -38,8 +38,8 @@ export class StudentService {
 
   getStudentByCourseId(
     id: string
-  ): Observable<ResponseModel<StudentByCourseIdResponse>> {
-    return this.http.get<ResponseModel<StudentByCourseIdResponse>>(
+  ): Observable<ResponseModel<StudentByCourseIdResponse[]>> {
+    return this.http.get<ResponseModel<StudentByCourseIdResponse[]>>(
       `${Constants.BASE_URL}/course/${id}/students`
     );
   }

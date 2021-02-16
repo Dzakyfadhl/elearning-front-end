@@ -1,16 +1,16 @@
 .header-module {
   position: absolute;
   height: 15%;
-  background-color: #232946;
+  background-color: #323096;
 }
 
 .header-module a {
   margin-left: 10px;
-  color: #f4caae;
+  color: white;
 }
 
 .header-module h6 {
-  color: #f4caae;
+  color: white;
   font-size: 30px;
   margin-left: 15px;
 }
@@ -328,7 +328,81 @@
   font-size: 18px;
 }
 
-/* .input-group {
-  width: 50%;
-  margin-left: 2rem;
-} */
+/*  */
+.header {
+  background-color: #323096;
+  height: auto;
+}
+.header h2 {
+  color: white;
+}
+.header .icon-student img {
+  width: 30px;
+  height: 30px;
+  margin-top: 10px;
+}
+
+.header .icon-module img {
+  width: 30px;
+  height: 30px;
+  margin-top: 10px;
+}
+.header h6 {
+  font-size: 16px;
+  margin-top: 5px;
+  color: white;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-panels {
+  background-color: transparent;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  border-color: white;
+  background-color: #323096;
+  color: white;
+  height: 50px;
+  margin-top: 20px;
+}
+:host ::ng-deep .p-button {
+  background-color: #2b50b4;
+  border: none;
+}
+:host ::ng-deep .p-button:hover {
+  background-color: #244295;
+}
+:host ::ng-deep .p-tabview .p-tabview-nav {
+  border: none;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  border: none;
+  border-radius: 6px;
+  color: #a9b7c4;
+  margin-top: 20px;
+}
+
+.card-module {
+  padding: 1rem;
+  border-radius: 10px;
+}
+.card-module img {
+  width: 8%;
+}
+.header-content {
+  margin-left: 1rem;
+}
+
+.icon-male img {
+  width: 22px;
+  height: 20px;
+  margin-left: 5px;
+}
+.icon-female img {
+  width: 22px;
+  height: 20px;
+  margin-left: 5px;
+}
+.icon-phone {
+  margin-left: 5px;
+}
