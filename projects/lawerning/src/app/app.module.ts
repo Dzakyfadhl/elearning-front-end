@@ -21,7 +21,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CheckLoginGuard } from './shared/check-login.guard';
 import { Permissions } from './shared/permissions';
 import { TooltipModule } from 'primeng/tooltip';
-import { ChangePasswordComponent } from '@bootcamp-lawerning-page/teacher/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { ChangePasswordComponent } from '@bootcamp-lawerning-page/teacher/change
     DashboardAdminComponent,
     HomePageComponent,
     ResetPasswordComponent,
-    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

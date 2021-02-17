@@ -171,7 +171,6 @@
           [(ngModel)]="startTime"
           [showIcon]="true"
           appendTo="body"
-          hourFormat="24"
         ></p-calendar>
         <small class="p-error" *ngIf="submitted && !startTime"
           >Period Start is required.</small
@@ -180,12 +179,11 @@
       <div class="p-field col-md-6">
         <label for="periodEnd">Period End</label>
         <p-calendar
-          [(ngModel)]="startEnd"
+          [(ngModel)]="endTime"
           [showIcon]="true"
           appendTo="body"
-          hourFormat="24"
         ></p-calendar>
-        <small class="p-error" *ngIf="submitted && !startEnd"
+        <small class="p-error" *ngIf="submitted && !endTime"
           >Period End is required.</small
         >
       </div>
