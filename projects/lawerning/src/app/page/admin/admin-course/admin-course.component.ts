@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -34,8 +35,8 @@ export class AdminCourseComponent implements OnInit {
   selectedTeacher: string;
   selectedCategory: string;
 
-  startTime: string;
-  endTime: string;
+  startTime: Date;
+  endTime: Date;
 
   teachers: TeacherForAdminDTO[];
   courseTypes: CourseTypeResponse[];
@@ -78,6 +79,7 @@ export class AdminCourseComponent implements OnInit {
     this.courseService.getCoursesForAdmin().subscribe(
       (val) => {
         this.courses = val.result;
+        console.log(this.courses);
       },
       (err) => {
         this.toastService.emitHttpErrorMessage(err);
@@ -131,17 +133,25 @@ export class AdminCourseComponent implements OnInit {
   }
 
   createCourse() {
+    console.log(this.createRequest.periodStart);
+    let datePipe = new DatePipe('en-US');
+
+    const formattedDateStart = datePipe.transform(this.startTime, 'yyyy-MM-dd');
+    const formattedDateEnd = datePipe.transform(this.endTime, 'yyyy-MM-dd');
+
     this.submitted = true;
     this.createRequest.createdBy = this.auth.getUserId();
     this.createRequest.courseCategoryId = this.selectedCategory;
     this.createRequest.courseTypeId = this.selectedType;
     this.createRequest.teacherId = this.selectedTeacher;
-
+    this.createRequest.periodStart = formattedDateStart;
+    this.createRequest.periodEnd = formattedDateEnd;
     this.courseService.insertCourse(this.createRequest).subscribe(
       (response) => {
         if (response.code === 201 && response.result) {
           this.toastService.emitSuccessMessage('Submitted', response.result);
           this.hideModal();
+          this.defineCourses();
         }
       },
       (error: HttpErrorResponse) => {

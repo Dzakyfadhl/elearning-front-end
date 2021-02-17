@@ -64,6 +64,7 @@ export class AdminCourseTypeComponent implements OnInit {
         if (response.code === 201 && response.result) {
           this.toastService.emitSuccessMessage('Submitted', response.result);
           this.hideModal();
+          this.defineCourseType();
         }
       },
       (error: HttpErrorResponse) => {

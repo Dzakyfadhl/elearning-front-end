@@ -34,17 +34,13 @@
                     Code
                     <p-sortIcon field="code"></p-sortIcon>
                 </th>
-                <th pSortableColumn="typeName" style="width: 10rem">
+                <th pSortableColumn="typeName" class="text-center" style="width: 14rem">
                     Cours Type
                     <p-sortIcon field="typeName"></p-sortIcon>
                 </th>
                 <th pSortableColumn="category" style="width: 10rem">
                     Category
                     <p-sortIcon field="category"></p-sortIcon>
-                </th>
-                <th pSortableColumn="description" style="width: 15rem">
-                    Description
-                    <p-sortIcon field="description"></p-sortIcon>
                 </th>
                 <th pSortableColumn="periodeStart" style="width: 10rem">
                     Periode Start
@@ -62,15 +58,18 @@
                     Capacity
                     <p-sortIcon field="capacity"></p-sortIcon>
                 </th>
+                <th pSortableColumn="description" style="width: 17rem">
+                    Description
+                    <p-sortIcon field="description"></p-sortIcon>
+                </th>
                 <th class="text-center" style="width: 10rem">Action</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-course>
             <tr>
                 <td style="width: 7rem">{{ course.code }}</td>
-                <td style="width: 10rem">{{ course.typeName }}</td>
+                <td style="width: 14rem">{{ course.typeName }}</td>
                 <td style="width: 10rem">{{ course.categoryName }}</td>
-                <td style="width: 15rem">{{ course.description }}</td>
                 <td style="width: 10rem">
                     {{ course.periodStart | date: "dd MMM yyyy" }}
                 </td>
@@ -79,9 +78,9 @@
                 </td>
                 <td style="width: 10rem; font-size: 14px">{{ course.status }}</td>
                 <td class="text-center" style="width: 8rem">{{ course.capacity }}</td>
+                <td style="width: 17rem">{{ course.description }}</td>
                 <td style="width: 10rem">
-                    <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-info"
-                      (click)="viewModules(course.id)"></button>
+                    <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-info" (click)="viewModules(course.id)"></button>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mx-1" (click)="editCourse(course)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
                 </td>
@@ -169,24 +168,24 @@
       <div class="p-field col-md-6">
         <label for="periodStart">Period Start</label>
         <p-calendar
-          [(ngModel)]="createRequest.periodStart"
+          [(ngModel)]="startTime"
           [showIcon]="true"
           appendTo="body"
           hourFormat="24"
         ></p-calendar>
-        <small class="p-error" *ngIf="submitted && !createRequest.periodStart"
+        <small class="p-error" *ngIf="submitted && !startTime"
           >Period Start is required.</small
         >
       </div>
       <div class="p-field col-md-6">
         <label for="periodEnd">Period End</label>
         <p-calendar
-          [(ngModel)]="createRequest.periodEnd"
+          [(ngModel)]="startEnd"
           [showIcon]="true"
           appendTo="body"
           hourFormat="24"
         ></p-calendar>
-        <small class="p-error" *ngIf="submitted && !createRequest.periodEnd"
+        <small class="p-error" *ngIf="submitted && !startEnd"
           >Period End is required.</small
         >
       </div>
