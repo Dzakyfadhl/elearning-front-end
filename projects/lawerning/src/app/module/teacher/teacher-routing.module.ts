@@ -5,9 +5,15 @@ import { CheckLoginGuard } from '../../shared/check-login.guard';
 
 const routes: Routes = [
   {
-    path: 'teacher/home',
+    path: 'home',
     component: HomeTeacherComponent,
     canActivate: [CheckLoginGuard],
+  },
+
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
   },
 ];
 

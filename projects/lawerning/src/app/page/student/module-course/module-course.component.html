@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="header-module col-lg-12">
       <div class="card-header-module card mt-3">
@@ -62,7 +62,11 @@
             <div class="d-flex flex-column">
               <div class="d-flex justify-content-start">
                 <div class="left">
-                  <h4 class="title">
+                  <h4
+                    class="title text-truncate"
+                    pTooltip="{{ m.title }}"
+                    tooltipPosition="top"
+                  >
                     {{ m.title }}:
                     {{ m.subjectName }}
                   </h4>
@@ -104,14 +108,14 @@
                   Attendance Process
                 </h6>
                 <button
-                  *ngIf="m.attendanceId == null && m.isAttendance == false"
+                  *ngIf="m.attendanceId == null && m.isStart == false"
                   class="btn-x btn btn-secondary"
                   disabled
                 >
                   Attendance
                 </button>
                 <a
-                  *ngIf="m.attendanceId == null && m.isAttendance == true"
+                  *ngIf="m.attendanceId == null && m.isStart == true"
                   (click)="attendanceRequest(m.id)"
                 >
                   <button class="btn-title btn btn-secondary">

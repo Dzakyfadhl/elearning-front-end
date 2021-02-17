@@ -25,13 +25,6 @@
 a {
   color: #232946;
 }
-.title h4 {
-  color: #232946;
-}
-
-.title h5 {
-  color: #232946;
-}
 
 h3 {
   color: #232946;
@@ -61,14 +54,9 @@ h3 {
   margin: 8px;
   /* width: 70%; */
 }
-.title {
-  margin: 10px;
-  font-weight: bold;
-  color: #232946;
-}
 .process {
   margin: 10px;
-  color: #f4caae;
+  color: #323096;
   font-weight: bold;
 }
 .btn-title {
@@ -106,6 +94,10 @@ a :hover {
 }
 @media (min-width: 411px) {
   .title {
+    margin: 10px;
+    font-weight: bold;
+    color: #232946;
+    max-width: 15rem;
     font-size: 15px;
   }
   .card-header-module {
@@ -123,7 +115,7 @@ a :hover {
     } */
   .left-content {
     width: 6rem;
-    background-color: #232946;
+    background-color: #323096;
   }
   .right-content {
     width: 20rem;
@@ -133,7 +125,13 @@ a :hover {
   .title {
     font-size: 24px;
   }
-
+  .title {
+    margin: 10px;
+    font-weight: bold;
+    color: #232946;
+    max-width: 60rem;
+    font-size: 15px;
+  }
   .card-header-module {
     border-radius: 10px;
     background-image: url("../../../../assets/images/banner_course.png");
@@ -144,7 +142,7 @@ a :hover {
   }
   .left-content {
     width: 6rem;
-    background-color: #232946;
+    background-color: #323096;
   }
   .right-content {
     width: 100%;
@@ -157,7 +155,7 @@ a :hover {
   .left-content {
     width: 6rem;
     /* color: white; */
-    background-color: #232946;
+    background-color: #323096;
   }
   .right-content {
     width: 100%;

@@ -52,7 +52,7 @@ export class CheckLoginGuard implements CanActivate {
         this.auth.getLoginResponse().role.name == 'Admin' &&
         this.auth.getLoginResponse().token != null
       ) {
-        this.route.navigate(['admin/home']);
+        this.route.navigate(['admin']);
       } else {
         this.route.navigate(['home-page']);
       }

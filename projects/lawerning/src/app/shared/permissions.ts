@@ -11,19 +11,19 @@ export class Permissions {
         return false;
       }
     } else {
-      if (route === 'student/home') {
+      if (route === 'student') {
         if (role === 'Student') {
           return true;
         } else {
           return false;
         }
-      } else if (route === 'teacher/home') {
+      } else if (route === 'teacher') {
         if (role === 'Teacher') {
           return true;
         } else {
           return false;
         }
-      } else if (route === 'admin/home') {
+      } else if (route === 'admin') {
         if (role === 'Admin') {
           return true;
         } else {

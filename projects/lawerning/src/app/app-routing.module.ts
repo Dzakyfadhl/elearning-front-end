@@ -40,7 +40,7 @@ const routes: Routes = [
       import('./module/register/register.module').then((m) => m.RegisterModule),
   },
   {
-    path: '',
+    path: 'teacher',
     component: DashboardTeacherComponent,
 
     canActivate: [CheckLoginGuard],
@@ -48,7 +48,7 @@ const routes: Routes = [
       import('./module/teacher/teacher.module').then((m) => m.TeacherModule),
   },
   {
-    path: '',
+    path: 'student',
     component: DashboardStudentComponent,
 
     canActivate: [CheckLoginGuard],
@@ -68,6 +68,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: DashboardAdminComponent,
+    canActivate: [CheckLoginGuard],
     loadChildren: () =>
       import('./module/admin/admin.module').then((m) => m.AdminModule),
   },

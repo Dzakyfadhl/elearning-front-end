@@ -61,10 +61,16 @@ export class ModuleCourseComponent implements OnInit {
         let dateEnd = new Date(dateEndMerge);
         let dateNow = new Date();
 
-        if (dateNow > dateStart && dateNow < dateEnd) {
+        if (dateNow < dateEnd) {
           data.isAttendance = true;
         } else {
           data.isAttendance = false;
+        }
+
+        if (dateNow >= dateStart && dateNow < dateEnd) {
+          data.isStart = true;
+        } else {
+          data.isStart = false;
         }
       });
 

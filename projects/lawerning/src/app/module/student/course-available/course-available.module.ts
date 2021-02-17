@@ -13,15 +13,23 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CheckLoginGuard } from '../../../shared/check-login.guard';
 import { Permissions } from '../../../shared/permissions';
 import { TooltipModule } from 'primeng/tooltip';
+import { ScoreDetailModule } from '../score-detail/score-detail.module';
+import { CourseStudentModule } from '../course-student/course-student.module';
+import { ModuleCourseModule } from '../module-course/module-course.module';
+import { ProfileStudentModule } from '../profile-student/profile-student.module';
 @NgModule({
   declarations: [HomeStudentComponent],
   imports: [
     CommonModule,
     CourseAvailableRoutingModule,
     ModuleAvailableModule,
+    CourseStudentModule,
+    ModuleCourseModule,
+    ProfileStudentModule,
     ButtonModule,
     FormsModule,
     OrderListModule,
+    ScoreDetailModule,
     SkeletonModule,
     InputTextModule,
     TooltipModule,

@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { BlockUIModule } from 'primeng/blockui';
 import { InputTextModule } from 'primeng/inputtext';
+import { TooltipModule } from 'primeng/tooltip';
 @NgModule({
   declarations: [ProfileStudentComponent],
   imports: [
@@ -17,8 +18,9 @@ import { InputTextModule } from 'primeng/inputtext';
     FormsModule,
     DialogModule,
     BlockUIModule,
+    TooltipModule,
     FormsModule,
-    InputTextModule
-  ]
+    InputTextModule,
+  ],
 })
-export class ProfileStudentModule { }
+export class ProfileStudentModule {}

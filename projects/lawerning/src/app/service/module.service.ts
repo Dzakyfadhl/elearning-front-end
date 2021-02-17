@@ -33,7 +33,8 @@ export class ModuleService {
     idCourse: string
   ): Observable<ResponseModel<DetailCourseResponse>> {
     return this.http.get<ResponseModel<DetailCourseResponse>>(
-      `${Constants.BASE_URL}/course/${idCourse}`
+      `${Constants.BASE_URL}/course/${idCourse}`,
+      { params: { studentId: this.auth.getLoginResponse().userRoleId } }
     );
   }
 

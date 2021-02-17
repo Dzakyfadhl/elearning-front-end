@@ -4,7 +4,7 @@ import { ScoreDetailComponent } from '@bootcamp-lawerning-page/student/score-det
 
 const routes: Routes = [
   {
-    path: 'student/report',
+    path: 'report',
     component: ScoreDetailComponent,
   },
 ];

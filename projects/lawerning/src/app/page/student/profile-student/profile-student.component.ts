@@ -41,6 +41,7 @@ export class ProfileStudentComponent implements OnInit {
       .getCourseProgress(this.auth.getLoginResponse().userRoleId)
       .subscribe((data) => {
         this.mymodules = data.result;
+        console.log(this.mymodules);
       });
 
     this.studentService.getProfile().subscribe((value) => {
@@ -53,15 +54,13 @@ export class ProfileStudentComponent implements OnInit {
         this.photo = `${Constants.BASE_URL_FILE}/${this.studentProfile.idPhoto}`;
       }
     });
-
-    // this.mymodules.forEach((value) => {
-    //   let percent = (value.value / value.total) * 100;
-
-    //   this.result.push(Math.ceil(percent));
-    // });
-    // console.log(this.result);
   }
 
+  viewModule(index: number) {
+    let tempCourse: CourseProgressResponse = this.mymodules[index];
+    let courseId = tempCourse.courseId;
+    this.router.navigate([`/student/course/${courseId}`]);
+  }
   showDialog() {
     this.isDisplay = true;
     this.blockedDocument = true;
@@ -72,6 +71,8 @@ export class ProfileStudentComponent implements OnInit {
   }
 
   openFormEdit(data: StudentResponse) {
-    this.router.navigate(['/student/update-profile', data]);
+    this.router.navigate(['/student/update-profile', data], {
+      skipLocationChange: true,
+    });
   }
 }

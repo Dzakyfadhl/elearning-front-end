@@ -9,5 +9,6 @@ export class ModuleModel {
   attendanceId: string;
   verifyStatus: boolean;
   isAttendance: boolean;
+  isStart: boolean;
   schedule: ScheduleModel;
 }

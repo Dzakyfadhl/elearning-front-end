@@ -84,6 +84,8 @@ export class ModuleDetailComponent implements OnInit {
 
       this.examService.getDetailModuleExam(value.id).subscribe((dataExam) => {
         this.exams = dataExam.result;
+        console.log(this.exams);
+
         if (this.exams === undefined) {
           this.isEmpty = true;
         } else {
@@ -92,19 +94,20 @@ export class ModuleDetailComponent implements OnInit {
 
         if (this.exams.length > 0 && this.exams !== undefined) {
           this.exams.forEach((data) => {
-            let date = new Date(data.endTime);
+            let dateStart = new Date(data.startTime);
+            let dateEnd = new Date(data.endTime);
             let dateNow = new Date();
 
             this.examService
               .getExamStudent(data.id)
               .subscribe((dataExamStudent) => {
-                if (date < dateNow) {
+                if (dateNow < dateStart || dateNow > dateEnd) {
                   this.isAllowed = false;
                   this.examStudents.set(data.id, [
                     dataExamStudent.result,
                     this.isAllowed,
                   ]);
-                } else if (date > dateNow) {
+                } else if (dateNow >= dateStart && dateNow < dateEnd) {
                   this.isAllowed = true;
                   this.examStudents.set(data.id, [
                     dataExamStudent.result,

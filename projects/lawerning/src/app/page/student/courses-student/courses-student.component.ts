@@ -74,9 +74,6 @@ export class CoursesStudentComponent implements OnInit {
   viewModule(index: number) {
     let tempCourse: CourseStudentResponse = this.courses[index];
     let courseId = tempCourse.id;
-    this.studentId = this.auth.getLoginResponse().userRoleId;
-    // this.route.navigateByUrl('module/course');
-    this.route.navigate([`/course/${courseId}/student/${this.studentId}`]);
-    // this.route.navigate(['/course/', courseId, '/student/', this.studentId]);
+    this.route.navigate([`/student/course/${courseId}`]);
   }
 }

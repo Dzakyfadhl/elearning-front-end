@@ -45,6 +45,17 @@
 a:hover {
   cursor: pointer;
 }
+.card-first {
+  border: 1px solid #2095f2;
+  background-color: #ddf0ff;
+  border-radius: 10px;
+}
+
+.card-second {
+  background-color: #d6f1d7;
+  border: 1px solid #1f6124;
+  border-radius: 10px;
+}
 /* .save{
     background-color: #232946;
   } */
@@ -56,6 +67,9 @@ a:hover {
   .body-profile {
     margin-top: 20%;
     /* padding-left: 30%; */
+  }
+  .mmcourse {
+    max-width: 20rem;
   }
   .camera {
     position: absolute;
@@ -91,6 +105,9 @@ a:hover {
     background-color: #323096;
   }
 
+  .mmcourse {
+    max-width: 100%;
+  }
   .name {
     font-size: 22px;
   }
@@ -106,5 +123,9 @@ a:hover {
   }
   .camera a:hover {
     color: #232946;
+  }
+
+  .mmcourse {
+    max-width: 100%;
   }
 }

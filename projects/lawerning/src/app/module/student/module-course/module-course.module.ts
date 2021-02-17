@@ -7,6 +7,7 @@ import { BadgeModule } from 'primeng/badge';
 import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { TooltipModule } from 'primeng/tooltip';
 @NgModule({
   declarations: [ModuleCourseComponent],
   imports: [
@@ -14,8 +15,9 @@ import { ProgressBarModule } from 'primeng/progressbar';
     ModuleCourseRoutingModule,
     BadgeModule,
     DividerModule,
+    TooltipModule,
     CardModule,
-    ProgressBarModule
-  ]
+    ProgressBarModule,
+  ],
 })
-export class ModuleCourseModule { }
+export class ModuleCourseModule {}
