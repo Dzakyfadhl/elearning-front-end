@@ -16,8 +16,9 @@
 }
 
 .category-badge.category-name {
-  background: #fcbc9ece;
-  color: #e65c1c;
+  background: rgb(206, 255, 255);
+  color: #323096;
+  font-weight: bold;
 }
 .category-badge {
   border-radius: 2px;
@@ -79,16 +80,16 @@
   border: none;
 
   /* width: 50% !important; */
-  color: white;
-  background-color: #6868ef;
+  color: #323096;
+  background-color: rgb(220, 250, 250);
 }
 .valid-selected {
   /* max-height: 50px; */
 
   /* width: 50% !important; */
-  color: white;
+  color: #323096;
   border: none;
-  background-color: #6868ef;
+  background-color: rgb(220, 250, 250);
 }
 
 .card {
@@ -107,7 +108,6 @@ a {
   text-decoration-line: underline;
   text-decoration-color: #3f5ae6;
 }
-
 :host ::ng-deep .p-inputtext {
   background-color: #b5b4dc;
   border: white;

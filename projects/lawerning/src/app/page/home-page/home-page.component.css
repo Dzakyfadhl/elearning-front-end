@@ -5,9 +5,9 @@
   background-color: grey;
 }
 .badge {
-  color: #e65c1c;
+  color: #323096;
   font-weight: bold;
-  background-color: #faceb9fd;
+  background-color: rgb(220, 250, 250);
 }
 a h5:hover {
   cursor: pointer;
@@ -27,7 +27,7 @@ a h5:hover {
   font-weight: bold;
 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: #b5b4dc;
+  background-color: white;
 }
 .row .categoryy {
   flex-wrap: nowrap;
@@ -85,7 +85,7 @@ a h5:hover {
 }
 .card {
   width: 20rem;
-  height: 22rem;
+  height: 25rem;
   border-radius: 10px;
 }
 .title h5 {
@@ -147,9 +147,9 @@ a h5:hover {
   }
   .card {
     width: 20rem;
-    height: 22rem;
+    height: 24rem;
 
-    margin-left: 0px;
+    margin-left: 2rem;
     margin-right: 0px;
   }
 
@@ -186,9 +186,7 @@ a h5:hover {
   .card {
     width: 20rem;
     height: 22rem;
-
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 0rem;
   }
 
   .img-adv {

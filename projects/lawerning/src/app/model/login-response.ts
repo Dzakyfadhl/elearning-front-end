@@ -6,5 +6,7 @@ export class LoginResponse {
   userRoleId: string;
   username: string;
   photoId: string;
+  firstName: string;
+  lastName: string;
   role: RoleModel;
 }

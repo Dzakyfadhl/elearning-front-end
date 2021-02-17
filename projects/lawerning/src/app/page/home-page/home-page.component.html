@@ -109,71 +109,119 @@
   </div>
 </div>
 <div class="body-content bg-light container-fluid">
-  <div class="row justify-content-center p-4">
-    <div class="d-flex flex-column mb-4">
+  <div class="row">
+    <div class="col-lg-12 mt-3 mb-3">
       <h1 class="text-center">Courses</h1>
-      <span class="underline text-center mb-3"></span>
     </div>
-    <div class="row mb-3">
-      <div class="col-lg-3" *ngFor="let c of courses; let i = index">
-        <div class="card shadow my-3">
-          <div class="d-flex flex-column">
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3" *ngFor="let c of courses; let i = index">
+      <div class="card shadow my-3 mb-3">
+        <div class="d-flex flex-column">
+          <img
+            src="assets/images/banner_course.png"
+            class="ilustrator"
+            alt=""
+          />
+          <span class="label text-center text-truncate">{{
+            c.categoryName
+          }}</span>
+
+          <div class="title m-3">
+            <a (click)="viewModule(i)">
+              <h5
+                class="text-truncate"
+                pTooltip="{{ c.typeName }}"
+                tooltipPosition="top"
+                style="max-width: 300px"
+              >
+                {{ c.typeName }}
+              </h5>
+            </a>
+            <div class="d-flex flex-row">
+              <!-- <span class="badge p-2 badge-primary"
+                >{{ c.capacity }} students</span
+              > -->
+
+              <span class="badge p-2 badge-primary mr-1">
+                <div class="d-flex flex-row">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="10"
+                    fill="currentColor"
+                    class="bi bi-clock-fill mr-1"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"
+                    />
+                  </svg>
+                  {{ c.duration }} weeks
+                </div>
+              </span>
+              <span
+                *ngIf="c.duration > 0 && c.day > 1"
+                class="badge p-2 badge-primary"
+              >
+                <div class="d-flex flex-row">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="10"
+                    fill="currentColor"
+                    class="bi bi-clock-fill mr-1"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"
+                    />
+                  </svg>
+                  {{ c.day }} days
+                </div>
+              </span>
+
+              <span
+                *ngIf="c.duration > 0 && c.day == 1"
+                class="badge p-2 badge-primary"
+              >
+                <div class="d-flex flex-row">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="10"
+                    fill="currentColor"
+                    class="bi bi-clock-fill mr-1"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"
+                    />
+                  </svg>
+                  {{ c.day }} day
+                </div>
+              </span>
+            </div>
+            <hr />
+          </div>
+          <div class="data-teacher d-flex justify-content-start">
             <img
-              src="assets/images/banner_course.png"
-              class="ilustrator"
+              [src]="c.teacher.photoId"
+              class="img-teach rounded-circle ml-3"
               alt=""
             />
-            <span class="label text-center text-truncate">{{
-              c.categoryName
-            }}</span>
-
-            <div class="title m-3">
-              <a (click)="viewModule(i)">
-                <h5>{{ c.typeName }}</h5>
-              </a>
-              <div class="d-flex flex-row">
-                <!-- <span class="badge p-2 badge-primary"
-                  >{{ c.capacity }} students</span
-                > -->
-
-                <span class="badge p-2 badge-primary">
-                  <div class="d-flex flex-row">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="10"
-                      height="10"
-                      fill="currentColor"
-                      class="bi bi-clock-fill mr-1"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"
-                      />
-                    </svg>
-                    {{ c.duration }} weeks
-                  </div>
-                </span>
-              </div>
-              <hr />
-            </div>
-            <div class="data-teacher d-flex justify-content-start">
-              <img
-                [src]="c.teacher.photoId"
-                class="img-teach rounded-circle ml-3"
-                alt=""
-              />
-              <div class="d-flex flex-column pl-3">
-                <h6 class="teacher-name">
-                  {{ c.teacher.firstName }} {{ c.teacher.lastName }},
-                  {{ c.teacher.title }}
-                </h6>
-                <h6 *ngIf="c.teacher.experience" class="text-secondary">
-                  {{ c.teacher.experience }}
-                </h6>
-                <h6 *ngIf="!c.teacher.experience" class="text-secondary">
-                  Experience not yet
-                </h6>
-              </div>
+            <div class="d-flex flex-column p-2">
+              <h6 class="teacher-name text-truncate" style="max-width: 230px">
+                {{ c.teacher.firstName }} {{ c.teacher.lastName }},
+                {{ c.teacher.title }}
+              </h6>
+              <h6 *ngIf="c.teacher.experience" class="text-secondary">
+                {{ c.teacher.experience }}
+              </h6>
+              <h6 *ngIf="!c.teacher.experience" class="text-secondary">
+                Experience not yet
+              </h6>
             </div>
           </div>
         </div>
@@ -187,7 +235,6 @@
     <div class="col-lg-12">
       <div class="d-flex flex-column mb-4">
         <h1 class="text-center">Mentors</h1>
-        <span class="underline-mentor text-center mb-3"></span>
       </div>
       <div class="mentor-data">
         <p-carousel

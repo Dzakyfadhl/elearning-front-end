@@ -80,7 +80,7 @@ export class TeacherService {
   }
   getAllTeachers(): Observable<ResponseModel<TeacherForAdminDTO[]>> {
     return this.http.get<ResponseModel<TeacherForAdminDTO[]>>(
-      `${Constants.BASE_URL}/teacher/all`
+      `${Constants.BASE_URL}/public/teachers`
     );
   }
 }

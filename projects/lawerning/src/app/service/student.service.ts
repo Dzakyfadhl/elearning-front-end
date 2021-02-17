@@ -23,8 +23,8 @@ export class StudentService {
     );
   }
   updatePhoto(data: FormData): Observable<ResponseModel<string>> {
-    return this.http.patch<ResponseModel<string>>(
-      `${Constants.BASE_URL}/file`,
+    return this.http.put<ResponseModel<string>>(
+      `${Constants.BASE_URL}/user/photo`,
       data
     );
   }
@@ -72,7 +72,7 @@ export class StudentService {
     data: StudentRegisterRequest
   ): Observable<ResponseModel<StudentRegisterRequest>> {
     return this.http.post<ResponseModel<StudentRegisterRequest>>(
-      `${Constants.BASE_URL}/student`,
+      `${Constants.BASE_URL}/student/register`,
       data
     );
   }

@@ -2,6 +2,7 @@ import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { error } from 'selenium-webdriver';
+import Constants from '../../../constants/constant';
 import { PhotoRequest } from '../../../model/photo-request';
 import { StudentUpdateRequest } from '../../../model/student/student-edit-request';
 import { StudentResponse } from '../../../model/student/student-response';
@@ -32,8 +33,8 @@ export class UpdateProfileStudentComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataProfile();
-    if (this.auth.getLoginResponse().photoId != 'null') {
-      this.photo = `http://192.168.15.224:8080/file/${
+    if (this.auth.getLoginResponse().photoId != null) {
+      this.photo = `${Constants.BASE_URL_FILE}/${
         this.auth.getLoginResponse().photoId
       }`;
     } else {
@@ -50,9 +51,11 @@ export class UpdateProfileStudentComponent implements OnInit {
       let data: FormData = new FormData();
       this.dataRequest.id = this.auth.getLoginResponse().photoId;
       this.dataRequest.userId = this.auth.getLoginResponse().userId;
+      this.dataRequest.type = 'USER_PHOTO';
 
       data.append('file', file);
       data.append('content', JSON.stringify(this.dataRequest));
+      console.log(file);
 
       let reader = new FileReader();
       reader.readAsDataURL(file);
@@ -94,7 +97,6 @@ export class UpdateProfileStudentComponent implements OnInit {
       });
     }
     console.log(this.isEdited);
-
     this.studentService.updateProfile(requestProfile).subscribe(
       (value) => {
         this.toastService.emitSuccessMessage('Successfully', value.result);

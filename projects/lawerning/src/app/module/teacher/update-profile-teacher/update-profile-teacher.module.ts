@@ -7,9 +7,10 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputTextModule } from 'primeng/inputtext';
+import { ChangePasswordComponent } from '../../../page/teacher/change-password/change-password.component';
 
 @NgModule({
-  declarations: [UpdateProfileTeacherComponent],
+  declarations: [UpdateProfileTeacherComponent, ChangePasswordComponent],
   imports: [
     CommonModule,
     UpdateProfileTeacherRoutingModule,

@@ -22,30 +22,32 @@ export class ModuleService {
   //   );
   // }
 
-  getModuleStudent(
-    idCourse: string
-  ): Observable<ResponseModel<DetailCourseResponse>> {
+  getModule(idCourse: string): Observable<ResponseModel<DetailCourseResponse>> {
     return this.http.get<ResponseModel<DetailCourseResponse>>(
-      `${Constants.BASE_URL}/course/${idCourse}`,
+      `${Constants.BASE_URL}/public/course/${idCourse}`,
       { params: { studentId: this.auth.getLoginResponse().userRoleId } }
     );
   }
 
-  getModule(idCourse: string): Observable<ResponseModel<DetailCourseResponse>> {
+  getModuleStudent(
+    idCourse: string
+  ): Observable<ResponseModel<DetailCourseResponse>> {
     return this.http.get<ResponseModel<DetailCourseResponse>>(
       `${Constants.BASE_URL}/course/${idCourse}`
     );
   }
-  
+
   getModuleAvailable(
     idCourse: string
   ): Observable<ResponseModel<DetailCourseResponse>> {
     return this.http.get<ResponseModel<DetailCourseResponse>>(
-      `${Constants.BASE_URL}/course/module/${idCourse}`
+      `${Constants.BASE_URL}/public/course/${idCourse}`
     );
   }
 
   updateModule(module: ModuleUpdateRequest): Promise<ResponseModel<string>> {
-    return this.http.put<ResponseModel<string>>(`${Constants.BASE_URL}/module`, module).toPromise();
+    return this.http
+      .put<ResponseModel<string>>(`${Constants.BASE_URL}/module`, module)
+      .toPromise();
   }
 }

@@ -8,6 +8,7 @@ export class CourseAllResponse {
   periodStart: string;
   periodEnd: string;
   duration: number;
+  day: number;
   teacher: TeacherModel;
   categoryName: string;
   isRegist: boolean;

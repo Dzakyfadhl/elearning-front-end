@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Constants from '../../../constants/constant';
 import { CourseAvailableResponse } from '../../../model/course-available-response';
 import { CourseStudentResponse } from '../../../model/course-student-response';
 import { Gender } from '../../../model/gender';
@@ -15,7 +16,7 @@ import { CourseService } from '../../../service/course.service';
 export class HomeStudentComponent implements OnInit {
   // course: any = {};
 
-  courses: CourseAvailableResponse[];
+  courses: CourseAvailableResponse[] = [];
   courseFiltering = [];
   selectedCourse: any = 'all';
 
@@ -43,22 +44,21 @@ export class HomeStudentComponent implements OnInit {
         this.courses = value.result;
         console.log(this.courses);
 
-        this.isValid = true;
-
-        this.courses.forEach((val) => {
-          if (val.teacher.experience == null) {
-            val.teacher.experience = 'Experience not yet';
-          } else {
-            val.teacher.experience = val.teacher.experience;
-          }
-          if (!val.teacher.photoId) {
-            val.teacher.photoId = `assets/images/default.png`;
-          } else {
-            val.teacher.photoId = `http://192.168.15.224:8080/file/${val.teacher.photoId}`;
-          }
-        });
-
         if (this.courses.length > 0) {
+          this.isValid = true;
+
+          this.courses.forEach((val) => {
+            if (val.teacher.experience == null) {
+              val.teacher.experience = 'Experience not yet';
+            } else {
+              val.teacher.experience = val.teacher.experience;
+            }
+            if (!val.teacher.photoId) {
+              val.teacher.photoId = `assets/images/default.png`;
+            } else {
+              val.teacher.photoId = `${Constants.BASE_URL_FILE}/${val.teacher.photoId}`;
+            }
+          });
           this.courseFiltering = this.courses;
           // concat list category
           this.courses.forEach((val) => {
@@ -71,7 +71,12 @@ export class HomeStudentComponent implements OnInit {
           console.log(this.data);
         }
       },
-      (error) => (this.isValid = false)
+      (error) => {
+        if (error.error.code == 400) {
+          this.isValid = false;
+          this.courses = [];
+        }
+      }
     );
 
     if (this.selectedCourse == undefined) {

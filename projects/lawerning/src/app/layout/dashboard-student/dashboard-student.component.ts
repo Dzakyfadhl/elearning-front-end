@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Constants from '../../constants/constant';
 import { AuthService } from '../../service/auth.service';
 import { CourseService } from '../../service/course.service';
 @Component({
@@ -9,6 +10,7 @@ import { CourseService } from '../../service/course.service';
 })
 export class DashboardStudentComponent implements OnInit {
   photo: any;
+  name: string;
 
   constructor(
     private authService: AuthService,
@@ -20,12 +22,17 @@ export class DashboardStudentComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.auth.getLoginResponse().photoId);
 
-    if (this.auth.getLoginResponse().photoId == 'null') {
+    if (!this.auth.getLoginResponse().photoId) {
       this.photo = 'assets/images/default.png';
     } else {
-      this.photo = `http://192.168.15.224:8080/file/${
+      this.photo = `${Constants.BASE_URL_FILE}/${
         this.auth.getLoginResponse().photoId
       }`;
+    }
+    if (!this.auth.getLoginResponse()) {
+      this.name = '';
+    } else {
+      this.name = `${this.auth.getLoginResponse().firstName}`;
     }
   }
 

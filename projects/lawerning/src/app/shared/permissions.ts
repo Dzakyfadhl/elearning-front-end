@@ -3,6 +3,8 @@ export class Permissions {
     if (token === null) {
       if (route === 'login') {
         return true;
+      } else if (route == 'register') {
+        return true;
       } else if (route === '') {
         return true;
       } else {

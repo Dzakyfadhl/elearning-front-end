@@ -22,14 +22,14 @@ export class UserService {
 
   updatePassword(data: PasswordRequest): Observable<ResponseModel<string>> {
     return this.http.patch<ResponseModel<string>>(
-      `${Constants.BASE_URL}/user`,
+      `${Constants.BASE_URL}/user/update-password`,
       data
     );
   }
 
   resetPassword(email: string): Observable<ResponseModel<string>> {
     return this.http.patch<ResponseModel<string>>(
-      `${Constants.BASE_URL}/reset-password?email=${email}`,
+      `${Constants.BASE_URL}/user/forget-password?email=${email}`,
       null
     );
   }

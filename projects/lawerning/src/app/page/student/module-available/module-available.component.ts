@@ -18,6 +18,7 @@ export class ModuleAvailableComponent implements OnInit {
   totalModule: number;
   modules = new DetailCourseResponse();
   duration: number;
+  day: number;
 
   courseId: string;
   isRegistered: string;
@@ -39,10 +40,10 @@ export class ModuleAvailableComponent implements OnInit {
       this.courseId = value.courseId;
       this.isRegistered = value.isRegist;
 
-      this.moduleService.getModuleStudent(value.courseId).subscribe((data) => {
+      this.moduleService.getModule(value.courseId).subscribe((data) => {
+        this.modules = data.result;
         console.log(data.result);
 
-        this.modules = data.result;
         this.totalModule = this.modules.modules.length;
 
         let start = new Date(data.result.periodStart);
@@ -52,10 +53,10 @@ export class ModuleAvailableComponent implements OnInit {
         let oneDay = 1000 * 60 * 60 * 24;
         let day = Math.floor(diff / oneDay);
         console.log('Day of year: ' + day);
-        this.duration = Math.ceil(day / 7);
-        console.log(this.duration, 'week');
 
-        console.log(data.result);
+        this.duration = Math.floor(day / 7);
+        this.day = day % 7;
+        console.log(this.duration, 'week', this.day);
       });
     });
   }

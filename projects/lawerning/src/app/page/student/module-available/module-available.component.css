@@ -14,6 +14,11 @@
 .header-module p {
   color: white;
 }
+.card-module {
+  border: 1px solid rgb(199, 199, 199);
+  border-radius: 15px;
+  padding: 1rem;
+}
 .footer-module {
   /* background-color: #232946; */
   height: auto;
@@ -27,7 +32,9 @@
   font-weight: bold;
 }
 .value {
-  background-color: #3a4372;
+  color: #323096;
+  font-weight: bold;
+  background-color: white;
 }
 /* .body-module{
     position: absolute;
@@ -49,6 +56,10 @@ a {
 
 .title h5 {
   color: #232946;
+}
+.title-module {
+  color: #323096;
+  font-weight: bold;
 }
 
 .card-head h3 {

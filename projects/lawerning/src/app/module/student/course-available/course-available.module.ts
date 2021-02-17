@@ -12,6 +12,7 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckLoginGuard } from '../../../shared/check-login.guard';
 import { Permissions } from '../../../shared/permissions';
+import { TooltipModule } from 'primeng/tooltip';
 @NgModule({
   declarations: [HomeStudentComponent],
   imports: [
@@ -23,6 +24,7 @@ import { Permissions } from '../../../shared/permissions';
     OrderListModule,
     SkeletonModule,
     InputTextModule,
+    TooltipModule,
     ScrollPanelModule,
   ],
   providers: [CheckLoginGuard, Permissions],

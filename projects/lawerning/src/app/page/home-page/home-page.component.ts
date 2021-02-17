@@ -82,7 +82,11 @@ export class HomePageComponent implements OnInit {
         let oneDay = 1000 * 60 * 60 * 24;
         let day = Math.floor(diff / oneDay);
 
-        data.duration = Math.ceil(day / 7);
+        data.duration = Math.floor(day / 7);
+
+        data.day = day % 7;
+        console.log(data.day);
+
         if (!data.teacher.photoId) {
           data.teacher.photoId = `assets/images/default.png`;
         } else {

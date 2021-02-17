@@ -15,6 +15,7 @@ import { LessonService } from '../../../service/lesson.service';
 import { LessonResponse } from '../../../model/lesson-response';
 import { ExamStudentResponse } from '../../../model/exam-dto/exam-student-response';
 import { ScheduleModel } from '../../../model/schedule-model';
+import Constants from '../../../constants/constant';
 
 @Component({
   selector: 'app-module-detail',
@@ -151,9 +152,9 @@ export class ModuleDetailComponent implements OnInit {
           val.durationMinute = minutes;
 
           if (!val.photoId) {
-            this.photo = 'assets/images/default.png';
+            val.photoId = 'assets/images/default.png';
           } else {
-            this.photo = `${this.baseUrl}/${val.photoId}`;
+            val.photoId = `${Constants.BASE_URL_FILE}/${val.photoId}`;
           }
         });
         if (this.messages.length > 0) {

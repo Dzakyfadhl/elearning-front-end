@@ -9,6 +9,7 @@ import { ToastService } from '../../../service/toast.service';
 import { Router } from '@angular/router';
 import { CourseService } from '../../../service/course.service';
 import { CourseProgressResponse } from '../../../model/course-dto/course-progress-response';
+import Constants from '../../../constants/constant';
 
 @Component({
   selector: 'app-profile-student',
@@ -49,7 +50,7 @@ export class ProfileStudentComponent implements OnInit {
       if (!this.studentProfile.idPhoto) {
         this.photo = `assets/images/default.png`;
       } else {
-        this.photo = `http://192.168.15.224:8080/file/${this.studentProfile.idPhoto}`;
+        this.photo = `${Constants.BASE_URL_FILE}/${this.studentProfile.idPhoto}`;
       }
     });
 

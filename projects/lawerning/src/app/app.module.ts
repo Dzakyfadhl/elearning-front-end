@@ -20,6 +20,7 @@ import { ResetPasswordComponent } from './page/reset-password/reset-password.com
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CheckLoginGuard } from './shared/check-login.guard';
 import { Permissions } from './shared/permissions';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { Permissions } from './shared/permissions';
     HttpClientModule,
     ToastModule,
     ScrollTopModule,
+    TooltipModule,
     CarouselModule,
     FontAwesomeModule,
   ],

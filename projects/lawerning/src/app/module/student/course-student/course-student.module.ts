@@ -11,6 +11,7 @@ import { ScoreDetailModule } from '../score-detail/score-detail.module';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { UpdateProfileStudentComponent } from '@bootcamp-lawerning-page/student/update-profile-student/update-profile-student.component';
 import { UpdateProfileModule } from '../update-profile/update-profile.module';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   declarations: [CoursesStudentComponent],
@@ -23,6 +24,7 @@ import { UpdateProfileModule } from '../update-profile/update-profile.module';
     ProfileStudentModule,
     ScoreDetailModule,
     ProgressBarModule,
+    TooltipModule,
   ],
 })
 export class CourseStudentModule {}
