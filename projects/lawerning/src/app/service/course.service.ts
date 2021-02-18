@@ -10,6 +10,7 @@ import { CourseProgressResponse } from '../model/course-dto/course-progress-resp
 import { CourseUpdateRequestDTO } from '../model/course-dto/course-update-request';
 import { CourseStudentResponse } from '../model/course-student-response';
 import { CourseTeacherResponse } from '../model/course-teacher-response';
+import { DeleteCourseTypeRequestDTO } from '../model/course-type-dto/delete-course-type-request';
 import { DetailCourseResponse } from '../model/detail-course-response';
 import { ResponseModel } from '../model/response-model';
 import { AuthService } from './auth.service';
@@ -96,6 +97,14 @@ export class CourseService {
       .get<ResponseModel<DetailCourseResponse>>(
         `${Constants.BASE_URL}/course/${id}`
       )
+      .toPromise();
+  }
+
+  deleteCourse(
+    data: DeleteCourseTypeRequestDTO
+  ): Promise<ResponseModel<string>> {
+    return this.http
+      .patch<ResponseModel<string>>(`${Constants.BASE_URL}/course`, data)
       .toPromise();
   }
 }

@@ -10,6 +10,7 @@ import { CourseCreateRequestDTO } from '../../../model/course-dto/course-create-
 import { CourseUpdateRequestDTO } from '../../../model/course-dto/course-update-request';
 import { CourseStatus } from '../../../model/course-status';
 import { CourseTypeResponse } from '../../../model/course-type-dto/course-type-response';
+import { DeleteCourseTypeRequestDTO } from '../../../model/course-type-dto/delete-course-type-request';
 import { TeacherForAdminDTO } from '../../../model/teacher-dto/teacher-admin-response';
 import { AuthService } from '../../../service/auth.service';
 import { CourseCategoryService } from '../../../service/course-category.service';
@@ -73,6 +74,7 @@ export class AdminCourseComponent implements OnInit {
     this.dropdownCategories();
     this.dropdownCourseTypes();
     this.dropdownTeachers();
+    this.teacherVal;
   }
 
   defineCourses() {
@@ -197,6 +199,31 @@ export class AdminCourseComponent implements OnInit {
     } catch (error) {
       this.toastService.emitHttpErrorMessage(error, 'Failed to update Course.');
     }
+  }
+
+  delete(course: CourseAdminResponseDTO) {
+    this.confirmationService.confirm({
+      message: `Are you sure you want to delete ${course.code} ?`,
+      header: 'Delete Confirm.',
+      icon: 'pi pi-exclamation-triangle',
+      accept: async () => {
+        let deleteRequest = new DeleteCourseTypeRequestDTO();
+        deleteRequest.id = course.id;
+        deleteRequest.updatedBy = this.auth.getLoginResponse().userId;
+        try {
+          const response = await this.courseService.deleteCourse(deleteRequest);
+          if (response.code === 200) {
+            this.toastService.emitSuccessMessage('Deleted', response.result);
+            this.defineCourses();
+          }
+        } catch (error) {
+          this.toastService.emitHttpErrorMessage(
+            error,
+            'Failed to delete course'
+          );
+        }
+      },
+    });
   }
 
   hideModal() {
