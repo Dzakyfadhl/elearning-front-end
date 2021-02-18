@@ -14,6 +14,9 @@ import { Location } from '@angular/common';
 import { ForumRequestDTO } from '../../../model/forum-dto/forum-request';
 import { AuthService } from '../../../service/auth.service';
 import Constants from '../../../constants/constant';
+import { ToastService } from '../../../service/toast.service';
+import { ConfirmationService } from 'primeng/api';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-dtl-module',
@@ -27,13 +30,14 @@ export class DtlModuleComponent implements OnInit {
   lesson: LessonResponse[];
   studentAttendance: AttendanceResponse;
   baseUrl = 'http://192.168.15.224:8080/file';
-  photo: any;
   content: string;
   moduleId: string;
   courseId: string;
   formData: FormData;
   file: string;
   isValidate = false;
+  firstName: string;
+  lastName: string;
 
   displayExam: boolean = false;
   displayModule: boolean = false;
@@ -48,7 +52,9 @@ export class DtlModuleComponent implements OnInit {
     private forumService: ForumService,
     private lessonService: LessonService,
     private attendanceService: AttendanceService,
-    private auth: AuthService
+    private authService: AuthService,
+    private toastService: ToastService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
@@ -58,18 +64,41 @@ export class DtlModuleComponent implements OnInit {
     this.showAttendanceStudent();
     this.showDiscussion();
   }
-
-  showDetailModule() {
-    this.activeRoute.queryParams.subscribe((value) => {
-      this.moduleId = value.idModule;
-      this.courseId = value.idCourse;
-      console.log(this.moduleId);
-      this.dtlModuleTeacherService
-        .getDtlModuleTeacher(value.idModule)
-        .subscribe((val) => {
-          this.dtlModule = val.result;
-        });
-    });
+  async showLessonModule() {
+    try {
+      const response = await this.lessonService.getLessonModule(this.moduleId);
+      if (response.code === 200) {
+        this.lesson = response.result;
+      }
+    } catch (error) {
+      this.toastService.emitHttpErrorMessage(
+        error,
+        'Failed to get lesson data.'
+      );
+    }
+  }
+  async showDetailModule() {
+    try {
+      this.activeRoute.queryParams.subscribe((value) => {
+        this.firstName = this.authService.getLoginResponse().firstName;
+        this.lastName = this.authService.getLoginResponse().lastName;
+        this.moduleId = value.idModule;
+        this.courseId = value.idCourse;
+        console.log(value);
+      });
+      const response = await this.dtlModuleTeacherService.getDtlModuleTeacher(
+        this.moduleId
+      );
+      if (response.code === 200) {
+        this.dtlModule = response.result;
+        console.log(`Show Detail Module${this.dtlModule}`);
+      }
+    } catch (error) {
+      this.toastService.emitHttpErrorMessage(
+        error,
+        'Failed to get student data.'
+      );
+    }
   }
   showModuleExam() {
     this.moduleExamService
@@ -90,11 +119,6 @@ export class DtlModuleComponent implements OnInit {
     }
   }
 
-  showLessonModule() {
-    this.lessonService.getLessonModule(this.moduleId).subscribe((val) => {
-      this.lesson = val.result;
-    });
-  }
   showAttendanceStudent() {
     this.attendanceService
       .getAttendanceStudent(this.courseId, this.moduleId)
@@ -116,6 +140,8 @@ export class DtlModuleComponent implements OnInit {
   showDiscussion() {
     this.forumService.getModuleDiscussions(this.moduleId).subscribe((val) => {
       this.discussion = val.result;
+      console.log(val.result);
+
       this.discussion.forEach((val) => {
         let dateFuture = new Date(val.createdAt);
         val.dayPost = dateFuture.getDate();
@@ -137,9 +163,9 @@ export class DtlModuleComponent implements OnInit {
         val.durationMinute = minutes;
 
         if (!val.photoId) {
-          this.photo = 'assets/images/default.png';
+          val.photoId = 'assets/images/default.png';
         } else {
-          this.photo = `${this.baseUrl}/${val.photoId}`;
+          val.photoId = `${Constants.BASE_URL_FILE}/${val.photoId}`;
         }
       });
     });
@@ -147,7 +173,7 @@ export class DtlModuleComponent implements OnInit {
   sendContent() {
     let data = new ForumRequestDTO();
     data.content = this.content;
-    data.userId = this.auth.getLoginResponse().userId;
+    data.userId = this.authService.getLoginResponse().userId;
     data.moduleId = this.moduleId;
     data.versionUser = 0;
     data.versionModule = 0;
@@ -198,15 +224,26 @@ export class DtlModuleComponent implements OnInit {
   }
 
   upload() {
-    let idUser = this.auth.getLoginResponse().userId;
+    let idUser = this.authService.getLoginResponse().userId;
     console.log(this.moduleId);
     console.log(idUser);
     this.lessonService
       .uploadLessonModule(idUser, this.moduleId, this.formData)
-      .subscribe((val) => {
-        console.log(val);
-        this.showDetailModule();
-      });
+      .subscribe(
+        (response) => {
+          if (response.code === 200 && response.result) {
+            this.toastService.emitSuccessMessage('Submitted', response.result);
+            this.showDetailModule();
+            this.showLessonModule();
+          }
+        },
+        (error: HttpErrorResponse) => {
+          this.toastService.emitHttpErrorMessage(
+            error,
+            'Failed to delete course type'
+          );
+        }
+      );
   }
   uploadExam() {
     console.log(this.moduleId);
@@ -217,5 +254,31 @@ export class DtlModuleComponent implements OnInit {
       `${Constants.BASE_URL}/report/attendance?idCourse=${this.courseId}&idModule=${this.moduleId}`,
       '_blank'
     );
+  }
+
+  deleteLesson(index: number) {
+    let idLesson = this.lesson[index].id;
+    this.confirmationService.confirm({
+      message: `Are you sure you want to delete lesson ?`,
+      header: 'Delete Confirm.',
+      icon: 'pi pi-exclamation-triangle',
+      accept: async () => {
+        try {
+          const response = await this.lessonService.deleteLessonModule(
+            idLesson
+          );
+          if (response.code === 200) {
+            this.toastService.emitSuccessMessage('Deleted', response.result);
+            this.showDetailModule();
+            this.showLessonModule();
+          }
+        } catch (error) {
+          this.toastService.emitHttpErrorMessage(
+            error,
+            'Failed to delete student'
+          );
+        }
+      },
+    });
   }
 }

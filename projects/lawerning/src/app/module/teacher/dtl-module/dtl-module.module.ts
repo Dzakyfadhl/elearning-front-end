@@ -15,6 +15,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClientModule } from '@angular/common/http';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 @NgModule({
   declarations: [DtlModuleComponent],
   imports: [
@@ -33,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     CalendarModule,
     FileUploadModule,
     HttpClientModule,
+    ConfirmDialogModule,
   ],
 })
 export class DtlModuleModule {}

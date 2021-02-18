@@ -12,7 +12,7 @@ export class DashboardTeacherComponent implements OnInit {
   constructor(private authService: AuthService, private route: Router) {}
 
   ngOnInit(): void {
-    if (this.authService.getLoginResponse().photoId == 'null') {
+    if (!this.authService.getLoginResponse().photoId) {
       this.photo = 'assets/images/default.png';
     } else {
       this.photo = `http://192.168.15.224:8080/file/${

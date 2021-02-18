@@ -32,7 +32,7 @@
 }
 
 /*  NOW */
-.header h2 {
+.header h3 {
   font-weight: bold;
   color: white;
   margin-left: 3rem;
@@ -68,6 +68,7 @@
 }
 .card-student .icon-student h3 {
   margin-top: 22px;
+  font-size: 25px;
   margin-left: 8px;
 }
 .card-student .icon-student h4 {
@@ -83,17 +84,19 @@
 }
 .card-course .icon-course h3 {
   margin-top: 22px;
+  font-size: 25px;
   margin-left: 8px;
 }
-.card-course-finish {
+.card-module {
   padding: 1rem;
   border-radius: 10px;
 }
-.card-course-finish img {
+.card-module img {
   width: 38%;
   height: 38%;
 }
-.card-course-finish .icon-course-finish h3 {
+.card-module .icon-module h3 {
   margin-top: 22px;
+  font-size: 25px;
   margin-left: 8px;
 }

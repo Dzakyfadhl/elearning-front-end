@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
@@ -19,6 +20,10 @@ export class ExamTeacherComponent implements OnInit {
   formData: FormData;
   file: string;
   moduleId: string;
+  date = new Date();
+  periodStart: Date;
+  periodEnd: Date;
+
   constructor(
     private auth: AuthService,
     private http: HttpClient,
@@ -50,6 +55,18 @@ export class ExamTeacherComponent implements OnInit {
         let idUser = this.auth.getLoginResponse().userId;
         this.examTeacher.createdBy = idUser;
         this.examTeacher.moduleId = value.moduleId;
+        const datePipe = new DatePipe('en-US');
+        let formated = datePipe.transform(
+          this.periodStart,
+          'yyyy-MM-dd HH:mm:ss'
+        );
+        let formatedEnd = datePipe.transform(
+          this.periodEnd,
+          'yyyy-MM-dd HH:mm:ss'
+        );
+
+        this.examTeacher.startTime = formated;
+        this.examTeacher.endTime = formatedEnd;
         console.log(JSON.stringify(this.examTeacher));
         data.append('body', JSON.stringify(this.examTeacher));
       });
@@ -58,6 +75,8 @@ export class ExamTeacherComponent implements OnInit {
     }
   }
   uploadExam() {
+    console.log(this.examTeacher.startTime);
+
     this.examService.uploadExamTeacher(this.formData).subscribe((val) => {
       console.log(val);
     });

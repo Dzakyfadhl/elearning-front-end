@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CourseTeacherResponse } from '../../../model/course-teacher-response';
+import { AuthService } from '../../../service/auth.service';
 import { CourseService } from '../../../service/course.service';
 
 @Component({
@@ -13,7 +14,13 @@ export class HomeTeacherComponent implements OnInit {
   totalModule = 0;
   totalStudent = 0;
   totalCourse = 0;
-  constructor(private courseService: CourseService, private router: Router) {}
+  firstName: string;
+  lastName: string;
+  constructor(
+    private courseService: CourseService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.showCourseTeacher();
@@ -21,6 +28,8 @@ export class HomeTeacherComponent implements OnInit {
 
   showCourseTeacher() {
     this.courseService.getCourseTeacher().subscribe((value) => {
+      this.firstName = this.authService.getLoginResponse().firstName;
+      this.lastName = this.authService.getLoginResponse().lastName;
       this.courses = value.result;
       console.log(this.courses);
       for (let i = 0; i < this.courses.length; i++) {

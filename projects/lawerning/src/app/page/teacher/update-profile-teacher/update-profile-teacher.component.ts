@@ -1,6 +1,7 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import Constants from '../../../constants/constant';
 import { ExperienceModel } from '../../../model/experience-model';
 import { PhotoRequest } from '../../../model/photo-request';
 import { TeacherProfileResponse } from '../../../model/teacher-dto/teacher-profile-response';
@@ -31,12 +32,12 @@ export class UpdateProfileTeacherComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.authService.getLoginResponse().photoId != 'null') {
-      this.photo = `http://192.168.15.224:8080/file/${
+    if (!this.authService.getLoginResponse().photoId) {
+      this.photo = `assets/images/default.png`;
+    } else {
+      this.photo = `${Constants.BASE_URL_FILE}/${
         this.authService.getLoginResponse().photoId
       }`;
-    } else {
-      this.photo = `assets/images/default.png`;
     }
     this.getDataProfile();
   }
@@ -48,6 +49,7 @@ export class UpdateProfileTeacherComponent implements OnInit {
       let data: FormData = new FormData();
       this.dataRequest.id = this.authService.getLoginResponse().photoId;
       this.dataRequest.userId = this.authService.getLoginResponse().userId;
+      this.dataRequest.type = 'USER_PHOTO';
 
       data.append('file', file);
       data.append('content', JSON.stringify(this.dataRequest));

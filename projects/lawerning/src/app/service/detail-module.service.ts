@@ -15,11 +15,14 @@ export class DetailModuleService {
 
   getDtlModuleTeacher(
     id: string
-  ): Observable<ResponseModel<DetailModuleResponse>> {
-    return this.http.get<ResponseModel<DetailModuleResponse>>(
-      `${Constants.BASE_URL}/module/${id}`
-    );
+  ): Promise<ResponseModel<DetailModuleResponse>> {
+    return this.http
+      .get<ResponseModel<DetailModuleResponse>>(
+        `${Constants.BASE_URL}/module/${id}`
+      )
+      .toPromise();
   }
+
   getDtlModule(id: string): Observable<ResponseModel<DetailModuleResponse>> {
     return this.http.get<ResponseModel<DetailModuleResponse>>(
       `${Constants.BASE_URL}/module/${id}`

@@ -399,6 +399,11 @@
   width: 40px;
   height: 40px;
 }
+.icon-delete img {
+  margin-top: 5px;
+  width: 30px;
+  height: 30px;
+}
 .file h5 {
   margin-top: 8px;
 }
@@ -411,5 +416,5 @@
   border-radius: 10px;
   padding: 1rem;
   background-color: #f7fcff;
-  border: none;
+  border: 1px solid black;
 }

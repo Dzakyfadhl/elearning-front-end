@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Constants from '../../../constants/constant';
 import { ExperienceModel } from '../../../model/experience-model';
 import { TeacherProfileResponse } from '../../../model/teacher-dto/teacher-profile-response';
 import { AuthService } from '../../../service/auth.service';
@@ -47,12 +48,12 @@ export class ProfileTeacherComponent implements OnInit {
   getProfileTeacher() {
     this.teacherService.getById().subscribe((value) => {
       this.profileTeacher = value.result;
-      console.log(this.profileTeacher.photoId);
+      console.log(value.result);
 
       if (!this.profileTeacher.photoId) {
         this.photo = `assets/images/default.png`;
       } else {
-        this.photo = `http://192.168.15.224:8080/file/${this.profileTeacher.photoId}`;
+        this.photo = `${Constants.BASE_URL_FILE}/${this.profileTeacher.photoId}`;
       }
     });
   }
@@ -96,7 +97,6 @@ export class ProfileTeacherComponent implements OnInit {
             'Submitted',
             'Success to update experience teacher'
           );
-          this.isDisplayEx = false;
         }
       },
       (error: HttpErrorResponse) => {

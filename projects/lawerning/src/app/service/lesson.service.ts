@@ -11,12 +11,12 @@ import { ResponseModel } from '../model/response-model';
 export class LessonService {
   constructor(private http: HttpClient) {}
 
-  getLessonModule(
-    idModule: string
-  ): Observable<ResponseModel<LessonResponse[]>> {
-    return this.http.get<ResponseModel<LessonResponse[]>>(
-      `${Constants.BASE_URL}/module/lesson/${idModule}`
-    );
+  getLessonModule(idModule: string): Promise<ResponseModel<LessonResponse[]>> {
+    return this.http
+      .get<ResponseModel<LessonResponse[]>>(
+        `${Constants.BASE_URL}/module/lesson/${idModule}`
+      )
+      .toPromise();
   }
 
   uploadLessonModule(
@@ -28,5 +28,13 @@ export class LessonService {
       `${Constants.BASE_URL}/module/lesson?idUser=${idUser}&idModule=${idModule}`,
       formData
     );
+  }
+
+  deleteLessonModule(id: string): Promise<ResponseModel<string>> {
+    return this.http
+      .delete<ResponseModel<string>>(
+        `${Constants.BASE_URL}/module/lesson/${id}`
+      )
+      .toPromise();
   }
 }

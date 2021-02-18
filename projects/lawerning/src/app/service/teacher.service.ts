@@ -42,8 +42,8 @@ export class TeacherService {
   }
 
   updatePhoto(data: FormData): Observable<ResponseModel<string>> {
-    return this.http.patch<ResponseModel<string>>(
-      `${Constants.BASE_URL}/file`,
+    return this.http.put<ResponseModel<string>>(
+      `${Constants.BASE_URL}/user/photo`,
       data
     );
   }
