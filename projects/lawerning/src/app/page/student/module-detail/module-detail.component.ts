@@ -73,14 +73,7 @@ export class ModuleDetailComponent implements OnInit {
 
       this.moduleId = value.id;
 
-      this.lessonService.getLessonModule(value.id).subscribe(
-        (dataLesson) => {
-          this.lessons = dataLesson.result;
-        },
-        (error) => {
-          this.lessons = [];
-        }
-      );
+      this.showLesson(value.id);
 
       this.examService.getDetailModuleExam(value.id).subscribe((dataExam) => {
         this.exams = dataExam.result;
@@ -126,6 +119,17 @@ export class ModuleDetailComponent implements OnInit {
       });
     });
     this.showDiscussion();
+  }
+
+  async showLesson(id: string) {
+    try {
+      const response = await this.lessonService.getLessonModule(id);
+      if (response.code === 200) {
+        this.lessons = response.result;
+      }
+    } catch (error) {
+      this.lessons = [];
+    }
   }
   prevPage() {
     this.location.back();
