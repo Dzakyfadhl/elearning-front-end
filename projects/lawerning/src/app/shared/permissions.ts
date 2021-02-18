@@ -7,6 +7,8 @@ export class Permissions {
         return true;
       } else if (route === '') {
         return true;
+      } else if (route == 'admin') {
+        return false;
       } else {
         return false;
       }

@@ -35,14 +35,11 @@ export class ModuleAvailableComponent implements OnInit {
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe((value) => {
-      console.log(value);
-
       this.courseId = value.courseId;
       this.isRegistered = value.isRegist;
 
       this.moduleService.getModule(value.courseId).subscribe((data) => {
         this.modules = data.result;
-        console.log(data.result);
 
         this.totalModule = this.modules.modules.length;
 
@@ -52,11 +49,9 @@ export class ModuleAvailableComponent implements OnInit {
 
         let oneDay = 1000 * 60 * 60 * 24;
         let day = Math.floor(diff / oneDay);
-        console.log('Day of year: ' + day);
 
         this.duration = Math.floor(day / 7);
         this.day = day % 7;
-        console.log(this.duration, 'week', this.day);
       });
     });
   }

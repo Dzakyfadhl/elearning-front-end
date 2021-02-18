@@ -11,6 +11,7 @@ import Constants from '../constants/constant';
 import { UpdateIsActiveRequestDTO } from '../model/update-isactive-request';
 import { AuthService } from './auth.service';
 import { ExperienceModel } from '../model/experience-model';
+import { TeacherAllResponse } from '../model/teacher-dto/teacher-all-response';
 
 @Injectable({
   providedIn: 'root',
@@ -78,8 +79,8 @@ export class TeacherService {
       data
     );
   }
-  getAllTeachers(): Observable<ResponseModel<TeacherForAdminDTO[]>> {
-    return this.http.get<ResponseModel<TeacherForAdminDTO[]>>(
+  getAllTeachers(): Observable<ResponseModel<TeacherAllResponse[]>> {
+    return this.http.get<ResponseModel<TeacherAllResponse[]>>(
       `${Constants.BASE_URL}/public/teachers`
     );
   }

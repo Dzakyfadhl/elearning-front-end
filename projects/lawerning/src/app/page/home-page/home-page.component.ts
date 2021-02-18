@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import Constants from '../../constants/constant';
 import { CourseAllResponse } from '../../model/course-all-response';
 import { TeacherForAdminDTO } from '../../model/teacher-dto/teacher-admin-response';
+import { TeacherAllResponse } from '../../model/teacher-dto/teacher-all-response';
 import { AuthService } from '../../service/auth.service';
 import { CourseService } from '../../service/course.service';
 import { TeacherService } from '../../service/teacher.service';
@@ -14,7 +15,7 @@ import { TeacherService } from '../../service/teacher.service';
 })
 export class HomePageComponent implements OnInit {
   courses: CourseAllResponse[];
-  mentors: TeacherForAdminDTO[];
+  mentors: TeacherAllResponse[];
   responsiveOptions;
   token: string;
   roleName: string;
@@ -61,10 +62,10 @@ export class HomePageComponent implements OnInit {
         console.log(this.mentors);
 
         this.mentors.forEach((val) => {
-          if (!val.idPhoto) {
-            val.idPhoto = 'assets/images/default.png';
+          if (!val.photoId) {
+            val.photoId = 'assets/images/default.png';
           } else {
-            val.idPhoto = `${Constants.BASE_URL_FILE}/${val.idPhoto}`;
+            val.photoId = `${Constants.BASE_URL_FILE}/${val.photoId}`;
           }
         });
       }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import Constants from '../../../constants/constant';
 import { AttendanceRequest } from '../../../model/attendance-request';
 import { DetailCourseResponse } from '../../../model/detail-course-response';
 import { AttendanceService } from '../../../service/attendance.service';
@@ -24,6 +25,7 @@ export class ModuleCourseComponent implements OnInit {
 
   dateObj = new Date();
   courseId: string;
+  studentId: string;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -36,22 +38,15 @@ export class ModuleCourseComponent implements OnInit {
   ngOnInit(): void {
     this.activeRoute.params.subscribe((val) => {
       this.courseId = val.courseId;
-      console.log(val);
-
-      console.log(this.courseId);
+      this.studentId = this.auth.getLoginResponse().userRoleId;
 
       this.showModule();
     });
-
-    // this.activeRoute.params.subscribe((value) => {
-    //   this.course = value;
-    // });
   }
 
   showModule() {
     this.moduleService.getModuleStudent(this.courseId).subscribe((value) => {
       this.modules = value.result;
-      console.log(this.modules);
 
       this.modules.modules.forEach((data) => {
         let dateStartMerge = `${data.schedule.date} ${data.schedule.startTime}`;
@@ -79,9 +74,13 @@ export class ModuleCourseComponent implements OnInit {
       this.checkValidate();
 
       let val = (this.countTemp / this.total) * 100;
-      this.value = Math.ceil(val);
+      this.value = Math.floor(val);
+      if (isNaN(this.value)) {
+        this.value = 0;
+      }
     });
   }
+
   checkValidate() {
     this.modules.modules.forEach((value) => {
       let datetime = value.schedule.date + ' ' + value.schedule.endTime;
@@ -108,8 +107,6 @@ export class ModuleCourseComponent implements OnInit {
   viewForum(index: number) {
     let data = this.modules.modules[index];
     let id = data.id;
-    console.log(id);
-
     this.route.navigate([`/module/`, id]);
   }
 
@@ -117,11 +114,8 @@ export class ModuleCourseComponent implements OnInit {
     let dataAttendance = new AttendanceRequest();
     dataAttendance.idModule = moduleId;
     dataAttendance.idStudent = this.auth.getLoginResponse().userRoleId;
-    this.attendanceService
-      .attendanceStudent(dataAttendance)
-      .subscribe((val) => {
-        console.log(val);
-        this.showModule();
-      });
+    this.attendanceService.attendanceStudent(dataAttendance).subscribe((_) => {
+      this.showModule();
+    });
   }
 }

@@ -30,14 +30,10 @@ export class ScoreDetailComponent implements OnInit {
     this.reportService.getStudentReporting().subscribe(
       (value) => {
         this.reports = value.result;
-        console.log(this.reports);
       },
       (error) => {
         if (error.error.code != 200) {
           this.reports = [];
-          console.log(this.reports.length);
-
-          console.log(error);
         }
       }
     );

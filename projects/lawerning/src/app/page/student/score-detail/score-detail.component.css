@@ -21,14 +21,14 @@ div img {
   margin: auto;
 }
 .head-card {
-  background-color: #232946;
+  background-color: #323096;
 }
 :host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page:hover {
   border-radius: 50%;
 }
 :host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
   border-radius: 50%;
-  background-color: #232946;
+  background-color: #323096;
   color: white;
 }
 @media (min-width: 411px) {
@@ -36,6 +36,6 @@ div img {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    background-color: #232946;
+    background-color: #323096;
   }
 }

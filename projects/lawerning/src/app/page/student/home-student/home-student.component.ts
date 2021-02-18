@@ -42,7 +42,6 @@ export class HomeStudentComponent implements OnInit {
     this.courseService.getAvailableCourse().subscribe(
       (value) => {
         this.courses = value.result;
-        console.log(this.courses);
 
         if (this.courses.length > 0) {
           this.isValid = true;
@@ -68,7 +67,6 @@ export class HomeStudentComponent implements OnInit {
           this.data = this.category.filter(
             (item, i, array) => array.indexOf(item) === i
           );
-          console.log(this.data);
         }
       },
       (error) => {
@@ -85,7 +83,6 @@ export class HomeStudentComponent implements OnInit {
   }
   onChange(newValue) {
     this.selectedCourse = newValue;
-    console.log(this.selectedCourse);
     if (this.selectedCourse == 'all') {
       this.courseFiltering = this.courses;
     } else {

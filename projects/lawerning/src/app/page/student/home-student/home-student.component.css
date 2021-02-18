@@ -16,17 +16,17 @@
 }
 
 .category-badge.category-name {
-  background: rgb(206, 255, 255);
+  background: rgb(228, 255, 255);
   color: #323096;
   font-weight: bold;
 }
 .category-badge {
   border-radius: 2px;
-  padding: 0.25rem;
+  padding: 0.4rem;
   text-transform: uppercase;
   font-weight: bold;
   height: 20px;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.3px;
 }
 .custom-select {
@@ -64,7 +64,6 @@
   /* max-height: 50px; */
   color: #323096;
   background-color: #b5b4dc;
-
   /* width: 50% !important; */
   border: none;
 }
@@ -104,7 +103,6 @@ a {
 .card-body a :hover {
   color: #3f5ae6;
   cursor: pointer;
-
   text-decoration-line: underline;
   text-decoration-color: #3f5ae6;
 }

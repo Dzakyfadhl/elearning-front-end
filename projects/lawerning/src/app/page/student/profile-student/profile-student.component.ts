@@ -41,12 +41,10 @@ export class ProfileStudentComponent implements OnInit {
       .getCourseProgress(this.auth.getLoginResponse().userRoleId)
       .subscribe((data) => {
         this.mymodules = data.result;
-        console.log(this.mymodules);
       });
 
     this.studentService.getProfile().subscribe((value) => {
       this.studentProfile = value.result;
-      console.log(this.studentProfile.idPhoto);
 
       if (!this.studentProfile.idPhoto) {
         this.photo = `assets/images/default.png`;

@@ -73,6 +73,9 @@ h3 {
   background-color: grey;
   border: none;
 }
+.text-date {
+  color: rgb(214, 214, 214);
+}
 a :hover {
   color: white;
   background-color: #232946;
@@ -103,16 +106,16 @@ a :hover {
   .card-header-module {
     border-radius: 10px;
     background-image: url("../../../../assets/images/banner_course.png");
-    height: 100%;
+    height: auto;
     background-size: 100%;
     background-repeat: no-repeat;
     padding: 1rem;
   }
-
-  /* .btn-title{
-        width: 7rem;
-        height: 2rem;
-    } */
+  .module-title {
+    max-width: 68%;
+    font-size: 1rem;
+    padding-top: 1rem;
+  }
   .left-content {
     width: 6rem;
     background-color: #323096;
@@ -146,6 +149,11 @@ a :hover {
   }
   .right-content {
     width: 100%;
+  }
+  .module-title {
+    max-width: 64%;
+    font-size: 2rem;
+    padding-top: 2.5rem;
   }
 }
 @media (min-width: 1024px) {

@@ -83,6 +83,9 @@ a h5:hover {
   background-color: rgb(1, 94, 122);
   font-weight: bold;
 }
+.image-photo {
+  border-radius: 13px;
+}
 .card {
   width: 20rem;
   height: 25rem;

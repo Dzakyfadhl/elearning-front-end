@@ -1,16 +1,3 @@
-.header-module {
-  border-radius: 15px;
-  background-image: url("../../../../assets/images/banner_course.png");
-  height: 20rem;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  padding-top: 1rem;
-  padding-bottom: 3rem;
-}
-.header-module h1 {
-  color: #f4caae;
-  font-weight: bold;
-}
 .header-module p {
   color: white;
 }
@@ -86,11 +73,45 @@ a {
 .button-r {
   background-color: #232946;
 }
-@media screen and(max-width: 991px) {
+@media (min-width: 411px) {
   .header-module {
-    background-color: #232946;
+    border-radius: 15px;
+    background-image: url("../../../../assets/images/banner_course.png");
+    height: auto;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding-top: 1rem;
+    padding-bottom: 0rem;
   }
-  .header-module h2 {
-    color: #f9bc60;
+  .title-module-name {
+    max-width: 70%;
+    padding-top: 0rem;
+    padding-left: 0.6rem;
+  }
+  .title-module-name h1 {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+@media (min-width: 768px) {
+  .header-module {
+    border-radius: 15px;
+    background-image: url("../../../../assets/images/banner_course.png");
+    height: 20rem;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+  }
+  .title-module-name {
+    max-width: 70%;
+    padding-top: 2rem;
+    padding-left: 0.5rem;
+  }
+  .title-module-name h1 {
+    color: white;
+    font-size: 2rem;
   }
 }

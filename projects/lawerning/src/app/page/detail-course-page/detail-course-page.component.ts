@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { DetailCourseResponse } from '../../model/detail-course-response';
 import { ModuleService } from '../../service/module.service';
 import { Location } from '@angular/common';
+import { filter } from 'rxjs/operators';
 @Component({
   selector: 'app-detail-course-page',
   templateUrl: './detail-course-page.component.html',
@@ -15,7 +16,8 @@ export class DetailCoursePageComponent implements OnInit {
   constructor(
     private activeRoute: ActivatedRoute,
     private moduleService: ModuleService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -35,5 +37,12 @@ export class DetailCoursePageComponent implements OnInit {
 
   prev() {
     this.location.back();
+    // let prevUrl: string;
+    // this.router.events
+    //   .pipe(filter((event) => event instanceof NavigationEnd))
+    //   .subscribe((event: NavigationEnd) => {
+    //     prevUrl = event.url;
+    //     console.log(prevUrl);
+    //   });
   }
 }

@@ -37,6 +37,9 @@
   border-radius: 10px;
   border: 1px solid rgb(214, 214, 214);
 }
+.start-date {
+  color: rgb(214, 214, 214);
+}
 /* 
 .row .progress {
   background-color: white !important;
@@ -116,6 +119,9 @@ a {
 } */
 
 @media (min-width: 411px) {
+  .teacher-name {
+    max-width: 180px;
+  }
   .header-home {
     position: absolute;
     height: auto;
@@ -156,11 +162,17 @@ a {
     border-radius: 10px 10px 0px 0px;
     height: 175px;
   }
+  .teacher-name {
+    max-width: 200px;
+  }
 }
 
 @media (min-width: 992px) {
 }
 @media (min-width: 1024px) {
+  .teacher-name {
+    max-width: 190px;
+  }
   .card-img-top {
     height: 185px;
   }

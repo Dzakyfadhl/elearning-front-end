@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Constants from '../../../constants/constant';
 import { CourseProgressResponse } from '../../../model/course-dto/course-progress-response';
 import { CourseStudentResponse } from '../../../model/course-student-response';
 import { AuthService } from '../../../service/auth.service';
@@ -54,10 +55,10 @@ export class CoursesStudentComponent implements OnInit {
           } else {
             data.teacher.experience = data.teacher.experience;
           }
-          if (data.teacher.photoId == '') {
+          if (!data.teacher.photoId) {
             data.teacher.photoId = 'assets/images/default.png';
           } else {
-            data.teacher.photoId = `http://192.168.15.224:8080/file/${data.teacher.photoId}`;
+            data.teacher.photoId = `${Constants.BASE_URL_FILE}/${data.teacher.photoId}`;
           }
           if (month >= periodMonth && day > periodDay) {
             this.isCompleted = true;
@@ -67,8 +68,6 @@ export class CoursesStudentComponent implements OnInit {
             data.isCompleted = this.isCompleted;
           }
         });
-        // console.log(this.courses);
-        console.log(this.valueProgress);
       });
   }
   viewModule(index: number) {

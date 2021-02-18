@@ -40,7 +40,6 @@ export class UpdateProfileStudentComponent implements OnInit {
     } else {
       this.photo = `assets/images/default.png`;
     }
-    console.log(this.studentProfile);
   }
 
   fileChange(event) {
@@ -55,7 +54,6 @@ export class UpdateProfileStudentComponent implements OnInit {
 
       data.append('file', file);
       data.append('content', JSON.stringify(this.dataRequest));
-      console.log(file);
 
       let reader = new FileReader();
       reader.readAsDataURL(file);
@@ -92,16 +90,23 @@ export class UpdateProfileStudentComponent implements OnInit {
     }
 
     if (this.isEdited == true) {
-      this.studentService.updatePhoto(this.formData).subscribe((val) => {
-        console.log(val);
-      });
+      this.studentService.updatePhoto(this.formData).subscribe(
+        (val) => {
+          this.dataProfile();
+        },
+        (error) => {
+          this.dataProfile();
+          this.toastService.emitHttpErrorMessage(error, 'Failure');
+        }
+      );
     }
-    console.log(this.isEdited);
     this.studentService.updateProfile(requestProfile).subscribe(
       (value) => {
+        this.dataProfile();
         this.toastService.emitSuccessMessage('Successfully', value.result);
       },
       (error) => {
+        this.dataProfile();
         this.toastService.emitHttpErrorMessage(error.error, 'Failed');
       }
     );

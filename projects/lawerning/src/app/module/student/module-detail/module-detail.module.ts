@@ -12,17 +12,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { OrderListModule } from 'primeng/orderlist';
 import { ChipModule } from 'primeng/chip';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { TooltipModule } from 'primeng/tooltip';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 @NgModule({
   declarations: [ModuleDetailComponent],
   imports: [
     CommonModule,
     ModuleDetailRoutingModule,
+    ConfirmDialogModule,
     TabViewModule,
     ButtonModule,
     FieldsetModule,
     FileUploadModule,
     FormsModule,
     HttpClientModule,
+    TooltipModule,
     OrderListModule,
     ChipModule,
     ScrollPanelModule,

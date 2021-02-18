@@ -24,7 +24,7 @@
   color: #232946;
 }
 .head-module {
-  background-color: #f4caae;
+  background-color: #ddf0ff;
 }
 .head-module h5 {
   color: #232946;
@@ -47,8 +47,23 @@
   font-weight: bold;
 }
 
+.title-badge.status-title {
+  background: #ddf0ff;
+  color: teal;
+}
+.title-badge {
+  border-radius: 2px;
+  padding: 0.5em 0.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  height: 20px;
+  font-size: 14px;
+
+  letter-spacing: 0.3px;
+}
+
 .label-student {
-  background-color: #f4caae;
+  background-color: #ddf0ff;
   color: #232946;
   height: 25px;
 }
@@ -61,7 +76,7 @@
   font-size: 12px;
 }
 .title {
-  color: #f4caae;
+  color: #ddf0ff;
   margin: 5px;
 }
 .date {
@@ -98,6 +113,9 @@
 .forum {
   /* border: 1px solid; */
   width: 60%;
+}
+.delete :hover {
+  cursor: pointer;
 }
 :host ::ng-deep .p-tabview .p-tabview-nav {
   border: none;
@@ -137,6 +155,9 @@
     background-color: red;
 } */
 @media (min-width: 411px) {
+  .detail-title {
+    max-width: 10%;
+  }
   .forum {
     /* border: 1px solid; */
     width: 100%;
@@ -170,6 +191,9 @@
   }
 }
 @media (min-width: 768px) {
+  .detail-title {
+    max-width: 95%;
+  }
   .view-module {
     overflow-y: scroll;
     margin-top: 0px;
@@ -209,7 +233,7 @@
     /* justify-content: start; */
   }
   .label {
-    background-color: #f9bc60;
+    background-color: #ddf0ff;
     color: #232946;
     height: 25px;
   }

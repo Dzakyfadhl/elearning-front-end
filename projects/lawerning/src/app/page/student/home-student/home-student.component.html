@@ -3,17 +3,10 @@
     <div class="header-home col-lg-12">
       <h1 class="text-center m-4">Available Course</h1>
       <div class="text-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="50"
-          height="50"
-          fill="currentColor"
-          class="avail bi bi-book mb-3"
-          viewBox="0 0 16 16"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="avail bi bi-book mb-3"
+          viewBox="0 0 16 16">
           <path
-            d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"
-          />
+            d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
         </svg>
       </div>
 
@@ -26,23 +19,15 @@
           <span class="p-input-icon-left" styleClass="width-input">
             <i class="pi pi-search"></i>
 
-            <input
-              type="text"
-              pInputText
-              placeholder="Search category..."
-              (input)="searchKey()"
-              [(ngModel)]="keyString"
-            />
+            <input type="text" pInputText placeholder="Search category..." (input)="searchKey()"
+              [(ngModel)]="keyString" />
           </span>
         </div>
       </div>
       <!-- <div class="d-flex justify-content-center"> -->
       <div class="container justify-content-center">
         <!-- <p-scrollPanel [style]="{ width: '100%', height: '50px' }"> -->
-        <div
-          *ngIf="isValid == true"
-          class="row categoryy justify-content-center"
-        >
+        <div *ngIf="isValid == true" class="row categoryy justify-content-center">
           <div class="col-auto p-2">
             <a *ngIf="selectedCourse != 'all'" (click)="onChange('all')">
               <button class="invalid-all btn btn-secondary">All</button>
@@ -52,18 +37,10 @@
             </a>
           </div>
           <div class="col-auto p-2" *ngFor="let c of data">
-            <button
-              *ngIf="selectedCourse != c"
-              (click)="onChange(c)"
-              class="invalid-selected btn btn-secondary"
-            >
+            <button *ngIf="selectedCourse != c" (click)="onChange(c)" class="invalid-selected btn btn-secondary">
               {{ c }}
             </button>
-            <button
-              *ngIf="selectedCourse == c"
-              (click)="onChange(c)"
-              class="valid-selected btn btn-info"
-            >
+            <button *ngIf="selectedCourse == c" (click)="onChange(c)" class="valid-selected btn btn-info">
               {{ c }}
             </button>
           </div>
@@ -79,33 +56,18 @@
     <div class="col-lg-12">
       <div class="container">
         <div class="row">
-          <div
-            class="col-lg-4 col-md-6 col-sm-12 mt-3 mb-3"
-            *ngFor="let c of courseFiltering; let i = index"
-          >
+          <div class="col-lg-4 col-md-6 col-sm-12 mt-3 mb-3" *ngFor="let c of courseFiltering; let i = index">
             <div class="custom-skeleton p-p-4">
               <p-skeleton width="100%" height="150px"></p-skeleton>
               <div class="d-flex flex-column">
-                <p-skeleton
-                  class="pb-2 pt-2"
-                  width="17rem"
-                  height="2rem"
-                ></p-skeleton>
+                <p-skeleton class="pb-2 pt-2" width="17rem" height="2rem"></p-skeleton>
                 <div class="d-flex flex-row">
-                  <p-skeleton
-                    class="pr-3"
-                    width="4rem"
-                    height="2rem"
-                  ></p-skeleton>
+                  <p-skeleton class="pr-3" width="4rem" height="2rem"></p-skeleton>
 
                   <p-skeleton width="10rem" height="2rem"></p-skeleton>
                 </div>
                 <div class="d-flex justify-content-between pt-2">
-                  <p-skeleton
-                    class="pr-3"
-                    width="7rem"
-                    height="2rem"
-                  ></p-skeleton>
+                  <p-skeleton class="pr-3" width="7rem" height="2rem"></p-skeleton>
 
                   <p-skeleton width="2rem" height="2rem"></p-skeleton>
                 </div>
@@ -128,54 +90,36 @@
     <div class="col-lg-12">
       <div class="container">
         <div class="row justify-content-center">
-          <div
-            class="col-lg-4 col-md-6 col-sm-12 mt-3 mb-3"
-            *ngFor="let c of courseFiltering; let i = index"
-          >
+          <div class="col-lg-4 col-md-6 col-sm-12 mt-3 mb-3" *ngFor="let c of courseFiltering; let i = index">
             <div class="card mb-1 bg-white">
               <div *ngIf="c.isRegist == true" class="img">
-                <img
-                  src="assets/images/banner_course_registered.png"
-                  class="card-img-top"
-                  alt="..."
-                />
+                <img src="assets/images/banner_course_registered.png" class="card-img-top" alt="..." />
               </div>
 
               <div *ngIf="c.isRegist == false" class="img">
-                <img
-                  src="assets/images/banner_course.png"
-                  class="card-img-top"
-                  alt="..."
-                />
+                <img src="assets/images/banner_course.png" class="card-img-top" alt="..." />
               </div>
 
               <div class="card-body">
                 <a (click)="viewModule(i)">
-                  <h5
-                    class="card-title text-truncate"
-                    style="max-width: 19rem"
-                    pTooltip="{{ c.typeName }}"
-                    tooltipPosition="top"
-                    tooltipStyleClass="custom-tooltip"
-                  >
+                  <h5 class="card-title text-truncate" style="max-width: 19rem" pTooltip="{{ c.typeName }}"
+                    tooltipPosition="top" tooltipStyleClass="custom-tooltip">
                     {{ c.typeName }}
                   </h5>
                 </a>
+                <!-- <div class="d-flex flex-row"> -->
 
                 <span class="category-badge category-name">{{
                   c.categoryName
-                }}</span>
+                  }}</span>
+                <h6 class="mt-2 text-secondary">Start on {{c.periodStart | date: 'MMMM'}}</h6>
+                <!-- </div> -->
+
                 <!-- <h6 class="text-secondary"></h6> -->
                 <hr />
 
                 <div class="d-flex flex-row">
-                  <img
-                    [src]="c.teacher.photoId"
-                    height="60"
-                    class="rounded-circle"
-                    width="60"
-                    alt=""
-                  />
+                  <img [src]="c.teacher.photoId" height="60" class="rounded-circle" width="60" alt="" />
                   <div class="d-flex flex-column pl-2 m-2">
                     <h6 class="teacher-name">
                       {{ c.teacher.firstName }} {{ c.teacher.lastName }},
