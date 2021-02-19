@@ -203,7 +203,7 @@
   letter-spacing: 0.3px;
 }
 .exam-header {
-  margin-bottom: 10px;
+  max-width: 100%;
 }
 /* .exam-span {
   width: 10px;
@@ -294,16 +294,21 @@
   border-radius: 6px;
   color: #a9b7c4;
 }
-.icon-schedule img {
+
+/* .icon-date h6{
+  margin
+} */
+/* .icon-schedule img {
   width: 20px;
   height: 23px;
+
 }
 
 .icon-schedule h6 {
   margin-top: 1px;
-  margin-left: 12px;
+  margin-left: 5px;
   font-size: 18px;
-}
+} */
 .card-text {
   color: #858699;
 }
@@ -329,14 +334,19 @@
   height: 30px;
   margin-top: 10px;
 }
-
+.head-card {
+  background-color: #323096;
+}
+.head-card h3 {
+  color: whitesmoke;
+}
 .header .icon-module img {
   width: 30px;
   height: 30px;
   margin-top: 10px;
 }
 .header h6 {
-  font-size: 30px;
+  font-size: 28px;
   color: white;
   margin-left: 15px;
 }
@@ -416,5 +426,6 @@
   border-radius: 10px;
   padding: 1rem;
   background-color: #f7fcff;
-  border: 1px solid black;
+  border: 1px solid rgb(240, 240, 240);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

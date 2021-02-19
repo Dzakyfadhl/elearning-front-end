@@ -50,13 +50,14 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <div
       class="col-lg-4 col-md-6 col-sm-12 mt-2 mb-3"
       *ngFor="let c of courses; let i = index"
     >
       <a (click)="viewModule(i)">
-        <div class="card-header shadow">
+        <div class="card-header mb-2">
           <h5 class="card-title text-truncate" style="max-width: 250px">
             {{ c.name }}
           </h5>

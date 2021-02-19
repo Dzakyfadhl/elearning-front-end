@@ -4,18 +4,7 @@
       <div class="d-flex justify-content-evenly mt-3">
         <div class="d-flex justify-content-between">
           <a>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="35"
-              height="35"
-              fill="currentColor"
-              class="bi bi-arrow-left-circle-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"
-              />
-            </svg>
+            <fa-icon [icon]="['fas', 'arrow-circle-left']" size="2x"></fa-icon>
           </a>
           <h6>{{ dtlModule.title }}</h6>
         </div>
@@ -51,12 +40,11 @@
             <div class="col-lg-12">
               <h4>Schedule this course</h4>
               <div class="icon-schedule d-flex justify-content-evenly">
-                <span>
-                  <img src="assets/images/calender1.svg" />
-                </span>
-                <h6>{{ dtlModule.schedule.date | date: "dd MMM yyyy" }}</h6>
-                <span class="ml-2"><img src="assets/images/time1.svg" /> </span>
-                <h6>
+                <fa-icon [icon]="['fas', 'calendar-alt']" size="lg" style="color:#a9b7c4;"></fa-icon>
+                <h6 style="margin-left: 5px; margin-top: 2px; margin-right: 5px;">{{ dtlModule.schedule.date | date: "dd
+                  MMM yyyy" }}</h6>
+                <fa-icon [icon]="['fas', 'clock']" size="lg" style="color:#a9b7c4;"></fa-icon>
+                <h6 style="margin-left: 5px; margin-top: 1px;">
                   {{ dtlModule.schedule.startTime | slice: 0:5 }}
                   -
                   {{ dtlModule.schedule.endTime | slice: 0:5 }}
@@ -74,33 +62,18 @@
                   <div class="col-lg-12 text-center">
                     <div class="input-group mb-3">
                       <div class="custom-file">
-                        <input
-                          type="file"
-                          class="custom-file-input"
-                          (change)="fileChange($event)"
-                          accept=".pdf,.doc,.docx"
-                        />
-                        <label class="custom-file-label" for="inputGroupFile01"
-                          >Choose file</label
-                        >
-                        <label
-                          *ngIf="file != undefined"
-                          class="custom-file-label"
-                          for="inputGroupFile01"
-                          >{{ file }}</label
-                        >
+                        <input type="file" class="custom-file-input" (change)="fileChange($event)"
+                          accept=".pdf,.doc,.docx" />
+                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        <label *ngIf="file != undefined" class="custom-file-label" for="inputGroupFile01">{{ file
+                          }}</label>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-12 text-center mt-2">
                     <h6 class="mb-3">Accepted file types: .doc .docx .pdf</h6>
-                    <button
-                      pButton
-                      class="p-button-secondary"
-                      label="Upload"
-                      icon="pi pi-upload"
-                      (click)="upload()"
-                    ></button>
+                    <button pButton class="p-button-secondary" label="Upload" icon="pi pi-upload"
+                      (click)="upload()"></button>
                   </div>
                 </div>
               </div>
@@ -109,10 +82,7 @@
               <h4>Lesson Files</h4>
             </div>
             <div class="col-lg-12">
-              <div
-                class="col-lg-12 mt-2 shadow-sm p-3 mb-2 bg-white rounded"
-                *ngFor="let l of lesson; let i = index"
-              >
+              <div class="col-lg-12 mt-2 shadow-sm p-3 mb-2 bg-white rounded" *ngFor="let l of lesson; let i = index">
                 <div class="d-flex justify-content-between">
                   <div class="d-flex justify-content-evenly">
                     <div class="icon-file">
@@ -125,10 +95,7 @@
                     </div>
                   </div>
                   <div class="icon-delete">
-                    <p-confirmDialog
-                      header="Delete Lesson"
-                      icon="pi pi-exclamation-triangle"
-                    ></p-confirmDialog>
+                    <p-confirmDialog header="Delete Lesson" icon="pi pi-exclamation-triangle"></p-confirmDialog>
                     <a (click)="deleteLesson(i)">
                       <img src="assets/images/img/icon-delete.svg" alt="" />
                     </a>
@@ -152,58 +119,54 @@
                 </div>
                 <div class="d-flex justify-content-end">
                   <a (click)="uploadExam()">
-                    <button
-                      pButton
-                      type="button"
-                      label="Add Exam"
-                      icon="pi pi-plus"
-                    ></button>
+                    <button pButton type="button" label="Add Exam">
+                      <fa-icon [icon]="['fas', 'plus-square']" size="xl" style="margin-right: 5px;">
+                      </fa-icon>
+                    </button>
                   </a>
                 </div>
               </div>
               <div class="content-exam">
                 <div class="row">
-                  <div
-                    class="col-lg-6 col-md-6 col-sm-12 mt-2 mb-3"
-                    *ngFor="let m of exam; let i = index"
-                  >
+                  <div class="col-lg-6 col-md-6 col-sm-12 mt-2 mb-3" *ngFor="let m of exam; let i = index">
                     <div class="card-header">
-                      <div class="exam-header d-flex flex-row">
-                        <div class="icon-exam">
-                          <img src="assets/images/img/file_exam.svg" />
-                        </div>
-                        <div class="d-flex flex-column">
-                          <div class="d-flex justify-content-between">
-                            <div class="d-flex flex-row">
-                              <h6 class="ml-2">{{ m.type }}</h6>
-                            </div>
+                      <div class="d-flex justify-content-between">
+                        <div class="exam-header d-flex flex-row">
+                          <div class="icon-exam">
+                            <img src="assets/images/img/file_exam.svg" />
+                          </div>
 
-                            <h6 class="ml-2">{{ m.type }}</h6>
+                          <div class="d-flex flex-column">
+                            <div class="d-flex justify-content-between">
+                              <div class="d-flex flex-row">
+                                <h6 class="ml-2">{{ m.type }}</h6>
+                              </div>
+                            </div>
+                            <h4 class="ml-2">{{ m.title }}</h4>
+                            <div class="deadlineTime">
+                              <h6>
+                                Deadline:
+                                {{ m.endTime | date: "dd MMM yyyy HH:mm a" }}
+                              </h6>
+                            </div>
                           </div>
-                          <h4 class="ml-2">{{ m.title }}</h4>
-                          <div class="deadlineTime">
-                            <h6>
-                              Deadline:
-                              {{ m.endTime | date: "dd MMM yyyy HH:mm a" }}
-                            </h6>
-                          </div>
+                        </div>
+
+                        <div class="icon-delete">
+                          <p-confirmDialog header="Delete Lesson" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+                          <a (click)="deleteExam(i)">
+                            <img src="assets/images/img/icon-delete.svg" alt="" />
+                          </a>
                         </div>
                       </div>
                       <p class="text-truncate" style="max-width: 50rem">
                         {{ m.description }}
                       </p>
                       <div class="d-flex justify-content-space-evenly">
-                        <span class="status-exam-badge status-exam"
-                          >Progress</span
-                        >
+                        <span class="status-exam-badge status-exam">Progress</span>
                         <div style="margin-left: 10px">
-                          <button
-                            pButton
-                            (click)="viewExamSubmission(i)"
-                            type="button"
-                            class="p-button-sm"
-                            label="SUBMISSION"
-                          ></button>
+                          <button pButton (click)="viewExamSubmission(i)" type="button" class="p-button-sm"
+                            label="SUBMISSION"></button>
                         </div>
                       </div>
                     </div>
@@ -221,42 +184,58 @@
             </div>
           </ng-template>
           <div class="content-attendance">
-            <div class="d-flex justify-content-end p-3">
-              <button
-                (click)="downloadReport()"
-                pButton
-                type="button"
-                icon="pi pi-file"
-                label="Download"
-                class="download p-button-secondary p-button-sm"
-              ></button>
+            <!-- <div class="d-flex justify-content-end mb-3">
+              <button (click)="downloadReport()" pButton type="button" label="Download"
+                class="download p-button-info p-button-sm p-button-outlined p-button-rounded">
+                <fa-icon [icon]="['fas', 'download']" size="xl" style="margin-right: 5px;"></fa-icon>
+              </button>
+            </div> -->
+
+            <div class="d-flex justify-content-end mb-3">
+              <button (click)="downloadReport()" pButton type="button" label="Download"
+                class="download p-button-info p-button-sm p-button-outlined p-button-rounded">
+                <fa-icon [icon]="['fas', 'download']" size="xl" style="margin-right: 5px;"></fa-icon>
+              </button>
             </div>
-            <p-table
-              #dt1
-              [value]="studentAttendance"
-              [paginator]="true"
-              [scrollable]="true"
-              scrolHeight="100%"
-              [rows]="10"
-              [showCurrentPageReport]="true"
-              styleClass="p-datatable-striped"
+            <div class="d-flex justify-content-end mb-3">
+              <button pButton type="button" label="Download"
+                class="download p-button-info p-button-sm p-button-outlined p-button-rounded">
+                <fa-icon [icon]="['fas', 'download']" size="xl" style="margin-right: 5px;"></fa-icon>
+              </button>
+            </div>
+            <div class="head-card d-flex justify-content-between p-3">
+              <h3>Report Attendance</h3>
+              <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+                  placeholder="Search" />
+              </span>
+            </div>
+            <p-table #dt1 [value]="studentAttendance" [paginator]="true" [scrollable]="true" scrolHeight="100%"
+              [rows]="10" [showCurrentPageReport]="true" styleClass="p-datatable-striped"
               currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
-              [globalFilterFields]="['firstName']"
-            >
+              [globalFilterFields]="['firstName']">
               <ng-template pTemplate="header">
                 <tr>
+
+                  <th width="20px">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                  </th>
                   <th width="10px">No</th>
                   <th width="60px">Name</th>
                   <th width="60px">Date</th>
                   <th width="60px">Status</th>
                 </tr>
               </ng-template>
-              <ng-template
-                pTemplate="body"
-                let-studentAttendance
-                let-rowIndex="rowIndex"
-              >
+              <ng-template pTemplate="body" let-studentAttendance let-rowIndex="rowIndex">
                 <tr>
+                  <!-- <td *ngIf="studentAttendance.attendanceIsVerified === true" width="20px">
+                    <p-tableCheckbox [value]="studentAttendance" [disabled]="true"></p-tableCheckbox>
+                  </td> -->
+                  <td width="20px">
+                    <p-tableCheckbox [disabled]="studentAttendance.attendanceIsVerified === true"
+                      [value]="studentAttendance"></p-tableCheckbox>
+                  </td>
                   <td width="20px">
                     {{ rowIndex + 1 }}
                   </td>
@@ -264,62 +243,40 @@
                     {{ studentAttendance.firstName }}
                     {{ studentAttendance.lastName }}
                   </td>
-                  <td
-                    width="60px"
-                    *ngIf="
+                  <td width="60px" *ngIf="
                       studentAttendance.attendanceId != null &&
                       studentAttendance.attendanceIsVerified == true
-                    "
-                  >
+                    ">
                     {{ studentAttendance.attendanceTime }}
                   </td>
-                  <td
-                    width="60px"
-                    *ngIf="
+                  <td width="60px" *ngIf="
                       studentAttendance.attendanceId != null &&
                       studentAttendance.attendanceIsVerified == false
-                    "
-                  >
+                    ">
                     {{ studentAttendance.attendanceTime }}
                   </td>
 
-                  <td
-                    width="60px"
-                    *ngIf="
+                  <td width="60px" *ngIf="
                       studentAttendance.attendanceId == null &&
                       studentAttendance.attendanceIsVerified == false
-                    "
-                  >
+                    ">
                     -
                   </td>
 
                   <td width="60px">
-                    <span
-                      *ngIf="
+                    <span *ngIf="
                         studentAttendance.attendanceId != null &&
                         studentAttendance.attendanceIsVerified == true
-                      "
-                      class="status-badge status-present"
-                      >PRESENT</span
-                    >
-                    <span
-                      *ngIf="
+                      " class="status-badge status-present">PRESENT</span>
+                    <span *ngIf="
                         studentAttendance.attendanceId == null &&
                         studentAttendance.attendanceIsVerified == false
-                      "
-                      class="status-badge status-absent"
-                      >ABSENT</span
-                    >
+                      " class="status-badge status-absent">ABSENT</span>
                     <a (click)="confirmAttendance(rowIndex)">
-                      <p-button
-                        *ngIf="
+                      <p-button *ngIf="
                           studentAttendance.attendanceId != null &&
                           studentAttendance.attendanceIsVerified == false
-                        "
-                        label="Confirm"
-                        icon="pi pi-check"
-                        styleClass="p-button-success"
-                      >
+                        " label="Confirm" icon="pi pi-check" styleClass="p-button-success">
                       </p-button>
                     </a>
                   </td>
@@ -339,13 +296,7 @@
             <div class="forum" *ngFor="let m of discussion">
               <div class="row">
                 <div class="image">
-                  <img
-                    [src]="m.photoId"
-                    height="50"
-                    width="50"
-                    class="rounded-circle"
-                    alt=""
-                  />
+                  <img [src]="m.photoId" height="50" width="50" class="rounded-circle" alt="" />
                 </div>
                 <div class="fullname">
                   <h5 class="m-3 text-bold text-info">
@@ -356,17 +307,11 @@
                   <p *ngIf="m.day > m.dayPost" class="time m-3 text-secondary">
                     {{ m.createdAt | date: "dd/MM/yyyy H:m" }}
                   </p>
-                  <p
-                    *ngIf="m.day == m.dayPost && m.durationHour > 0"
-                    class="time m-3 text-secondary"
-                  >
+                  <p *ngIf="m.day == m.dayPost && m.durationHour > 0" class="time m-3 text-secondary">
                     {{ m.durationHour }} hour {{ m.durationMinute }} minute ago
                   </p>
 
-                  <p
-                    *ngIf="m.day == m.dayPost && m.durationHour == 0"
-                    class="time m-3 text-secondary"
-                  >
+                  <p *ngIf="m.day == m.dayPost && m.durationHour == 0" class="time m-3 text-secondary">
                     {{ m.durationMinute }} minute ago
                   </p>
                 </div>
@@ -384,40 +329,21 @@
           </div>
           <div class="col-lg-12 mt-2">
             <div class="d-flex justify-content-space-evenly">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="icon-comment bi bi-chat-left-text-fill mt-2 mr-2"
-                viewBox="0 0 16 16"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                class="icon-comment bi bi-chat-left-text-fill mt-2 mr-2" viewBox="0 0 16 16">
                 <path
-                  d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"
-                />
+                  d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z" />
               </svg>
 
               <div class="textarea input-group mb-3">
-                <textarea
-                  class="form-control"
-                  aria-label="With textarea"
-                  placeholder="Write a comment..."
-                  style="height: 40px"
-                  [(ngModel)]="content"
-                ></textarea>
+                <textarea class="form-control" aria-label="With textarea" placeholder="Write a comment..."
+                  style="height: 40px" [(ngModel)]="content"></textarea>
               </div>
               <a class="send" (click)="sendContent()">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="25"
-                  height="25"
-                  fill="currentColor"
-                  class="bi bi-cursor-fill"
-                  viewBox="0 0 16 16"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                  class="bi bi-cursor-fill" viewBox="0 0 16 16">
                   <path
-                    d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"
-                  />
+                    d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z" />
                 </svg>
               </a>
             </div>

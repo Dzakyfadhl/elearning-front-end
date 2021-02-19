@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Toast } from 'primeng/toast';
 import { Gender } from '../../model/gender';
 import { StudentRegisterRequest } from '../../model/student-register-request';
 import { AuthService } from '../../service/auth.service';
 import { StudentService } from '../../service/student.service';
+import { ToastService } from '../../service/toast.service';
 
 @Component({
   selector: 'app-register-page',
@@ -18,7 +20,8 @@ export class RegisterPageComponent implements OnInit {
   constructor(
     private router: Router,
     private auth: AuthService,
-    private studentService: StudentService
+    private studentService: StudentService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -30,9 +33,16 @@ export class RegisterPageComponent implements OnInit {
     console.log(this.studentRegister.gender);
     console.log(this.studentRegister.firstName);
 
-    this.studentService.insertStudent(this.studentRegister).subscribe((val) => {
-      console.log(val);
-      this.router.navigateByUrl('/login');
-    });
+    this.studentService.insertStudent(this.studentRegister).subscribe(
+      (response) => {
+        if (response.code === 200 && response.result) {
+          this.toastService.emitSuccessMessage('Submitted', 'Register success');
+          this.router.navigateByUrl('login');
+        }
+      },
+      (error) => {
+        this.toastService.emitHttpErrorMessage(error, 'Failed to registered');
+      }
+    );
   }
 }

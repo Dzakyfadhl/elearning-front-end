@@ -9,6 +9,19 @@ import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { CardModule } from 'primeng/card';
+import {
+  FaIconLibrary,
+  FontAwesomeModule,
+} from '@fortawesome/angular-fontawesome';
+import {
+  faEnvelope,
+  faMobileAlt,
+  faCalendarAlt,
+  faClock,
+  faFileAlt,
+  faDownload,
+} from '@fortawesome/free-solid-svg-icons';
+import { InputTextModule } from 'primeng/inputtext';
 @NgModule({
   declarations: [ModuleTeacherComponent],
   imports: [
@@ -20,6 +33,19 @@ import { CardModule } from 'primeng/card';
     ButtonModule,
     TableModule,
     CardModule,
+    FontAwesomeModule,
+    InputTextModule,
   ],
 })
-export class ModuleTeacherModule {}
+export class ModuleTeacherModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(
+      faEnvelope,
+      faMobileAlt,
+      faCalendarAlt,
+      faClock,
+      faFileAlt,
+      faDownload
+    );
+  }
+}

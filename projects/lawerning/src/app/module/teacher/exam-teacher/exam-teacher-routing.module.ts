@@ -4,7 +4,7 @@ import { ExamTeacherComponent } from '@bootcamp-lawerning-page/teacher/exam-teac
 
 const routes: Routes = [
   {
-    path: 'teacher/exam/:moduleId',
+    path: 'exam/:moduleId',
     component: ExamTeacherComponent,
   },
 ];

@@ -17,12 +17,15 @@
   width: 42px;
   height: 50px;
 }
+.icon-email {
+  margin-left: 7px;
+}
 .icon-time img {
   width: 20px;
   height: 20px;
 }
 .icon-time h6 {
-  margin-left: 10px;
+  margin-left: 5px;
   font-size: 18px;
   color: #b0aeae;
 }
@@ -44,9 +47,9 @@
 }
 
 .icon-calender h6 {
-  margin-top: 2px;
+  /* margin-top: 2px; */
   font-size: 18px;
-  margin-left: 10px;
+  margin-left: 5px;
   color: #b0aeae;
 }
 .header-module h2 {
@@ -266,5 +269,24 @@ a {
   margin-left: 5px;
 }
 .icon-phone {
-  margin-left: 5px;
+  margin-left: 7px;
+  margin-top: 1px;
+}
+.card-enrolled {
+  border-radius: 10px;
+
+  border: 1px solid rgb(240, 240, 240);
+}
+.status-verified {
+  background: #c8e6c9;
+  color: #256029;
+}
+
+.status-verified {
+  border-radius: 2px;
+  padding: 0.45em 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0.3px;
 }

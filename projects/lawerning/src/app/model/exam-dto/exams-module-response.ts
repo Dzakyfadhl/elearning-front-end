@@ -10,4 +10,5 @@ export class ExamsModuleResponseDTO {
   endTime: string;
   fileId: string;
   fileName: string;
+  isPast: boolean;
 }

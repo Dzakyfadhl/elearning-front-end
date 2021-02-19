@@ -105,6 +105,11 @@ export class DtlModuleComponent implements OnInit {
       .getDetailModuleExam(this.moduleId)
       .subscribe((val) => {
         this.exam = val.result;
+        // if(this.exam.length > 0){
+        //   this.exam.forEach(data => {
+
+        //   });
+        // }
         console.log(this.exam);
       });
   }
@@ -124,6 +129,7 @@ export class DtlModuleComponent implements OnInit {
       .getAttendanceStudent(this.courseId, this.moduleId)
       .subscribe((val) => {
         this.studentAttendance = val.result;
+        console.log(this.studentAttendance);
       });
   }
   confirmAttendance(index: number) {
@@ -207,7 +213,7 @@ export class DtlModuleComponent implements OnInit {
     dataObj.idExam = examId;
     dataObj.title = examTitle;
 
-    this.router.navigate([`/submission/teacher`], { queryParams: dataObj });
+    this.router.navigate([`teacher/submission`], { queryParams: dataObj });
   }
 
   fileChange(event) {
@@ -256,6 +262,31 @@ export class DtlModuleComponent implements OnInit {
     );
   }
 
+  deleteExam(index: number) {
+    let idExam = this.exam[index].id;
+    this.confirmationService.confirm({
+      message: `Are you sure you want to delete exam ?`,
+      header: 'Delete Confirm.',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        try {
+          this.moduleExamService.deleteExamTeacher(idExam).subscribe((val) => {
+            if (val.code === 200) {
+              this.toastService.emitSuccessMessage('Deleted', val.result);
+              this.showDetailModule();
+              this.showLessonModule();
+              this.showModuleExam();
+            }
+          });
+        } catch (error) {
+          this.toastService.emitHttpErrorMessage(
+            error,
+            'Failed to delete exam'
+          );
+        }
+      },
+    });
+  }
   deleteLesson(index: number) {
     let idLesson = this.lesson[index].id;
     this.confirmationService.confirm({

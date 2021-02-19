@@ -76,4 +76,20 @@ export class StudentService {
       data
     );
   }
+
+  verifyStudent(
+    studentCourseId: string,
+    teacherId: string
+  ): Observable<ResponseModel<StudentByCourseIdResponse>> {
+    return this.http.put<ResponseModel<StudentByCourseIdResponse>>(
+      `${Constants.BASE_URL}/teacher/verify/student`,
+      null,
+      {
+        params: {
+          studentCourseId: studentCourseId,
+          teacherId: teacherId,
+        },
+      }
+    );
+  }
 }

@@ -73,7 +73,7 @@ export class ExamService {
 
   deleteExamTeacher(id: string): Observable<ResponseModel<string>> {
     return this.http.delete<ResponseModel<string>>(
-      `${Constants.BASE_URL}/exam/id/${id}`
+      `${Constants.BASE_URL}/exam/${id}`
     );
   }
 

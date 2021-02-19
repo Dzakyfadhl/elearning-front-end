@@ -9,7 +9,7 @@ const routes: Routes = [
     component: UpdateProfileTeacherComponent,
   },
   {
-    path: 'update/password/teacher',
+    path: 'update/password',
     component: ChangePasswordComponent,
   },
 ];

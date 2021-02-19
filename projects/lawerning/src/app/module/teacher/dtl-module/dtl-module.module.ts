@@ -16,6 +16,16 @@ import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import {
+  FaIconLibrary,
+  FontAwesomeModule,
+} from '@fortawesome/angular-fontawesome';
+import {
+  faArrowCircleLeft,
+  faCalendarAlt,
+  faClock,
+  faPlusSquare,
+} from '@fortawesome/free-solid-svg-icons';
 @NgModule({
   declarations: [DtlModuleComponent],
   imports: [
@@ -35,6 +45,11 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     FileUploadModule,
     HttpClientModule,
     ConfirmDialogModule,
+    FontAwesomeModule,
   ],
 })
-export class DtlModuleModule {}
+export class DtlModuleModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faClock, faCalendarAlt, faArrowCircleLeft, faPlusSquare);
+  }
+}

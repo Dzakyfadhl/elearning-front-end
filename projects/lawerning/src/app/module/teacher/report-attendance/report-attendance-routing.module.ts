@@ -4,7 +4,7 @@ import { ReportAttendanceComponent } from '@bootcamp-lawerning-page/teacher/repo
 
 const routes: Routes = [
   {
-    path: 'report/attendance',
+    path: ' report/attendance',
     component: ReportAttendanceComponent,
   },
 ];

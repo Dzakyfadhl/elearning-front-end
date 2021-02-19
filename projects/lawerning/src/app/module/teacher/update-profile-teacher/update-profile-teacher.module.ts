@@ -10,7 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ChangePasswordComponent } from '../../../page/teacher/change-password/change-password.component';
 
 @NgModule({
-  declarations: [UpdateProfileTeacherComponent, ChangePasswordComponent],
+  declarations: [UpdateProfileTeacherComponent],
   imports: [
     CommonModule,
     UpdateProfileTeacherRoutingModule,

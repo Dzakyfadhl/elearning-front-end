@@ -5,7 +5,7 @@ import { UpdateProfileTeacherComponent } from '@bootcamp-lawerning-page/teacher/
 
 const routes: Routes = [
   {
-    path: 'profile-teacher',
+    path: 'profile',
     component: ProfileTeacherComponent,
   },
 ];
