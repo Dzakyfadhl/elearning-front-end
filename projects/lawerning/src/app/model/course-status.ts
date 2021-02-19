@@ -1,5 +1,5 @@
 export enum CourseStatus {
-  REGISTRATION = 'Registration',
-  ONGOING = 'Ongoing',
-  FINISHED = 'Finished',
+  REGISTRATION = 'REGISTRATION',
+  ONGOING = 'ONGOING',
+  FINISHED = 'FINISHED',
 }

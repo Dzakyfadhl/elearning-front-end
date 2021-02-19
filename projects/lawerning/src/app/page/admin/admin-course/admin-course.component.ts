@@ -8,9 +8,11 @@ import { CourseCategoryResponseDTO } from '../../../model/course-category-dto/co
 import { CourseAdminResponseDTO } from '../../../model/course-dto/course-admin-response';
 import { CourseCreateRequestDTO } from '../../../model/course-dto/course-create-request';
 import { CourseUpdateRequestDTO } from '../../../model/course-dto/course-update-request';
+import { UpdateStatusRequestDTO } from '../../../model/course-dto/update-course-status-request';
 import { CourseStatus } from '../../../model/course-status';
 import { CourseTypeResponse } from '../../../model/course-type-dto/course-type-response';
 import { DeleteCourseTypeRequestDTO } from '../../../model/course-type-dto/delete-course-type-request';
+import { Gender } from '../../../model/gender';
 import { TeacherForAdminDTO } from '../../../model/teacher-dto/teacher-admin-response';
 import { AuthService } from '../../../service/auth.service';
 import { CourseCategoryService } from '../../../service/course-category.service';
@@ -224,6 +226,51 @@ export class AdminCourseComponent implements OnInit {
         }
       },
     });
+  }
+
+  async updateStatusCourse() {
+    let arrStatus: UpdateStatusRequestDTO[] = [];
+
+    const now = new Date();
+    console.log(now);
+
+    this.courses.forEach((val) => {
+      let statusUpdate = new UpdateStatusRequestDTO();
+      statusUpdate.id = val.id;
+      statusUpdate.updatedBy = this.auth.getLoginResponse().userId;
+      let formatStart = new Date(val.periodStart);
+      let formatEnd = new Date(val.periodEnd);
+      // console.log(formatStart);
+      // console.log(formatEnd);
+
+      if (now >= formatStart && now < formatEnd) {
+        statusUpdate.status = CourseStatus.ONGOING;
+        arrStatus.push(statusUpdate);
+        console.log('a');
+      } else if (now < formatStart) {
+        statusUpdate.status = CourseStatus.REGISTRATION;
+        arrStatus.push(statusUpdate);
+        console.log('b');
+      } else if (now >= formatEnd) {
+        statusUpdate.status = CourseStatus.FINISHED;
+        arrStatus.push(statusUpdate);
+        console.log('c');
+      }
+    });
+    console.log(arrStatus);
+
+    try {
+      const response = await this.courseService.updateCoursesStatus(arrStatus);
+      if (response.code === 200) {
+        this.toastService.emitSuccessMessage('Success', response.result);
+        this.defineCourses();
+      }
+    } catch (error) {
+      this.toastService.emitHttpErrorMessage(
+        error,
+        'Failed to update status courses'
+      );
+    }
   }
 
   hideModal() {

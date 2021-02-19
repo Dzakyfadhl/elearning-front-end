@@ -2,15 +2,16 @@
     <p-toolbar styleClass="my-4">
         <div>
             <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-raised p-button-success mr-2" (click)="openNew()"></button>
+            <button pButton pRipple label="Update All Status" icon="pi pi-pencil" class="p-button-raised p-button-warning mr-2" (click)="updateStatusCourse()"></button>
         </div>
     </p-toolbar>
 
     <p-table #dt [value]="courses" [rows]="10" [paginator]="true" [globalFilterFields]="[
       'code',
       'typeName',
-      'category',
-      'periodeStart',
-      'periodeEnd',
+      'categoryName',
+      'periodStart',
+      'periodEnd',
       'status',
       'capacity'
     ]" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [scrollable]="true" scrollWidth="100%" [showCurrentPageReport]="true">
@@ -19,12 +20,8 @@
                 <h5 class="p-m-0">Manage Courses</h5>
                 <span class="p-input-icon-left">
           <i class="pi pi-search"></i>
-          <input
-            pInputText
-            type="text"
-            (input)="dt.filterGlobal($event.target.value, 'contains')"
-            placeholder="Search..."
-          />
+          <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+            placeholder="Search..." />
         </span>
             </div>
         </ng-template>
@@ -38,17 +35,17 @@
                     Cours Type
                     <p-sortIcon field="typeName"></p-sortIcon>
                 </th>
-                <th pSortableColumn="category" style="width: 10rem">
+                <th pSortableColumn="categoryName" style="width: 10rem">
                     Category
-                    <p-sortIcon field="category"></p-sortIcon>
+                    <p-sortIcon field="categoryName"></p-sortIcon>
                 </th>
-                <th pSortableColumn="periodeStart" style="width: 10rem">
+                <th pSortableColumn="periodStart" style="width: 10rem">
                     Periode Start
-                    <p-sortIcon field="periodeStart"></p-sortIcon>
+                    <p-sortIcon field="periodStart"></p-sortIcon>
                 </th>
-                <th pSortableColumn="periodeEnd" style="width: 10rem">
+                <th pSortableColumn="periodEnd" style="width: 10rem">
                     Periode End
-                    <p-sortIcon field="periodeEnd"></p-sortIcon>
+                    <p-sortIcon field="periodEnd"></p-sortIcon>
                 </th>
                 <th pSortableColumn="status" style="width: 10rem">
                     Status
@@ -58,9 +55,8 @@
                     Capacity
                     <p-sortIcon field="capacity"></p-sortIcon>
                 </th>
-                <th pSortableColumn="description" style="width: 17rem">
+                <th style="width: 17rem">
                     Description
-                    <p-sortIcon field="description"></p-sortIcon>
                 </th>
                 <th class="text-center" style="width: 10rem">Action</th>
             </tr>
@@ -100,293 +96,124 @@
             <div class="p-field col-md-9">
                 <label for="code">Code</label>
                 <input type="text" pInputText id="code" [(ngModel)]="createRequest.code" required autofocus />
-                <small class="p-error" *ngIf="submitted && !createRequest.code">Code is required.</small
-        >
-      </div>
-      <div class="p-field col-md-3">
-        <label for="capacity">Capacity</label>
-        <input
-          type="text"
-          pInputText
-          id="capacity"
-          [(ngModel)]="createRequest.capacity"
-          required
-          autofocus
-        />
-        <small class="p-error" *ngIf="submitted && !createRequest.code"
-          >Capacity is required.</small
-        >
-      </div>
-    </div>
+                <small class="p-error" *ngIf="submitted && !createRequest.code">Code is required.</small>
+            </div>
+            <div class="p-field col-md-3">
+                <label for="capacity">Capacity</label>
+                <input type="text" pInputText id="capacity" [(ngModel)]="createRequest.capacity" required autofocus />
+                <small class="p-error" *ngIf="submitted && !createRequest.code">Capacity is required.</small>
+            </div>
+        </div>
 
-    <div class="p-field mt-3">
-      <label for="courseTypes">Course Type</label>
-      <p-dropdown
-        [(ngModel)]="selectedType"
-        [options]="courseTypes"
-        placeholder="Select Course Type"
-        optionLabel="name"
-        optionValue="id"
-      ></p-dropdown>
-      <small class="p-error" *ngIf="submitted && !createRequest.courseTypeId"
-        >Course Type is required.</small
-      >
-    </div>
-    <div class="row mt-3">
-      <div class="p-field col">
-        <label for="teachers">Teacher</label>
-        <p-dropdown
-          [(ngModel)]="selectedTeacher"
-          [options]="teacherVal"
-          placeholder="Select Teacher"
-          optionLabel="value"
-          optionValue="key"
-        ></p-dropdown>
-        <small class="p-error" *ngIf="submitted && !createRequest.teacherId"
-          >Teacher is required.</small
-        >
-      </div>
+        <div class="p-field mt-3">
+            <label for="courseTypes">Course Type</label>
+            <p-dropdown [(ngModel)]="selectedType" [options]="courseTypes" placeholder="Select Course Type" optionLabel="name" optionValue="id"></p-dropdown>
+            <small class="p-error" *ngIf="submitted && !createRequest.courseTypeId">Course Type is required.</small>
+        </div>
+        <div class="row mt-3">
+            <div class="p-field col">
+                <label for="teachers">Teacher</label>
+                <p-dropdown [(ngModel)]="selectedTeacher" [options]="teacherVal" placeholder="Select Teacher" optionLabel="value" optionValue="key"></p-dropdown>
+                <small class="p-error" *ngIf="submitted && !createRequest.teacherId">Teacher is required.</small>
+            </div>
 
-      <div class="p-field col">
-        <label for="categories">Category</label>
-        <p-dropdown
-          [(ngModel)]="selectedCategory"
-          [options]="categories"
-          placeholder="Select Category"
-          optionLabel="name"
-          optionValue="id"
-        ></p-dropdown>
-        <small
-          class="p-error"
-          *ngIf="submitted && !createRequest.courseCategoryId"
-          >Category is required.</small
-        >
-      </div>
-    </div>
+            <div class="p-field col">
+                <label for="categories">Category</label>
+                <p-dropdown [(ngModel)]="selectedCategory" [options]="categories" placeholder="Select Category" optionLabel="name" optionValue="id"></p-dropdown>
+                <small class="p-error" *ngIf="submitted && !createRequest.courseCategoryId">Category is required.</small>
+            </div>
+        </div>
 
-    <div class="row mt-3">
-      <div class="p-field col-md-6">
-        <label for="periodStart">Period Start</label>
-        <p-calendar
-          [(ngModel)]="startTime"
-          [showIcon]="true"
-          appendTo="body"
-        ></p-calendar>
-        <small class="p-error" *ngIf="submitted && !startTime"
-          >Period Start is required.</small
-        >
-      </div>
-      <div class="p-field col-md-6">
-        <label for="periodEnd">Period End</label>
-        <p-calendar
-          [(ngModel)]="endTime"
-          [showIcon]="true"
-          appendTo="body"
-        ></p-calendar>
-        <small class="p-error" *ngIf="submitted && !endTime"
-          >Period End is required.</small
-        >
-      </div>
-    </div>
-    <div class="p-field mt-3">
-      <label for="description">Description</label>
-      <textarea
-        [rows]="3"
-        [cols]="30"
-        pInputTextarea
-        id="description"
-        autoResize="autoResize"
-        [(ngModel)]="createRequest.description"
-      ></textarea>
-      <small class="p-error" *ngIf="submitted && !createRequest.description"
-        >Description is required.</small
-      >
-    </div>
-  </ng-template>
+        <div class="row mt-3">
+            <div class="p-field col-md-6">
+                <label for="periodStart">Period Start</label>
+                <p-calendar [(ngModel)]="startTime" [showIcon]="true" appendTo="body"></p-calendar>
+                <small class="p-error" *ngIf="submitted && !startTime">Period Start is required.</small>
+            </div>
+            <div class="p-field col-md-6">
+                <label for="periodEnd">Period End</label>
+                <p-calendar [(ngModel)]="endTime" [showIcon]="true" appendTo="body"></p-calendar>
+                <small class="p-error" *ngIf="submitted && !endTime">Period End is required.</small>
+            </div>
+        </div>
+        <div class="p-field mt-3">
+            <label for="description">Description</label>
+            <textarea [rows]="3" [cols]="30" pInputTextarea id="description" autoResize="autoResize" [(ngModel)]="createRequest.description"></textarea>
+            <small class="p-error" *ngIf="submitted && !createRequest.description">Description is required.</small>
+        </div>
+    </ng-template>
 
-  <ng-template pTemplate="footer">
-    <button
-      pButton
-      pRipple
-      label="Cancel"
-      icon="pi pi-times"
-      class="p-button-text"
-      (click)="hideModal()"
-    ></button>
-    <button
-      pButton
-      pRipple
-      label="Submit"
-      icon="pi pi-check"
-      class="p-button-text"
-      (click)="createCourse()"
-    ></button>
-  </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideModal()"></button>
+        <button pButton pRipple label="Submit" icon="pi pi-check" class="p-button-text" (click)="createCourse()"></button>
+    </ng-template>
 </p-dialog>
 
 <!-- Modal Edit -->
-<p-dialog
-  [(visible)]="isEditModalVisible"
-  [style]="{ width: '950px' }"
-  header="Edit Course"
-  maximizable="true"
-  [modal]="true"
-  styleClass="p-fluid"
->
-  <ng-template pTemplate="content">
-    <div class="row mt-3">
-      <div class="p-field col-md-9">
-        <label for="code">Code</label>
-        <input
-          type="text"
-          pInputText
-          id="code"
-          [(ngModel)]="updateRequest.code"
-          required
-          autofocus
-        />
-        <small class="p-error" *ngIf="submitted && !updateRequest.code"
-          >Code is required.</small
-        >
-      </div>
-      <div class="p-field col-md-3">
-        <label for="capacity">Capacity</label>
-        <input
-          type="text"
-          pInputText
-          id="capacity"
-          [(ngModel)]="updateRequest.capacity"
-          required
-          autofocus
-        />
-        <small class="p-error" *ngIf="submitted && !updateRequest.code"
-          >Capacity is required.</small
-        >
-      </div>
-    </div>
+<p-dialog [(visible)]="isEditModalVisible" [style]="{ width: '950px' }" header="Edit Course" maximizable="true" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="row mt-3">
+            <div class="p-field col-md-9">
+                <label for="code">Code</label>
+                <input type="text" pInputText id="code" [(ngModel)]="updateRequest.code" required autofocus />
+                <small class="p-error" *ngIf="submitted && !updateRequest.code">Code is required.</small>
+            </div>
+            <div class="p-field col-md-3">
+                <label for="capacity">Capacity</label>
+                <input type="text" pInputText id="capacity" [(ngModel)]="updateRequest.capacity" required autofocus />
+                <small class="p-error" *ngIf="submitted && !updateRequest.code">Capacity is required.</small>
+            </div>
+        </div>
 
-    <div class="row mt-3">
-      <div class="p-field col">
-        <label for="courseTypes">Course Type</label>
-        <p-dropdown
-          [(ngModel)]="updateRequest.courseTypeId"
-          [options]="courseTypes"
-          placeholder="Select Course Type"
-          optionLabel="name"
-          optionValue="id"
-        ></p-dropdown>
-        <small class="p-error" *ngIf="submitted && !updateRequest.courseTypeId"
-          >Course Type is required.</small
-        >
-      </div>
-      <div class="p-field col">
-        <label for="courseStatus">Status</label>
-        <p-dropdown
-          [(ngModel)]="updateRequest.status"
-          [options]="courseStatus"
-          placeholder="Select Status"
-          optionLabel="value"
-          optionValue="key"
-        ></p-dropdown>
-        <small class="p-error" *ngIf="submitted && !updateRequest.status"
-          >Status is required.</small
-        >
-      </div>
-    </div>
-    <div class="row mt-3">
-      <div class="p-field col">
-        <label for="teachers">Teacher</label>
-        <p-dropdown
-          [(ngModel)]="updateRequest.teacherId"
-          [options]="teacherVal"
-          placeholder="Select Teacher"
-          optionLabel="value"
-          optionValue="key"
-        ></p-dropdown>
-        <small class="p-error" *ngIf="submitted && !updateRequest.teacherId"
-          >Teacher is required.</small
-        >
-      </div>
+        <div class="row mt-3">
+            <div class="p-field col">
+                <label for="courseTypes">Course Type</label>
+                <p-dropdown [(ngModel)]="updateRequest.courseTypeId" [options]="courseTypes" placeholder="Select Course Type" optionLabel="name" optionValue="id"></p-dropdown>
+                <small class="p-error" *ngIf="submitted && !updateRequest.courseTypeId">Course Type is required.</small>
+            </div>
+            <div class="p-field col">
+                <label for="courseStatus">Status</label>
+                <p-dropdown [(ngModel)]="updateRequest.status" [options]="courseStatus" placeholder="Select Status" optionLabel="value" optionValue="key"></p-dropdown>
+                <small class="p-error" *ngIf="submitted && !updateRequest.status">Status is required.</small>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="p-field col">
+                <label for="teachers">Teacher</label>
+                <p-dropdown [(ngModel)]="updateRequest.teacherId" [options]="teacherVal" placeholder="Select Teacher" optionLabel="value" optionValue="key"></p-dropdown>
+                <small class="p-error" *ngIf="submitted && !updateRequest.teacherId">Teacher is required.</small>
+            </div>
 
-      <div class="p-field col">
-        <label for="categories">Category</label>
-        <p-dropdown
-          [(ngModel)]="updateRequest.courseCategoryId"
-          [options]="categories"
-          placeholder="Select Category"
-          optionLabel="name"
-          optionValue="id"
-        ></p-dropdown>
-        <small
-          class="p-error"
-          *ngIf="submitted && !updateRequest.courseCategoryId"
-          >Category is required.</small
-        >
-      </div>
-    </div>
+            <div class="p-field col">
+                <label for="categories">Category</label>
+                <p-dropdown [(ngModel)]="updateRequest.courseCategoryId" [options]="categories" placeholder="Select Category" optionLabel="name" optionValue="id"></p-dropdown>
+                <small class="p-error" *ngIf="submitted && !updateRequest.courseCategoryId">Category is required.</small>
+            </div>
+        </div>
 
-    <div class="row mt-3">
-      <div class="p-field col-md-6">
-        <label for="periodStart">Period Start</label>
-        <p-calendar
-          [(ngModel)]="updateRequest.periodStart"
-          [showIcon]="true"
-          appendTo="body"
-          hourFormat="24"
-          dateFormat="yy-mm-dd"
-        ></p-calendar>
-        <small class="p-error" *ngIf="submitted && !updateRequest.periodStart"
-          >Period Start is required.</small
-        >
-      </div>
-      <div class="p-field col-md-6">
-        <label for="periodEnd">Period End</label>
-        <p-calendar
-          [(ngModel)]="updateRequest.periodEnd"
-          [showIcon]="true"
-          appendTo="body"
-          hourFormat="24"
-          dateFormat="yy-mm-dd"
-        ></p-calendar>
-        <small class="p-error" *ngIf="submitted && !updateRequest.periodEnd"
-          >Period End is required.</small
-        >
-      </div>
-    </div>
-    <div class="p-field mt-3">
-      <label for="description">Description</label>
-      <textarea
-        [rows]="3"
-        [cols]="30"
-        pInputTextarea
-        id="description"
-        autoResize="autoResize"
-        [(ngModel)]="updateRequest.description"
-      ></textarea>
-      <small class="p-error" *ngIf="submitted && !updateRequest.description"
-        >Description is required.</small
-      >
-    </div>
-  </ng-template>
+        <div class="row mt-3">
+            <div class="p-field col-md-6">
+                <label for="periodStart">Period Start</label>
+                <p-calendar [(ngModel)]="updateRequest.periodStart" [showIcon]="true" appendTo="body" hourFormat="24" dateFormat="yy-mm-dd"></p-calendar>
+                <small class="p-error" *ngIf="submitted && !updateRequest.periodStart">Period Start is required.</small>
+            </div>
+            <div class="p-field col-md-6">
+                <label for="periodEnd">Period End</label>
+                <p-calendar [(ngModel)]="updateRequest.periodEnd" [showIcon]="true" appendTo="body" hourFormat="24" dateFormat="yy-mm-dd"></p-calendar>
+                <small class="p-error" *ngIf="submitted && !updateRequest.periodEnd">Period End is required.</small>
+            </div>
+        </div>
+        <div class="p-field mt-3">
+            <label for="description">Description</label>
+            <textarea [rows]="3" [cols]="30" pInputTextarea id="description" autoResize="autoResize" [(ngModel)]="updateRequest.description"></textarea>
+            <small class="p-error" *ngIf="submitted && !updateRequest.description">Description is required.</small>
+        </div>
+    </ng-template>
 
-  <ng-template pTemplate="footer">
-    <button
-      pButton
-      pRipple
-      label="Cancel"
-      icon="pi pi-times"
-      class="p-button-text"
-      (click)="hideModal()"
-    ></button>
-    <button
-      pButton
-      pRipple
-      label="Submit"
-      icon="pi pi-check"
-      class="p-button-text"
-      (click)="updateCourse()"
-    ></button>
-  </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideModal()"></button>
+        <button pButton pRipple label="Submit" icon="pi pi-check" class="p-button-text" (click)="updateCourse()"></button>
+    </ng-template>
 </p-dialog>
 
 <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

@@ -8,6 +8,7 @@ import { CourseAdminResponseDTO } from '../model/course-dto/course-admin-respons
 import { CourseCreateRequestDTO } from '../model/course-dto/course-create-request';
 import { CourseProgressResponse } from '../model/course-dto/course-progress-response';
 import { CourseUpdateRequestDTO } from '../model/course-dto/course-update-request';
+import { UpdateStatusRequestDTO } from '../model/course-dto/update-course-status-request';
 import { CourseStudentResponse } from '../model/course-student-response';
 import { CourseTeacherResponse } from '../model/course-teacher-response';
 import { DeleteCourseTypeRequestDTO } from '../model/course-type-dto/delete-course-type-request';
@@ -105,6 +106,14 @@ export class CourseService {
   ): Promise<ResponseModel<string>> {
     return this.http
       .patch<ResponseModel<string>>(`${Constants.BASE_URL}/course`, data)
+      .toPromise();
+  }
+
+  updateCoursesStatus(
+    data: UpdateStatusRequestDTO[]
+  ): Promise<ResponseModel<string>> {
+    return this.http
+      .patch<ResponseModel<string>>(`${Constants.BASE_URL}/course/status`, data)
       .toPromise();
   }
 }
