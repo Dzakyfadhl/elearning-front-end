@@ -4,6 +4,7 @@ import { ConfirmationService } from 'primeng/api';
 import { CourseTypeCreateRequest } from '../../../model/course-type-dto/course-type-create-request';
 import { CourseTypeResponse } from '../../../model/course-type-dto/course-type-response';
 import { CourseTypeUpdateRequestDTO } from '../../../model/course-type-dto/course-type-update-request';
+import { UpdateIsActiveRequestDTO } from '../../../model/update-isactive-request';
 import { AuthService } from '../../../service/auth.service';
 import { CourseTypeService } from '../../../service/course-type.service';
 import { ToastService } from '../../../service/toast.service';
@@ -125,6 +126,42 @@ export class AdminCourseTypeComponent implements OnInit {
             this.toastService.emitHttpErrorMessage(
               error,
               'Failed to delete course type'
+            );
+          }
+        );
+      },
+    });
+  }
+
+  updateActive(courseType: CourseTypeResponse) {
+    let request = new UpdateIsActiveRequestDTO();
+    request.id = courseType.id;
+    request.updatedBy = this.auth.getLoginResponse().userId;
+    let flag: string;
+
+    if (courseType.active) {
+      flag = 'in active';
+      request.status = false;
+    } else {
+      flag = 'active';
+      request.status = true;
+    }
+    this.confirmationService.confirm({
+      message: `Are you sure you want to ${flag} ${courseType.code} ?`,
+      header: 'Update Active Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.courseTypeService.updateIsActive(request).subscribe(
+          (response) => {
+            if (response.code === 200 && response.result) {
+              this.toastService.emitSuccessMessage('Deleted', response.result);
+              this.defineCourseType();
+            }
+          },
+          (error: HttpErrorResponse) => {
+            this.toastService.emitHttpErrorMessage(
+              error,
+              'Failed to update active subject category'
             );
           }
         );

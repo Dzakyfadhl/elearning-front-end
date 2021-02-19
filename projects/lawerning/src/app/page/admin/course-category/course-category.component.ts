@@ -4,6 +4,7 @@ import { ConfirmationService } from 'primeng/api';
 import { CourseCategoryCreateRequestDTO } from '../../../model/course-category-dto/course-category-create-request';
 import { CourseCategoryResponseDTO } from '../../../model/course-category-dto/course-category-reponse';
 import { CourseCategoryUpdateRequestDTO } from '../../../model/course-category-dto/course-category-update-request';
+import { UpdateIsActiveRequestDTO } from '../../../model/update-isactive-request';
 import { AuthService } from '../../../service/auth.service';
 import { CourseCategoryService } from '../../../service/course-category.service';
 import { ToastService } from '../../../service/toast.service';
@@ -40,6 +41,7 @@ export class CourseCategoryComponent implements OnInit {
     this.categoryService.getCourseCategories().subscribe(
       (val) => {
         this.courseCategories = val.result;
+        console.log(this.courseCategories);
       },
       (err) => {
         console.error(err.error);
@@ -101,6 +103,42 @@ export class CourseCategoryComponent implements OnInit {
         );
       }
     );
+  }
+
+  updateActive(courseCategory: CourseCategoryResponseDTO) {
+    let request = new UpdateIsActiveRequestDTO();
+    request.id = courseCategory.id;
+    request.updatedBy = this.auth.getLoginResponse().userId;
+    let flag: string;
+
+    if (courseCategory.active) {
+      flag = 'in active';
+      request.status = false;
+    } else {
+      flag = 'active';
+      request.status = true;
+    }
+    this.confirmationService.confirm({
+      message: `Are you sure you want to ${flag} ${courseCategory.code} ?`,
+      header: 'Update Active Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.categoryService.updateIsActive(request).subscribe(
+          (response) => {
+            if (response.code === 200 && response.result) {
+              this.toastService.emitSuccessMessage('Delete', response.result);
+              this.defineCourseCategories();
+            }
+          },
+          (error: HttpErrorResponse) => {
+            this.toastService.emitHttpErrorMessage(
+              error,
+              'Failed to delete course category'
+            );
+          }
+        );
+      },
+    });
   }
 
   confirmDelete() {

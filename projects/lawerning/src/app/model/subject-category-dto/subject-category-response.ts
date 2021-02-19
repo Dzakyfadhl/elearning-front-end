@@ -3,4 +3,5 @@ export class SubjectCategoryResponseDTO {
   code: string;
   name: string;
   description: string;
+  active: boolean;
 }

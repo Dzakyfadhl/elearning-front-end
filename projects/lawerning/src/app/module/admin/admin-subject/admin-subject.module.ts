@@ -9,6 +9,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TagModule } from 'primeng/tag';
 
 import { AdminSubjectRoutingModule } from './admin-subject-routing.module';
 import { AdminSubjectComponent } from '../../../page/admin/admin-subject/admin-subject.component';
@@ -27,6 +28,7 @@ import { AdminSubjectComponent } from '../../../page/admin/admin-subject/admin-s
     InputTextModule,
     DropdownModule,
     InputTextareaModule,
+    TagModule,
   ],
 })
 export class AdminSubjectModule {}

@@ -11,4 +11,7 @@ export class CourseAdminResponseDTO {
   typeId: string;
   categoryId: string;
   teacherId: string;
+  active: boolean;
+  firstName: string;
+  lastName: string;
 }

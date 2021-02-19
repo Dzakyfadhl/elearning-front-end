@@ -1,5 +1,5 @@
 const Constants = {
-  BASE_URL: 'http://192.168.15.224:8080',
+  BASE_URL: 'http://192.168.13.87:8080',
   // BASE_URL: 'http://localhost:8080',
   BASE_URL_FILE: 'http://192.168.15.224:8080/file',
   PIXABAY_URL: 'https://pixabay.com/api',

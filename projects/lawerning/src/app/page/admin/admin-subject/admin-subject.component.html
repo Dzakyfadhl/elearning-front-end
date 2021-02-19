@@ -5,20 +5,15 @@
         </div>
     </p-toolbar>
 
-    <p-table #dt [value]="listSubjects" [rows]="10" [paginator]="true" [globalFilterFields]="['code', 'name', 'description']" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [scrollable]="true"
-        [showCurrentPageReport]="true">
+    <p-table #dt [value]="listSubjects" [rows]="10" [paginator]="true" [globalFilterFields]="['code', 'name']" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [scrollable]="true" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
             <div class="d-flex align-items-center justify-content-between">
                 <h5 class="p-m-0">Manage Subject Category</h5>
                 <span class="p-input-icon-left">
-          <i class="pi pi-search"></i>
-          <input
-            pInputText
-            type="text"
-            (input)="dt.filterGlobal($event.target.value, 'contains')"
-            placeholder="Search..."
-          />
-        </span>
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        placeholder="Search..." />
+                </span>
             </div>
         </ng-template>
         <ng-template pTemplate="header">
@@ -27,13 +22,15 @@
                     Code
                     <p-sortIcon field="code"></p-sortIcon>
                 </th>
-                <th pSortableColumn="name" style="width: 10rem">
+                <th pSortableColumn="name" style="width: 14rem">
                     Name
                     <p-sortIcon field="name"></p-sortIcon>
                 </th>
-                <th pSortableColumn="description" style="width: 20rem">
+                <th style="width: 24rem" class="text-center">
                     Description
-                    <p-sortIcon field="description"></p-sortIcon>
+                </th>
+                <th style="width: 10rem">
+                    Active
                 </th>
 
                 <th style="width: 10rem" class="text-center">Action</th>
@@ -42,13 +39,20 @@
         <ng-template pTemplate="body" let-sc>
             <tr>
                 <td style="width: 10rem">{{ sc.code }}</td>
-                <td style="width: 10rem">{{ sc.name }}</td>
-                <td style="width: 20rem">
+                <td style="width: 14rem">{{ sc.name }}</td>
+                <td style="width: 24rem" class="px-5">
                     {{ sc.description }}
                 </td>
+                <td style="width: 10rem">
+                    <p-tag *ngIf="sc.active" icon="pi pi-check" severity="success" value="Active"></p-tag>
+                    <p-tag *ngIf="!sc.active" icon="pi pi-times" severity="danger" value="In Active">
+                    </p-tag>
+                </td>
+
                 <td style="width: 10rem" class="text-center">
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editSubjectCategory(sc)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteSubjectCategory(sc)"></button>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success" (click)="editSubjectCategory(sc)"></button>
+                    <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-warning mx-1" (click)="updateActive(sc)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteSubjectCategory(sc)"></button>
                 </td>
             </tr>
         </ng-template>
@@ -67,118 +71,55 @@
                 <label for="code">Subject Category Code</label>
                 <input type="text" pInputText id="code" [(ngModel)]="createRequest.code" required autofocus />
                 <small class="p-error" *ngIf="submitted && !createRequest.code">
-          Subject Category is required.
-        </small>
+                    Subject Category is required.
+                </small>
             </div>
             <div class="p-field col">
                 <label for="name">Subject Category Name</label>
                 <input type="text" pInputText id="name" [(ngModel)]="createRequest.subjectName" required autofocus />
                 <small class="p-error" *ngIf="submitted && !createRequest.subjectName">
-          Subject Name is required.
-        </small>
+                    Subject Name is required.
+                </small>
             </div>
         </div>
         <div class="p-field mt-3">
             <label for="description">Description</label>
             <textarea [rows]="3" pInputTextarea autoResize="autoResize" id="description" [(ngModel)]="createRequest.description" required autofocus></textarea>
-            <small class="p-error" *ngIf="submitted && !createRequest.description">Description is required.</small
-      >
-    </div>
-  </ng-template>
+            <small class="p-error" *ngIf="submitted && !createRequest.description">Description is required.</small>
+        </div>
+    </ng-template>
 
-  <ng-template pTemplate="footer">
-    <button
-      pButton
-      pRipple
-      label="Cancel"
-      icon="pi pi-times"
-      class="p-button-text"
-      (click)="hideModal()"
-    ></button>
-    <button
-      pButton
-      pRipple
-      label="Submit"
-      icon="pi pi-check"
-      class="p-button-text"
-      (click)="createSubjectCategory()"
-    ></button>
-  </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideModal()"></button>
+        <button pButton pRipple label="Submit" icon="pi pi-check" class="p-button-text" (click)="createSubjectCategory()"></button>
+    </ng-template>
 </p-dialog>
 
-<p-dialog
-  [(visible)]="isEditModalVisible"
-  [style]="{ width: '650px' }"
-  header="Edit Subject Category"
-  [modal]="true"
-  styleClass="p-fluid"
->
-  <ng-template pTemplate="content">
-    <div class="row mt-3">
-      <div class="p-field col">
-        <label for="code">Subejct Category Code</label>
-        <input
-          type="text"
-          pInputText
-          id="code"
-          [(ngModel)]="updateRequest.code"
-          required
-          autofocus
-        />
-        <small class="p-error" *ngIf="submitted && !updateRequest.code"
-          >Subject Code is required.</small
-        >
-      </div>
-      <div class="p-field col">
-        <label for="name">Subject Category Name</label>
-        <input
-          type="text"
-          pInputText
-          id="name"
-          [(ngModel)]="updateRequest.subjectName"
-          required
-          autofocus
-        />
-        <small class="p-error" *ngIf="submitted && !updateRequest.subjectName"
-          >Subject Name is required.</small
-        >
-      </div>
-    </div>
-    <div class="p-field mt-3">
-      <label for="description">Description</label>
-      <textarea
-        [rows]="3"
-        pInputTextarea
-        autoResize="autoResize"
-        id="description"
-        [(ngModel)]="updateRequest.description"
-        required
-        autofocus
-      ></textarea>
-      <small class="p-error" *ngIf="submitted && !updateRequest.description"
-        >Description is required.</small
-      >
-    </div>
-  </ng-template>
+<p-dialog [(visible)]="isEditModalVisible" [style]="{ width: '650px' }" header="Edit Subject Category" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="row mt-3">
+            <div class="p-field col">
+                <label for="code">Subejct Category Code</label>
+                <input type="text" pInputText id="code" [(ngModel)]="updateRequest.code" required autofocus />
+                <small class="p-error" *ngIf="submitted && !updateRequest.code">Subject Code is required.</small>
+            </div>
+            <div class="p-field col">
+                <label for="name">Subject Category Name</label>
+                <input type="text" pInputText id="name" [(ngModel)]="updateRequest.subjectName" required autofocus />
+                <small class="p-error" *ngIf="submitted && !updateRequest.subjectName">Subject Name is required.</small>
+            </div>
+        </div>
+        <div class="p-field mt-3">
+            <label for="description">Description</label>
+            <textarea [rows]="3" pInputTextarea autoResize="autoResize" id="description" [(ngModel)]="updateRequest.description" required autofocus></textarea>
+            <small class="p-error" *ngIf="submitted && !updateRequest.description">Description is required.</small>
+        </div>
+    </ng-template>
 
-  <ng-template pTemplate="footer">
-    <button
-      pButton
-      pRipple
-      label="Cancel"
-      icon="pi pi-times"
-      class="p-button-text"
-      (click)="hideModal()"
-    ></button>
-    <button
-      pButton
-      pRipple
-      label="Submit"
-      icon="pi pi-check"
-      class="p-button-text"
-      (click)="updateSubjectCategory()"
-    ></button>
-  </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideModal()"></button>
+        <button pButton pRipple label="Submit" icon="pi pi-check" class="p-button-text" (click)="updateSubjectCategory()"></button>
+    </ng-template>
 </p-dialog>
 
 <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

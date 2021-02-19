@@ -52,7 +52,7 @@ export class SubjectCategoryService {
 
   deleteSubjectCategory(id: string): Observable<ResponseModel<string>> {
     return this.http.delete<ResponseModel<string>>(
-      `${Constants.BASE_URL}/subjectcategory/id/${id}`
+      `${Constants.BASE_URL}/subjectcategory/${id}`
     );
   }
 

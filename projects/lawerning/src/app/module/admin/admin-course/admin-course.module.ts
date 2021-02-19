@@ -10,6 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TagModule } from 'primeng/tag';
 
 import { AdminCourseRoutingModule } from './admin-course-routing.module';
 import { AdminCourseComponent } from '../../../page/admin/admin-course/admin-course.component';
@@ -29,6 +30,7 @@ import { AdminCourseComponent } from '../../../page/admin/admin-course/admin-cou
     DropdownModule,
     CalendarModule,
     InputTextareaModule,
+    TagModule,
   ],
 })
 export class AdminCourseModule {}

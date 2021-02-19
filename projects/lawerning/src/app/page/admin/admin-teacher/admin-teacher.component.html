@@ -1,14 +1,11 @@
 <p-toolbar styleClass="my-4">
     <div>
-        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-raised p-button-success mr-2"
-            (click)="openNew()"></button>
+        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-raised p-button-success mr-2" (click)="openNew()"></button>
     </div>
 </p-toolbar>
 
-<p-table #dt [scrollable]="true" [value]="teachers" [rows]="10" [paginator]="true"
-    [globalFilterFields]="['firstName', 'lastName', 'username', 'phone', 'gender', 'code']" [rowHover]="true"
-    dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [showCurrentPageReport]="true">
+<p-table #dt [scrollable]="true" [value]="teachers" [rows]="10" [paginator]="true" [globalFilterFields]="['firstName', 'lastName', 'username', 'phone', 'gender', 'code']" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true" [scrollable]="true">
     <ng-template pTemplate="caption">
         <div class="d-flex align-items-center justify-content-between">
             <h5 class="p-m-0">Manage Teachers</h5>
@@ -21,48 +18,56 @@
     </ng-template>
     <ng-template pTemplate="header">
         <tr>
-            <th width="120px" pSortableColumn="code">
+            <th style="width: 14rem;" pSortableColumn="code">
                 Code
                 <p-sortIcon field="code"></p-sortIcon>
             </th>
-            <th width="120px" pSortableColumn="username">
+            <th style="width: 14rem;" pSortableColumn="username">
                 Username
                 <p-sortIcon field="code"></p-sortIcon>
             </th>
-            <th width="120px" pSortableColumn="firstName">
+            <th style="width: 14rem;" pSortableColumn="firstName">
                 Full Name
                 <p-sortIcon field="fullName"></p-sortIcon>
             </th>
-            <th width="120px">Title Degree</th>
-            <th width="120px" pSortableColumn="email">
+            <th style="width: 14rem;">Title Degree</th>
+            <th style="width: 14rem;" pSortableColumn="email">
                 Email
                 <p-sortIcon field="email"></p-sortIcon>
             </th>
-            <th width="120px" pSortableColumn="phone">
+            <th style="width: 14rem;" pSortableColumn="phone">
                 Phone
                 <p-sortIcon field="phone"></p-sortIcon>
             </th>
-            <th width="120px" pSortableColumn="gender">
+            <th style="width: 14rem;" pSortableColumn="gender">
                 Gender
                 <p-sortIcon field="gender"></p-sortIcon>
             </th>
-            <th width="120px">Action</th>
+            <th style="width: 14rem;" pSortableColumn="active">
+                Active
+                <p-sortIcon field="active"></p-sortIcon>
+            </th>
+            <th style="width: 14rem;">Action</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-teacher>
         <tr>
-            <td width="120px" class="text-break">{{ teacher.code }}</td>
-            <td width="120px" class="text-break">{{ teacher.username }}</td>
-            <td width="120px" class="text-break">{{ teacher.firstName }} {{teacher.lastName}}</td>
-            <td width="120px" class="text-break">{{ teacher.titleDegree }}</td>
-            <td width="120px" class="text-break">{{ teacher.email }}</td>
-            <td width="120px" class="text-break">{{ teacher.phone }}</td>
-            <td width="120px" class="text-break">{{ teacher.gender }}</td>
-            <td width="120px" class="text-break">
-                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
-                    (click)="editTeacher(teacher)"></button>
-                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                    (click)="deleteTeacher(teacher)"></button>
+            <td style="width: 14rem;" class="text-break">{{ teacher.code }}</td>
+            <td style="width: 14rem;" class="text-break">{{ teacher.username }}</td>
+            <td style="width: 14rem;" class="text-break">{{ teacher.firstName }} {{teacher.lastName}}</td>
+            <td style="width: 14rem;" class="text-break">{{ teacher.titleDegree }}</td>
+            <td style="width: 14rem;" class="text-break">{{ teacher.email }}</td>
+            <td style="width: 14rem;" class="text-break">{{ teacher.phone }}</td>
+            <td style="width: 14rem;" class="text-break">{{ teacher.gender }}</td>
+            <td style="width: 14rem;" class="text-break">
+                <p-tag *ngIf="teacher.active" icon="pi pi-check" severity="success" value="Active"></p-tag>
+                <p-tag *ngIf="!teacher.active" icon="pi pi-times" severity="danger" value="In Active">
+                </p-tag>
+            </td>
+            <td style="width: 14rem;" class="text-break">
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success" (click)="editTeacher(teacher)"></button>
+                <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-warning mx-1" (click)="updateActive(teacher)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteTeacher(teacher)"></button>
             </td>
         </tr>
     </ng-template>
@@ -73,8 +78,7 @@
     </ng-template>
 </p-table>
 
-<p-dialog [(visible)]="isCreateModalVisible" [style]="{ width: '650px' }" header="Create Teacher" [modal]="true"
-    styleClass="p-fluid">
+<p-dialog [(visible)]="isCreateModalVisible" [style]="{ width: '650px' }" header="Create Teacher" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="row mt-3">
             <div class="p-field col">
@@ -94,8 +98,7 @@
         </div>
         <div class="p-field mt-3">
             <label for="gender">Gender</label>
-            <p-dropdown [(ngModel)]="selectedGender" [options]="genders" placeholder="Select Gender" optionLabel="value"
-                optionValue="key"></p-dropdown>
+            <p-dropdown [(ngModel)]="selectedGender" [options]="genders" placeholder="Select Gender" optionLabel="value" optionValue="key"></p-dropdown>
         </div>
         <div class="p-field mt-3">
             <label for="username">Username</label>
@@ -127,13 +130,11 @@
 
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideModal()"></button>
-        <button pButton pRipple label="Submit" icon="pi pi-check" class="p-button-text"
-            (click)="createTeacher()"></button>
+        <button pButton pRipple label="Submit" icon="pi pi-check" class="p-button-text" (click)="createTeacher()"></button>
     </ng-template>
 </p-dialog>
 
-<p-dialog [(visible)]="isEditModalVisible" [style]="{ width: '650px' }" header="Edit Teacher" [modal]="true"
-    styleClass="p-fluid">
+<p-dialog [(visible)]="isEditModalVisible" [style]="{ width: '650px' }" header="Edit Teacher" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="p-field mt-3">
             <label for="username">Username</label>
@@ -157,8 +158,7 @@
         </div>
         <div class="p-field mt-3">
             <label for="gender">Gender</label>
-            <p-dropdown [(ngModel)]="selectedGender" [options]="genders" placeholder="Select Gender" optionLabel="value"
-                optionValue="key"></p-dropdown>
+            <p-dropdown [(ngModel)]="selectedGender" [options]="genders" placeholder="Select Gender" optionLabel="value" optionValue="key"></p-dropdown>
         </div>
         <div class="p-field mt-3">
             <label for="phone">Phone</label>
@@ -169,8 +169,7 @@
 
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideModal()"></button>
-        <button pButton pRipple label="Submit" icon="pi pi-check" class="p-button-text"
-            (click)="updateTeacher()"></button>
+        <button pButton pRipple label="Submit" icon="pi pi-check" class="p-button-text" (click)="updateTeacher()"></button>
     </ng-template>
 </p-dialog>
 

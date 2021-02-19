@@ -8,6 +8,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
+import { TagModule } from 'primeng/tag';
 
 import { AdminCourseCategoryRoutingModule } from './admin-course-category-routing.module';
 import { CourseCategoryComponent } from '@bootcamp-lawerning-page/admin/course-category/course-category.component';
@@ -25,6 +26,7 @@ import { CourseCategoryComponent } from '@bootcamp-lawerning-page/admin/course-c
     ConfirmDialogModule,
     InputTextModule,
     DropdownModule,
+    TagModule,
   ],
 })
 export class AdminCourseCategoryModule {}

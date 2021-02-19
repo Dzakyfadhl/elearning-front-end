@@ -64,10 +64,9 @@ export class TeacherService {
       .toPromise();
   }
 
-  deleteTeacher(data: DeleteTeacherRequest): Observable<ResponseModel<string>> {
-    return this.http.patch<ResponseModel<string>>(
-      `${Constants.BASE_URL}/teacher`,
-      data
+  deleteTeacher(id: string): Observable<ResponseModel<string>> {
+    return this.http.delete<ResponseModel<string>>(
+      `${Constants.BASE_URL}/teacher/id/${id}`
     );
   }
 

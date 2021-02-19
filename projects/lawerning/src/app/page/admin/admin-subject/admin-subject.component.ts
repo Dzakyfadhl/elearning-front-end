@@ -4,6 +4,7 @@ import { ConfirmationService } from 'primeng/api';
 import { SubjectCategoryCreateRequestDTO } from '../../../model/subject-category-dto/subject-category-create-request';
 import { SubjectCategoryResponseDTO } from '../../../model/subject-category-dto/subject-category-response';
 import { SubjectCategoryUpdateRequestDTO } from '../../../model/subject-category-dto/subject-category-update-request';
+import { UpdateIsActiveRequestDTO } from '../../../model/update-isactive-request';
 import { AuthService } from '../../../service/auth.service';
 import { SubjectCategoryService } from '../../../service/subject-category.service';
 import { ToastService } from '../../../service/toast.service';
@@ -132,6 +133,42 @@ export class AdminSubjectComponent implements OnInit {
             this.toastService.emitHttpErrorMessage(
               error,
               'Failed to delete subject category'
+            );
+          }
+        );
+      },
+    });
+  }
+
+  updateActive(subject: SubjectCategoryResponseDTO) {
+    let request = new UpdateIsActiveRequestDTO();
+    request.id = subject.id;
+    request.updatedBy = this.auth.getLoginResponse().userId;
+    let flag: string;
+
+    if (subject.active) {
+      flag = 'in active';
+      request.status = false;
+    } else {
+      flag = 'active';
+      request.status = true;
+    }
+    this.confirmationService.confirm({
+      message: `Are you sure you want to ${flag} ${subject.code} ?`,
+      header: 'Update Active Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.subjectService.updateIsActive(request).subscribe(
+          (response) => {
+            if (response.code === 200 && response.result) {
+              this.toastService.emitSuccessMessage('Deleted', response.result);
+              this.defineSubjects();
+            }
+          },
+          (error: HttpErrorResponse) => {
+            this.toastService.emitHttpErrorMessage(
+              error,
+              'Failed to update active subject category'
             );
           }
         );

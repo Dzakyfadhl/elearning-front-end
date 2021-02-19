@@ -8,6 +8,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
+import { TagModule } from 'primeng/tag';
 
 import { AdminCourseTypeRoutingModule } from './admin-course-type-routing.module';
 import { AdminCourseTypeComponent } from '../../../page/admin/admin-course-type/admin-course-type.component';
@@ -25,6 +26,7 @@ import { AdminCourseTypeComponent } from '../../../page/admin/admin-course-type/
     ConfirmDialogModule,
     InputTextModule,
     DropdownModule,
+    TagModule,
   ],
 })
 export class AdminCourseTypeModule {}
