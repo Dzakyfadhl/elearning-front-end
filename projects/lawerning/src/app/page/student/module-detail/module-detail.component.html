@@ -1,4 +1,4 @@
-<div class="container-fluid px-5">
+<div *ngIf="detail" class="container-fluid px-5">
   <div class="row">
     <div class="s-card col-lg-12 shadow mb-2 mt-2 rounded-lg">
       <div *ngIf="detail && detail.schedule" class="card">
@@ -47,10 +47,10 @@
   <div class="row">
     <div class="col-lg-8 mb-2">
       <div class="view-exam">
-        <div *ngIf="isEmpty == true" class="d-flex justify-content-center m-5">
+        <div *ngIf="exams && exams.length == 0" class="d-flex justify-content-center m-5">
           <img src="assets/images/dataEmpty.png" height="350" alt="" />
         </div>
-        <p-tabView *ngIf="isEmpty == false">
+        <p-tabView *ngIf="exams && exams.length >0">
           <p-tabPanel *ngFor="let e of exams; let i = index">
             <ng-template pTemplate="header">
               <i class="pi pi-book mr-2"></i>
@@ -131,7 +131,7 @@
                       examStudents.get(e.id)[0] == null &&
                       examStudents.get(e.id)[1] == false
                     ">
-                    <h6>The Exam can't upload</h6>
+                    <h4>The Exam can't upload</h4>
                   </div>
                   <div class="d-flex justify-content-center">
                     <!-- <div class="col-lg-8"> -->
@@ -184,7 +184,7 @@
             <h5 class="m-1">Lesson</h5>
           </div>
         </div>
-        <div *ngIf="lessons.length > 0" class="body-module card-body">
+        <div *ngIf="lessons && lessons.length > 0" class="body-module card-body">
           <h6>Download</h6>
           <hr />
           <div *ngFor="let l of lessons" class="d-flex flex-column">
@@ -194,7 +194,7 @@
           </div>
         </div>
 
-        <div *ngIf="lessons.length == 0" class="body-module card-body">
+        <div *ngIf="lessons && lessons.length == 0" class="body-module card-body">
           <h6 class="text-center">The lessons is not yet available</h6>
           <hr />
         </div>
@@ -207,7 +207,7 @@
         <p-chip icon="pi pi-user" label="{{ totalPost }} post" styleClass="p-mr-2 p-ml-3 p-mt-1 p-px-3"></p-chip>
       </div>
       <hr />
-      <div *ngIf="totalPost == 0">
+      <div *ngIf="totalPost == 0" class="my-5">
         <h6 class="text-center">no messages have been sent yet</h6>
       </div>
       <div *ngIf="totalPost > 0">

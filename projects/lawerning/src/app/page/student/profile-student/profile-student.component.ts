@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { CourseService } from '../../../service/course.service';
 import { CourseProgressResponse } from '../../../model/course-dto/course-progress-response';
 import Constants from '../../../constants/constant';
+import { LoadingService } from '../../../service/loading.service';
 
 @Component({
   selector: 'app-profile-student',
@@ -33,25 +34,45 @@ export class ProfileStudentComponent implements OnInit {
     private studentService: StudentService,
     private auth: AuthService,
     private courseService: CourseService,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
+    this.loadingService.emitStatus(true);
+
     this.courseService
       .getCourseProgress(this.auth.getLoginResponse().userRoleId)
-      .subscribe((data) => {
-        this.mymodules = data.result;
-      });
+      .subscribe(
+        (data) => {
+          this.mymodules = data.result;
+        },
+        (error) => {
+          this.toastService.emitHttpErrorMessage(error);
+        },
+        () => {
+          this.loadingService.emitStatus(false);
+        }
+      );
 
-    this.studentService.getProfile().subscribe((value) => {
-      this.studentProfile = value.result;
+    this.studentService.getProfile().subscribe(
+      (value) => {
+        this.studentProfile = value.result;
 
-      if (!this.studentProfile.idPhoto) {
-        this.photo = `assets/images/default.png`;
-      } else {
-        this.photo = `${Constants.BASE_URL_FILE}/${this.studentProfile.idPhoto}`;
+        if (!this.studentProfile.idPhoto) {
+          this.photo = `assets/images/default.png`;
+        } else {
+          this.photo = `${Constants.BASE_URL_FILE}/${this.studentProfile.idPhoto}`;
+        }
+      },
+      (error) => {
+        this.toastService.emitHttpErrorMessage(error);
+      },
+      () => {
+        this.loadingService.emitStatus(false);
       }
-    });
+    );
   }
 
   viewModule(index: number) {

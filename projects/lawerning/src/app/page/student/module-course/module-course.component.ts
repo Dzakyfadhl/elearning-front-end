@@ -5,7 +5,9 @@ import { AttendanceRequest } from '../../../model/attendance-request';
 import { DetailCourseResponse } from '../../../model/detail-course-response';
 import { AttendanceService } from '../../../service/attendance.service';
 import { AuthService } from '../../../service/auth.service';
+import { LoadingService } from '../../../service/loading.service';
 import { ModuleService } from '../../../service/module.service';
+import { ToastService } from '../../../service/toast.service';
 
 @Component({
   selector: 'app-module-course',
@@ -21,7 +23,7 @@ export class ModuleCourseComponent implements OnInit {
 
   dataAttendance = new Map<string, [string, boolean]>();
 
-  modules = new DetailCourseResponse();
+  modules: DetailCourseResponse;
 
   dateObj = new Date();
   courseId: string;
@@ -32,10 +34,13 @@ export class ModuleCourseComponent implements OnInit {
     private route: Router,
     private auth: AuthService,
     private moduleService: ModuleService,
-    private attendanceService: AttendanceService
+    private attendanceService: AttendanceService,
+    private loadingService: LoadingService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
+    this.loadingService.emitStatus(true);
     this.activeRoute.params.subscribe((val) => {
       this.courseId = val.courseId;
       this.studentId = this.auth.getLoginResponse().userRoleId;
@@ -45,40 +50,48 @@ export class ModuleCourseComponent implements OnInit {
   }
 
   showModule() {
-    this.moduleService.getModuleStudent(this.courseId).subscribe((value) => {
-      this.modules = value.result;
+    this.moduleService.getModuleStudent(this.courseId).subscribe(
+      (value) => {
+        this.modules = value.result;
 
-      this.modules.modules.forEach((data) => {
-        let dateStartMerge = `${data.schedule.date} ${data.schedule.startTime}`;
-        let dateEndMerge = `${data.schedule.date} ${data.schedule.endTime}`;
+        this.modules.modules.forEach((data) => {
+          let dateStartMerge = `${data.schedule.date} ${data.schedule.startTime}`;
+          let dateEndMerge = `${data.schedule.date} ${data.schedule.endTime}`;
 
-        let dateStart = new Date(dateStartMerge);
-        let dateEnd = new Date(dateEndMerge);
-        let dateNow = new Date();
+          let dateStart = new Date(dateStartMerge);
+          let dateEnd = new Date(dateEndMerge);
+          let dateNow = new Date();
 
-        if (dateNow < dateEnd) {
-          data.isAttendance = true;
-        } else {
-          data.isAttendance = false;
+          if (dateNow < dateEnd) {
+            data.isAttendance = true;
+          } else {
+            data.isAttendance = false;
+          }
+
+          if (dateNow >= dateStart && dateNow < dateEnd) {
+            data.isStart = true;
+          } else {
+            data.isStart = false;
+          }
+        });
+
+        this.total = this.modules.modules.length;
+
+        this.checkValidate();
+
+        let val = (this.countTemp / this.total) * 100;
+        this.value = Math.floor(val);
+        if (isNaN(this.value)) {
+          this.value = 0;
         }
-
-        if (dateNow >= dateStart && dateNow < dateEnd) {
-          data.isStart = true;
-        } else {
-          data.isStart = false;
-        }
-      });
-
-      this.total = this.modules.modules.length;
-
-      this.checkValidate();
-
-      let val = (this.countTemp / this.total) * 100;
-      this.value = Math.floor(val);
-      if (isNaN(this.value)) {
-        this.value = 0;
+      },
+      (error) => {
+        this.toastService.emitHttpErrorMessage(error);
+      },
+      () => {
+        this.loadingService.emitStatus(false);
       }
-    });
+    );
   }
 
   checkValidate() {
@@ -114,8 +127,17 @@ export class ModuleCourseComponent implements OnInit {
     let dataAttendance = new AttendanceRequest();
     dataAttendance.idModule = moduleId;
     dataAttendance.idStudent = this.auth.getLoginResponse().userRoleId;
-    this.attendanceService.attendanceStudent(dataAttendance).subscribe((_) => {
-      this.showModule();
-    });
+    this.attendanceService.attendanceStudent(dataAttendance).subscribe(
+      (_) => {
+        this.showModule();
+        this.toastService.emitSuccessMessage(
+          'Attendance Success!',
+          'Attendance has been sent'
+        );
+      },
+      (error) => {
+        this.toastService.emitHttpErrorMessage(error);
+      }
+    );
   }
 }

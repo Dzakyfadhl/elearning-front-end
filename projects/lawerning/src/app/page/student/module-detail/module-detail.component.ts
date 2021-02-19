@@ -16,7 +16,10 @@ import { LessonResponse } from '../../../model/lesson-response';
 import { ExamStudentResponse } from '../../../model/exam-dto/exam-student-response';
 import { ScheduleModel } from '../../../model/schedule-model';
 import Constants from '../../../constants/constant';
-
+import { error } from 'selenium-webdriver';
+import { ToastService } from '../../../service/toast.service';
+import { ConfirmationService } from 'primeng/api';
+import { LoadingService } from '../../../service/loading.service';
 @Component({
   selector: 'app-module-detail',
   templateUrl: './module-detail.component.html',
@@ -24,7 +27,6 @@ import Constants from '../../../constants/constant';
 })
 export class ModuleDetailComponent implements OnInit {
   title: string;
-  baseUrl = 'http://192.168.15.224:8080/file';
 
   content: string;
   moduleId: string;
@@ -59,25 +61,39 @@ export class ModuleDetailComponent implements OnInit {
     private forumService: ForumService,
     private auth: AuthService,
     private location: Location,
-    private lessonService: LessonService
+    private lessonService: LessonService,
+    private toastService: ToastService,
+    private confirmationService: ConfirmationService,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit(): void {
+    this.loadingService.emitStatus(true);
     this.activeRoute.params.subscribe((value) => {
-      console.log(this.isEmpty);
-      if (this.exams === undefined) {
-        this.isEmpty = true;
-      } else {
-        this.isEmpty = false;
-      }
-
       this.moduleId = value.id;
 
       this.showLesson(value.id);
 
-      this.examService.getDetailModuleExam(value.id).subscribe((dataExam) => {
+      this.dtlModuleService.getDtlModule(value.id).subscribe(
+        (dataModule) => {
+          this.detail = dataModule.result;
+        },
+        (error) => {
+          this.toastService.emitHttpErrorMessage(error);
+        },
+        () => {
+          this.loadingService.emitStatus(false);
+        }
+      );
+    });
+    this.showDiscussion();
+    this.showExam();
+  }
+
+  showExam() {
+    this.examService.getDetailModuleExam(this.moduleId).subscribe(
+      (dataExam) => {
         this.exams = dataExam.result;
-        console.log(this.exams);
 
         if (this.exams === undefined) {
           this.isEmpty = true;
@@ -91,9 +107,8 @@ export class ModuleDetailComponent implements OnInit {
             let dateEnd = new Date(data.endTime);
             let dateNow = new Date();
 
-            this.examService
-              .getExamStudent(data.id)
-              .subscribe((dataExamStudent) => {
+            this.examService.getExamStudent(data.id).subscribe(
+              (dataExamStudent) => {
                 if (dateNow < dateStart || dateNow > dateEnd) {
                   this.isAllowed = false;
                   this.examStudents.set(data.id, [
@@ -108,17 +123,24 @@ export class ModuleDetailComponent implements OnInit {
                   ]);
                   console.log(data.title, 'allowed');
                 }
-              });
+              },
+              (error) => {
+                this.toastService.emitHttpErrorMessage(error);
+              },
+              () => {
+                this.loadingService.emitStatus(false);
+              }
+            );
           });
         }
-      });
-
-      this.dtlModuleService.getDtlModule(value.id).subscribe((dataModule) => {
-        this.detail = dataModule.result;
-        console.log(dataModule.result);
-      });
-    });
-    this.showDiscussion();
+      },
+      (error) => {
+        this.toastService.emitHttpErrorMessage(error);
+      },
+      () => {
+        this.loadingService.emitStatus(false);
+      }
+    );
   }
 
   async showLesson(id: string) {
@@ -171,6 +193,10 @@ export class ModuleDetailComponent implements OnInit {
       },
       (error) => {
         this.messages = [];
+        this.toastService.emitHttpErrorMessage(error);
+      },
+      () => {
+        this.loadingService.emitStatus(false);
       }
     );
   }
@@ -182,10 +208,15 @@ export class ModuleDetailComponent implements OnInit {
     data.moduleId = this.moduleId;
     data.versionUser = 0;
     data.versionModule = 0;
-    this.forumService.saveForum(data).subscribe((val) => {
-      this.showDiscussion();
-      this.content = '';
-    });
+    this.forumService.saveForum(data).subscribe(
+      (val) => {
+        this.showDiscussion();
+        this.content = '';
+      },
+      (error) => {
+        this.toastService.emitHttpErrorMessage(error, 'Field is blank');
+      }
+    );
   }
 
   fileChange(event) {
@@ -204,8 +235,47 @@ export class ModuleDetailComponent implements OnInit {
   upload(index: number) {
     let data: ExamsModuleResponseDTO = this.exams[index];
 
-    this.examService
-      .uploadExamStudent(data.id, this.formData)
-      .subscribe((value) => console.log(value));
+    this.examService.uploadExamStudent(data.id, this.formData).subscribe(
+      (_) => {
+        this.showExam();
+        this.toastService.emitSuccessMessage(
+          'Uploaded Successfully',
+          'You has been uploaded exam.'
+        );
+      },
+      (error) => {
+        this.toastService.emitHttpErrorMessage(error, 'failure');
+      }
+    );
+  }
+
+  removeExam(id: string) {
+    this.confirmationService.confirm({
+      message: `Are you sure to remove exam ?`,
+      header: 'Remove Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        try {
+          this.examService.deleteExamStudent(id).subscribe(
+            (_) => {
+              this.showExam();
+              this.file = null;
+              this.toastService.emitSuccessMessage(
+                'Remove Success',
+                'You has been remove your exam'
+              );
+            },
+            (error) => {
+              this.toastService.emitHttpErrorMessage(error, 'Remove Failed');
+            }
+          );
+        } catch (error) {
+          this.toastService.emitHttpErrorMessage(
+            error,
+            'Failed to remove exam'
+          );
+        }
+      },
+    });
   }
 }

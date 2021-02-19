@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { report } from 'process';
 import { StudentReportResponse } from '../../../model/student-report-response';
 import { AuthService } from '../../../service/auth.service';
+import { LoadingService } from '../../../service/loading.service';
 import { ReportService } from '../../../service/report.service';
 
 @Component({
@@ -22,11 +23,13 @@ export class ScoreDetailComponent implements OnInit {
 
   constructor(
     private reportService: ReportService,
-    private auth: AuthService
+    private auth: AuthService,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit(): void {
     this.studentId = this.auth.getLoginResponse().userRoleId;
+    this.loadingService.emitStatus(true);
     this.reportService.getStudentReporting().subscribe(
       (value) => {
         this.reports = value.result;
@@ -35,6 +38,9 @@ export class ScoreDetailComponent implements OnInit {
         if (error.error.code != 200) {
           this.reports = [];
         }
+      },
+      () => {
+        this.loadingService.emitStatus(false);
       }
     );
   }

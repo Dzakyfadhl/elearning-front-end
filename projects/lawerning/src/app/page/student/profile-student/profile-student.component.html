@@ -1,17 +1,19 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="header-profile col-lg-12 pt-5 shadow p-3 mb-5"></div>
+<div *ngIf="mymodules">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="header-profile col-lg-12 pt-5 shadow p-3 mb-5"></div>
+    </div>
   </div>
-</div>
-<div class="body-profile container">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="d-flex flex-column">
-        <div class="d-flex justify-content-center">
-          <h6 hidden>{{ studentProfile.idPhoto }}</h6>
-          <img [src]="photo" height="180" width="180" class="rounded-circle p-1 mb-2" alt="" />
-        </div>
-        <!-- <div class="camera d-flex justify-content-center">
+  <div class="body-profile container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="d-flex flex-column">
+          <div class="d-flex justify-content-center">
+            <h6 hidden>{{ studentProfile.idPhoto }}</h6>
+            <img [src]="photo" height="180" width="180" class="rounded-circle p-1 mb-2" alt="" />
+          </div>
+          <!-- <div class="camera d-flex justify-content-center">
           <a>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -28,82 +30,83 @@
             </svg>
           </a>
         </div> -->
-      </div>
+        </div>
 
-      <div class="d-flex flex-column">
-        <div class="d-flex justify-content-center">
-          <div class="d-flex justify-content-space-evenly">
-            <h1 class="name pr-3">
-              {{ studentProfile.firstName }} {{ studentProfile.lastName }}
-            </h1>
-            <img *ngIf="
+        <div class="d-flex flex-column">
+          <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-space-evenly">
+              <h1 class="name pr-3">
+                {{ studentProfile.firstName }} {{ studentProfile.lastName }}
+              </h1>
+              <img *ngIf="
                 studentProfile.gender &&
                 studentProfile.gender.toString() === 'MALE'
               " src="assets/images/icon_male.png" height="30" alt="" />
-            <img *ngIf="
+              <img *ngIf="
                 studentProfile.gender &&
                 studentProfile.gender.toString() === 'FEMALE'
               " src="assets/images/icon_female.png" height="30" alt="" />
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <h5 class="text-bold text-secondary">
+              Member since {{ studentProfile.createdAt | date: "dd MMMM yyyy" }}
+            </h5>
           </div>
         </div>
-        <div class="d-flex justify-content-center">
-          <h5 class="text-bold text-secondary">
-            Member since {{ studentProfile.createdAt | date: "dd MMMM yyyy" }}
-          </h5>
-        </div>
       </div>
-    </div>
-    <div class="col-lg-12 shadow p-4 mt-2 mb-2 rounded">
-      <div class="d-flex justify-content-between">
-        <div class="d-flex justify-content-start">
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-            class="text-secondary bi bi-person-square" viewBox="0 0 16 16">
-            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-            <path
-              d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z" />
-          </svg>
-          <h3 class="text-secondary ml-3">My Contact</h3>
+      <div class="col-lg-12 shadow p-4 mt-2 mb-2 rounded">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-start">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+              class="text-secondary bi bi-person-square" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+              <path
+                d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z" />
+            </svg>
+            <h3 class="text-secondary ml-3">My Contact</h3>
+          </div>
+          <a class="text-secondary" (click)="openFormEdit(studentProfile)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-fill"
+              viewBox="0 0 16 16">
+              <path
+                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+            </svg>
+          </a>
         </div>
-        <a class="text-secondary" (click)="openFormEdit(studentProfile)">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-fill"
+
+        <hr />
+        <h4 class="text-info">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill"
             viewBox="0 0 16 16">
             <path
-              d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+              d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z" />
           </svg>
-        </a>
-      </div>
-
-      <hr />
-      <h4 class="text-info">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill"
-          viewBox="0 0 16 16">
-          <path
-            d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z" />
-        </svg>
-        {{ studentProfile.email }}
-      </h4>
-      <hr />
-      <h4 class="text-info">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone-fill"
-          viewBox="0 0 16 16">
-          <path
-            d="M3 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V2zm6 11a1 1 0 1 0-2 0 1 1 0 0 0 2 0z" />
-        </svg>
-        {{ studentProfile.phone }}
-      </h4>
-      <hr />
-      <div class="d-flex justify-content-start mt-5">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-          class="text-secondary bi bi-bookmarks-fill" viewBox="0 0 16 16">
-          <path
-            d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4z" />
-          <path d="M4.268 1A2 2 0 0 1 6 0h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L13 13.768V2a1 1 0 0 0-1-1H4.268z" />
-        </svg>
-        <h3 class="title-complete text-secondary ml-3">Course Percentage</h3>
-      </div>
-      <hr />
-      <!-- <div class="container-fluid"> -->
-      <!-- <div class="row justify-content-center">
+          {{ studentProfile.email }}
+        </h4>
+        <hr />
+        <h4 class="text-info">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone-fill"
+            viewBox="0 0 16 16">
+            <path
+              d="M3 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V2zm6 11a1 1 0 1 0-2 0 1 1 0 0 0 2 0z" />
+          </svg>
+          {{ studentProfile.phone }}
+        </h4>
+        <hr />
+        <div class="d-flex justify-content-start mt-5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+            class="text-secondary bi bi-bookmarks-fill" viewBox="0 0 16 16">
+            <path
+              d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4z" />
+            <path
+              d="M4.268 1A2 2 0 0 1 6 0h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L13 13.768V2a1 1 0 0 0-1-1H4.268z" />
+          </svg>
+          <h3 class="title-complete text-secondary ml-3">Course Percentage</h3>
+        </div>
+        <hr />
+        <!-- <div class="container-fluid"> -->
+        <!-- <div class="row justify-content-center">
           <img
             src="assets/images/dataEmpty.png"
             height="250"
@@ -111,43 +114,45 @@
             alt=""
           />
         </div> -->
-      <!-- </div> -->
-      <div class="d-flex flex-sm-row flex-wrap text-center">
-        <div class="row">
-          <div class="p-field col-lg-6 my-3" *ngFor="let mm of mymodules; let i = index">
-            <a (click)="viewModule(i)">
-              <div *ngIf="mm.percentProgress < 50" class="card-first card shadow p-3" pTooltip="{{ mm.courseName }}"
-                tooltipPosition="top">
-                <p-knob [(ngModel)]="mm.percentProgress" [size]="150" rangeColor="#92adc2" valueColor="#2095f2"
-                  [readonly]="true" valueTemplate="{{ mm.percentProgress }}%"></p-knob>
-                <h5 class="mmcourse text-truncate">{{ mm.courseName }}</h5>
-                <h6 class="text-secondary">
-                  {{ mm.moduleComplete }} of {{ mm.totalModule }} modules
-                  completed
-                </h6>
-              </div>
-            </a>
+        <!-- </div> -->
+        <div class="d-flex flex-sm-row flex-wrap text-center">
+          <div class="row">
+            <div class="p-field col-lg-6 my-3" *ngFor="let mm of mymodules; let i = index">
+              <a (click)="viewModule(i)">
+                <div *ngIf="mm.percentProgress < 50" class="card-first card shadow p-3" pTooltip="{{ mm.courseName }}"
+                  tooltipPosition="top">
+                  <p-knob [(ngModel)]="mm.percentProgress" [size]="150" rangeColor="#92adc2" valueColor="#2095f2"
+                    [readonly]="true" valueTemplate="{{ mm.percentProgress }}%"></p-knob>
+                  <h5 class="mmcourse text-truncate">{{ mm.courseName }}</h5>
+                  <h6 class="text-secondary">
+                    {{ mm.moduleComplete }} of {{ mm.totalModule }} modules
+                    completed
+                  </h6>
+                </div>
+              </a>
 
-            <a (click)="viewModule(i)">
-              <div *ngIf="mm.percentProgress <= 100 && mm.percentProgress >= 50" class="card-second card shadow p-3"
-                pTooltip="{{ mm.courseName }}" tooltipPosition="top">
-                <p-knob [(ngModel)]="mm.percentProgress" [size]="150" rangeColor="#4e6d50" valueColor="#1f6124"
-                  [readonly]="true" valueTemplate="{{ mm.percentProgress }}%"></p-knob>
-                <h5 class="mmcourse">{{ mm.courseName }}</h5>
-                <h6 class="text-secondary">
-                  {{ mm.moduleComplete }} of {{ mm.totalModule }} modules
-                  completed
-                </h6>
-              </div>
-            </a>
+              <a (click)="viewModule(i)">
+                <div *ngIf="mm.percentProgress <= 100 && mm.percentProgress >= 50" class="card-second card shadow p-3"
+                  pTooltip="{{ mm.courseName }}" tooltipPosition="top">
+                  <p-knob [(ngModel)]="mm.percentProgress" [size]="150" rangeColor="#4e6d50" valueColor="#1f6124"
+                    [readonly]="true" valueTemplate="{{ mm.percentProgress }}%"></p-knob>
+                  <h5 class="mmcourse">{{ mm.courseName }}</h5>
+                  <h6 class="text-secondary">
+                    {{ mm.moduleComplete }} of {{ mm.totalModule }} modules
+                    completed
+                  </h6>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
+      <div class="col-lg-12 mt-5 mb-2"></div>
     </div>
-    <div class="col-lg-12 mt-5 mb-2"></div>
   </div>
-</div>
 
+
+</div>
 <p-blockUI [blocked]="blockedDocument"></p-blockUI>
 
 <p-dialog header="Form Profile" [(visible)]="isDisplay" [style]="{ width: '60vw' }" [baseZIndex]="100000">

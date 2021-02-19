@@ -7,6 +7,7 @@ import { PhotoRequest } from '../../../model/photo-request';
 import { StudentUpdateRequest } from '../../../model/student/student-edit-request';
 import { StudentResponse } from '../../../model/student/student-response';
 import { AuthService } from '../../../service/auth.service';
+import { LoadingService } from '../../../service/loading.service';
 import { StudentService } from '../../../service/student.service';
 import { ToastService } from '../../../service/toast.service';
 
@@ -68,14 +69,19 @@ export class UpdateProfileStudentComponent implements OnInit {
   }
 
   dataProfile() {
-    this.activeRoute.params.subscribe((value) => {
-      this.studentProfile.id = value.id;
-      this.studentProfile.firstName = value.firstName;
-      this.studentProfile.lastName = value.lastName;
-      this.studentProfile.phone = value.phone;
-      this.studentProfile.gender = value.gender;
-      this.studentProfile.username = value.username;
-    });
+    this.activeRoute.params.subscribe(
+      (value) => {
+        this.studentProfile.id = value.id;
+        this.studentProfile.firstName = value.firstName;
+        this.studentProfile.lastName = value.lastName;
+        this.studentProfile.phone = value.phone;
+        this.studentProfile.gender = value.gender;
+        this.studentProfile.username = value.username;
+      },
+      (error) => {
+        this.toastService.emitHttpErrorMessage(error);
+      }
+    );
   }
   save() {
     let requestProfile = new StudentUpdateRequest();
@@ -107,7 +113,7 @@ export class UpdateProfileStudentComponent implements OnInit {
       },
       (error) => {
         this.dataProfile();
-        this.toastService.emitHttpErrorMessage(error.error, 'Failed');
+        this.toastService.emitHttpErrorMessage(error, 'Failed');
       }
     );
     this.router.navigateByUrl('/profile-student');

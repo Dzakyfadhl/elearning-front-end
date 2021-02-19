@@ -1,0 +1,26 @@
+@media (min-width: 411px) {
+  .spinner-border {
+    color: #323096;
+    width: 10rem;
+    height: 10rem;
+  }
+  .loading-body {
+    position: fixed;
+    width: 100%;
+    top: 40%;
+    left: 40%;
+  }
+}
+@media (min-width: 768px) {
+  .spinner-border {
+    width: 10rem;
+    color: #323096;
+    height: 10rem;
+  }
+  .loading-body {
+    position: fixed;
+    width: 100%;
+    top: 40%;
+    left: 45%;
+  }
+}

@@ -1,7 +1,7 @@
-<div *ngIf="reports.length == 0">
+<div *ngIf="reports && reports.length == 0">
   <img src="assets/images/dataEmpty.png" height="450" alt="" />
 </div>
-<div *ngIf="reports.length > 0" class="container-fluid p-5">
+<div *ngIf="reports && reports.length > 0" class="container-fluid p-5">
   <div class="row">
     <div class="col-lg-12 col-sm-12">
       <div class="card">
@@ -18,7 +18,7 @@
           [globalFilterFields]="['courseName', 'moduleName','examTitle']">
           <ng-template pTemplate="caption">
             <div class="head-card d-flex justify-content-between p-3">
-              <h3>My Reports</h3>
+              <h3>Score Report</h3>
               <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
@@ -44,7 +44,7 @@
               <td width="100px">{{ r.moduleName }}</td>
               <td width="100px">{{ r.examType }}</td>
               <td width="100px">{{ r.examTitle }}</td>
-              <td width="100px">{{ r.dateExam | date: "dd MMM yyyy" }}</td>
+              <td width="100px">{{ r.dateExam | date: "MMM dd, yyyy" }}</td>
               <td *ngIf="r.grade <= 50" width="100px" class="text-danger">
                 {{ r.grade }}
               </td>

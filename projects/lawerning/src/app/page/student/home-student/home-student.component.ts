@@ -7,6 +7,7 @@ import { Gender } from '../../../model/gender';
 import { RegisterCourseRequest } from '../../../model/register-course-request';
 import { AuthService } from '../../../service/auth.service';
 import { CourseService } from '../../../service/course.service';
+import { LoadingService } from '../../../service/loading.service';
 
 @Component({
   selector: 'app-home-student',
@@ -30,19 +31,25 @@ export class HomeStudentComponent implements OnInit {
   isRegistered: boolean = false;
   studentCourse: CourseStudentResponse[];
 
-  isValid: boolean = false;
+  isValid: boolean;
 
   constructor(
     private route: Router,
     private courseService: CourseService,
-    private auth: AuthService
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit(): void {
+    this.loadingService.emitStatus(true);
+
     this.courseService.getAvailableCourse().subscribe(
       (value) => {
         this.courses = value.result;
+        console.log(this.courses);
 
+        if (this.courses.length == 0) {
+          this.isValid = false;
+        }
         if (this.courses.length > 0) {
           this.isValid = true;
 
@@ -71,9 +78,12 @@ export class HomeStudentComponent implements OnInit {
       },
       (error) => {
         if (error.error.code == 400) {
-          this.isValid = false;
+          // this.isValid = false;
           this.courses = [];
         }
+      },
+      () => {
+        this.loadingService.emitStatus(false);
       }
     );
 

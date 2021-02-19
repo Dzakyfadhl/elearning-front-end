@@ -1,6 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { state } from '@angular/animations';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Message, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
+import { LoadingService } from './service/loading.service';
 import { ToastService } from './service/toast.service';
 
 @Component({
@@ -12,24 +14,40 @@ import { ToastService } from './service/toast.service';
 export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private toastService: ToastService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private loadingService: LoadingService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   title = 'lawerning';
-  private subscription: Subscription;
+  private toastSubscription: Subscription;
+  private subcription: Subscription;
+  isLoading: boolean = false;
 
   ngOnInit(): void {
-    this.subscribeMessageObservable();  
+    this.subscribeMessageObservable();
+    this.subscribeStatusObservable();
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.toastSubscription.unsubscribe();
+    this.subcription.unsubscribe();
   }
 
+  ngAfterViewChecked() {
+    this.cdr.detectChanges();
+  }
   private subscribeMessageObservable() {
-    this.subscription = this.toastService.messageObservable.subscribe(
+    this.toastSubscription = this.toastService.messageObservable.subscribe(
       (msg: Message) => {
         this.messageService.add(msg);
+      }
+    );
+  }
+  private subscribeStatusObservable() {
+    this.subcription = this.loadingService.statusObservable.subscribe(
+      (status) => {
+        this.isLoading = status;
       }
     );
   }

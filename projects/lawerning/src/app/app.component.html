@@ -1,2 +1,7 @@
 <router-outlet></router-outlet>
 <p-toast [baseZIndex]="1000"></p-toast>
+<div *ngIf="isLoading" class="loading-body">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>

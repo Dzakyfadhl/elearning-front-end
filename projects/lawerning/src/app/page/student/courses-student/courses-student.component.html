@@ -72,9 +72,7 @@
               <div class="card mb-1 bg-white" pTooltip="{{ c.typeName }}" tooltipPosition="top">
                 <div class="card-body-course">
                   <div class="d-flex flex-column">
-                    <div *ngIf="c.isCompleted == false" class="card-header-course" style="
-                        background-image: url('../../../../assets/images/banner_course.png');
-                      ">
+                    <div class="card-header-course">
                       <h6 class="start-date">
                         {{ c.periodStart | date: "MMMM dd, yyyy" }}
                       </h6>
@@ -82,23 +80,15 @@
                         {{ c.typeName }}
                       </h4>
 
-                      <span class="category-badge category-name">{{
+                      <span class="category-badge category-name mr-2">{{
                         c.categoryName
                         }}</span>
-                      <p-progressBar [value]="c.percentProgress" class="progress-value"></p-progressBar>
+                      <p-progressBar *ngIf="!c.isCompleted" [value]="c.percentProgress" class="progress-value">
+                      </p-progressBar>
+
+                      <span *ngIf="c.isCompleted" class="finished-badge finished">Finished</span>
                     </div>
 
-                    <div *ngIf="c.isCompleted == true" class="card-header-course" style="
-                        background-image: url('../../../../assets/images/banner_course_finished.png');
-                      ">
-                      <h4 class="card-title text-truncate" style="max-width: 200px">
-                        {{ c.typeName }}
-                      </h4>
-
-                      <span class="category-badge category-name">{{
-                        c.categoryName
-                        }}</span>
-                    </div>
                   </div>
 
                   <div class="d-flex flex-row p-3">
