@@ -5,6 +5,6 @@ export class DetailModuleResponse {
   code: string;
   title: string;
   description: string;
-  schedule: ScheduleModel;
+  schedule = new ScheduleModel();
   files: FileModel[];
 }

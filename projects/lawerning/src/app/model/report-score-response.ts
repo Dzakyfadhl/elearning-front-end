@@ -1,8 +1,7 @@
 export class ReportScoreResponse {
-  firstName: string;
-  lastName: string;
+  studentFirstName: string;
+  totalAssignment: number;
   totalExam: number;
-  completed: number;
-  uncompleted: number;
-  avgGrade: number;
+  notAssignment: number;
+  avgScore: number;
 }

@@ -17,6 +17,9 @@ import Constants from '../../../constants/constant';
 import { ToastService } from '../../../service/toast.service';
 import { ConfirmationService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
+import { VerifyAttendance } from '../../../model/verify-attendance';
+import { ReportService } from '../../../service/report.service';
+import { ReportScoreResponse } from '../../../model/report-score-response';
 
 @Component({
   selector: 'app-dtl-module',
@@ -24,7 +27,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./dtl-module.component.css'],
 })
 export class DtlModuleComponent implements OnInit {
-  dtlModule: DetailModuleResponse;
+  dtlModule = new DetailModuleResponse();
   exam: ExamsModuleResponseDTO[];
   discussion: ForumModuleResponseDTO[];
   lesson: LessonResponse[];
@@ -38,6 +41,8 @@ export class DtlModuleComponent implements OnInit {
   isValidate = false;
   firstName: string;
   lastName: string;
+  selectedStudents: AttendanceResponse[];
+  reportScore: ReportScoreResponse[];
 
   displayExam: boolean = false;
   displayModule: boolean = false;
@@ -54,7 +59,9 @@ export class DtlModuleComponent implements OnInit {
     private attendanceService: AttendanceService,
     private authService: AuthService,
     private toastService: ToastService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private reportService: ReportService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -63,7 +70,9 @@ export class DtlModuleComponent implements OnInit {
     this.showLessonModule();
     this.showAttendanceStudent();
     this.showDiscussion();
+    this.showReportScore();
   }
+
   async showLessonModule() {
     try {
       const response = await this.lessonService.getLessonModule(this.moduleId);
@@ -76,6 +85,9 @@ export class DtlModuleComponent implements OnInit {
         'Failed to get lesson data.'
       );
     }
+  }
+  prevPage() {
+    this.location.back();
   }
   async showDetailModule() {
     try {
@@ -100,17 +112,22 @@ export class DtlModuleComponent implements OnInit {
       );
     }
   }
+
   showModuleExam() {
     this.moduleExamService
       .getDetailModuleExam(this.moduleId)
       .subscribe((val) => {
         this.exam = val.result;
-        // if(this.exam.length > 0){
-        //   this.exam.forEach(data => {
-
-        //   });
-        // }
         console.log(this.exam);
+        this.exam.forEach((val) => {
+          let endTime = new Date(val.endTime);
+          let dateNow = new Date();
+          if (dateNow > endTime) {
+            val.isPast = true;
+          } else {
+            val.isPast = false;
+          }
+        });
       });
   }
 
@@ -124,6 +141,13 @@ export class DtlModuleComponent implements OnInit {
     }
   }
 
+  showReportScore() {
+    this.reportService.getReportScore(this.moduleId).subscribe((val) => {
+      this.reportScore = val.result;
+      console.log(this.reportScore);
+    });
+  }
+
   showAttendanceStudent() {
     this.attendanceService
       .getAttendanceStudent(this.courseId, this.moduleId)
@@ -132,15 +156,48 @@ export class DtlModuleComponent implements OnInit {
         console.log(this.studentAttendance);
       });
   }
-  confirmAttendance(index: number) {
-    let attendance = this.studentAttendance[index];
-    console.log(attendance);
-    let attendanceId = attendance.attendanceId;
-    this.attendanceService
-      .verifyAttendanceStudent(attendanceId)
-      .subscribe((val) => {
-        console.log(val);
-      });
+
+  verifyAttendance() {
+    let idAttendances: string[] = [];
+    let confirmAttendance = new VerifyAttendance();
+    confirmAttendance.moduleId = this.moduleId;
+    confirmAttendance.userId = this.authService.getLoginResponse().userId;
+    this.confirmationService.confirm({
+      message: 'Do you want to verify attendance student ?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        for (let i = 0; i < this.selectedStudents.length; i++) {
+          if (
+            !this.selectedStudents[i].attendanceIsVerified &&
+            this.selectedStudents[i].attendanceTime != null
+          ) {
+            idAttendances.push(this.selectedStudents[i].attendanceId);
+            console.log('abc');
+          } else {
+            this.selectedStudents.splice(i, 1);
+            i - 1;
+          }
+        }
+        confirmAttendance.idAttendance = idAttendances;
+        console.log(confirmAttendance.userId);
+        console.log(confirmAttendance.moduleId);
+        console.log(confirmAttendance.idAttendance);
+        console.log(idAttendances);
+
+        if (idAttendances.length == 0) {
+          console.log('no absent data');
+          return;
+        }
+        console.log('absent data');
+
+        this.attendanceService
+          .verifyAttendanceStudent(confirmAttendance)
+          .subscribe((val) => {
+            console.log(val);
+          });
+      },
+    });
   }
 
   showDiscussion() {
@@ -311,5 +368,13 @@ export class DtlModuleComponent implements OnInit {
         }
       },
     });
+  }
+
+  downloadReportScore() {
+    let teacherId = this.authService.getLoginResponse().userRoleId;
+    window.open(
+      `${Constants.BASE_URL}/report/teacher?moduleId=${this.moduleId}&id=${teacherId}`,
+      '_blank'
+    );
   }
 }

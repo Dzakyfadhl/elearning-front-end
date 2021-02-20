@@ -95,8 +95,10 @@ export class UpdateProfileTeacherComponent implements OnInit {
     } catch (error) {
       this.toastService.emitHttpErrorMessage(error, 'Failed to update student');
     }
-    this.router.navigateByUrl('/profile-teacher');
+    this.router.navigateByUrl('teacher/profile');
   }
 
-  cancel() {}
+  cancel() {
+    this.router.navigateByUrl('teacher/profile');
+  }
 }

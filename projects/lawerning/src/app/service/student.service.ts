@@ -79,7 +79,8 @@ export class StudentService {
 
   verifyStudent(
     studentCourseId: string,
-    teacherId: string
+    teacherId: string,
+    email: string
   ): Observable<ResponseModel<StudentByCourseIdResponse>> {
     return this.http.put<ResponseModel<StudentByCourseIdResponse>>(
       `${Constants.BASE_URL}/teacher/verify/student`,
@@ -88,6 +89,7 @@ export class StudentService {
         params: {
           studentCourseId: studentCourseId,
           teacherId: teacherId,
+          email: email,
         },
       }
     );

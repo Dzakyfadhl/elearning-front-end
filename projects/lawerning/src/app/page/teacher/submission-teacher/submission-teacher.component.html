@@ -3,38 +3,29 @@
     <div class="header-module col-lg-12">
       <div class="d-flex justify-content-evenly mt-4">
         <div class="d-flex justify-content-between">
-          <a>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="35"
-              height="35"
-              fill="currentColor"
-              class="bi bi-arrow-left-circle-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"
-              />
-            </svg>
-          </a>
+          <div class="icon-back">
+
+            <a (click)="prevPage()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                <path
+                  d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+              </svg>
+            </a>
+          </div>
           <h6>{{ examTitle }}</h6>
         </div>
       </div>
       <div class="d-flex justify-content-evenly mt-2">
         <div class="d-flex justify-content-between">
-          <h5>Teacher: Rian Rivaldo, S.Kom</h5>
+          <h5>Teacher: {{ firstName }} {{ lastName }}</h5>
         </div>
       </div>
     </div>
   </div>
 </div>
 <!-- <p-blockUI [blocked]="blockedDocument"></p-blockUI> -->
-<p-dialog
-  header="Edit Score"
-  [(visible)]="display"
-  [style]="{ width: '35vw' }"
-  [baseZIndex]="10000"
->
+<p-dialog header="Edit Score" [(visible)]="display" [style]="{ width: '35vw' }" [baseZIndex]="10000">
   <div class="title-student">
     <h6>{{ tempFirstName }} {{ tempLastName }}</h6>
   </div>
@@ -57,18 +48,9 @@
         <div class="mb-3 mt-3">
           <h6>your student haven't viewed this assignment</h6>
         </div>
-        <p-table
-          [value]="studentSubmission"
-          [scrollable]="true"
-          [paginator]="true"
-          [scrollable]="true"
-          scrolHeight="100%"
-          [rows]="10"
-          [showCurrentPageReport]="true"
-          styleClass="p-datatable-striped"
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
-          [globalFilterFields]="['module']"
-        >
+        <p-table [value]="studentSubmission" [scrollable]="true" [paginator]="true" [scrollable]="true"
+          scrolHeight="100%" [rows]="10" [showCurrentPageReport]="true" styleClass="p-datatable-striped"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" [globalFilterFields]="['module']">
           <ng-template pTemplate="header">
             <tr>
               <th width="80px">No</th>
@@ -90,15 +72,11 @@
               <td width="80px">
                 <a href="http://192.168.15.224:8080/file/{{ ss.fileId }}">{{
                   ss.fileName
-                }}</a>
+                  }}</a>
               </td>
               <td width="80px">{{ ss.grade }}</td>
               <td width="80px">
-                <p-button
-                  (click)="showDialog(rowIndex)"
-                  label="Edit Score"
-                  styleClass="p-button-success"
-                >
+                <p-button (click)="showDialog(rowIndex)" label="Edit Score" styleClass="p-button-success">
                 </p-button>
               </td>
             </tr>

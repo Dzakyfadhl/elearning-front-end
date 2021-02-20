@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import Constants from '../constants/constant';
 import { AttendanceReport } from '../model/attendance-report';
+import { ReportScoreResponse } from '../model/report-score-response';
 import { ResponseModel } from '../model/response-model';
 import { StudentReportResponse } from '../model/student-report-response';
 import { AuthService } from './auth.service';
@@ -36,6 +37,14 @@ export class ReportService {
   ): Observable<ResponseModel<AttendanceReport[]>> {
     return this.http.get<ResponseModel<AttendanceReport[]>>(
       `${Constants.BASE_URL}/course/attendance/reports/${courseId}`
+    );
+  }
+
+  getReportScore(
+    moduleId: string
+  ): Observable<ResponseModel<ReportScoreResponse[]>> {
+    return this.http.get<ResponseModel<ReportScoreResponse[]>>(
+      `${Constants.BASE_URL}/teacher/reports/${moduleId}`
     );
   }
 }

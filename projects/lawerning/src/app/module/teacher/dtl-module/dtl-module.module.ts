@@ -23,6 +23,7 @@ import {
 import {
   faArrowCircleLeft,
   faCalendarAlt,
+  faCheck,
   faClock,
   faPlusSquare,
 } from '@fortawesome/free-solid-svg-icons';
@@ -50,6 +51,12 @@ import {
 })
 export class DtlModuleModule {
   constructor(library: FaIconLibrary) {
-    library.addIcons(faClock, faCalendarAlt, faArrowCircleLeft, faPlusSquare);
+    library.addIcons(
+      faClock,
+      faCalendarAlt,
+      faArrowCircleLeft,
+      faPlusSquare,
+      faCheck
+    );
   }
 }

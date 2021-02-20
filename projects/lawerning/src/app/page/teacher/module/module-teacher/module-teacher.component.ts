@@ -96,19 +96,26 @@ export class ModuleTeacherComponent implements OnInit {
   verifyStudent(index: number) {
     let studentCourseId = this.students[index].studentCourseId;
     let teacherId = this.authService.getLoginResponse().userRoleId;
-    this.studentService.verifyStudent(studentCourseId, teacherId).subscribe(
-      (response) => {
-        if (response.code === 200 && response.result) {
-          this.toastService.emitSuccessMessage('Submitted', 'Register success');
-          this.showStudentByCourse();
+    let email = this.students[index].email;
+    this.studentService
+      .verifyStudent(studentCourseId, teacherId, email)
+      .subscribe(
+        (response) => {
+          if (response.code === 200 && response.result) {
+            this.toastService.emitSuccessMessage(
+              'Submitted',
+              'Register success'
+            );
+            this.showStudentByCourse();
+            this.showDetailCourseTeacher();
+          }
+        },
+        (error: HttpErrorResponse) => {
+          this.toastService.emitHttpErrorMessage(
+            error,
+            'Failed to verify student'
+          );
         }
-      },
-      (error: HttpErrorResponse) => {
-        this.toastService.emitHttpErrorMessage(
-          error,
-          'Failed to verify student'
-        );
-      }
-    );
+      );
   }
 }

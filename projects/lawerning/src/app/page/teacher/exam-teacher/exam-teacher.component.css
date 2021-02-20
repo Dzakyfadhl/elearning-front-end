@@ -2,8 +2,11 @@
   width: 60%;
 }
 .header a {
-  color: #232946;
+  color: #323096;
 }
 .header h3 {
   margin-left: 15px;
+}
+.icon-back :hover {
+  cursor: pointer;
 }

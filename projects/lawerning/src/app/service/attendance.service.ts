@@ -5,6 +5,7 @@ import Constants from '../constants/constant';
 import { AttendanceRequest } from '../model/attendance-request';
 import { AttendanceResponse } from '../model/attendance-response';
 import { ResponseModel } from '../model/response-model';
+import { VerifyAttendance } from '../model/verify-attendance';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -30,13 +31,11 @@ export class AttendanceService {
   }
 
   verifyAttendanceStudent(
-    idAttendance: string
-  ): Observable<ResponseModel<AttendanceResponse>> {
-    return this.http.patch<ResponseModel<AttendanceResponse>>(
-      `${Constants.BASE_URL}/attendance?id=${idAttendance}&userId=${
-        this.auth.getLoginResponse().userId
-      }`,
-      null
+    data: VerifyAttendance
+  ): Observable<ResponseModel<VerifyAttendance>> {
+    return this.http.patch<ResponseModel<VerifyAttendance>>(
+      `${Constants.BASE_URL}/attendance`,
+      data
     );
   }
 }

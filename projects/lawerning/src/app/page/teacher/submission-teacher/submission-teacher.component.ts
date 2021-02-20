@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SubmissionsByExamResponseDTO } from '../../../model/exam-dto/submissions-exam-response';
@@ -15,6 +16,8 @@ export class SubmissionTeacherComponent implements OnInit {
   tempFirstName: string;
   tempLastName: string;
   score: number;
+  firstName: string;
+  lastName: string;
   examTitle: string;
   data = new UpdateScoreRequestDTO();
   studentSubmission: SubmissionsByExamResponseDTO[];
@@ -23,7 +26,8 @@ export class SubmissionTeacherComponent implements OnInit {
   constructor(
     private activeRoute: ActivatedRoute,
     private examService: ExamService,
-    private auth: AuthService
+    private authService: AuthService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +40,8 @@ export class SubmissionTeacherComponent implements OnInit {
       this.examTitle = value.title;
       console.log(this.examTitle);
 
+      this.firstName = this.authService.getLoginResponse().firstName;
+      this.lastName = this.authService.getLoginResponse().lastName;
       this.examService.getExamSubmission(value.idExam).subscribe((value) => {
         this.studentSubmission = value.result;
         console.log(this.studentSubmission);
@@ -47,11 +53,14 @@ export class SubmissionTeacherComponent implements OnInit {
     this.tempFirstName = tempObj.firstName;
     this.tempLastName = tempObj.lastName;
     this.data.id = tempObj.id;
-    this.data.updatedBy = this.auth.getLoginResponse().userId;
+    this.data.updatedBy = this.authService.getLoginResponse().userId;
     console.log(this.data.updatedBy);
     console.log(this.data.id);
 
     this.display = true;
+  }
+  prevPage() {
+    this.location.back();
   }
 
   updateScore() {

@@ -1,14 +1,14 @@
 .header-module {
   position: absolute;
   height: 25%;
-  background-color: #232946;
+  background-color: #323096;
 }
 .header-module a {
   margin-left: 5px;
-  color: #f9bc60;
+  color: white;
 }
 .header-module h6 {
-  color: #f9bc60;
+  color: white;
   font-size: 30px;
   margin-left: 15px;
 }
@@ -16,6 +16,9 @@
   color: #a7a9be;
   font-size: 18px;
   margin-left: 55px;
+}
+.icon-back :hover {
+  cursor: pointer;
 }
 
 .body-module {

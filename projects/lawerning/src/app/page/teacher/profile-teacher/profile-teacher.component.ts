@@ -60,7 +60,7 @@ export class ProfileTeacherComponent implements OnInit {
 
   formEdit(data: TeacherProfileResponse) {
     console.log(data);
-    this.router.navigate(['/update/profile/teacher', data]);
+    this.router.navigate(['teacher/update/profile/teacher', data]);
   }
   showDialogEx() {
     this.isDisplayEx = true;

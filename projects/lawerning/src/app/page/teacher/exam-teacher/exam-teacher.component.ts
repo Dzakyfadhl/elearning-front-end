@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
@@ -28,7 +28,8 @@ export class ExamTeacherComponent implements OnInit {
     private auth: AuthService,
     private http: HttpClient,
     private examService: ExamService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +43,9 @@ export class ExamTeacherComponent implements OnInit {
       console.log(this.examTeacher.createdBy);
       console.log(this.examTeacher);
     });
+  }
+  prevPage() {
+    this.location.back();
   }
 
   fileChange(event) {
@@ -76,7 +80,6 @@ export class ExamTeacherComponent implements OnInit {
   }
   uploadExam() {
     console.log(this.examTeacher.startTime);
-
     this.examService.uploadExamTeacher(this.formData).subscribe((val) => {
       console.log(val);
     });
