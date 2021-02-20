@@ -7,15 +7,6 @@ body {
   margin: 0;
 }
 
-.card0 {
-  box-shadow: 0px 4px 8px 0px #757575;
-  border-radius: 0px;
-  position: fixed;
-  width: 70%;
-  top: 7%;
-  left: 15%;
-}
-
 .card2 {
   margin: 0px 40px;
 }
@@ -104,10 +95,10 @@ a {
 }
 
 .btn-blue {
-  background-color: #232946;
+  background-color: #323096;
   width: 100%;
   color: #fff;
-  border-radius: 2px;
+  border-radius: 20px;
 }
 
 .btn-blue:hover {
@@ -123,6 +114,26 @@ a {
   color: red;
 }
 
+@media (min-width: 411px) {
+  .card0 {
+    box-shadow: 0px 4px 8px 0px #757575;
+    border-radius: 0px;
+    position: fixed;
+    width: 50%;
+    top: 0;
+    left: 25%;
+  }
+}
+@media (min-width: 768px) {
+  .card0 {
+    box-shadow: 0px 4px 8px 0px #757575;
+    border-radius: 0px;
+    position: fixed;
+    width: 50%;
+    top: 7%;
+    left: 25%;
+  }
+}
 @media screen and (max-width: 991px) {
   .logo {
     margin-left: 0px;

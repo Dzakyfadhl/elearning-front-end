@@ -9,7 +9,7 @@
   font-weight: bold;
   background-color: rgb(220, 250, 250);
 }
-a h5:hover {
+a h6:hover {
   cursor: pointer;
   color: #323096;
   text-decoration-line: underline;
@@ -42,7 +42,9 @@ a h5:hover {
   color: #232946;
 }
 .btn-login {
-  color: #232946;
+  border: none;
+  background-color: #323096;
+  color: white;
 }
 .btn-login:hover {
   background-color: #232946;
@@ -52,7 +54,7 @@ a h5:hover {
 .btn-get {
   color: white;
   border: none;
-  background-color: #232946;
+  background-color: #323096;
 }
 
 .btn-register {
@@ -91,7 +93,7 @@ a h5:hover {
   height: 25rem;
   border-radius: 10px;
 }
-.title h5 {
+.title h6 {
   color: #232946;
   font-weight: bold;
 }
@@ -101,12 +103,26 @@ a h5:hover {
 }
 .footer {
   height: auto;
-  background-color: teal;
+}
+
+.icon-media {
+  color: grey;
+}
+.title {
+  font-weight: 900;
 }
 @media (min-width: 411px) {
   /* .mentor-data {
     width: 80%;
   } */
+  .address {
+    width: 100%;
+    color: grey;
+  }
+  .content-about {
+    width: 100%;
+  }
+
   .underline {
     width: 5rem;
     height: 0.5rem;
@@ -166,6 +182,13 @@ a h5:hover {
   }
 }
 @media (min-width: 768px) {
+  .address {
+    width: 80%;
+    color: grey;
+  }
+  .content-about {
+    width: 80%;
+  }
   .header-left {
     margin-top: 8rem;
   }

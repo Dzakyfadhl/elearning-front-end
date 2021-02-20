@@ -84,7 +84,7 @@
                 <span class="category-badge category-name">{{
                   c.categoryName
                   }}</span>
-                <h6 class="mt-2 text-secondary">Start on {{c.periodStart | date: 'MMMM'}}</h6>
+                <h6 class="mt-3 text-secondary">Start on {{c.periodStart | date: 'MMMM'}}</h6>
                 <!-- </div> -->
 
                 <!-- <h6 class="text-secondary"></h6> -->
@@ -93,7 +93,7 @@
                 <div class="d-flex flex-row">
                   <img [src]="c.teacher.photoId" height="60" class="rounded-circle" width="60" alt="" />
                   <div class="d-flex flex-column pl-2 m-2">
-                    <h6 class="teacher-name">
+                    <h6 class="teacher-name text-truncate">
                       {{ c.teacher.firstName }} {{ c.teacher.lastName }},
                       {{ c.teacher.title }}.
                     </h6>

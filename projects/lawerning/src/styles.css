@@ -1,26 +1,24 @@
-@import '~bootstrap/dist/css/bootstrap.css';
+@import "~bootstrap/dist/css/bootstrap.css";
 * {
-    font-family: 'pop-ins';
+  font-family: "Sanchez";
 }
 
 .p-orderlist-controls {
-    display: none !important;
+  display: none !important;
 }
-
 
 /* .p-button-text .p-button .p-component .p-button-icon-only .p-ripple {
     display: none !important;
 } */
 
 .p-paginator-left-content .p-button-text {
-    display: none !important;
+  display: none !important;
 }
-
 
 /* .p-ripple {
     display: none !important;
 } */
 
 .p-paginator-right-content .p-ripple {
-    display: none !important;
+  display: none !important;
 }

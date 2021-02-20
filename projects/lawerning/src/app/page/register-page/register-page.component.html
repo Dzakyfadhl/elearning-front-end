@@ -1,14 +1,14 @@
 <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
   <div class="card card0 border-0">
     <div class="row d-flex">
-      <div class="col-lg-6">
+      <!-- <div class="col-lg-6">
         <div class="card1 p-5">
           <div class="row px-3 justify-content-center mt-5 mb-5">
             <img src="assets/images/logo.png" class="image" />
           </div>
         </div>
-      </div>
-      <div class="col-lg-6">
+      </div> -->
+      <div class="content col-lg-12">
         <div class="card2 p-1">
           <div class="row">
             <div class="col-lg-12 d-flex justify-content-center px-3 mt-4 mb-2">
@@ -20,13 +20,8 @@
                   <h6 class="mb-0 text-sm">Username</h6>
                 </label>
 
-                <input
-                  class="mb-3"
-                  [(ngModel)]="studentRegister.username"
-                  type="text"
-                  name="username"
-                  placeholder="Enter a username"
-                />
+                <input class="mb-3" [(ngModel)]="studentRegister.username" type="text" name="username"
+                  placeholder="Enter a username" />
               </div>
             </div>
             <div class="col-lg-6">
@@ -35,13 +30,8 @@
                   <h6 class="mb-0 text-sm">First Name</h6>
                 </label>
 
-                <input
-                  class="mb-3"
-                  type="text"
-                  [(ngModel)]="studentRegister.firstName"
-                  name="username"
-                  placeholder="Enter a first name"
-                />
+                <input class="mb-3" type="text" [(ngModel)]="studentRegister.firstName" name="username"
+                  placeholder="Enter a first name" />
               </div>
             </div>
             <div class="col-lg-6">
@@ -50,13 +40,8 @@
                   <h6 class="mb-0 text-sm">Last Name</h6>
                 </label>
 
-                <input
-                  class="mb-3"
-                  type="text"
-                  [(ngModel)]="studentRegister.lastName"
-                  name="username"
-                  placeholder="Enter a last name"
-                />
+                <input class="mb-3" type="text" [(ngModel)]="studentRegister.lastName" name="username"
+                  placeholder="Enter a last name" />
               </div>
             </div>
             <div class="col-lg-12">
@@ -64,13 +49,8 @@
                 <label class="mb-1">
                   <h6 class="mb-0 text-sm">Password</h6>
                 </label>
-                <input
-                  class="mb-3"
-                  type="password"
-                  [(ngModel)]="studentRegister.password"
-                  name="password"
-                  placeholder="Enter a password"
-                />
+                <input class="mb-3" type="password" [(ngModel)]="studentRegister.password" name="password"
+                  placeholder="Enter a password" />
               </div>
             </div>
 
@@ -79,13 +59,8 @@
                 <label class="mb-1">
                   <h6 class="mb-0 text-sm">Email</h6>
                 </label>
-                <input
-                  class="mb-3"
-                  type="text"
-                  [(ngModel)]="studentRegister.email"
-                  name="email"
-                  placeholder="Enter a email"
-                />
+                <input class="mb-3" type="text" [(ngModel)]="studentRegister.email" name="email"
+                  placeholder="Enter a email" />
               </div>
             </div>
             <div class="col-lg-6">
@@ -93,24 +68,16 @@
                 <label class="mb-1">
                   <h6 class="mb-0 text-sm">Phone Number</h6>
                 </label>
-                <input
-                  class="mb-4"
-                  type="text"
-                  [(ngModel)]="studentRegister.phone"
-                  name="phoneNumber"
-                  placeholder="Enter a phone number"
-                />
+                <input class="mb-4" type="text" [(ngModel)]="studentRegister.phone" name="phoneNumber"
+                  placeholder="Enter a phone number" />
               </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 mb-3">
               <div class="row px-3">
                 <label class="mb-1">
                   <h6 class="mb-1 text-sm">Gender</h6>
                 </label>
-                <select
-                  class="custom-select"
-                  [(ngModel)]="studentRegister.gender"
-                >
+                <select class="custom-select" [(ngModel)]="studentRegister.gender">
                   <option [value]="male">Male</option>
                   <option [value]="female">Female</option>
                 </select>
@@ -127,8 +94,7 @@
             </div>
             <div class="col-lg-12">
               <div class="row mb-4 px-3 justify-content-center">
-                <small class="font-weight-bold"
-                  >Already have an account?
+                <small class="font-weight-bold">Already have an account?
                   <a class="text-primary" routerLink="/login">Sign in</a>
                 </small>
               </div>

@@ -7,15 +7,6 @@ body {
   margin: 0;
 }
 
-.card0 {
-  box-shadow: 0px 4px 8px 0px #757575;
-  border-radius: 0px;
-  position: fixed;
-  width: 70%;
-  top: 15%;
-  left: 15%;
-}
-
 .card2 {
   margin: 0px 40px;
 }
@@ -28,11 +19,6 @@ body {
   height: 100px;
   margin-top: 20px;
   margin-left: 35px;
-}
-
-.image {
-  width: 360px;
-  height: 280px;
 }
 
 .border-line {
@@ -99,13 +85,6 @@ a {
   cursor: pointer;
 }
 
-.btn-blue {
-  background-color: #232946;
-  width: 100%;
-  color: #fff;
-  border-radius: 2px;
-}
-
 .btn-blue:hover {
   background-color: #000;
   cursor: pointer;
@@ -115,15 +94,43 @@ a {
   color: #fff;
   background-color: #1a237e;
 }
-
+@media (min-width: 411px) {
+  .card0 {
+    box-shadow: 0px 4px 8px 0px #757575;
+    border-radius: 0px;
+    position: fixed;
+    width: 100%;
+    top: 15%;
+    left: 25%;
+  }
+  .btn-blue {
+    background-color: #323096;
+    width: 100%;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+  }
+  @media (min-width: 768px) {
+    .card0 {
+      box-shadow: 0px 4px 8px 0px #757575;
+      border-radius: 0px;
+      position: fixed;
+      width: 50%;
+      top: 15%;
+      left: 25%;
+    }
+    .btn-blue {
+      background-color: #323096;
+      width: 70%;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+    }
+  }
+}
 @media screen and (max-width: 991px) {
   .logo {
     margin-left: 0px;
-  }
-
-  .image {
-    width: 300px;
-    height: 220px;
   }
 
   .border-line {

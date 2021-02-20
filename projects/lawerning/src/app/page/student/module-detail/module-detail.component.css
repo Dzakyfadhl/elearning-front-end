@@ -1,7 +1,8 @@
 .card-body {
   background-color: #323096;
+  border-radius: 10px;
 }
-.card-body h3 {
+.card-body h2 {
   color: white;
 }
 .card-body h5 {
@@ -156,7 +157,7 @@
 } */
 @media (min-width: 411px) {
   .detail-title {
-    max-width: 10%;
+    max-width: 100%;
   }
   .forum {
     /* border: 1px solid; */
@@ -192,7 +193,7 @@
 }
 @media (min-width: 768px) {
   .detail-title {
-    max-width: 95%;
+    max-width: 100%;
   }
   .view-module {
     overflow-y: scroll;

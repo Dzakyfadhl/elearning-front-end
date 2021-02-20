@@ -17,11 +17,19 @@ import { ScrollTopModule } from 'primeng/scrolltop';
 import { CarouselModule } from 'primeng/carousel';
 import { DetailCourseModule } from './module/detail-course/detail-course.module';
 import { ResetPasswordComponent } from './page/reset-password/reset-password.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {
+  FaIconLibrary,
+  FontAwesomeModule,
+} from '@fortawesome/angular-fontawesome';
 import { CheckLoginGuard } from './shared/check-login.guard';
 import { Permissions } from './shared/permissions';
 import { TooltipModule } from 'primeng/tooltip';
 import { ChangePasswordComponent } from '@bootcamp-lawerning-page/teacher/change-password/change-password.component';
+import {
+  faInstagramSquare,
+  faLinkedin,
+  faFacebookSquare,
+} from '@fortawesome/free-brands-svg-icons';
 
 @NgModule({
   declarations: [
@@ -55,4 +63,8 @@ import { ChangePasswordComponent } from '@bootcamp-lawerning-page/teacher/change
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faInstagramSquare, faLinkedin, faFacebookSquare);
+  }
+}

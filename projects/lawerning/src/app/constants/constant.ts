@@ -1,6 +1,7 @@
 const Constants = {
   BASE_URL: 'http://192.168.1.18:8080/lawerning',
-  BASE_URL_FILE: 'http://192.168.1.18:8080/file',
+  // BASE_URL: 'http://localhost:8080',
+  BASE_URL_FILE: 'http://192.168.1.18:8080/lawerning/file',
   PIXABAY_URL: 'https://pixabay.com/api',
   CHART_COLORS: [
     '#36A2EB',

@@ -140,4 +140,10 @@ export class ModuleCourseComponent implements OnInit {
       }
     );
   }
+
+  downloadModule() {
+    window.open(
+      `${Constants.BASE_URL}/report/course/?id=${this.courseId}&studentId=${this.studentId}`
+    );
+  }
 }

@@ -27,8 +27,7 @@
       <div class="col-lg-12 mt-1">
         <div class="d-flex justify-content-between">
           <h3>Module</h3>
-          <a class="download mr-3"
-            href="http://192.168.15.224:8080/report/course/?id={{courseId}}&studentId={{studentId}}">
+          <a class="download mr-3" (click)="downloadModule()">
             <!-- <button class="btn btn-sm btn-secondary"> -->
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-download"
               viewBox="0 0 16 16">
@@ -63,8 +62,7 @@
                   <div class="d-flex justify-content-start">
                     <div class="left">
                       <h4 class="title text-truncate" pTooltip="{{ m.title }}" tooltipPosition="top">
-                        {{ m.title }}:
-                        {{ m.subjectName }}
+                        {{ m.title }}
                       </h4>
                     </div>
                     <!-- <div class="right m-2"></div> -->

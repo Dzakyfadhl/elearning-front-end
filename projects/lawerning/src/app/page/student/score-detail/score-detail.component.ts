@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { report } from 'process';
+import Constants from '../../../constants/constant';
 import { StudentReportResponse } from '../../../model/student-report-response';
 import { AuthService } from '../../../service/auth.service';
 import { LoadingService } from '../../../service/loading.service';
@@ -45,7 +46,7 @@ export class ScoreDetailComponent implements OnInit {
     );
   }
   downloadReport() {
-    this.reportService.downloadReporting().subscribe((val) => console.log(val));
+    window.open(`${Constants.BASE_URL}/report/student?id=${this.studentId}`);
   }
 
   next() {

@@ -1,20 +1,10 @@
-<nav
-  class="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-1 sticky-top"
->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-1 sticky-top">
   <div class="d-flex flex-row pl-5 pr-3">
-    <img src="assets/images/logo.png" height="40" alt="" />
+    <img src="assets/images/logo.png" height="20" alt="" />
 
-    <h4 class="label-logo pt-1 pl-3">Lawerning</h4>
   </div>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -24,7 +14,7 @@
     </ul>
     <div *ngIf="token == ''" class="mr-5">
       <div class="d-flex flex-row p-2">
-        <a class="btn-login btn btn-outline-secondary mr-3" routerLink="/login">
+        <a class="btn-login btn btn-secondary mr-3" routerLink="/login">
           Sign In
         </a>
         <span class="line mr-3"></span>
@@ -45,13 +35,13 @@
 <div class="header-content container">
   <div class="row justify-content-center p-5">
     <div class="header-left col-lg-6 col-md-6 col-sm-12 mb-3">
-      <h1 class="text-center">Improve Your Skills</h1>
+      <h1 class="title text-center">Improve Your Skills</h1>
       <h6 class="text-secondary my-4">
         Let's find material according to your fashion and professional mentors.
       </h6>
       <div class="d-flex justify-content-center">
         <button class="btn-get btn btn-primary" routerLink="/register">
-          Register Course Now!
+          Register Now!
         </button>
       </div>
     </div>
@@ -61,10 +51,10 @@
   </div>
 </div>
 
-<div class="header-content2 container-fluid">
+<div class="header-content2 container-fluid mt-4">
   <div class="row justify-content-center p-5">
     <div class="col-lg-12">
-      <h1 class="text-center">The advantages of our E-learning</h1>
+      <h1 class="title text-center">The advantages of our E-learning</h1>
       <hr />
     </div>
   </div>
@@ -84,7 +74,7 @@
     </div>
     <div class="col-lg-4 mb-3">
       <div class="d-flex justify-content-center">
-        <img src="assets/images/betterCourse.svg" class="img-adv" alt="" />
+        <img src="assets/images/bestCourse.svg" class="img-adv" alt="" />
         <div class="d-flex flex-column p-3">
           <h5 class="advantage-text">Better Course</h5>
           <p>
@@ -108,36 +98,28 @@
     </div>
   </div>
 </div>
-<div class="body-content bg-light container-fluid">
+<div class="body-content container-fluid">
   <div class="row">
     <div class="col-lg-12 mt-3 mb-3">
-      <h1 class="text-center">Courses</h1>
+      <h1 class="title text-center">Courses</h1>
+      <hr>
     </div>
   </div>
 
-  <div class="row">
+  <div class="card-course row">
     <div class="col-lg-3" *ngFor="let c of courses; let i = index">
       <div class="card shadow my-3 mb-3">
         <div class="d-flex flex-column">
-          <img
-            src="assets/images/banner_course.png"
-            class="ilustrator"
-            alt=""
-          />
+          <img src="assets/images/banner_course.png" class="ilustrator" alt="" />
           <span class="label text-center text-truncate">{{
             c.categoryName
-          }}</span>
+            }}</span>
 
           <div class="title m-3">
             <a (click)="viewModule(i)">
-              <h5
-                class="text-truncate"
-                pTooltip="{{ c.typeName }}"
-                tooltipPosition="top"
-                style="max-width: 300px"
-              >
+              <h6 class="text-truncate" pTooltip="{{ c.typeName }}" tooltipPosition="top" style="max-width: 300px">
                 {{ c.typeName }}
-              </h5>
+              </h6>
             </a>
             <div class="d-flex flex-row">
               <!-- <span class="badge p-2 badge-primary"
@@ -146,78 +128,41 @@
 
               <span *ngIf="c.duration > 1" class="badge p-2 badge-primary mr-1">
                 <div class="d-flex flex-row">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="10"
-                    height="10"
-                    fill="currentColor"
-                    class="bi bi-clock-fill mr-1"
-                    viewBox="0 0 16 16"
-                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
+                    class="bi bi-clock-fill mr-1" viewBox="0 0 16 16">
                     <path
-                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"
-                    />
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
                   </svg>
                   {{ c.duration }} weeks
                 </div>
               </span>
-              <span
-                *ngIf="c.duration == 1"
-                class="badge p-2 badge-primary mr-1"
-              >
+              <span *ngIf="c.duration == 1" class="badge p-2 badge-primary mr-1">
                 <div class="d-flex flex-row">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="10"
-                    height="10"
-                    fill="currentColor"
-                    class="bi bi-clock-fill mr-1"
-                    viewBox="0 0 16 16"
-                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
+                    class="bi bi-clock-fill mr-1" viewBox="0 0 16 16">
                     <path
-                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"
-                    />
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
                   </svg>
                   {{ c.duration }} week
                 </div>
               </span>
-              <span
-                *ngIf="c.duration > 0 && c.day > 1"
-                class="badge p-2 badge-primary"
-              >
+              <span *ngIf="c.duration > 0 && c.day > 1" class="badge p-2 badge-primary">
                 <div class="d-flex flex-row">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="10"
-                    height="10"
-                    fill="currentColor"
-                    class="bi bi-clock-fill mr-1"
-                    viewBox="0 0 16 16"
-                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
+                    class="bi bi-clock-fill mr-1" viewBox="0 0 16 16">
                     <path
-                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"
-                    />
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
                   </svg>
                   {{ c.day }} days
                 </div>
               </span>
 
-              <span
-                *ngIf="c.duration > 0 && c.day == 1"
-                class="badge p-2 badge-primary"
-              >
+              <span *ngIf="c.duration > 0 && c.day == 1" class="badge p-2 badge-primary">
                 <div class="d-flex flex-row">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="10"
-                    height="10"
-                    fill="currentColor"
-                    class="bi bi-clock-fill mr-1"
-                    viewBox="0 0 16 16"
-                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
+                    class="bi bi-clock-fill mr-1" viewBox="0 0 16 16">
                     <path
-                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"
-                    />
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
                   </svg>
                   {{ c.day }} day
                 </div>
@@ -226,11 +171,7 @@
             <hr />
           </div>
           <div class="data-teacher d-flex justify-content-start">
-            <img
-              [src]="c.teacher.photoId"
-              class="img-teach rounded-circle ml-3"
-              alt=""
-            />
+            <img [src]="c.teacher.photoId" class="img-teach rounded-circle ml-3" alt="" />
             <div class="d-flex flex-column p-2">
               <h6 class="teacher-name text-truncate" style="max-width: 230px">
                 {{ c.teacher.firstName }} {{ c.teacher.lastName }},
@@ -254,26 +195,18 @@
   <div class="row justify-content-center p-4">
     <div class="col-lg-12">
       <div class="d-flex flex-column mb-4">
-        <h1 class="text-center">Mentors</h1>
+        <h1 class="title text-center">Mentors</h1>
+
       </div>
+      <hr />
       <div class="mentor-data">
-        <p-carousel
-          [value]="mentors"
-          [numVisible]="4"
-          [numScroll]="4"
-          [circular]="false"
-          [responsiveOptions]="responsiveOptions"
-        >
+        <p-carousel [value]="mentors" [numVisible]="4" [numScroll]="4" [circular]="false"
+          [responsiveOptions]="responsiveOptions">
           <ng-template let-mentor pTemplate="item">
             <div class="product-item">
               <div class="product-item-content shadow-sm">
                 <div class="p-mb-3 text-center">
-                  <img
-                    [src]="mentor.photoId"
-                    class="image-photo"
-                    height="120"
-                    width="150"
-                  />
+                  <img [src]="mentor.photoId" class="image-photo" height="120" width="150" />
                 </div>
                 <h5 class="teacher-name p-mb-1 text-center mt-3">
                   {{ mentor.firstName }} {{ mentor.lastName }},
@@ -288,10 +221,54 @@
   </div>
 </div>
 
-<div class="footer container-fluid">
+<div class="footer container-fluid bg-light">
   <div class="row justify-content-center p-4">
+    <div class="col-lg-5 p-5">
+      <div class="d-flex flex-column">
+        <div class="d-flex justify-content-center">
+          <img src="assets/images/logo.png" height="30" alt="">
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+          <p class="address">Jl. Casablanca No.Kav 18, RT.4 / RW.12, Menteng Atas, Tebet Sub District, South Jakarta
+            City. <strong>(021) - 80292822</strong>
+          </p>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="d-flex flex-row">
+            <a href="https://www.instagram.com/">
+              <fa-icon [icon]="['fab','instagram-square']" size="2x" class="icon-media"></fa-icon>
+            </a>
+            <a href="https://www.linkedin.com/">
+
+              <fa-icon [icon]="['fab','linkedin']" size="2x" class="icon-media mx-3"></fa-icon>
+            </a>
+            <a href="https://www.facebook.com/">
+              <fa-icon [icon]="['fab','facebook-square']" size="2x" class="icon-media"></fa-icon>
+
+            </a>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <div class="col-lg-7 p-5">
+      <h4 class="text-secondary">About</h4>
+      <p class="content-about text-secondary mt-3">This e-learning course strengthens you to address health system
+        challenges in
+        complex emergencies
+        and fragile
+        states. To prepare you for improving these challenging situations we will analyse roles and strategies of key
+        actors, humanitarian aid and politics, and human rights policies. You will thus become able to develop
+        context-specific strategies for rebuilding disrupted health systems.
+
+      </p>
+    </div>
+  </div>
+  <div class="row justify-content-center">
     <div class="col-lg-12">
-      <h1 class="text-center text-light">Footer Content</h1>
+      <p class="text-center text-secondary">@Copyright Lawerning 2021</p>
     </div>
   </div>
 </div>
