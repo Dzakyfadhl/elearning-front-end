@@ -23,14 +23,16 @@ export class ToastService {
     error: HttpErrorResponse,
     message: string | null = null
   ) {
-    let msg: string;
+    let msg: string = '';
     if (error.error) {
       msg = error.error.result;
+    } else {
+      msg = error.message;
     }
     this.messageObservable.next({
       severity: 'error',
       summary: 'Failed',
-      detail: `${message ?? 'Failed request'}. Caused by ${msg}`,
+      detail: `${message ?? 'Failed request'}. ${msg}`,
     });
     console.log(error);
   }

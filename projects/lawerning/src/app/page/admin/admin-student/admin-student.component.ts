@@ -39,16 +39,9 @@ export class AdminStudentComponent implements OnInit {
   }
 
   async initStudentList() {
-    try {
-      const response = await this.studentService.getAllStudent();
-      if (response.code === 200) {
-        this.students = response.result;
-      }
-    } catch (error) {
-      this.toastService.emitHttpErrorMessage(
-        error,
-        'Failed to get student data.'
-      );
+    const response = await this.studentService.getAllStudent();
+    if (response.code === 200) {
+      this.students = response.result;
     }
   }
 
@@ -78,17 +71,11 @@ export class AdminStudentComponent implements OnInit {
 
   async updateStudent() {
     this.editRequest.gender = Gender[this.selectedGender];
-    try {
-      const response = await this.studentService.updateStudent(
-        this.editRequest
-      );
-      if (response.code === 200) {
-        this.toastService.emitSuccessMessage('Updated', response.result);
-        await this.initStudentList();
-        this.hideEditDialog();
-      }
-    } catch (error) {
-      this.toastService.emitHttpErrorMessage(error, 'Failed to update student');
+    const response = await this.studentService.updateStudent(this.editRequest);
+    if (response.code === 200) {
+      this.toastService.emitSuccessMessage('Updated', response.result);
+      await this.initStudentList();
+      this.hideEditDialog();
     }
   }
 
@@ -98,17 +85,10 @@ export class AdminStudentComponent implements OnInit {
       header: 'Delete Confirm.',
       icon: 'pi pi-exclamation-triangle',
       accept: async () => {
-        try {
-          const response = await this.studentService.deleteStudent(student.id);
-          if (response.code === 200) {
-            this.toastService.emitSuccessMessage('Deleted', response.result);
-            this.initStudentList();
-          }
-        } catch (error) {
-          this.toastService.emitHttpErrorMessage(
-            error,
-            'Failed to delete student'
-          );
+        const response = await this.studentService.deleteStudent(student.id);
+        if (response.code === 200) {
+          this.toastService.emitSuccessMessage('Deleted', response.result);
+          this.initStudentList();
         }
       },
     });

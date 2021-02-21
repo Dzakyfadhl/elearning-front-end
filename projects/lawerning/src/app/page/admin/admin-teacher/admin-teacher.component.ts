@@ -42,19 +42,12 @@ export class AdminTeacherComponent implements OnInit {
         return { key: item.toUpperCase(), value: item };
       });
     this.defineTeachers();
-    console.log(this.teachers);
   }
 
   defineTeachers() {
-    this.teacherService.getAllTeachersForAdmin().subscribe(
-      (val) => {
-        this.teachers = val.result;
-        console.log(this.teachers);
-      },
-      (err) => {
-        console.error(err.error);
-      }
-    );
+    this.teacherService.getAllTeachersForAdmin().subscribe((val) => {
+      this.teachers = val.result;
+    });
   }
 
   openNew() {
@@ -81,20 +74,13 @@ export class AdminTeacherComponent implements OnInit {
 
   async updateTeacher() {
     this.updateRequest.gender = Gender[this.selectedGender];
-    try {
-      const response = await this.teacherService.updateTeacherProfile(
-        this.updateRequest
-      );
-      if (response.code === 200) {
-        this.toastService.emitSuccessMessage('Updated', response.result);
-        this.defineTeachers();
-        this.hideModal();
-      }
-    } catch (error) {
-      this.toastService.emitHttpErrorMessage(
-        error,
-        'Failed to update teacher.'
-      );
+    const response = await this.teacherService.updateTeacherProfile(
+      this.updateRequest
+    );
+    if (response.code === 200) {
+      this.toastService.emitSuccessMessage('Updated', response.result);
+      this.defineTeachers();
+      this.hideModal();
     }
   }
 
@@ -104,22 +90,14 @@ export class AdminTeacherComponent implements OnInit {
       header: 'Delete Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.teacherService.deleteTeacher(teacher.id).subscribe(
-          (response) => {
-            if (response.code === 200 && response.result) {
-              this.toastService.emitSuccessMessage('Deleted', response.result);
-              this.teachers = this.teachers.filter(
-                (value) => value.id !== teacher.id
-              );
-            }
-          },
-          (error: HttpErrorResponse) => {
-            this.toastService.emitHttpErrorMessage(
-              error,
-              'Failed to delete teacher'
+        this.teacherService.deleteTeacher(teacher.id).subscribe((response) => {
+          if (response.code === 200 && response.result) {
+            this.toastService.emitSuccessMessage('Deleted', response.result);
+            this.teachers = this.teachers.filter(
+              (value) => value.id !== teacher.id
             );
           }
-        );
+        });
       },
     });
   }
@@ -142,20 +120,12 @@ export class AdminTeacherComponent implements OnInit {
       header: 'Update Active Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.teacherService.updateIsActive(request).subscribe(
-          (response) => {
-            if (response.code === 200 && response.result) {
-              this.toastService.emitSuccessMessage('Deleted', response.result);
-              this.defineTeachers();
-            }
-          },
-          (error: HttpErrorResponse) => {
-            this.toastService.emitHttpErrorMessage(
-              error,
-              'Failed to delete teacher'
-            );
+        this.teacherService.updateIsActive(request).subscribe((response) => {
+          if (response.code === 200 && response.result) {
+            this.toastService.emitSuccessMessage('Deleted', response.result);
+            this.defineTeachers();
           }
-        );
+        });
       },
     });
   }
@@ -164,21 +134,15 @@ export class AdminTeacherComponent implements OnInit {
     this.submitted = true;
     this.createRequest.gender = Gender[this.selectedGender];
     this.createRequest.createdBy = this.authService.getUserId();
-    this.teacherService.createTeacher(this.createRequest).subscribe(
-      (response) => {
+    this.teacherService
+      .createTeacher(this.createRequest)
+      .subscribe((response) => {
         if (response.code === 201 && response.result) {
           this.toastService.emitSuccessMessage('Submitted', response.result);
           this.defineTeachers();
           this.hideModal();
         }
-      },
-      (error: HttpErrorResponse) => {
-        this.toastService.emitHttpErrorMessage(
-          error,
-          'Failed to add new teacher'
-        );
-      }
-    );
+      });
   }
 
   hideModal() {

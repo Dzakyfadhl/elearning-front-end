@@ -41,14 +41,9 @@ export class AdminCourseTypeComponent implements OnInit {
   }
 
   defineCourseType() {
-    this.courseTypeService.getListCourseType().subscribe(
-      (val) => {
-        this.courseTypes = val.result;
-      },
-      (err) => {
-        console.error(err.error);
-      }
-    );
+    this.courseTypeService.getListCourseType().subscribe((val) => {
+      this.courseTypes = val.result;
+    });
   }
 
   openNew() {
@@ -60,21 +55,15 @@ export class AdminCourseTypeComponent implements OnInit {
   createCourseType() {
     this.submitted = true;
     this.createRequest.createdBy = this.auth.getUserId();
-    this.courseTypeService.insertCourseType(this.createRequest).subscribe(
-      (response) => {
+    this.courseTypeService
+      .insertCourseType(this.createRequest)
+      .subscribe((response) => {
         if (response.code === 201 && response.result) {
           this.toastService.emitSuccessMessage('Submitted', response.result);
           this.hideModal();
           this.defineCourseType();
         }
-      },
-      (error: HttpErrorResponse) => {
-        this.toastService.emitHttpErrorMessage(
-          error,
-          'Failed to add new course type'
-        );
-      }
-    );
+      });
   }
 
   editCourseType(courseType: CourseTypeResponse) {
@@ -89,22 +78,16 @@ export class AdminCourseTypeComponent implements OnInit {
   }
 
   updateCourseType() {
-    this.courseTypeService.updateCourseType(this.updateRequest).subscribe(
-      (response) => {
+    this.courseTypeService
+      .updateCourseType(this.updateRequest)
+      .subscribe((response) => {
         if (response.code === 200) {
           this.toastService.emitSuccessMessage(
             'Updated',
             'Course type has been updated successfully.'
           );
         }
-      },
-      (error: HttpErrorResponse) => {
-        this.toastService.emitHttpErrorMessage(
-          error,
-          'Failed to update course type'
-        );
-      }
-    );
+      });
   }
 
   deleteCourseType(ct: CourseTypeResponse) {
@@ -113,22 +96,16 @@ export class AdminCourseTypeComponent implements OnInit {
       header: 'Delete Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.courseTypeService.deleteCourseTypeById(ct.id).subscribe(
-          (response) => {
+        this.courseTypeService
+          .deleteCourseTypeById(ct.id)
+          .subscribe((response) => {
             if (response.code === 200 && response.result) {
               this.toastService.emitSuccessMessage('Deleted', response.result);
               this.courseTypes = this.courseTypes.filter(
                 (value) => value.id !== ct.id
               );
             }
-          },
-          (error: HttpErrorResponse) => {
-            this.toastService.emitHttpErrorMessage(
-              error,
-              'Failed to delete course type'
-            );
-          }
-        );
+          });
       },
     });
   }
@@ -151,20 +128,12 @@ export class AdminCourseTypeComponent implements OnInit {
       header: 'Update Active Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.courseTypeService.updateIsActive(request).subscribe(
-          (response) => {
-            if (response.code === 200 && response.result) {
-              this.toastService.emitSuccessMessage('Deleted', response.result);
-              this.defineCourseType();
-            }
-          },
-          (error: HttpErrorResponse) => {
-            this.toastService.emitHttpErrorMessage(
-              error,
-              'Failed to update active subject category'
-            );
+        this.courseTypeService.updateIsActive(request).subscribe((response) => {
+          if (response.code === 200 && response.result) {
+            this.toastService.emitSuccessMessage('Deleted', response.result);
+            this.defineCourseType();
           }
-        );
+        });
       },
     });
   }

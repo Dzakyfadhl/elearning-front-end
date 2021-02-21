@@ -62,17 +62,9 @@ export class AdminModuleComponent implements OnInit {
   }
 
   async getDetailCourse() {
-    try {
-      const response = await this.courseService.getDetailCourse(this.courseId);
-      if (response.code === 200) {
-        this.detailCourse = response.result;
-        console.log(this.detailCourse);
-      }
-    } catch (error) {
-      this.toastService.emitHttpErrorMessage(
-        error,
-        'Failed to get detail course.'
-      );
+    const response = await this.courseService.getDetailCourse(this.courseId);
+    if (response.code === 200) {
+      this.detailCourse = response.result;
     }
   }
 
@@ -84,35 +76,26 @@ export class AdminModuleComponent implements OnInit {
   }
 
   getSubjectCategories() {
-    this.subjectCategoryService.getSubjectCategory().subscribe(
-      (response) => {
-        if (response.code === 200) {
-          this.subjectCategoriesOptions = response.result.map((value) => {
-            return {
-              id: value.id,
-              name: value.name,
-            };
-          });
-        }
-      },
-      (error) => {
-        this.toastService.emitHttpErrorMessage(error);
+    this.subjectCategoryService.getSubjectCategory().subscribe((response) => {
+      if (response.code === 200) {
+        this.subjectCategoriesOptions = response.result.map((value) => {
+          return {
+            id: value.id,
+            name: value.name,
+          };
+        });
       }
-    );
+    });
   }
 
   async create() {
     this.setupRequest(this.createRequest);
-    try {
-      const response = await this.detailModuleService.insertModule([
-        this.createRequest,
-      ]);
-      if (response.code === 201) {
-        this.toastService.emitSuccessMessage('Submitted', response.result);
-        this.afterSubmitted();
-      }
-    } catch (error) {
-      this.toastService.emitHttpErrorMessage(error);
+    const response = await this.detailModuleService.insertModule([
+      this.createRequest,
+    ]);
+    if (response.code === 201) {
+      this.toastService.emitSuccessMessage('Submitted', response.result);
+      this.afterSubmitted();
     }
   }
 
@@ -152,17 +135,10 @@ export class AdminModuleComponent implements OnInit {
 
   async update() {
     this.setupRequest(this.updateRequest);
-    console.log(this.updateRequest, this.courseId);
-    try {
-      const response = await this.moduleService.updateModule(
-        this.updateRequest
-      );
-      if (response.code === 200) {
-        this.toastService.emitSuccessMessage('Updated', response.result);
-        this.afterSubmitted();
-      }
-    } catch (error) {
-      this.toastService.emitHttpErrorMessage(error, 'Failed to update module.');
+    const response = await this.moduleService.updateModule(this.updateRequest);
+    if (response.code === 200) {
+      this.toastService.emitSuccessMessage('Updated', response.result);
+      this.afterSubmitted();
     }
   }
 
@@ -180,15 +156,11 @@ export class AdminModuleComponent implements OnInit {
     request.createdBy = this.authService.getUserId();
     request.subjectId = this.selectedSubjectCategory;
     const formattedDate = this.datePipe.transform(this.date, 'yyyy-MM-dd');
-    console.log(this.startTime.toTimeString());
     const formattedStartTime = this.datePipe.transform(
       this.startTime,
-      'hh:mm:ss a'
+      'hh:mm a'
     );
-    const formattedEndTime = this.datePipe.transform(
-      this.endTime,
-      'hh:mm:ss a'
-    );
+    const formattedEndTime = this.datePipe.transform(this.endTime, 'hh:mm a');
     request.schedule.date = formattedDate;
     request.schedule.startTime = formattedStartTime;
     request.schedule.endTime = formattedEndTime;
@@ -196,8 +168,11 @@ export class AdminModuleComponent implements OnInit {
   }
 
   private afterSubmitted() {
+    this.submitted = false;
+    this.date = null;
+    this.startTime = null;
+    this.endTime = null;
     this.initDetailCourse();
     this.hideModal();
-    this.submitted = false;
   }
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginRequest } from '../../model/login-request';
 import { AuthService } from '../../service/auth.service';
-import { ToastService } from '../../service/toast.service';
 import { UserService } from '../../service/user.service';
 
 @Component({
@@ -14,8 +13,7 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private authService: AuthService,
-    private toastService: ToastService
+    private authService: AuthService
   ) {}
 
   data = new LoginRequest();
@@ -23,23 +21,17 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
-    this.userService.loginUser(this.data).subscribe(
-      (value) => {
-        let result = value.result;
-        this.authService.setLoginResponse(result);
+    this.userService.loginUser(this.data).subscribe((value) => {
+      let result = value.result;
+      this.authService.setLoginResponse(result);
 
-        if (result.role.code == 'RL-003') {
-          this.router.navigateByUrl('/teacher/home');
-        } else if (result.role.code == 'RL-004') {
-          this.router.navigateByUrl('/student/home');
-        } else if (result.role.code == 'RL-002') {
-          this.router.navigateByUrl('/admin');
-        }
-      },
-      (error) => {
-        this.toastService.emitHttpErrorMessage(error, 'Sign In Failure');
-        console.log(error);
+      if (result.role.code == 'RL-003') {
+        this.router.navigateByUrl('/teacher/home');
+      } else if (result.role.code == 'RL-004') {
+        this.router.navigateByUrl('/student/home');
+      } else if (result.role.code == 'RL-002') {
+        this.router.navigateByUrl('/admin');
       }
-    );
+    });
   }
 }

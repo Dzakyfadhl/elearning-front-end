@@ -35,19 +35,12 @@ export class HomeAdminComponent implements OnInit {
   }
 
   async getDashboard() {
-    try {
-      const response = await this.adminService.getDashboard();
-      if (response.code === 200) {
-        this.dashboard = response.result;
-        this.initStudentChart(this.dashboard.student);
-        this.initTeacherChart(this.dashboard.teacher);
-        this.initCourseChart(this.dashboard.course);
-      }
-    } catch (error) {
-      this.toastService.emitHttpErrorMessage(
-        error,
-        'Failed to get data from the server.'
-      );
+    const response = await this.adminService.getDashboard();
+    if (response.code === 200) {
+      this.dashboard = response.result;
+      this.initStudentChart(this.dashboard.student);
+      this.initTeacherChart(this.dashboard.teacher);
+      this.initCourseChart(this.dashboard.course);
     }
   }
 

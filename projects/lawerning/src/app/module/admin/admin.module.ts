@@ -16,6 +16,7 @@ import {
 } from '@fortawesome/angular-fontawesome';
 import {
   faBookOpen,
+  faChalkboardTeacher,
   faGraduationCap,
   faTachometerAlt,
   faTags,
@@ -53,7 +54,8 @@ export class AdminModule {
       faGraduationCap,
       faBookOpen,
       faTags,
-      faLeanpub
+      faLeanpub,
+      faChalkboardTeacher
     );
   }
 }

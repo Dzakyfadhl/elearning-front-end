@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Constants from '../../constants/constant';
 import { AuthService } from '../../service/auth.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class DashboardTeacherComponent implements OnInit {
     if (!this.authService.getLoginResponse().photoId) {
       this.photo = 'assets/images/default.png';
     } else {
-      this.photo = `http://192.168.15.224:8080/file/${
+      this.photo = `${Constants.BASE_URL_FILE}/${
         this.authService.getLoginResponse().photoId
       }`;
     }

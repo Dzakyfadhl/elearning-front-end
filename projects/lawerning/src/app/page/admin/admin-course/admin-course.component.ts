@@ -1,6 +1,4 @@
 import { DatePipe } from '@angular/common';
-import { NgIf } from '@angular/common';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
@@ -12,7 +10,6 @@ import { UpdateStatusRequestDTO } from '../../../model/course-dto/update-course-
 import { CourseStatus } from '../../../model/course-status';
 import { CourseTypeResponse } from '../../../model/course-type-dto/course-type-response';
 import { DeleteCourseTypeRequestDTO } from '../../../model/course-type-dto/delete-course-type-request';
-import { Gender } from '../../../model/gender';
 import { TeacherForAdminDTO } from '../../../model/teacher-dto/teacher-admin-response';
 import { AuthService } from '../../../service/auth.service';
 import { CourseCategoryService } from '../../../service/course-category.service';
@@ -80,54 +77,33 @@ export class AdminCourseComponent implements OnInit {
   }
 
   defineCourses() {
-    this.courseService.getCoursesForAdmin().subscribe(
-      (val) => {
-        this.courses = val.result;
-        console.log(this.courses);
-      },
-      (err) => {
-        this.toastService.emitHttpErrorMessage(err);
-      }
-    );
+    this.courseService.getCoursesForAdmin().subscribe((val) => {
+      this.courses = val.result;
+    });
   }
 
   dropdownCourseTypes() {
-    this.courseTypeService.getListCourseType().subscribe(
-      (val) => {
-        this.courseTypes = val.result;
-      },
-      (err) => {
-        this.toastService.emitHttpErrorMessage(err);
-      }
-    );
+    this.courseTypeService.getListCourseType().subscribe((val) => {
+      this.courseTypes = val.result;
+    });
   }
 
   dropdownCategories() {
-    this.courseCategoryService.getCourseCategories().subscribe(
-      (val) => {
-        this.categories = val.result;
-      },
-      (err) => {
-        this.toastService.emitHttpErrorMessage(err);
-      }
-    );
+    this.courseCategoryService.getCourseCategories().subscribe((val) => {
+      this.categories = val.result;
+    });
   }
 
   dropdownTeachers() {
-    this.teacherService.getAllTeachersForAdmin().subscribe(
-      (val) => {
-        this.teachers = val.result;
-        this.teachers.forEach((teacher) => {
-          this.teacherVal.push({
-            key: teacher.id,
-            value: `${teacher.firstName} ${teacher.lastName}`,
-          });
+    this.teacherService.getAllTeachersForAdmin().subscribe((val) => {
+      this.teachers = val.result;
+      this.teachers.forEach((teacher) => {
+        this.teacherVal.push({
+          key: teacher.id,
+          value: `${teacher.firstName} ${teacher.lastName}`,
         });
-      },
-      (err) => {
-        this.toastService.emitHttpErrorMessage(err);
-      }
-    );
+      });
+    });
   }
 
   openNew() {
@@ -137,7 +113,6 @@ export class AdminCourseComponent implements OnInit {
   }
 
   createCourse() {
-    console.log(this.createRequest.periodStart);
     let datePipe = new DatePipe('en-US');
 
     const formattedDateStart = datePipe.transform(this.startTime, 'yyyy-MM-dd');
@@ -150,21 +125,15 @@ export class AdminCourseComponent implements OnInit {
     this.createRequest.teacherId = this.selectedTeacher;
     this.createRequest.periodStart = formattedDateStart;
     this.createRequest.periodEnd = formattedDateEnd;
-    this.courseService.insertCourse(this.createRequest).subscribe(
-      (response) => {
+    this.courseService
+      .insertCourse(this.createRequest)
+      .subscribe((response) => {
         if (response.code === 201 && response.result) {
           this.toastService.emitSuccessMessage('Submitted', response.result);
           this.hideModal();
           this.defineCourses();
         }
-      },
-      (error: HttpErrorResponse) => {
-        this.toastService.emitHttpErrorMessage(
-          error,
-          'Failed to add new course'
-        );
-      }
-    );
+      });
   }
 
   editCourse(course: CourseAdminResponseDTO) {
@@ -189,17 +158,11 @@ export class AdminCourseComponent implements OnInit {
     };
   }
   async updateCourse() {
-    try {
-      const response = await this.courseService.updateCourse(
-        this.updateRequest
-      );
-      if (response.code === 200) {
-        this.toastService.emitSuccessMessage('Updated', response.result);
-        this.defineCourses();
-        this.hideModal();
-      }
-    } catch (error) {
-      this.toastService.emitHttpErrorMessage(error, 'Failed to update Course.');
+    const response = await this.courseService.updateCourse(this.updateRequest);
+    if (response.code === 200) {
+      this.toastService.emitSuccessMessage('Updated', response.result);
+      this.defineCourses();
+      this.hideModal();
     }
   }
 
@@ -212,17 +175,10 @@ export class AdminCourseComponent implements OnInit {
         let deleteRequest = new DeleteCourseTypeRequestDTO();
         deleteRequest.id = course.id;
         deleteRequest.updatedBy = this.auth.getLoginResponse().userId;
-        try {
-          const response = await this.courseService.deleteCourse(deleteRequest);
-          if (response.code === 200) {
-            this.toastService.emitSuccessMessage('Deleted', response.result);
-            this.defineCourses();
-          }
-        } catch (error) {
-          this.toastService.emitHttpErrorMessage(
-            error,
-            'Failed to delete course'
-          );
+        const response = await this.courseService.deleteCourse(deleteRequest);
+        if (response.code === 200) {
+          this.toastService.emitSuccessMessage('Deleted', response.result);
+          this.defineCourses();
         }
       },
     });
@@ -230,46 +186,30 @@ export class AdminCourseComponent implements OnInit {
 
   async updateStatusCourse() {
     let arrStatus: UpdateStatusRequestDTO[] = [];
-
     const now = new Date();
-    console.log(now);
-
     this.courses.forEach((val) => {
       let statusUpdate = new UpdateStatusRequestDTO();
       statusUpdate.id = val.id;
       statusUpdate.updatedBy = this.auth.getLoginResponse().userId;
       let formatStart = new Date(val.periodStart);
       let formatEnd = new Date(val.periodEnd);
-      // console.log(formatStart);
-      // console.log(formatEnd);
 
       if (now >= formatStart && now < formatEnd) {
         statusUpdate.status = CourseStatus.ONGOING;
         arrStatus.push(statusUpdate);
-        console.log('a');
       } else if (now < formatStart) {
         statusUpdate.status = CourseStatus.REGISTRATION;
         arrStatus.push(statusUpdate);
-        console.log('b');
       } else if (now >= formatEnd) {
         statusUpdate.status = CourseStatus.FINISHED;
         arrStatus.push(statusUpdate);
-        console.log('c');
       }
     });
-    console.log(arrStatus);
 
-    try {
-      const response = await this.courseService.updateCoursesStatus(arrStatus);
-      if (response.code === 200) {
-        this.toastService.emitSuccessMessage('Success', response.result);
-        this.defineCourses();
-      }
-    } catch (error) {
-      this.toastService.emitHttpErrorMessage(
-        error,
-        'Failed to update status courses'
-      );
+    const response = await this.courseService.updateCoursesStatus(arrStatus);
+    if (response.code === 200) {
+      this.toastService.emitSuccessMessage('Success', response.result);
+      this.defineCourses();
     }
   }
 

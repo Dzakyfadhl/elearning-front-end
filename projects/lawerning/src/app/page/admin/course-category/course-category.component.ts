@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { CourseCategoryCreateRequestDTO } from '../../../model/course-category-dto/course-category-create-request';
@@ -38,15 +37,9 @@ export class CourseCategoryComponent implements OnInit {
   }
 
   defineCourseCategories() {
-    this.categoryService.getCourseCategories().subscribe(
-      (val) => {
-        this.courseCategories = val.result;
-        console.log(this.courseCategories);
-      },
-      (err) => {
-        console.error(err.error);
-      }
-    );
+    this.categoryService.getCourseCategories().subscribe((val) => {
+      this.courseCategories = val.result;
+    });
   }
 
   openNew() {
@@ -58,21 +51,15 @@ export class CourseCategoryComponent implements OnInit {
   createCourseCategory() {
     this.submitted = true;
     this.createRequest.createdBy = this.auth.getUserId();
-    this.categoryService.insertCourseCategory(this.createRequest).subscribe(
-      (response) => {
+    this.categoryService
+      .insertCourseCategory(this.createRequest)
+      .subscribe((response) => {
         if (response.code === 201 && response.result) {
           this.toastService.emitSuccessMessage('Submitted', response.result);
           this.hideModal();
           this.defineCourseCategories();
         }
-      },
-      (error: HttpErrorResponse) => {
-        this.toastService.emitHttpErrorMessage(
-          error,
-          'Failed to add new course category'
-        );
-      }
-    );
+      });
   }
 
   editCourseCategory(courseCategory: CourseCategoryResponseDTO) {
@@ -87,22 +74,16 @@ export class CourseCategoryComponent implements OnInit {
   }
 
   updateCourseCategory() {
-    this.categoryService.updateCourseCategory(this.updateRequest).subscribe(
-      (response) => {
+    this.categoryService
+      .updateCourseCategory(this.updateRequest)
+      .subscribe((response) => {
         if (response.code === 200) {
           this.toastService.emitSuccessMessage(
             'Updated',
             'Course category has been updated successfully.'
           );
         }
-      },
-      (error: HttpErrorResponse) => {
-        this.toastService.emitHttpErrorMessage(
-          error,
-          'Failed to update course category'
-        );
-      }
-    );
+      });
   }
 
   updateActive(courseCategory: CourseCategoryResponseDTO) {
@@ -123,20 +104,12 @@ export class CourseCategoryComponent implements OnInit {
       header: 'Update Active Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.categoryService.updateIsActive(request).subscribe(
-          (response) => {
-            if (response.code === 200 && response.result) {
-              this.toastService.emitSuccessMessage('Delete', response.result);
-              this.defineCourseCategories();
-            }
-          },
-          (error: HttpErrorResponse) => {
-            this.toastService.emitHttpErrorMessage(
-              error,
-              'Failed to delete course category'
-            );
+        this.categoryService.updateIsActive(request).subscribe((response) => {
+          if (response.code === 200 && response.result) {
+            this.toastService.emitSuccessMessage('Delete', response.result);
+            this.defineCourseCategories();
           }
-        );
+        });
       },
     });
   }

@@ -12,6 +12,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToolbarModule } from 'primeng/toolbar';
 import { CalendarModule } from 'primeng/calendar';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { CalendarModule } from 'primeng/calendar';
     InputTextModule,
     DropdownModule,
     CalendarModule,
+    InputTextareaModule,
   ],
 })
 export class AdminModuleModule {}
