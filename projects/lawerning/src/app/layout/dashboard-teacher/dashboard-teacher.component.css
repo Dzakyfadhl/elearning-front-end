@@ -5,6 +5,13 @@
 .navbar {
   border-bottom: 5px solid #323096;
 }
+.navbar-light .navbar-nav .active > .nav-link {
+  color: #323096;
+  font-weight: bold;
+}
 .notif {
   color: #323096;
+}
+a {
+  cursor: pointer;
 }

@@ -10,5 +10,4 @@ const Constants = {
     '#FFCE56',
   ],
 };
-
 export default Constants;

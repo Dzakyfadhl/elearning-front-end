@@ -137,7 +137,10 @@ a {
   font-weight: bold;
   margin-top: 15px;
 }
-
+.icon-verify button {
+  width: 100px;
+  height: 31px;
+}
 @media screen and (max-width: 576px) {
   .student-item {
     flex-wrap: wrap;
@@ -150,6 +153,11 @@ a {
     margin: 0 0 1rem 0;
     width: 100px;
   }
+  .head-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -159,6 +167,11 @@ a {
   }
   .header-module {
     background-color: #323096;
+  }
+  .head-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
   }
 }
 
@@ -170,6 +183,11 @@ a {
   .header-module {
     background-color: #323096;
   }
+  .head-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -180,6 +198,11 @@ a {
   .header-module {
     background-color: #323096;
   }
+  .head-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -189,6 +212,11 @@ a {
   }
   .header-module {
     background-color: #323096;
+  }
+  .head-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
   }
 }
 

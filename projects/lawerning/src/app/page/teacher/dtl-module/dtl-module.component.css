@@ -309,20 +309,6 @@
   color: #a9b7c4;
 }
 
-/* .icon-date h6{
-  margin
-} */
-/* .icon-schedule img {
-  width: 20px;
-  height: 23px;
-
-}
-
-.icon-schedule h6 {
-  margin-top: 1px;
-  margin-left: 5px;
-  font-size: 18px;
-} */
 .card-text {
   color: #858699;
 }
@@ -444,5 +430,38 @@
   padding: 1rem;
   background-color: white;
   border: 1px solid rgb(240, 240, 240);
-  /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+
+@media (min-width: 1204px) {
+  .head-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  .data-empty img {
+    width: 30rem;
+    height: 30rem;
+  }
+}
+@media (min-width: 768px) {
+  .head-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  .data-empty img {
+    width: 30rem;
+    height: 30rem;
+  }
+}
+@media (min-width: 411px) {
+  .head-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  .data-empty img {
+    width: 22rem;
+    height: 22rem;
+  }
 }

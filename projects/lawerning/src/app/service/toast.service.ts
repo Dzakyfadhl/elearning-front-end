@@ -33,4 +33,12 @@ export class ToastService {
     });
     console.error(error);
   }
+
+  emitErrorMessage(message: string) {
+    this.messageObservable.next({
+      severity: 'error',
+      summary: 'Failed',
+      detail: message,
+    });
+  }
 }

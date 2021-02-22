@@ -38,7 +38,7 @@
             <div class="col-lg-12">
               <h4>About this course</h4>
             </div>
-            <div class="col-lg-12">
+            <div class="col-lg-12 mb-2">
               <h6>
                 {{ dtlCourse.description }}
               </h6>
@@ -131,9 +131,9 @@
                       <h6>{{ s.phone }}</h6>
                     </div>
                   </div>
-                  <div *ngIf="s.isVerified == false">
-                    <button pButton (click)="verifyStudent(i)" style="height: 2rem" type="button" class="p-button-sm"
-                      label="Verify"></button>
+                  <div class="icon-verify" *ngIf="s.isVerified == false">
+
+                    <button pButton (click)="verifyStudent(i)" pRipple type="button" label="Verify"></button>
                   </div>
 
                   <div *ngIf="s.isVerified == true">
@@ -173,9 +173,6 @@
 
               <ng-template pTemplate="header">
                 <tr>
-                  <th width="20px">
-                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                  </th>
                   <th width="20px">No</th>
                   <th width="80px">Module Name</th>
                   <th width="80px">Date</th>
@@ -186,9 +183,6 @@
               </ng-template>
               <ng-template pTemplate="body" let-ap let-rowIndex="rowIndex">
                 <tr>
-                  <td width="20px">
-                    <p-tableCheckbox [value]="ap" [disabled]="true"></p-tableCheckbox>
-                  </td>
                   <td width="20px">{{ rowIndex + 1 }}</td>
                   <td width="80px"> {{ ap.moduleName }}</td>
                   <td width="80px">{{ ap.date }}</td>

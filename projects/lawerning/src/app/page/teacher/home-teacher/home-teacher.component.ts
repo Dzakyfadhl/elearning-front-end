@@ -31,14 +31,13 @@ export class HomeTeacherComponent implements OnInit {
       this.firstName = this.authService.getLoginResponse().firstName;
       this.lastName = this.authService.getLoginResponse().lastName;
       this.courses = value.result;
-      // console.log(this.courses);
       for (let i = 0; i < this.courses.length; i++) {
         this.totalModule = this.totalModule + this.courses[i].totalModule;
         this.totalStudent = this.totalStudent + this.courses[i].totalStudent;
       }
       this.totalCourse = this.courses.length;
-      // console.log(this.totalStudent);
-      // console.log(this.totalModule);
+
+      console.log(this.courses);
     });
   }
 

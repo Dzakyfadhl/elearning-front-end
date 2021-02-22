@@ -84,6 +84,13 @@ export class TeacherService {
       data
     );
   }
+
+  updateExperience(data: ExperienceModel): Observable<ResponseModel<string>> {
+    return this.http.put<ResponseModel<string>>(
+      `${Constants.BASE_URL}/experience`,
+      data
+    );
+  }
   getAllTeachers(): Observable<ResponseModel<TeacherAllResponse[]>> {
     return this.http.get<ResponseModel<TeacherAllResponse[]>>(
       `${Constants.BASE_URL}/public/teachers`

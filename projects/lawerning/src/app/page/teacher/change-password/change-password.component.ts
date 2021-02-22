@@ -13,6 +13,8 @@ import { UserService } from '../../../service/user.service';
 })
 export class ChangePasswordComponent implements OnInit {
   updatePassword = new PasswordRequest();
+  confirmPassword: string;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -24,19 +26,17 @@ export class ChangePasswordComponent implements OnInit {
 
   submit() {
     this.updatePassword.id = this.authService.getLoginResponse().userId;
-    this.userService.updatePassword(this.updatePassword).subscribe(
-      (response) => {
+    if (this.confirmPassword !== this.updatePassword.newPassword) {
+      this.toastService.emitErrorMessage('Confirm password is not match');
+      return;
+    }
+    this.userService
+      .updatePassword(this.updatePassword)
+      .subscribe((response) => {
         if (response.code === 200 && response.result) {
           this.toastService.emitSuccessMessage('Submitted', response.result);
           this.router.navigateByUrl('/teacher/home');
         }
-      },
-      (error: HttpErrorResponse) => {
-        this.toastService.emitHttpErrorMessage(
-          error,
-          'Failed to update password'
-        );
-      }
-    );
+      });
   }
 }

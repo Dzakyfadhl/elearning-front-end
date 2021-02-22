@@ -79,22 +79,19 @@ export class UpdateProfileTeacherComponent implements OnInit {
   }
 
   async saveDataProfile() {
-    if ((this.isEdited = true)) {
-      this.teacherService.updatePhoto(this.formData).subscribe((value) => {
-        console.log(value);
+    if (this.isEdited) {
+      this.teacherService.updatePhoto(this.formData).subscribe((val) => {
+        this.getDataProfile();
       });
     }
 
-    try {
-      const response = await this.teacherService.updateTeacherProfile(
-        this.updateRequest
-      );
-      if (response.code === 200) {
-        this.toastService.emitSuccessMessage('Updated', response.result);
-      }
-    } catch (error) {
-      this.toastService.emitHttpErrorMessage(error, 'Failed to update student');
+    const response = await this.teacherService.updateTeacherProfile(
+      this.updateRequest
+    );
+    if (response.code === 200) {
+      this.toastService.emitSuccessMessage('Updated', response.result);
     }
+
     this.router.navigateByUrl('teacher/profile');
   }
 

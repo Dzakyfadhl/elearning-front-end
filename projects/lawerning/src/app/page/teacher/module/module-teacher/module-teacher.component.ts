@@ -42,13 +42,11 @@ export class ModuleTeacherComponent implements OnInit {
 
   showDetailCourseTeacher() {
     this.activeRoute.params.subscribe((value) => {
-      // console.log(value.courseId);
       this.courseId = value.courseId;
       this.dtlCourseTeacherService
         .getDetailCourseTeacher(value.courseId)
         .subscribe((val) => {
           this.dtlCourse = val.result;
-          // console.log(this.dtlCourse);
           this.totalModule = this.dtlCourse.modules.length;
         });
     });
@@ -56,7 +54,6 @@ export class ModuleTeacherComponent implements OnInit {
   showStudentByCourse() {
     this.studentService.getStudentByCourseId(this.courseId).subscribe((val) => {
       this.students = val.result;
-      // console.log(this.students);
     });
   }
 
@@ -67,7 +64,6 @@ export class ModuleTeacherComponent implements OnInit {
     };
     let tempModule: any = this.dtlCourse.modules[index];
     let moduleId = tempModule.id;
-    // console.log(moduleId);
     dataObj.idCourse = this.courseId;
     dataObj.idModule = moduleId;
     this.router.navigate([`teacher/dtl-module`], { queryParams: dataObj });
@@ -78,7 +74,6 @@ export class ModuleTeacherComponent implements OnInit {
       .getAttendanceReportTeacher(this.courseId)
       .subscribe((val) => {
         this.attendanceReports = val.result;
-        // console.log(this.attendanceReports);
       });
   }
 
@@ -95,23 +90,12 @@ export class ModuleTeacherComponent implements OnInit {
     let email = this.students[index].email;
     this.studentService
       .verifyStudent(studentCourseId, teacherId, email)
-      .subscribe(
-        (response) => {
-          if (response.code === 200 && response.result) {
-            this.toastService.emitSuccessMessage(
-              'Submitted',
-              'Register success'
-            );
-            this.showStudentByCourse();
-            this.showDetailCourseTeacher();
-          }
-        },
-        (error: HttpErrorResponse) => {
-          this.toastService.emitHttpErrorMessage(
-            error,
-            'Failed to verify student'
-          );
+      .subscribe((response) => {
+        if (response.code === 200 && response.result) {
+          this.toastService.emitSuccessMessage('Submitted', 'Register success');
+          this.showStudentByCourse();
+          this.showDetailCourseTeacher();
         }
-      );
+      });
   }
 }

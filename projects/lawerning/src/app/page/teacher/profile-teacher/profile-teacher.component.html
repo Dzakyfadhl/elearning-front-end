@@ -457,7 +457,7 @@
             {{ e.endDate | date: "dd MMM yyyy" }}
           </p>
           <div class="d-flex justify-content-space-evenly">
-            <a class="icon-edit-ex text-secondary" (click)="showDialogEx()">
+            <a class="icon-edit-ex text-secondary" (click)="updateExperience(e)">
               <fa-icon [icon]="['fas', 'edit']" size="lg"></fa-icon>
             </a>
             <a class="icon-delete-ex text-secondary" (click)="deleteExperience(i)">

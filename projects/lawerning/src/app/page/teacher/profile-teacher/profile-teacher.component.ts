@@ -21,8 +21,10 @@ export class ProfileTeacherComponent implements OnInit {
   photo: any;
   dateStart: any;
   dateEnd: any;
+  isEdit: boolean;
 
   isDisplayEx = false;
+  isDisplay = false;
   constructor(
     private teacherService: TeacherService,
     private authService: AuthService,
@@ -37,8 +39,6 @@ export class ProfileTeacherComponent implements OnInit {
   getProfileTeacher() {
     this.teacherService.getById().subscribe((value) => {
       this.profileTeacher = value.result;
-      // console.log(value.result);
-
       if (!this.profileTeacher.photoId) {
         this.photo = `assets/images/default.png`;
       } else {
@@ -48,19 +48,17 @@ export class ProfileTeacherComponent implements OnInit {
   }
 
   formEdit(data: TeacherProfileResponse) {
-    // console.log(data);
     this.router.navigate(['teacher/update/profile/teacher', data]);
   }
   showDialogEx() {
     this.isDisplayEx = true;
-    // console.log(this.dateStart);
+    this.isEdit = false;
   }
   cancelDialogEx() {
     this.isDisplayEx = false;
   }
 
   saveDialog() {
-    // console.log(this.dateStart);
     let periodStart = new Date(this.dateStart);
     let periodEnd = new Date(this.dateEnd);
     let datePipe = new DatePipe('en-US');
@@ -72,33 +70,57 @@ export class ProfileTeacherComponent implements OnInit {
       periodEnd.toLocaleDateString(),
       'yyyy-MM-dd'
     );
-    // console.log(formatDateStart);
-    // console.log(formatDateEnd);
-
     this.experience.startDate = formatDateStart;
     this.experience.endDate = formatDateEnd;
     this.experience.userId = this.authService.getLoginResponse().userId;
     this.experience.teacherId = this.authService.getLoginResponse().userRoleId;
-    this.teacherService.createExperience(this.experience).subscribe(
-      (response) => {
-        if (response.code === 201 && response.result) {
-          this.toastService.emitSuccessMessage(
-            'Submitted',
-            'Success to update experience teacher'
-          );
-          this.getProfileTeacher();
-          this.isDisplayEx = false;
-        }
-      },
-      (error: HttpErrorResponse) => {
-        this.toastService.emitHttpErrorMessage(
-          error,
-          'Failed to update experience teacher'
-        );
-      }
-    );
+
+    if (this.isEdit) {
+      console.log(this.experience);
+      this.teacherService
+        .updateExperience(this.experience)
+        .subscribe((response) => {
+          if (response.code === 200 && response.result) {
+            this.toastService.emitSuccessMessage(
+              'Submitted',
+              'Success to update experience teacher'
+            );
+            console.log(response);
+
+            this.getProfileTeacher();
+            this.isDisplayEx = false;
+          }
+        });
+    } else {
+      this.teacherService
+        .createExperience(this.experience)
+        .subscribe((response) => {
+          if (response.code === 201 && response.result) {
+            this.toastService.emitSuccessMessage(
+              'Submitted',
+              'Success to insert experience teacher'
+            );
+            this.getProfileTeacher();
+            this.isDisplayEx = false;
+          }
+        });
+    }
   }
 
+  updateExperience(data: ExperienceModel) {
+    this.isDisplayEx = true;
+    this.isEdit = true;
+    console.log(data);
+    this.experience = new ExperienceModel();
+    this.experience.id = data.id;
+    this.experience.description = data.description;
+    this.dateStart = new Date(data.startDate);
+    this.dateEnd = new Date(data.endDate);
+    this.experience.teacherId = data.teacherId;
+    this.experience.title = data.title;
+    this.experience.userId = this.authService.getLoginResponse().userId;
+    console.log(data);
+  }
   deleteExperience(index: number) {
     let idExperience = this.profileTeacher.experiences[index].id;
     // console.log(idExperience);

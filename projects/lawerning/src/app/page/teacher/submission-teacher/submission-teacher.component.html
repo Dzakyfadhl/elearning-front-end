@@ -24,7 +24,6 @@
     </div>
   </div>
 </div>
-<!-- <p-blockUI [blocked]="blockedDocument"></p-blockUI> -->
 <p-dialog header="Edit Score" [(visible)]="display" [style]="{ width: '35vw' }" [baseZIndex]="10000">
   <div class="title-student">
     <h6>{{ tempFirstName }} {{ tempLastName }}</h6>
@@ -45,9 +44,6 @@
   <div class="row">
     <div class="col-lg-12 mt-4">
       <div class="card shadow p-3 mb-5 bg-white rounded">
-        <div class="mb-3 mt-3">
-          <h6>your student haven't viewed this assignment</h6>
-        </div>
         <p-table [value]="studentSubmission" [scrollable]="true" [paginator]="true" [scrollable]="true"
           scrolHeight="100%" [rows]="10" [showCurrentPageReport]="true" styleClass="p-datatable-striped"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" [globalFilterFields]="['module']">

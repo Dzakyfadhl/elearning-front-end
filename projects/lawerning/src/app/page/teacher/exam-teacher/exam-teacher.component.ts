@@ -2,7 +2,7 @@ import { DatePipe, Location } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ExamTeacherRequest } from '../../../model/exam-dto/exam-teacher-request';
 import { ExamType } from '../../../model/exam-dto/exam-type';
 import { AuthService } from '../../../service/auth.service';
@@ -31,7 +31,8 @@ export class ExamTeacherComponent implements OnInit {
     private examService: ExamService,
     private activeRoute: ActivatedRoute,
     private location: Location,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -41,9 +42,6 @@ export class ExamTeacherComponent implements OnInit {
       let idUser = this.auth.getLoginResponse().userId;
       this.examTeacher.createdBy = idUser;
       this.examTeacher.moduleId = value.moduleId;
-      // console.log(this.examTeacher.moduleId);
-      // console.log(this.examTeacher.createdBy);
-      // console.log(this.examTeacher);
     });
   }
   prevPage() {
@@ -54,7 +52,6 @@ export class ExamTeacherComponent implements OnInit {
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       let file: File = fileList[0];
-      // console.log(file);
       let data: FormData = new FormData();
       data.append('file', file);
       this.activeRoute.params.subscribe((value) => {
@@ -73,25 +70,19 @@ export class ExamTeacherComponent implements OnInit {
 
         this.examTeacher.startTime = formated;
         this.examTeacher.endTime = formatedEnd;
-        // console.log(JSON.stringify(this.examTeacher));
         data.append('body', JSON.stringify(this.examTeacher));
       });
       this.formData = data;
       this.file = file.name;
     }
   }
+
   uploadExam() {
-    // console.log(this.examTeacher.startTime);
-    this.examService.uploadExamTeacher(this.formData).subscribe(
-      (response) => {
-        if (response.code === 200 && response.result) {
-          this.toastService.emitSuccessMessage('Submitted', response.result);
-          this.location.back();
-        }
-      },
-      (error: HttpErrorResponse) => {
-        this.toastService.emitHttpErrorMessage(error, 'Failed to upload exam');
+    this.examService.uploadExamTeacher(this.formData).subscribe((response) => {
+      if (response.code === 201 && response.result) {
+        this.toastService.emitSuccessMessage('Submitted', response.result);
+        this.location.back();
       }
-    );
+    });
   }
 }
