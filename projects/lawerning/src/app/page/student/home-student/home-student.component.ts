@@ -40,52 +40,38 @@ export class HomeStudentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadingService.emitStatus(true);
+    this.courseService.getAvailableCourse().subscribe((value) => {
+      this.courses = value.result;
 
-    this.courseService.getAvailableCourse().subscribe(
-      (value) => {
-        this.courses = value.result;
-        console.log(this.courses);
-
-        if (this.courses.length == 0) {
-          this.isValid = false;
-        }
-        if (this.courses.length > 0) {
-          this.isValid = true;
-
-          this.courses.forEach((val) => {
-            if (val.teacher.experience == null) {
-              val.teacher.experience = 'Experience not yet';
-            } else {
-              val.teacher.experience = val.teacher.experience;
-            }
-            if (!val.teacher.photoId) {
-              val.teacher.photoId = `assets/images/default.png`;
-            } else {
-              val.teacher.photoId = `${Constants.BASE_URL_FILE}/${val.teacher.photoId}`;
-            }
-          });
-          this.courseFiltering = this.courses;
-          // concat list category
-          this.courses.forEach((val) => {
-            this.category.push(val.categoryName);
-          });
-          // merging category
-          this.data = this.category.filter(
-            (item, i, array) => array.indexOf(item) === i
-          );
-        }
-      },
-      (error) => {
-        if (error.error.code == 400) {
-          // this.isValid = false;
-          this.courses = [];
-        }
-      },
-      () => {
-        this.loadingService.emitStatus(false);
+      if (this.courses.length == 0) {
+        this.isValid = false;
       }
-    );
+      if (this.courses.length > 0) {
+        this.isValid = true;
+
+        this.courses.forEach((val) => {
+          if (val.teacher.experience == null) {
+            val.teacher.experience = 'Experience not yet';
+          } else {
+            val.teacher.experience = val.teacher.experience;
+          }
+          if (!val.teacher.photoId) {
+            val.teacher.photoId = `assets/images/default.png`;
+          } else {
+            val.teacher.photoId = `${Constants.BASE_URL_FILE}/${val.teacher.photoId}`;
+          }
+        });
+        this.courseFiltering = this.courses;
+        // concat list category
+        this.courses.forEach((val) => {
+          this.category.push(val.categoryName);
+        });
+        // merging category
+        this.data = this.category.filter(
+          (item, i, array) => array.indexOf(item) === i
+        );
+      }
+    });
 
     if (this.selectedCourse == undefined) {
       this.courseFiltering = this.courses;
@@ -104,7 +90,7 @@ export class HomeStudentComponent implements OnInit {
 
   searchKey() {
     this.courseFiltering = this.courses.filter((value) => {
-      return value.categoryName
+      return value.typeName
         .toLocaleLowerCase()
         .match(this.keyString.toLocaleLowerCase());
     });

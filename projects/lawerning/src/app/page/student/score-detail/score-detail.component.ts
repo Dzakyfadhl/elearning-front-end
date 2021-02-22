@@ -30,20 +30,10 @@ export class ScoreDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.studentId = this.auth.getLoginResponse().userRoleId;
-    this.loadingService.emitStatus(true);
-    this.reportService.getStudentReporting().subscribe(
-      (value) => {
-        this.reports = value.result;
-      },
-      (error) => {
-        if (error.error.code != 200) {
-          this.reports = [];
-        }
-      },
-      () => {
-        this.loadingService.emitStatus(false);
-      }
-    );
+
+    this.reportService.getStudentReporting().subscribe((value) => {
+      this.reports = value.result;
+    });
   }
   downloadReport() {
     window.open(`${Constants.BASE_URL}/report/student?id=${this.studentId}`);

@@ -1,5 +1,7 @@
-<div *ngIf="reports && reports.length == 0">
-  <img src="assets/images/dataEmpty.png" height="450" alt="" />
+<div *ngIf="reports && reports.length == 0" class="container-fluid">
+  <div class="row justify-content-center">
+    <img src="assets/images/dataEmpty.png" height="500" width="450" alt="" />
+  </div>
 </div>
 <div *ngIf="reports && reports.length > 0" class="container-fluid p-5">
   <div class="row">

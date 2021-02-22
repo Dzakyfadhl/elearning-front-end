@@ -40,39 +40,21 @@ export class ProfileStudentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadingService.emitStatus(true);
-
     this.courseService
       .getCourseProgress(this.auth.getLoginResponse().userRoleId)
-      .subscribe(
-        (data) => {
-          this.mymodules = data.result;
-        },
-        (error) => {
-          this.toastService.emitHttpErrorMessage(error);
-        },
-        () => {
-          this.loadingService.emitStatus(false);
-        }
-      );
+      .subscribe((data) => {
+        this.mymodules = data.result;
+      });
 
-    this.studentService.getProfile().subscribe(
-      (value) => {
-        this.studentProfile = value.result;
+    this.studentService.getProfile().subscribe((value) => {
+      this.studentProfile = value.result;
 
-        if (!this.studentProfile.idPhoto) {
-          this.photo = `assets/images/default.png`;
-        } else {
-          this.photo = `${Constants.BASE_URL_FILE}/${this.studentProfile.idPhoto}`;
-        }
-      },
-      (error) => {
-        this.toastService.emitHttpErrorMessage(error);
-      },
-      () => {
-        this.loadingService.emitStatus(false);
+      if (!this.studentProfile.idPhoto) {
+        this.photo = `assets/images/default.png`;
+      } else {
+        this.photo = `${Constants.BASE_URL_FILE}/${this.studentProfile.idPhoto}`;
       }
-    );
+    });
   }
 
   viewModule(index: number) {

@@ -8,11 +8,13 @@ import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { TooltipModule } from 'primeng/tooltip';
+import { ModuleDetailModule } from '../module-detail/module-detail.module';
 @NgModule({
   declarations: [ModuleCourseComponent],
   imports: [
     CommonModule,
     ModuleCourseRoutingModule,
+    ModuleDetailModule,
     BadgeModule,
     DividerModule,
     TooltipModule,

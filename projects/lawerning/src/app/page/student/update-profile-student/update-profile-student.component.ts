@@ -69,19 +69,14 @@ export class UpdateProfileStudentComponent implements OnInit {
   }
 
   dataProfile() {
-    this.activeRoute.params.subscribe(
-      (value) => {
-        this.studentProfile.id = value.id;
-        this.studentProfile.firstName = value.firstName;
-        this.studentProfile.lastName = value.lastName;
-        this.studentProfile.phone = value.phone;
-        this.studentProfile.gender = value.gender;
-        this.studentProfile.username = value.username;
-      },
-      (error) => {
-        this.toastService.emitHttpErrorMessage(error);
-      }
-    );
+    this.activeRoute.params.subscribe((value) => {
+      this.studentProfile.id = value.id;
+      this.studentProfile.firstName = value.firstName;
+      this.studentProfile.lastName = value.lastName;
+      this.studentProfile.phone = value.phone;
+      this.studentProfile.gender = value.gender;
+      this.studentProfile.username = value.username;
+    });
   }
   save() {
     let requestProfile = new StudentUpdateRequest();
@@ -96,15 +91,9 @@ export class UpdateProfileStudentComponent implements OnInit {
     }
 
     if (this.isEdited == true) {
-      this.studentService.updatePhoto(this.formData).subscribe(
-        (val) => {
-          this.dataProfile();
-        },
-        (error) => {
-          this.dataProfile();
-          this.toastService.emitHttpErrorMessage(error, 'Failure');
-        }
-      );
+      this.studentService.updatePhoto(this.formData).subscribe((_) => {
+        this.dataProfile();
+      });
     }
     this.studentService.updateProfile(requestProfile).subscribe(
       (value) => {

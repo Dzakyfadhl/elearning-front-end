@@ -40,7 +40,6 @@ export class ModuleCourseComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadingService.emitStatus(true);
     this.activeRoute.params.subscribe((val) => {
       this.courseId = val.courseId;
       this.studentId = this.auth.getLoginResponse().userRoleId;
@@ -50,48 +49,40 @@ export class ModuleCourseComponent implements OnInit {
   }
 
   showModule() {
-    this.moduleService.getModuleStudent(this.courseId).subscribe(
-      (value) => {
-        this.modules = value.result;
+    this.moduleService.getModuleStudent(this.courseId).subscribe((value) => {
+      this.modules = value.result;
 
-        this.modules.modules.forEach((data) => {
-          let dateStartMerge = `${data.schedule.date} ${data.schedule.startTime}`;
-          let dateEndMerge = `${data.schedule.date} ${data.schedule.endTime}`;
+      this.modules.modules.forEach((data) => {
+        let dateStartMerge = `${data.schedule.date} ${data.schedule.startTime}`;
+        let dateEndMerge = `${data.schedule.date} ${data.schedule.endTime}`;
 
-          let dateStart = new Date(dateStartMerge);
-          let dateEnd = new Date(dateEndMerge);
-          let dateNow = new Date();
+        let dateStart = new Date(dateStartMerge);
+        let dateEnd = new Date(dateEndMerge);
+        let dateNow = new Date();
 
-          if (dateNow < dateEnd) {
-            data.isAttendance = true;
-          } else {
-            data.isAttendance = false;
-          }
-
-          if (dateNow >= dateStart && dateNow < dateEnd) {
-            data.isStart = true;
-          } else {
-            data.isStart = false;
-          }
-        });
-
-        this.total = this.modules.modules.length;
-
-        this.checkValidate();
-
-        let val = (this.countTemp / this.total) * 100;
-        this.value = Math.floor(val);
-        if (isNaN(this.value)) {
-          this.value = 0;
+        if (dateNow < dateEnd) {
+          data.isAttendance = true;
+        } else {
+          data.isAttendance = false;
         }
-      },
-      (error) => {
-        this.toastService.emitHttpErrorMessage(error);
-      },
-      () => {
-        this.loadingService.emitStatus(false);
+
+        if (dateNow >= dateStart && dateNow < dateEnd) {
+          data.isStart = true;
+        } else {
+          data.isStart = false;
+        }
+      });
+
+      this.total = this.modules.modules.length;
+
+      this.checkValidate();
+
+      let val = (this.countTemp / this.total) * 100;
+      this.value = Math.floor(val);
+      if (isNaN(this.value)) {
+        this.value = 0;
       }
-    );
+    });
   }
 
   checkValidate() {
@@ -120,25 +111,20 @@ export class ModuleCourseComponent implements OnInit {
   viewForum(index: number) {
     let data = this.modules.modules[index];
     let id = data.id;
-    this.route.navigate([`/module/`, id]);
+    this.route.navigate([`/student/courses/module/`, id]);
   }
 
   attendanceRequest(moduleId: string) {
     let dataAttendance = new AttendanceRequest();
     dataAttendance.idModule = moduleId;
     dataAttendance.idStudent = this.auth.getLoginResponse().userRoleId;
-    this.attendanceService.attendanceStudent(dataAttendance).subscribe(
-      (_) => {
-        this.showModule();
-        this.toastService.emitSuccessMessage(
-          'Attendance Success!',
-          'Attendance has been sent'
-        );
-      },
-      (error) => {
-        this.toastService.emitHttpErrorMessage(error);
-      }
-    );
+    this.attendanceService.attendanceStudent(dataAttendance).subscribe((_) => {
+      this.showModule();
+      this.toastService.emitSuccessMessage(
+        'Attendance Success!',
+        'Attendance has been sent'
+      );
+    });
   }
 
   downloadModule() {

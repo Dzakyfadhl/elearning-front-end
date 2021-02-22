@@ -63,36 +63,27 @@ export class ModuleDetailComponent implements OnInit {
     private location: Location,
     private lessonService: LessonService,
     private toastService: ToastService,
-    private confirmationService: ConfirmationService,
-    private loadingService: LoadingService
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
-    this.loadingService.emitStatus(true);
     this.activeRoute.params.subscribe((value) => {
       this.moduleId = value.id;
 
       this.showLesson(value.id);
 
-      this.dtlModuleService.getDtlModule(value.id).subscribe(
-        (dataModule) => {
-          this.detail = dataModule.result;
-        },
-        (error) => {
-          this.toastService.emitHttpErrorMessage(error);
-        },
-        () => {
-          this.loadingService.emitStatus(false);
-        }
-      );
+      this.dtlModuleService.getDtlModule(value.id).subscribe((dataModule) => {
+        this.detail = dataModule.result;
+      });
     });
     this.showDiscussion();
     this.showExam();
   }
 
   showExam() {
-    this.examService.getDetailModuleExam(this.moduleId).subscribe(
-      (dataExam) => {
+    this.examService
+      .getDetailModuleExam(this.moduleId)
+      .subscribe((dataExam) => {
         this.exams = dataExam.result;
 
         if (this.exams === undefined) {
@@ -107,8 +98,9 @@ export class ModuleDetailComponent implements OnInit {
             let dateEnd = new Date(data.endTime);
             let dateNow = new Date();
 
-            this.examService.getExamStudent(data.id).subscribe(
-              (dataExamStudent) => {
+            this.examService
+              .getExamStudent(data.id)
+              .subscribe((dataExamStudent) => {
                 if (dateNow < dateStart || dateNow > dateEnd) {
                   this.isAllowed = false;
                   this.examStudents.set(data.id, [
@@ -121,26 +113,11 @@ export class ModuleDetailComponent implements OnInit {
                     dataExamStudent.result,
                     this.isAllowed,
                   ]);
-                  console.log(data.title, 'allowed');
                 }
-              },
-              (error) => {
-                this.toastService.emitHttpErrorMessage(error);
-              },
-              () => {
-                this.loadingService.emitStatus(false);
-              }
-            );
+              });
           });
         }
-      },
-      (error) => {
-        this.toastService.emitHttpErrorMessage(error);
-      },
-      () => {
-        this.loadingService.emitStatus(false);
-      }
-    );
+      });
   }
 
   async showLesson(id: string) {
@@ -157,8 +134,9 @@ export class ModuleDetailComponent implements OnInit {
     this.location.back();
   }
   showDiscussion() {
-    this.forumService.getModuleDiscussions(this.moduleId).subscribe(
-      (dataForum) => {
+    this.forumService
+      .getModuleDiscussions(this.moduleId)
+      .subscribe((dataForum) => {
         this.messages = dataForum.result;
         this.messages.forEach((val) => {
           let dateFuture = new Date(val.createdAt);
@@ -189,16 +167,7 @@ export class ModuleDetailComponent implements OnInit {
         if (this.messages.length > 0) {
           this.totalPost = this.messages.length;
         }
-        console.log(this.messages);
-      },
-      (error) => {
-        this.messages = [];
-        this.toastService.emitHttpErrorMessage(error);
-      },
-      () => {
-        this.loadingService.emitStatus(false);
-      }
-    );
+      });
   }
   sendingContent() {
     let data = new ForumRequestDTO();
@@ -208,15 +177,10 @@ export class ModuleDetailComponent implements OnInit {
     data.moduleId = this.moduleId;
     data.versionUser = 0;
     data.versionModule = 0;
-    this.forumService.saveForum(data).subscribe(
-      (val) => {
-        this.showDiscussion();
-        this.content = '';
-      },
-      (error) => {
-        this.toastService.emitHttpErrorMessage(error, 'Field is blank');
-      }
-    );
+    this.forumService.saveForum(data).subscribe((_) => {
+      this.showDiscussion();
+      this.content = '';
+    });
   }
 
   fileChange(event) {
@@ -235,18 +199,16 @@ export class ModuleDetailComponent implements OnInit {
   upload(index: number) {
     let data: ExamsModuleResponseDTO = this.exams[index];
 
-    this.examService.uploadExamStudent(data.id, this.formData).subscribe(
-      (_) => {
+    this.examService
+      .uploadExamStudent(data.id, this.formData)
+      .subscribe((_) => {
         this.showExam();
+        this.file = null;
         this.toastService.emitSuccessMessage(
           'Uploaded Successfully',
           'You has been uploaded exam.'
         );
-      },
-      (error) => {
-        this.toastService.emitHttpErrorMessage(error, 'failure');
-      }
-    );
+      });
   }
 
   removeExam(id: string) {
@@ -256,19 +218,14 @@ export class ModuleDetailComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         try {
-          this.examService.deleteExamStudent(id).subscribe(
-            (_) => {
-              this.showExam();
-              this.file = null;
-              this.toastService.emitSuccessMessage(
-                'Remove Success',
-                'You has been remove your exam'
-              );
-            },
-            (error) => {
-              this.toastService.emitHttpErrorMessage(error, 'Remove Failed');
-            }
-          );
+          this.examService.deleteExamStudent(id).subscribe((_) => {
+            this.showExam();
+            this.file = null;
+            this.toastService.emitSuccessMessage(
+              'Remove Success',
+              'You has been remove your exam'
+            );
+          });
         } catch (error) {
           this.toastService.emitHttpErrorMessage(
             error,

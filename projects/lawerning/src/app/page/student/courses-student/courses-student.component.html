@@ -1,70 +1,13 @@
-<!-- <div class="container-fluid">
-  <div class="row">
-    <div class="header-home col-lg-12">
-      <h1 class="text-center m-4">My Course</h1>
-      <div class="text-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="50"
-          height="50"
-          fill="currentColor"
-          class="course-icon bi bi-book mb-3"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"
-          />
-        </svg>
-      </div>
-
-      <p class="text-center text-light">
-        Don't want to lose updates with others. Come on, follow the development
-        of technology.
-      </p>
-    </div>
-  </div>
-</div> -->
-
 <div class="body-home container-fluid mb-5">
   <div class="row">
     <div class="col-lg-12">
-      <div *ngIf="isEmpty == true" class="d-flex justify-content-center">
-        <div class="image-card card">
-          <img src="assets/images/dataEmpty.png" class="image-empty" alt="" />
+      <div *ngIf="isEmpty" class="container-fluid">
+        <div class="row justify-content-center">
+          <img src="assets/images/dataEmpty.png" height="500" width="450" alt="" />
         </div>
       </div>
-      <div *ngIf="isEmpty == false" class="container">
-        <!-- <h4 class="course-progress mt-5">COURSE PROGRESS</h4> -->
-        <!-- <div class="body-progress container"> -->
-        <!-- <div class="row justify-content-center">
-          <div class="col-lg-3 p-2" *ngFor="let cp of courseProgress">
-            <div class="body-progress p-3">
-              <div class="d-flex flex-row">
-                <img
-                  src="assets/images/icon-student.svg"
-                  height="70"
-                  height="70"
-                  alt=""
-                />
-                <div class="d-flex flex-column ml-3 mt-1">
-                  <h4 class="text-truncate" style="max-width: 8rem">
-                    {{ cp.courseName }}
-                  </h4>
-                  <h6>
-                    {{ cp.moduleComplete }} of {{ cp.totalModule }}
-                    completed
-                  </h6>
-                </div>
-              </div>
-              <div class="progressbar mt-3">
-                <p-progressBar
-                  [value]="cp.percentProgress"
-                  class="progress-body"
-                ></p-progressBar>
-              </div>
-            </div>
-          </div>
-        </div> -->
+      <div *ngIf="!isEmpty" class="container">
+
         <h4 class="my-course mt-5">MY COURSE</h4>
         <div class="row">
           <div class="col-lg-4 col-md-6 mt-3 mb-3" *ngFor="let c of courses; let i = index">

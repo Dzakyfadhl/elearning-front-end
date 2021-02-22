@@ -14,6 +14,8 @@ import { UserService } from '../../../service/user.service';
 })
 export class ChangePasswordStudentComponent implements OnInit {
   updatePassword = new PasswordRequest();
+  confirmPassword: string = '';
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -24,20 +26,18 @@ export class ChangePasswordStudentComponent implements OnInit {
   ngOnInit(): void {}
 
   submit() {
-    this.updatePassword.id = this.authService.getLoginResponse().userId;
-    this.userService.updatePassword(this.updatePassword).subscribe(
-      (response) => {
-        if (response.code === 200 && response.result) {
-          this.toastService.emitSuccessMessage('Updated', response.result);
-          this.router.navigateByUrl('/student/home');
-        }
-      },
-      (error: HttpErrorResponse) => {
-        this.toastService.emitHttpErrorMessage(
-          error,
-          'Failed to update password'
-        );
-      }
-    );
+    if (this.confirmPassword !== this.updatePassword.newPassword) {
+      window.alert('Password must be same..');
+    } else {
+      this.updatePassword.id = this.authService.getLoginResponse().userId;
+      this.userService
+        .updatePassword(this.updatePassword)
+        .subscribe((response) => {
+          if (response.code === 200 && response.result) {
+            this.toastService.emitSuccessMessage('Updated', response.result);
+            this.router.navigateByUrl('/student/home');
+          }
+        });
+    }
   }
 }
