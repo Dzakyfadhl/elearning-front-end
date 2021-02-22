@@ -210,13 +210,13 @@
         <div class="row mt-3">
             <div class="p-field col-md-6">
                 <label for="periodStart">Period Start</label>
-                <p-calendar [(ngModel)]="updateRequest.periodStart" [showIcon]="true" appendTo="body" hourFormat="24" dateFormat="yy-mm-dd"></p-calendar>
-                <small class="p-error" *ngIf="submitted && !updateRequest.periodStart">Period Start is required.</small>
+                <p-calendar [(ngModel)]="startTime" [showIcon]="true" appendTo="body" hourFormat="24" dateFormat="yy-mm-dd"></p-calendar>
+                <small class="p-error" *ngIf="submitted && !startTime">Period Start is required.</small>
             </div>
             <div class="p-field col-md-6">
                 <label for="periodEnd">Period End</label>
-                <p-calendar [(ngModel)]="updateRequest.periodEnd" [showIcon]="true" appendTo="body" hourFormat="24" dateFormat="yy-mm-dd"></p-calendar>
-                <small class="p-error" *ngIf="submitted && !updateRequest.periodEnd">Period End is required.</small>
+                <p-calendar [(ngModel)]="endTime" [showIcon]="true" appendTo="body" hourFormat="24" dateFormat="yy-mm-dd"></p-calendar>
+                <small class="p-error" *ngIf="submitted && !endTime">Period End is required.</small>
             </div>
         </div>
         <div class="p-field mt-3">

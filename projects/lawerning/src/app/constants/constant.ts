@@ -1,6 +1,6 @@
 const Constants = {
-  BASE_URL: 'http://localhost:8080/lawerning',
-  BASE_URL_FILE: 'http://localhost:8080/lawerning/file',
+  BASE_URL: 'http://192.168.13.87:8080/lawerning',
+  BASE_URL_FILE: 'http://192.168.13.87:8080/lawerning/file',
   PIXABAY_URL: 'https://pixabay.com/api',
   CHART_COLORS: [
     '#36A2EB',
@@ -11,5 +11,5 @@ const Constants = {
     '#FFCE56',
   ],
 };
-g;
+
 export default Constants;

@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 import Constants from '../constants/constant';
 import { StudentUpdateRequest } from '../model/student/student-edit-request';
 import { StudentRegisterRequest } from '../model/student-register-request';
+import { UpdateIsActiveRequestDTO } from '../model/update-isactive-request';
 
 @Injectable({
   providedIn: 'root',
@@ -54,6 +55,14 @@ export class StudentService {
   updateStudent(request: StudentUpdateRequest): Promise<ResponseModel<string>> {
     return this.http
       .put<ResponseModel<string>>(`${Constants.BASE_URL}/student`, request)
+      .toPromise();
+  }
+
+  updateActive(
+    request: UpdateIsActiveRequestDTO
+  ): Promise<ResponseModel<string>> {
+    return this.http
+      .patch<ResponseModel<string>>(`${Constants.BASE_URL}/student`, request)
       .toPromise();
   }
 

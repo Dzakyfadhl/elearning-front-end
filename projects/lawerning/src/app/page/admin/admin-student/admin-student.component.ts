@@ -3,6 +3,7 @@ import { ConfirmationService } from 'primeng/api';
 import { Gender } from '../../../model/gender';
 import { StudentUpdateRequest } from '../../../model/student/student-edit-request';
 import { StudentResponse } from '../../../model/student/student-response';
+import { UpdateIsActiveRequestDTO } from '../../../model/update-isactive-request';
 import { AuthService } from '../../../service/auth.service';
 import { StudentService } from '../../../service/student.service';
 import { ToastService } from '../../../service/toast.service';
@@ -77,6 +78,33 @@ export class AdminStudentComponent implements OnInit {
       await this.initStudentList();
       this.hideEditDialog();
     }
+  }
+
+  updateActive(student: StudentResponse) {
+    let request = new UpdateIsActiveRequestDTO();
+    request.id = student.id;
+    request.updatedBy = this.authService.getLoginResponse().userId;
+    let flag: string;
+
+    if (student.isActive) {
+      flag = 'in active';
+      request.status = false;
+    } else {
+      flag = 'active';
+      request.status = true;
+    }
+    this.confirmationService.confirm({
+      message: `Are you sure you want to delete ${flag} ${student.firstName} ${student.lastName} ?`,
+      header: 'Update Active Confirm.',
+      icon: 'pi pi-exclamation-triangle',
+      accept: async () => {
+        const response = await this.studentService.updateActive(request);
+        if (response.code === 200) {
+          this.toastService.emitSuccessMessage('Updated', response.result);
+          this.initStudentList();
+        }
+      },
+    });
   }
 
   delete(student: StudentResponse) {

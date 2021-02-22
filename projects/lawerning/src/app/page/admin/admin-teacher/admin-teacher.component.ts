@@ -122,7 +122,7 @@ export class AdminTeacherComponent implements OnInit {
       accept: () => {
         this.teacherService.updateIsActive(request).subscribe((response) => {
           if (response.code === 200 && response.result) {
-            this.toastService.emitSuccessMessage('Deleted', response.result);
+            this.toastService.emitSuccessMessage('Updated', response.result);
             this.defineTeachers();
           }
         });

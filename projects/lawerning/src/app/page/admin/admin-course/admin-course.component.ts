@@ -35,6 +35,7 @@ export class AdminCourseComponent implements OnInit {
   selectedTeacher: string;
   selectedCategory: string;
 
+  datePipe = new DatePipe('en-US');
   startTime: Date;
   endTime: Date;
 
@@ -113,10 +114,14 @@ export class AdminCourseComponent implements OnInit {
   }
 
   createCourse() {
-    let datePipe = new DatePipe('en-US');
-
-    const formattedDateStart = datePipe.transform(this.startTime, 'yyyy-MM-dd');
-    const formattedDateEnd = datePipe.transform(this.endTime, 'yyyy-MM-dd');
+    const formattedDateStart = this.datePipe.transform(
+      this.startTime,
+      'yyyy-MM-dd'
+    );
+    const formattedDateEnd = this.datePipe.transform(
+      this.endTime,
+      'yyyy-MM-dd'
+    );
 
     this.submitted = true;
     this.createRequest.createdBy = this.auth.getUserId();
@@ -137,6 +142,9 @@ export class AdminCourseComponent implements OnInit {
   }
 
   editCourse(course: CourseAdminResponseDTO) {
+    this.startTime = new Date(course.periodStart);
+    this.endTime = new Date(course.periodEnd);
+
     this.selectedCategory = course.categoryId;
     this.selectedType = course.typeId;
     this.selectedTeacher = course.teacherId;
@@ -147,8 +155,8 @@ export class AdminCourseComponent implements OnInit {
       code: course.code,
       description: course.description,
       capacity: course.capacity,
-      periodStart: course.periodStart,
-      periodEnd: course.periodEnd,
+      periodStart: this.startTime.toString(),
+      periodEnd: this.endTime.toString(),
       createdBy: null,
       status: course.status,
       courseCategoryId: this.selectedCategory,
@@ -158,6 +166,16 @@ export class AdminCourseComponent implements OnInit {
     };
   }
   async updateCourse() {
+    const formattedDateStart = this.datePipe.transform(
+      this.startTime,
+      'yyyy-MM-dd'
+    );
+    const formattedDateEnd = this.datePipe.transform(
+      this.endTime,
+      'yyyy-MM-dd'
+    );
+    this.updateRequest.periodStart = formattedDateStart;
+    this.updateRequest.periodEnd = formattedDateEnd;
     const response = await this.courseService.updateCourse(this.updateRequest);
     if (response.code === 200) {
       this.toastService.emitSuccessMessage('Updated', response.result);
