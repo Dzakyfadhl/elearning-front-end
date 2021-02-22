@@ -53,14 +53,11 @@ export class HomePageComponent implements OnInit {
       this.token = this.auth.getLoginResponse().token;
       this.roleName = this.auth.getLoginResponse().role.name;
     }
-    // console.log(this.routeActive);
 
     this.teacherService.getAllTeachers().subscribe((data) => {
       this.mentors = data.result;
 
       if (this.mentors.length > 0) {
-        console.log(this.mentors);
-
         this.mentors.forEach((val) => {
           if (!val.photoId) {
             val.photoId = 'assets/images/default.png';
@@ -73,7 +70,6 @@ export class HomePageComponent implements OnInit {
 
     this.courseService.getCourseAll().subscribe((result) => {
       this.courses = result.result;
-      console.log(this.courses);
 
       this.courses.forEach((data) => {
         let start = new Date(data.periodStart);
@@ -86,7 +82,6 @@ export class HomePageComponent implements OnInit {
         data.duration = Math.floor(day / 7);
 
         data.day = day % 7;
-        console.log(data.day);
 
         if (!data.teacher.photoId) {
           data.teacher.photoId = `assets/images/default.png`;

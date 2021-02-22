@@ -1,13 +1,13 @@
-<div class="p-3">
+<div class="p-3" *ngIf="dashboard">
     <section class="container-fluid">
         <h1 class="mb-4">Dashboard</h1>
-        <div class="row justify-content-lg-between justify-content-sm-center mx-2">
-            <article class="card card-info mb-3 shadow-sm">
+        <div class="row justify-content-md-start justify-content-lg-start justify-content-center mx-2">
+            <article class="card card-info mb-3 shadow-sm mr-lg-5 mr-sm-4">
                 <div class="row no-gutters justify-content-center align-items-center">
-                    <div class="col-md-6 text-center">
+                    <div class="col-md-6 col-12 text-center mt-sm-4 mt-md-0">
                         <fa-icon [icon]="['fas', 'users']" size="3x"></fa-icon>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-12 text-center">
                         <div class="card-body">
                             <h5 class="card-title">Student</h5>
                             <p class="card-text" *ngIf="dashboard && dashboard.student">{{dashboard.student.total}}</p>
@@ -15,12 +15,12 @@
                     </div>
                 </div>
             </article>
-            <article class="card card-info mb-3 shadow-sm">
+            <article class="card card-info mb-3 shadow-sm mr-lg-5 mr-sm-4">
                 <div class="row no-gutters justify-content-center align-items-center">
-                    <div class="col-md-6 text-center">
+                    <div class="col-md-6 col-12 text-center mt-sm-4 mt-md-0">
                         <fa-icon [icon]="['fas', 'user-graduate']" size="3x"></fa-icon>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-12 text-center">
                         <div class="card-body">
                             <h5 class="card-title">Teacher</h5>
                             <p class="card-text" *ngIf="dashboard && dashboard.teacher">{{dashboard.teacher.total}}</p>
@@ -28,12 +28,12 @@
                     </div>
                 </div>
             </article>
-            <article class="card card-info mb-3 shadow-sm">
+            <article class="card card-info mb-3 shadow-sm mr-lg-5 mr-sm-4">
                 <div class="row no-gutters justify-content-center align-items-center">
-                    <div class="col-md-6 text-center">
+                    <div class="col-md-6 col-12 text-center mt-sm-4 mt-md-0">
                         <fa-icon [icon]="['fas', 'chalkboard-teacher']" size="3x"></fa-icon>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-12 text-center">
                         <div class="card-body">
                             <h5 class="card-title">Course</h5>
                             <p class="card-text" *ngIf="dashboard && dashboard.course">{{dashboard.course.total}}</p>
@@ -46,13 +46,13 @@
     <section class="container-fluid mt-5">
         <h1>Chart Report</h1>
         <div class="row">
-            <article class="card shadow col-md-6 col-sm-12 mt-sm-4">
+            <article class="shadow-sm col-md-6 col-sm-12 mt-sm-4">
                 <p-chart type="pie" [data]="studentData" [options]="studentChartOption"></p-chart>
             </article>
-            <article class="card shadow col-md-6 col-sm-12 mt-sm-4">
+            <article class="shadow-sm col-md-6 col-sm-12 mt-sm-4">
                 <p-chart type="pie" [data]="teacherData" [options]="teacherChartOption"></p-chart>
             </article>
-            <article class="card shadow col-12 mt-4">
+            <article class="shadow-sm col-12 mt-4">
                 <p-chart type="pie" [data]="courseData" [options]="courseChartOption"></p-chart>
             </article>
         </div>

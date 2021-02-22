@@ -19,21 +19,18 @@ export class ToastService {
     });
   }
 
-  emitHttpErrorMessage(
-    error: HttpErrorResponse,
-    message: string | null = null
-  ) {
+  emitHttpErrorMessage(error: any, message: string | null = null) {
     let msg: string = '';
     if (error.error) {
       msg = error.error.result;
     } else {
-      msg = error.message;
+      msg = error;
     }
     this.messageObservable.next({
       severity: 'error',
       summary: 'Failed',
       detail: `${message ?? 'Failed request'}. ${msg}`,
     });
-    console.log(error);
+    console.error(error);
   }
 }

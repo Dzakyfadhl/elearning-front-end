@@ -30,6 +30,7 @@ import {
   faLinkedin,
   faFacebookSquare,
 } from '@fortawesome/free-brands-svg-icons';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,11 @@ import {
 })
 export class AppModule {
   constructor(library: FaIconLibrary) {
-    library.addIcons(faInstagramSquare, faLinkedin, faFacebookSquare);
+    library.addIcons(
+      faInstagramSquare,
+      faLinkedin,
+      faFacebookSquare,
+      faSignOutAlt
+    );
   }
 }

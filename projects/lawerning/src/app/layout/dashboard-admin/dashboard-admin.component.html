@@ -86,8 +86,9 @@
                 <img src="assets/images/logo4.png" width="48px" height="48px" alt="Lawerning" />
                 <span class="d-none d-lg-inline pl-lg-2">Lawerning</span>
             </a>
-            <button pButton type="button" label="Sign out" class="p-button p-button-rounded p-button-outlined ml-auto"
-                icon="pi pi-sign-out" (click)="logout()"></button>
+            <button type="button" label="Sign out" (click)="logout()" class="btn btn-outline-info ml-auto">
+                Sign Out <fa-icon [icon]="['fas', 'sign-out-alt']" size="lg" class="px-2"></fa-icon>
+            </button>
         </nav>
         <div class="container-fluid" id="mainContent">
             <router-outlet></router-outlet>

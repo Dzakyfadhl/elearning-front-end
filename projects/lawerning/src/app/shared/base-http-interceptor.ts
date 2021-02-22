@@ -36,7 +36,7 @@ export class BaseHttpInterceptor implements HttpInterceptor {
         }
         return event;
       }),
-      catchError((error: HttpErrorResponse) => {
+      catchError((error: any) => {
         this.toastService.emitHttpErrorMessage(error);
         this.loadingService.emitStatus(false);
         return throwError(error);
