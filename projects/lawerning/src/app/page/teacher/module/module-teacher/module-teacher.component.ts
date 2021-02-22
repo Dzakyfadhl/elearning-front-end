@@ -1,13 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ThrowStmt } from '@angular/compiler';
-import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Toast } from 'primeng/toast';
 import Constants from 'projects/lawerning/src/app/constants/constant';
 import { AttendanceReport } from 'projects/lawerning/src/app/model/attendance-report';
 import { DetailCourseResponse } from 'projects/lawerning/src/app/model/detail-course-response';
-import { DetailModuleResponse } from 'projects/lawerning/src/app/model/detail-module-response';
 import { StudentByCourseIdResponse } from 'projects/lawerning/src/app/model/student-by-courseid-response';
 import { AuthService } from 'projects/lawerning/src/app/service/auth.service';
 import { DetailCourseTeacherService } from 'projects/lawerning/src/app/service/detail-course-teacher.service';
@@ -46,13 +42,13 @@ export class ModuleTeacherComponent implements OnInit {
 
   showDetailCourseTeacher() {
     this.activeRoute.params.subscribe((value) => {
-      console.log(value.courseId);
+      // console.log(value.courseId);
       this.courseId = value.courseId;
       this.dtlCourseTeacherService
         .getDetailCourseTeacher(value.courseId)
         .subscribe((val) => {
           this.dtlCourse = val.result;
-          console.log(this.dtlCourse);
+          // console.log(this.dtlCourse);
           this.totalModule = this.dtlCourse.modules.length;
         });
     });
@@ -60,7 +56,7 @@ export class ModuleTeacherComponent implements OnInit {
   showStudentByCourse() {
     this.studentService.getStudentByCourseId(this.courseId).subscribe((val) => {
       this.students = val.result;
-      console.log(this.students);
+      // console.log(this.students);
     });
   }
 
@@ -71,7 +67,7 @@ export class ModuleTeacherComponent implements OnInit {
     };
     let tempModule: any = this.dtlCourse.modules[index];
     let moduleId = tempModule.id;
-    console.log(moduleId);
+    // console.log(moduleId);
     dataObj.idCourse = this.courseId;
     dataObj.idModule = moduleId;
     this.router.navigate([`teacher/dtl-module`], { queryParams: dataObj });
@@ -82,7 +78,7 @@ export class ModuleTeacherComponent implements OnInit {
       .getAttendanceReportTeacher(this.courseId)
       .subscribe((val) => {
         this.attendanceReports = val.result;
-        console.log(this.attendanceReports);
+        // console.log(this.attendanceReports);
       });
   }
 

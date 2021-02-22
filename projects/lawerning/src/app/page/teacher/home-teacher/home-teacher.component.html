@@ -15,7 +15,7 @@
   <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-12 mt-2 mb-3">
       <div class="card-student shadow d-flex flex-row">
-        <img src="assets/images/img/icon-student.svg" />
+        <img src="assets/images/img/enrolled_student.svg" />
         <div class="icon-student d-flex flex-column">
           <h3>Enrolled Student</h3>
           <h4 class="text-center">{{ totalStudent }}</h4>
@@ -24,7 +24,7 @@
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12 mt-2 mb-3">
       <div class="card-course shadow d-flex flex-row">
-        <img src="assets/images/img/icon-student.svg" />
+        <img src="assets/images/img/course.svg" />
         <div class="icon-course d-flex flex-column">
           <h3>Enrolled Course</h3>
           <h4 class="text-center">{{ totalCourse }}</h4>
@@ -33,7 +33,7 @@
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12 mt-2 mb-3">
       <div class="card-module shadow d-flex flex-row">
-        <img src="assets/images/img/icon-student.svg" />
+        <img src="assets/images/img/enrolled_module.svg" />
         <div class="icon-module d-flex flex-column">
           <h3>Enrolled Module</h3>
           <h4 class="text-center">{{ totalModule }}</h4>
@@ -60,22 +60,16 @@
           </h5>
           <div class="d-flex justify-content-start">
             <div class="icon-module d-flex flex-row mr-2">
-              <span>
-                <img src="assets/images/time1.svg" />
-              </span>
+              <fa-icon [icon]="['fas', 'book']" size="sm" style="color: white;"></fa-icon>
               <h6>{{ c.totalModule }} module</h6>
             </div>
-            <div class="icon-calender d-flex flex-row">
-              <span>
-                <img src="assets/images/calender1.svg" />
-              </span>
+            <div class="icon-student d-flex flex-row">
+              <fa-icon [icon]="['fas', 'users']" size="sm" style="color: white;"></fa-icon>
               <h6>{{ c.totalStudent }} student</h6>
             </div>
           </div>
           <div class="icon-calender d-flex flex-row">
-            <span>
-              <img src="assets/images/calender1.svg" />
-            </span>
+            <fa-icon [icon]="['fas', 'calendar-alt']" size="sm" style="color:white;"></fa-icon>
             <h6>
               {{ c.periodStart | date: "dd/MM/yyyy" }} -
               {{ c.periodEnd | date: "dd/MM/yyyy" }}

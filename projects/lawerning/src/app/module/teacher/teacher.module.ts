@@ -14,7 +14,15 @@ import { ReportAttendanceModule } from './report-attendance/report-attendance.mo
 import { UpdateProfileTeacherModule } from './update-profile-teacher/update-profile-teacher.module';
 import { CheckLoginGuard } from '../../shared/check-login.guard';
 import { Permissions } from '../../shared/permissions';
-
+import {
+  FontAwesomeModule,
+  FaIconLibrary,
+} from '@fortawesome/angular-fontawesome';
+import {
+  faBook,
+  faCalendarWeek,
+  faUsers,
+} from '@fortawesome/free-solid-svg-icons';
 @NgModule({
   declarations: [HomeTeacherComponent],
   imports: [
@@ -29,8 +37,13 @@ import { Permissions } from '../../shared/permissions';
     ExamTeacherModule,
     ReportAttendanceModule,
     UpdateProfileTeacherModule,
+    FontAwesomeModule,
   ],
 
   providers: [CheckLoginGuard, Permissions],
 })
-export class TeacherModule {}
+export class TeacherModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faBook, faUsers, faCalendarWeek);
+  }
+}

@@ -9,9 +9,16 @@ import { DialogModule } from 'primeng/dialog';
 import { BlockUIModule } from 'primeng/blockui';
 import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
-import { UpdateProfileTeacherComponent } from '@bootcamp-lawerning-page/teacher/update-profile-teacher/update-profile-teacher.component';
-import { UpdateProfileRoutingModule } from '../../student/update-profile/update-profile-routing.module';
-
+import {
+  FontAwesomeModule,
+  FaIconLibrary,
+} from '@fortawesome/angular-fontawesome';
+import {
+  faEdit,
+  faPlusCircle,
+  faTrashAlt,
+} from '@fortawesome/free-solid-svg-icons';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 @NgModule({
   declarations: [ProfileTeacherComponent],
   imports: [
@@ -24,6 +31,12 @@ import { UpdateProfileRoutingModule } from '../../student/update-profile/update-
     FormsModule,
     InputTextModule,
     CalendarModule,
+    FontAwesomeModule,
+    ConfirmDialogModule,
   ],
 })
-export class ProfileTeacherModule {}
+export class ProfileTeacherModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faPlusCircle, faEdit, faTrashAlt);
+  }
+}

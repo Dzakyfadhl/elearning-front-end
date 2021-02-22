@@ -96,14 +96,14 @@ export class DtlModuleComponent implements OnInit {
         this.lastName = this.authService.getLoginResponse().lastName;
         this.moduleId = value.idModule;
         this.courseId = value.idCourse;
-        console.log(value);
+        // console.log(value);
       });
       const response = await this.dtlModuleTeacherService.getDtlModuleTeacher(
         this.moduleId
       );
       if (response.code === 200) {
         this.dtlModule = response.result;
-        console.log(`Show Detail Module${this.dtlModule}`);
+        // console.log(`Show Detail Module${this.dtlModule}`);
       }
     } catch (error) {
       this.toastService.emitHttpErrorMessage(
@@ -118,7 +118,7 @@ export class DtlModuleComponent implements OnInit {
       .getDetailModuleExam(this.moduleId)
       .subscribe((val) => {
         this.exam = val.result;
-        console.log(this.exam);
+        // console.log(this.exam);
         this.exam.forEach((val) => {
           let endTime = new Date(val.endTime);
           let dateNow = new Date();
@@ -144,7 +144,7 @@ export class DtlModuleComponent implements OnInit {
   showReportScore() {
     this.reportService.getReportScore(this.moduleId).subscribe((val) => {
       this.reportScore = val.result;
-      console.log(this.reportScore);
+      // console.log(this.reportScore);
     });
   }
 
@@ -153,7 +153,7 @@ export class DtlModuleComponent implements OnInit {
       .getAttendanceStudent(this.courseId, this.moduleId)
       .subscribe((val) => {
         this.studentAttendance = val.result;
-        console.log(this.studentAttendance);
+        // console.log(this.studentAttendance);
       });
   }
 
@@ -180,22 +180,36 @@ export class DtlModuleComponent implements OnInit {
           }
         }
         confirmAttendance.idAttendance = idAttendances;
-        console.log(confirmAttendance.userId);
-        console.log(confirmAttendance.moduleId);
-        console.log(confirmAttendance.idAttendance);
-        console.log(idAttendances);
+        // console.log(confirmAttendance.userId);
+        // console.log(confirmAttendance.moduleId);
+        // console.log(confirmAttendance.idAttendance);
+        // console.log(idAttendances);
 
         if (idAttendances.length == 0) {
-          console.log('no absent data');
+          // console.log('no absent data');
           return;
         }
-        console.log('absent data');
+        // console.log('absent data');
 
         this.attendanceService
           .verifyAttendanceStudent(confirmAttendance)
-          .subscribe((val) => {
-            console.log(val);
-          });
+          .subscribe(
+            (response) => {
+              if (response.code === 200 && response.result) {
+                this.toastService.emitSuccessMessage(
+                  'Verify',
+                  'verify attendance success'
+                );
+                this.showAttendanceStudent();
+              }
+            },
+            (error: HttpErrorResponse) => {
+              this.toastService.emitHttpErrorMessage(
+                error,
+                'Failed to verify attendance'
+              );
+            }
+          );
       },
     });
   }
@@ -203,7 +217,7 @@ export class DtlModuleComponent implements OnInit {
   showDiscussion() {
     this.forumService.getModuleDiscussions(this.moduleId).subscribe((val) => {
       this.discussion = val.result;
-      console.log(val.result);
+      // console.log(val.result);
 
       this.discussion.forEach((val) => {
         let dateFuture = new Date(val.createdAt);
@@ -264,8 +278,8 @@ export class DtlModuleComponent implements OnInit {
     let tempExam: any = this.exam[index];
     let examId = tempExam.id;
     let examTitle = tempExam.title;
-    console.log(tempExam.id);
-    console.log(tempExam.title);
+    // console.log(tempExam.id);
+    // console.log(tempExam.title);
 
     dataObj.idExam = examId;
     dataObj.title = examTitle;
@@ -277,7 +291,7 @@ export class DtlModuleComponent implements OnInit {
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       let file: File = fileList[0];
-      console.log(file);
+      // console.log(file);
       let data: FormData = new FormData();
       data.append('file', file);
       this.formData = data;
@@ -288,8 +302,8 @@ export class DtlModuleComponent implements OnInit {
 
   upload() {
     let idUser = this.authService.getLoginResponse().userId;
-    console.log(this.moduleId);
-    console.log(idUser);
+    // console.log(this.moduleId);
+    // console.log(idUser);
     this.lessonService
       .uploadLessonModule(idUser, this.moduleId, this.formData)
       .subscribe(
@@ -309,7 +323,7 @@ export class DtlModuleComponent implements OnInit {
       );
   }
   uploadExam() {
-    console.log(this.moduleId);
+    // console.log(this.moduleId);
     this.router.navigate([`teacher/exam/`, this.moduleId]);
   }
   downloadReport() {

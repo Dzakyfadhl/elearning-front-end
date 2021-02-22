@@ -428,6 +428,9 @@
   width: 30px;
   height: 30px;
 }
+.icon-delete :hover {
+  cursor: pointer;
+}
 .file h5 {
   margin-top: 8px;
 }

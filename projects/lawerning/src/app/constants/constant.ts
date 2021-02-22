@@ -1,6 +1,7 @@
 const Constants = {
-  BASE_URL: 'https://95897d67b7ea.ngrok.io/lawerning',
-  BASE_URL_FILE: 'https://95897d67b7ea.ngrok.io/lawerning/file',
+  BASE_URL: 'http://localhost:8080/lawerning',
+  BASE_URL_FILE: 'http://localhost:8080/lawerning/file',
+  PIXABAY_URL: 'https://pixabay.com/api',
   CHART_COLORS: [
     '#36A2EB',
     '#212121',
@@ -10,5 +11,5 @@ const Constants = {
     '#FFCE56',
   ],
 };
-
+g;
 export default Constants;

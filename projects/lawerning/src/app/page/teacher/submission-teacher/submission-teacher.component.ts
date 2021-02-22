@@ -36,15 +36,15 @@ export class SubmissionTeacherComponent implements OnInit {
 
   showExamSubmission() {
     this.activeRoute.queryParams.subscribe((value) => {
-      console.log(value.idExam);
+      // console.log(value.idExam);
       this.examTitle = value.title;
-      console.log(this.examTitle);
+      // console.log(this.examTitle);
 
       this.firstName = this.authService.getLoginResponse().firstName;
       this.lastName = this.authService.getLoginResponse().lastName;
       this.examService.getExamSubmission(value.idExam).subscribe((value) => {
         this.studentSubmission = value.result;
-        console.log(this.studentSubmission);
+        // console.log(this.studentSubmission);
       });
     });
   }
@@ -54,8 +54,8 @@ export class SubmissionTeacherComponent implements OnInit {
     this.tempLastName = tempObj.lastName;
     this.data.id = tempObj.id;
     this.data.updatedBy = this.authService.getLoginResponse().userId;
-    console.log(this.data.updatedBy);
-    console.log(this.data.id);
+    // console.log(this.data.updatedBy);
+    // console.log(this.data.id);
 
     this.display = true;
   }
@@ -65,12 +65,12 @@ export class SubmissionTeacherComponent implements OnInit {
 
   updateScore() {
     this.data.grade = this.score;
-    console.log(this.data.grade);
-    console.log(this.data.updatedBy);
-    console.log(this.data.id);
+    // console.log(this.data.grade);
+    // console.log(this.data.updatedBy);
+    // console.log(this.data.id);
 
     this.examService.updateScore(this.data).subscribe((value) => {
-      console.log(value);
+      // console.log(value);
       this.showExamSubmission();
     });
     this.display = false;

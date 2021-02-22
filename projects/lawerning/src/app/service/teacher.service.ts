@@ -56,6 +56,12 @@ export class TeacherService {
     );
   }
 
+  deleteExperience(id: string): Observable<ResponseModel<string>> {
+    return this.http.delete<ResponseModel<string>>(
+      `${Constants.BASE_URL}/experience/${id}`
+    );
+  }
+
   updateTeacherProfile(
     data: UpdateTeacherRequest
   ): Promise<ResponseModel<string>> {

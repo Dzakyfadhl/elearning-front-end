@@ -7,26 +7,23 @@
 .content-body {
   width: 100%;
 }
-.icon-module img {
-  width: 16px;
-  height: 16px;
-}
+
 .icon-module h6 {
-  margin: 5px;
+  margin: 4px;
   font-size: 14px;
   color: white;
 }
 
-.icon-calender img {
-  width: 16px;
-  height: 20px;
-}
 .icon-calender h6 {
   font-size: 14px;
-  margin: 5px;
+  margin: 4px;
   color: white;
 }
-
+.icon-student h6 {
+  font-size: 14px;
+  margin: 4px;
+  color: white;
+}
 .student-course {
   color: #b0aeae;
 }
@@ -42,7 +39,7 @@
   margin-left: 3rem;
 }
 .card-header {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
     url("../../../../assets/images/img/banner_course.png");
 
   background-size: 100%;
@@ -71,12 +68,12 @@
 }
 .card-student img {
   width: 38%;
-  height: 38%;
+  height: 37%;
 }
 .card-student .icon-student h3 {
   margin-top: 22px;
-  font-size: 25px;
-  margin-left: 8px;
+  font-size: 23px;
+  margin-left: 10px;
 }
 .card-student .icon-student h4 {
   margin-left: 8px;
@@ -86,24 +83,24 @@
   border-radius: 10px;
 }
 .card-course img {
-  width: 38%;
-  height: 38%;
+  width: 40%;
+  height: 45%;
 }
 .card-course .icon-course h3 {
   margin-top: 22px;
-  font-size: 25px;
-  margin-left: 8px;
+  font-size: 23px;
+  margin-left: 10px;
 }
 .card-module {
   padding: 1rem;
   border-radius: 10px;
 }
 .card-module img {
-  width: 38%;
-  height: 38%;
+  width: 40%;
+  height: 47%;
 }
 .card-module .icon-module h3 {
   margin-top: 22px;
-  font-size: 25px;
-  margin-left: 8px;
+  font-size: 23px;
+  margin-left: 10px;
 }
