@@ -15,6 +15,9 @@ export class RegisterPageComponent implements OnInit {
   confirmPassword: string;
   male: string;
   female: string;
+  confirmPass: string;
+  submitted: boolean;
+
   constructor(
     private router: Router,
     private studentService: StudentService,
@@ -29,14 +32,20 @@ export class RegisterPageComponent implements OnInit {
   register() {
     console.log(this.studentRegister.gender);
     console.log(this.studentRegister.firstName);
+    this.submitted = true;
 
-    this.studentService
-      .insertStudent(this.studentRegister)
-      .subscribe((response) => {
-        if (response.code === 200 && response.result) {
-          this.toastService.emitSuccessMessage('Submitted', 'Register success');
-          this.router.navigateByUrl('login');
-        }
-      });
+    if (this.confirmPass === this.studentRegister.password) {
+      this.studentService
+        .insertStudent(this.studentRegister)
+        .subscribe((response) => {
+          if (response.code === 201 && response.result) {
+            this.toastService.emitSuccessMessage(
+              'Submitted',
+              'Register success'
+            );
+            this.router.navigateByUrl('login');
+          }
+        });
+    }
   }
 }

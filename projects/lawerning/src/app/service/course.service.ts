@@ -14,6 +14,7 @@ import { CourseTeacherResponse } from '../model/course-teacher-response';
 import { DeleteCourseTypeRequestDTO } from '../model/course-type-dto/delete-course-type-request';
 import { DetailCourseResponse } from '../model/detail-course-response';
 import { ResponseModel } from '../model/response-model';
+import { UpdateIsActiveRequestDTO } from '../model/update-isactive-request';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -101,9 +102,13 @@ export class CourseService {
       .toPromise();
   }
 
-  deleteCourse(
-    data: DeleteCourseTypeRequestDTO
-  ): Promise<ResponseModel<string>> {
+  deleteCourse(id: string): Promise<ResponseModel<string>> {
+    return this.http
+      .delete<ResponseModel<string>>(`${Constants.BASE_URL}/course/${id}`)
+      .toPromise();
+  }
+
+  updateActive(data: UpdateIsActiveRequestDTO): Promise<ResponseModel<string>> {
     return this.http
       .patch<ResponseModel<string>>(`${Constants.BASE_URL}/course`, data)
       .toPromise();

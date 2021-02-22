@@ -68,12 +68,9 @@ export class StudentService {
 
   deleteStudent(studentId: string): Promise<ResponseModel<string>> {
     return this.http
-      .delete<ResponseModel<string>>(`${Constants.BASE_URL}/student`, {
-        params: {
-          id: studentId,
-          updatedBy: this.authService.getUserId(),
-        },
-      })
+      .delete<ResponseModel<string>>(
+        `${Constants.BASE_URL}/student/${studentId}`
+      )
       .toPromise();
   }
 

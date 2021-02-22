@@ -9,8 +9,8 @@ import { CourseUpdateRequestDTO } from '../../../model/course-dto/course-update-
 import { UpdateStatusRequestDTO } from '../../../model/course-dto/update-course-status-request';
 import { CourseStatus } from '../../../model/course-status';
 import { CourseTypeResponse } from '../../../model/course-type-dto/course-type-response';
-import { DeleteCourseTypeRequestDTO } from '../../../model/course-type-dto/delete-course-type-request';
 import { TeacherForAdminDTO } from '../../../model/teacher-dto/teacher-admin-response';
+import { UpdateIsActiveRequestDTO } from '../../../model/update-isactive-request';
 import { AuthService } from '../../../service/auth.service';
 import { CourseCategoryService } from '../../../service/course-category.service';
 import { CourseTypeService } from '../../../service/course-type.service';
@@ -190,12 +190,36 @@ export class AdminCourseComponent implements OnInit {
       header: 'Delete Confirm.',
       icon: 'pi pi-exclamation-triangle',
       accept: async () => {
-        let deleteRequest = new DeleteCourseTypeRequestDTO();
-        deleteRequest.id = course.id;
-        deleteRequest.updatedBy = this.auth.getLoginResponse().userId;
-        const response = await this.courseService.deleteCourse(deleteRequest);
+        const response = await this.courseService.deleteCourse(course.id);
         if (response.code === 200) {
           this.toastService.emitSuccessMessage('Deleted', response.result);
+          this.defineCourses();
+        }
+      },
+    });
+  }
+
+  updateActive(course: CourseAdminResponseDTO) {
+    let request = new UpdateIsActiveRequestDTO();
+    request.id = course.id;
+    request.updatedBy = this.auth.getLoginResponse().userId;
+    let flag: string;
+
+    if (course.active) {
+      flag = 'in active';
+      request.status = false;
+    } else {
+      flag = 'active';
+      request.status = true;
+    }
+    this.confirmationService.confirm({
+      message: `Are you sure you want to ${flag} ${course.code} ?`,
+      header: 'Update Active Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: async () => {
+        const response = await this.courseService.updateActive(request);
+        if (response.code === 200 && response.result) {
+          this.toastService.emitSuccessMessage('Delete', response.result);
           this.defineCourses();
         }
       },
