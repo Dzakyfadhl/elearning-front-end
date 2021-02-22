@@ -11,21 +11,18 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/teacher/home">
-          Home
+          My Course
           <span class="sr-only"></span>
         </a>
       </li>
     </ul>
     <div class="pr-5">
       <div class="dropdown">
-        <!-- <div class="d-flex flex-row"> -->
-
         <img [src]="photo" class="rounded-circle my-1" height="45" width="45" alt="" />
         <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Hi, {{ name }}
         </button>
-        <!-- </div> -->
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" routerLink="/teacher/profile">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill"

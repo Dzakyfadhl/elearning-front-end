@@ -97,7 +97,7 @@
                       <img src="assets/images/img/file.svg" />
                     </div>
                     <div class="file">
-                      <a href="http://192.168.15.224:8080/file/{{ l.id }}">
+                      <a class="download" (click)="download(l.id)">
                         <h5 class="ml-2">{{ l.fileName }}</h5>
                       </a>
                     </div>

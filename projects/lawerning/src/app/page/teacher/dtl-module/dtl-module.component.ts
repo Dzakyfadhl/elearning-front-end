@@ -43,7 +43,7 @@ export class DtlModuleComponent implements OnInit {
   lastName: string;
   selectedStudents: AttendanceResponse[];
   reportScore: ReportScoreResponse[];
-
+  constan;
   displayExam: boolean = false;
   displayModule: boolean = false;
 
@@ -325,5 +325,9 @@ export class DtlModuleComponent implements OnInit {
       `${Constants.BASE_URL}/report/teacher?moduleId=${this.moduleId}&id=${teacherId}`,
       '_blank'
     );
+  }
+
+  download(id: string) {
+    window.open(`${Constants.BASE_URL_FILE}/${id}`, '_blank');
   }
 }

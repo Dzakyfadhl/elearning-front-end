@@ -431,6 +431,9 @@
   background-color: white;
   border: 1px solid rgb(240, 240, 240);
 }
+.download :hover {
+  cursor: pointer;
+}
 
 @media (min-width: 1204px) {
   .head-card {

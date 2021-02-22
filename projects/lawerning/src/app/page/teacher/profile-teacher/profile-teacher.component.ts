@@ -119,11 +119,9 @@ export class ProfileTeacherComponent implements OnInit {
     this.experience.teacherId = data.teacherId;
     this.experience.title = data.title;
     this.experience.userId = this.authService.getLoginResponse().userId;
-    console.log(data);
   }
   deleteExperience(index: number) {
     let idExperience = this.profileTeacher.experiences[index].id;
-    // console.log(idExperience);
 
     this.confirmationService.confirm({
       message: `Do you want to delete the experience ? `,
