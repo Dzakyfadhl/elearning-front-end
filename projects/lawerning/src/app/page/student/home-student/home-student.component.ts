@@ -102,7 +102,7 @@ export class HomeStudentComponent implements OnInit {
     request.courseId = tempCourse.id;
     request.isRegist = tempCourse.isRegist;
     if (request.isRegist == true) {
-      this.route.navigate([`/student/course/${request.courseId}`]);
+      this.route.navigate([`/student/courses/${request.courseId}`]);
     } else {
       this.route.navigate([
         `student/module/course/${request.courseId}/isRegist/${request.isRegist}`,

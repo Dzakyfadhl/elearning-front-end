@@ -235,4 +235,8 @@ export class ModuleDetailComponent implements OnInit {
       },
     });
   }
+
+  download(id: string) {
+    window.open(`${Constants.BASE_URL_FILE}/${id}`);
+  }
 }

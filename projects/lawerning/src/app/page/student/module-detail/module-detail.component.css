@@ -5,6 +5,9 @@
 .card-body h2 {
   color: white;
 }
+.downloader:hover {
+  cursor: pointer;
+}
 .card-body h5 {
   color: white;
 }

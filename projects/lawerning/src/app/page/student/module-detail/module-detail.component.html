@@ -82,7 +82,7 @@
                   <p *ngIf="e.type == 'EXAM'">Download {{ e.type }}:</p>
 
                   <span class="title-badge status-title">
-                    <a href="http://192.168.15.224:8080/file/{{ e.fileId }}"><i class="pi pi-file mr-2"></i>{{
+                    <a class="downloader" (click)="download(e.fileId)"><i class="pi pi-file mr-2"></i>{{
                       e.fileName
                       }}</a>
                   </span>
@@ -191,7 +191,7 @@
           <h6>Download</h6>
           <hr />
           <div *ngFor="let l of lessons" class="d-flex flex-column">
-            <a href="http://192.168.15.224:8080/file/{{ l.id }}">
+            <a class="downloader" (click)="download(l.id)">
               <h6><i class="pi pi-file mr-2"></i>{{ l.fileName }}</h6>
             </a>
           </div>
