@@ -118,6 +118,26 @@ export class CourseCategoryComponent implements OnInit {
     this.displayConfirmation = true;
   }
 
+  delete(courseCategory: CourseCategoryResponseDTO) {
+    this.confirmationService.confirm({
+      message: `Are you sure you want to delete ${courseCategory.code} ?`,
+      header: 'Delete Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.categoryService
+          .deleteCourseCategoryById(courseCategory.id)
+          .subscribe((response) => {
+            if (response.code === 200 && response.result) {
+              this.toastService.emitSuccessMessage('Deleted', response.result);
+              this.courseCategories = this.courseCategories.filter(
+                (value) => value.id !== courseCategory.id
+              );
+            }
+          });
+      },
+    });
+  }
+
   hideModal() {
     this.isCreateModalVisible = false;
     this.isEditModalVisible = false;

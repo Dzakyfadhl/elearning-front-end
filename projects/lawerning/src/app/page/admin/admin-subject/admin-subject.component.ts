@@ -71,12 +71,6 @@ export class AdminSubjectComponent implements OnInit {
           this.defineSubjects();
           this.hideModal();
         }
-      },
-      (error: HttpErrorResponse) => {
-        this.toastService.emitHttpErrorMessage(
-          error,
-          'Failed to add new subject category'
-        );
       }
     );
   }
@@ -104,12 +98,6 @@ export class AdminSubjectComponent implements OnInit {
           this.defineSubjects();
           this.hideModal();
         }
-      },
-      (error: HttpErrorResponse) => {
-        this.toastService.emitHttpErrorMessage(
-          error,
-          'Failed to update subject category'
-        );
       }
     );
   }
@@ -128,12 +116,6 @@ export class AdminSubjectComponent implements OnInit {
                 (value) => value.id !== sc.id
               );
             }
-          },
-          (error: HttpErrorResponse) => {
-            this.toastService.emitHttpErrorMessage(
-              error,
-              'Failed to delete subject category'
-            );
           }
         );
       },
@@ -164,12 +146,6 @@ export class AdminSubjectComponent implements OnInit {
               this.toastService.emitSuccessMessage('Deleted', response.result);
               this.defineSubjects();
             }
-          },
-          (error: HttpErrorResponse) => {
-            this.toastService.emitHttpErrorMessage(
-              error,
-              'Failed to update active subject category'
-            );
           }
         );
       },
